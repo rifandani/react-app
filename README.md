@@ -1,27 +1,60 @@
-# React + TypeScript + Vite
+# Intro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- [![DeepScan grade](https://deepscan.io/api/teams/13942/projects/24678/branches/761600/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=24678&bid=761600) -->
 
-Currently, two official plugins are available:
+React template built with:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `vite` + `typescript` + `eslint` + `prettier` -> built-in dev productivity
+- `vitest` + `@reactj/testing-library` -> unit test, integration test, coverage
+- `msw` -> browser and server mocking
+- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> styling
+- `@formkit/auto-animate` -> automate transition animation when component mount/unmount
+- `axios` + `@tanstack/react-query` -> data fetching
+- `zod` -> schema validation
+- `@iconify-icon/react` -> icon on demand (based on web-component)
+- `type-fest` -> useful type helpers
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+# install deps
+$ pnpm install
 
-- Configure the top-level `parserOptions` property like this:
+# init msw for browser mocking
+$ pnpm msw:init
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# Runs the app
+$ pnpm start
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```bash
+# run test
+$ pnpm test
+
+# coverage with instanbul
+$ pnpm test:coverage
+```
+
+## Build
+
+Builds the app for production to the `dist` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+```bash
+# build app
+$ pnpm build
+```
+
+## Deployment
+
+You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+
+## Notes
+
+Todos:
+
+- [ ] fix all tests
+- [ ] add `/docs` folder, including all my decisions why or technical considerations.
