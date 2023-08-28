@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useFetcher } from 'react-router-dom';
 
 export default function useLoginForm() {
-  const t = useI18n();
+  const [t] = useI18n();
   const fetcher = useFetcher();
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),

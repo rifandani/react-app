@@ -24,7 +24,7 @@ export default function NavbarMenu() {
         </NavLink>
       </li>
 
-      <li className="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+      <li className="dropdown-top dropdown mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
         <button
           type="button"
           tabIndex={0}
@@ -36,7 +36,7 @@ export default function NavbarMenu() {
 
         <ul className="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-secondary p-2 text-secondary-content shadow lg:w-52">
           {themes.map((theme) => (
-            <li>
+            <li key={theme}>
               <button
                 type="button"
                 className="capitalize tracking-wide"

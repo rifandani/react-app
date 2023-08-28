@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
-import { I18nProvider } from 'react-aria';
+import I18nProvider from './providers/I18nProvider';
 import ToastProvider from './providers/ToastProvider';
 
 const client = new QueryClient({

@@ -1,4 +1,4 @@
-import { loginWithoutParse } from '@auth/api/auth.api';
+import { login } from '@auth/api/auth.api';
 import { loginSchema } from '@auth/api/auth.schema';
 import { useUserStore } from '@auth/stores/useUser/useUser.hook';
 import { unstable_batchedUpdates } from 'react-dom';
@@ -12,7 +12,7 @@ export async function loginAction({ request }: ActionFunctionArgs) {
   if (!parsed.success) return json(parsed.error, { status: 400 });
 
   // will throw if `login` returns 500 error, therefore `errorElement` will be rendered
-  const loginResponse = await loginWithoutParse(parsed.data);
+  const loginResponse = await login(parsed.data);
 
   // on 400 error
   if ('message' in loginResponse) return json(loginResponse);

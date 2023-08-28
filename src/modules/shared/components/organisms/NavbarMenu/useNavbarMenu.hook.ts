@@ -4,7 +4,7 @@ import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { useNavigate } from 'react-router-dom';
 
 export default function useNavbarMenu() {
-  const t = useI18n();
+  const [t] = useI18n();
   const navigate = useNavigate();
   const { user, clearUser } = useUserStore();
   // const [, setTheme] = createColorMode({

@@ -7,7 +7,7 @@ describe('LoginPage', () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '*',
+      path: '/login',
       element: <LoginPage />,
     },
   ] satisfies RouteObject[];
