@@ -18,7 +18,7 @@ export const commonEnLocale = {
   remove: 'Remove {icon}',
   empty: 'Empty Data',
   unsavedChanges: 'Discard unsaved changes - are you sure?',
-  appName: 'Solid Template',
+  appName: 'React Template',
   noPageContent: 'No Page Content',
   unauthorized: 'Unauthorized. Please login first',
   authorized: 'Already authorized',
@@ -43,7 +43,7 @@ export const commonIdLocale = {
   remove: 'Hapus {icon}',
   empty: 'Data Kosong',
   unsavedChanges: 'Buang perubahan yang belum disimpan - anda yakin?',
-  appName: 'Templat Solid',
+  appName: 'Templat React',
   noPageContent: 'Tidak Ada Konten',
   authorized: 'Sudah Ada Akses',
 } as const;

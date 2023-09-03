@@ -18,7 +18,7 @@
   "remove": "Remove {icon}",
   "empty": "Empty Data",
   "unsavedChanges": "Discard unsaved changes - are you sure?",
-  "appName": "Solid Template",
+  "appName": "React Template",
   "noPageContent": "No Page Content",
   "unauthorized": "Unauthorized. Please login first",
   "authorized": "Already authorized",

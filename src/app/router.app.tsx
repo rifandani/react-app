@@ -1,10 +1,11 @@
 import { loginRoute, notFoundRoute } from '@auth/routes/auth.route';
 import { homeRoute } from '@home/routes/home.route';
+import { todosRoute } from '@todo/routes/todos.route';
 import { createBrowserRouter } from 'react-router-dom';
 
 // router singleton
 export const router = createBrowserRouter(
-  [homeRoute, loginRoute, notFoundRoute],
+  [homeRoute, todosRoute, loginRoute, notFoundRoute],
   {
     future: {
       // Normalize `useNavigation()`/`useFetcher()` `formMethod` to uppercase

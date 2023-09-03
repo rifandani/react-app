@@ -1,5 +1,6 @@
 import { shuffle } from '@rifandani/nxact-yutiriti';
 import useI18n from '@shared/hooks/useI18n/useI18n.hook';
+import { todosPath } from '@todo/routes/todos.route';
 import { useRafInterval } from 'ahooks';
 import { useEffect, useState } from 'react';
 import { useLocale } from 'react-aria';
@@ -50,7 +51,7 @@ export default function useHomeClock() {
         changeLocale(locale === 'en-US' ? 'id-ID' : 'en-US');
       },
       start: () => {
-        navigate('/todos');
+        navigate(todosPath.root);
       },
     };
 

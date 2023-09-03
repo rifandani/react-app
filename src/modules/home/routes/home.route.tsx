@@ -3,7 +3,7 @@ import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/
 import { RouteObject } from 'react-router-dom';
 
 export const homeIndexRoute = {
-  id: 'home/index',
+  id: 'home:index',
   index: true,
   lazy: async () => {
     const { default: HomePage } = await import('../pages/Home.page');
@@ -16,8 +16,8 @@ export const homeIndexRoute = {
 } as const satisfies RouteObject;
 
 export const homeRoute = {
-  id: 'home',
-  path: '/',
+  id: 'home' as const,
+  path: '/' as const,
   element: <NavbarWrapper />,
   children: [homeIndexRoute],
 } satisfies RouteObject;

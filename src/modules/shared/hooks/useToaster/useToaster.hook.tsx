@@ -1,4 +1,4 @@
-import { ToastContext } from '@app/providers/ToastProvider';
+import { ToastContext } from '@app/providers/toast/ToastProvider';
 import { useContext } from 'react';
 
 export default function useToaster() {

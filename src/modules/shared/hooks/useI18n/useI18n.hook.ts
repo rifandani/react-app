@@ -1,4 +1,4 @@
-import { I18nContext } from '@app/providers/I18nProvider';
+import { I18nContext } from '@app/providers/i18n/I18nProvider';
 import { localeDict } from '@shared/configs/locale/locale.config';
 import { useContext } from 'react';
 import { useMessageFormatter } from 'react-aria';

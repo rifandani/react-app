@@ -1,4 +1,5 @@
 import { themes } from '@shared/constants/theme.constant';
+import { todosPath } from '@todo/routes/todos.route';
 import { NavLink } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import useNavbarMenu from './useNavbarMenu.hook';
@@ -10,7 +11,7 @@ export default function NavbarMenu() {
     <>
       <li>
         <NavLink
-          to="/todos"
+          to={todosPath.root}
           aria-label="todos"
           className={({ isActive, isPending }) =>
             twJoin(
@@ -24,7 +25,7 @@ export default function NavbarMenu() {
         </NavLink>
       </li>
 
-      <li className="dropdown-top dropdown mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+      <li className="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
         <button
           type="button"
           tabIndex={0}

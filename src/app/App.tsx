@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import AppErrorBoundary from './ErrorBoundary';
@@ -21,6 +22,8 @@ export default function App() {
              */
             future={{ v7_startTransition: true }}
           />
+
+          <ReactQueryDevtools initialIsOpen={false} />
         </AppProviders>
       </AppErrorBoundary>
     </StrictMode>
