@@ -1,6 +1,6 @@
 import reactjs from '@assets/reactjs.svg';
 import LoginForm from '@auth/components/LoginForm/LoginForm.component';
-import { homeRoute } from '@home/routes/home.route';
+import { homePath } from '@home/routes/home.route';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 import useLoginPageVM from './Login.vm';
@@ -15,7 +15,7 @@ export default function LoginPage() {
         <section className="flex w-full flex-col md:w-1/2">
           <div className="flex justify-center pt-12 md:-mb-24 md:justify-start md:pl-12">
             <Link
-              to={homeRoute.path}
+              to={homePath.root}
               aria-label="link-home"
               className="relative cursor-pointer rounded-full hover:text-primary"
             >

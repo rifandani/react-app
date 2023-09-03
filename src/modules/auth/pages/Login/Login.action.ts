@@ -1,7 +1,7 @@
 import { authApi } from '@auth/api/auth.api';
 import { loginSchema } from '@auth/api/auth.schema';
 import { useUserStore } from '@auth/stores/useUser/useUser.hook';
-import { homeRoute } from '@home/routes/home.route';
+import { homePath } from '@home/routes/home.route';
 import { unstable_batchedUpdates } from 'react-dom';
 import { ActionFunctionArgs, json, redirect } from 'react-router-dom';
 
@@ -23,5 +23,5 @@ export async function loginAction({ request }: ActionFunctionArgs) {
     useUserStore.getState().setUser(loginResponse); // set user data to store
   });
 
-  return redirect(homeRoute.path);
+  return redirect(homePath.root);
 }

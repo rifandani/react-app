@@ -2,9 +2,19 @@ import { loginAction } from '@auth/pages/Login/Login.action';
 import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
 import { RouteObject } from 'react-router-dom';
 
+export const authId = {
+  root: undefined,
+  login: 'auth:login',
+} as const;
+
+export const authPath = {
+  root: undefined,
+  login: '/login',
+} as const;
+
 export const loginRoute = {
-  id: 'login',
-  path: '/login',
+  id: authId.login,
+  path: authPath.login,
   lazy: async () => {
     const { default: LoginPage } = await import('../pages/Login/Login.page');
 

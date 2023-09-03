@@ -1,4 +1,4 @@
-import { homeRoute } from '@home/routes/home.route';
+import { homePath } from '@home/routes/home.route';
 import { Icon } from '@iconify/react';
 import { SvgIcon } from '@shared/components/atoms';
 import { PropsWithChildren } from 'react';
@@ -33,7 +33,7 @@ export default function Navbar({ children }: PropsWithChildren) {
           </div>
 
           <Link
-            to={homeRoute.path}
+            to={homePath.root}
             aria-label="logo"
             className="link-primary link mx-2 flex-1 px-2"
           >

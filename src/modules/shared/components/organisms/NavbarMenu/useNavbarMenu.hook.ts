@@ -1,4 +1,4 @@
-import { loginRoute } from '@auth/routes/auth.route';
+import { authPath } from '@auth/routes/auth.route';
 import { useUserStore } from '@auth/stores/useUser/useUser.hook';
 import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export default function useNavbarMenu() {
   // #region HANDLERS
   const handleClickLogout = () => {
     clearUser(); // clear user store
-    navigate(loginRoute.path); // back to login page
+    navigate(authPath.login); // back to login page
   };
   // #endregion
 

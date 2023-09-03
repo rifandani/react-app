@@ -6,14 +6,20 @@ import { todoLoader } from '@todo/pages/Todo/Todo.loader';
 import { todosLoader } from '@todo/pages/Todos/Todos.loader';
 import { RouteObject } from 'react-router-dom';
 
+export const todosId = {
+  root: 'todos',
+  index: 'todos:index',
+  detail: 'todos:detail',
+} as const;
+
 export const todosPath = {
   root: '/todos',
   index: '',
   detail: ':id',
 } as const;
 
-export const todosDetailRoute = {
-  id: 'todos:detail' as const,
+const todosDetailRoute = {
+  id: todosId.detail,
   path: todosPath.detail,
   lazy: async () => {
     const { default: TodoPage } = await import('../pages/Todo/Todo.page');
@@ -27,8 +33,8 @@ export const todosDetailRoute = {
   },
 } satisfies RouteObject;
 
-export const todosIndexRoute = {
-  id: 'todos:index' as const,
+const todosIndexRoute = {
+  id: todosId.index,
   index: true,
   lazy: async () => {
     const { default: TodosPage } = await import('../pages/Todos/Todos.page');
@@ -42,7 +48,7 @@ export const todosIndexRoute = {
 } satisfies RouteObject;
 
 export const todosRoute = {
-  id: 'todos' as const,
+  id: todosId.root,
   path: todosPath.root,
   element: <NavbarWrapper />,
   children: [todosIndexRoute, todosDetailRoute],
