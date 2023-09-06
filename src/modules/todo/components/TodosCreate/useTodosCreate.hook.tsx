@@ -75,12 +75,7 @@ export default function useTodosCreate() {
           // preventDefault to block immediately and prompt user async
           evt.preventDefault();
 
-          // maybe show custom unsaved changes alert
-          // eslint-disable-next-line no-alert
-          // if (window.confirm(t('unsavedChanges'))) {
-          //   // user wants to proceed anyway so retry with force=true
-          //   evt.retry(true);
-          // }
+          // TODO: show custom unsaved changes alert modal
         }
       },
       [form],

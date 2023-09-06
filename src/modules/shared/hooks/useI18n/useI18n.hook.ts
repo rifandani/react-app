@@ -11,5 +11,6 @@ export default function useI18n() {
     throw new Error('useI18n: cannot find the I18nContext');
   }
 
+  // we don't include `context[0]`, because it's already covered using `useLocale`
   return [formatter, context[1]] as const;
 }

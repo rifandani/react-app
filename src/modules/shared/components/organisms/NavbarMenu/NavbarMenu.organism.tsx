@@ -5,7 +5,7 @@ import { twJoin } from 'tailwind-merge';
 import useNavbarMenu from './useNavbarMenu.hook';
 
 export default function NavbarMenu() {
-  const { t, user, handleClickLogout } = useNavbarMenu();
+  const { t, user, setTheme, handleClickLogout } = useNavbarMenu();
 
   return (
     <>
@@ -25,7 +25,7 @@ export default function NavbarMenu() {
         </NavLink>
       </li>
 
-      <li className="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+      <li className="dropdown-top dropdown mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
         <button
           type="button"
           tabIndex={0}
@@ -42,7 +42,9 @@ export default function NavbarMenu() {
                 type="button"
                 className="capitalize tracking-wide"
                 aria-label={`theme-${theme}`}
-                // onClick={() => setTheme(theme)}
+                onClick={() => {
+                  setTheme(theme);
+                }}
               >
                 {theme}
               </button>

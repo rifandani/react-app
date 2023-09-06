@@ -21,20 +21,6 @@ export default function TodoPage() {
         </h1>
       </div>
 
-      {/* <Show when={todoUpdateMutation.isError}>
-        <div
-          data-testid="todo-mutationError"
-          className="alert alert-error mt-2 shadow-lg"
-        >
-          <div className="flex items-center">
-            <span>
-              {t('error', { module: 'Todo Mutation' })}:{' '}
-              {(todoUpdateMutation.error as Error).message}
-            </span>
-          </div>
-        </div>
-      </Show> */}
-
       {todoQuery.isError && (
         <div
           data-testid="todo-error"
