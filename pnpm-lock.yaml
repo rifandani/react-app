@@ -8,12 +8,6 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.3.0
     version: 3.3.0(react-hook-form@7.45.4)
-  '@react-aria/toast':
-    specifier: 3.0.0-beta.3
-    version: 3.0.0-beta.3(react@18.2.0)
-  '@react-stately/toast':
-    specifier: 3.0.0-beta.1
-    version: 3.0.0-beta.1(react@18.2.0)
   '@rifandani/nxact-yutiriti':
     specifier: ^1.2.2
     version: 1.2.2
@@ -50,6 +44,9 @@ dependencies:
   react-stately:
     specifier: ^3.25.0
     version: 3.25.0(react@18.2.0)
+  react-toastify:
+    specifier: ^9.1.3
+    version: 9.1.3(react-dom@18.2.0)(react@18.2.0)
   type-fest:
     specifier: ^4.3.1
     version: 4.3.1
@@ -1447,19 +1444,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-aria/landmark@3.0.0-beta.3(react@18.2.0):
-    resolution: {integrity: sha512-FqeMgISBy54sk+0eJVFFPTT9WzNtTWeAp5BRdH+PtnqOXcpiHKEBfQiGknQtqinxO1iYU4JGRFhBRNDrUdVcjA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@react-aria/focus': 3.14.0(react@18.2.0)
-      '@react-aria/utils': 3.19.0(react@18.2.0)
-      '@react-types/shared': 3.19.0(react@18.2.0)
-      '@swc/helpers': 0.5.1
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false
-
   /@react-aria/link@3.5.3(react@18.2.0):
     resolution: {integrity: sha512-WGz/s/czlb/+wJUnBfnfaRuvOSiNTaQDTk9QsEEwrTkkYbWo7fMlH5Tc7c0Uxem4UuUblYXKth5SskiKQNWc0w==}
     peerDependencies:
@@ -1810,22 +1794,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-aria/toast@3.0.0-beta.3(react@18.2.0):
-    resolution: {integrity: sha512-fqUnwNwnCacG7smtcTcLOg681CfwIt0eT5wX6BUbSuY2o3GbeM31d6D+tOvT1oEydY5hrNxWNVMeAxwxk2JD2w==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@react-aria/i18n': 3.8.1(react@18.2.0)
-      '@react-aria/interactions': 3.17.0(react@18.2.0)
-      '@react-aria/landmark': 3.0.0-beta.3(react@18.2.0)
-      '@react-aria/utils': 3.19.0(react@18.2.0)
-      '@react-stately/toast': 3.0.0-beta.1(react@18.2.0)
-      '@react-types/button': 3.7.4(react@18.2.0)
-      '@react-types/shared': 3.19.0(react@18.2.0)
-      '@swc/helpers': 0.5.1
-      react: 18.2.0
-    dev: false
-
   /@react-aria/toggle@3.7.0(react@18.2.0):
     resolution: {integrity: sha512-8Rpqolm8dxesyHi03RSmX2MjfHO/YwdhyEpAMMO0nsajjdtZneGzIOXzyjdWCPWwwzahcpwRHOA4qfMiRz+axA==}
     peerDependencies:
@@ -2150,16 +2118,6 @@ packages:
       '@react-types/tabs': 3.3.1(react@18.2.0)
       '@swc/helpers': 0.5.1
       react: 18.2.0
-    dev: false
-
-  /@react-stately/toast@3.0.0-beta.1(react@18.2.0):
-    resolution: {integrity: sha512-NeWdLXpHfXu8UXjmn+6iZv39Xvan/D0uNWzIyCxkDOeNNOHt1N4kSwdvQ56ScQ3f7KBVPqKz32t7K466Zpa8Jg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@swc/helpers': 0.5.1
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /@react-stately/toggle@3.6.1(react@18.2.0):
@@ -6316,6 +6274,17 @@ packages:
       '@react-stately/tree': 3.7.1(react@18.2.0)
       '@react-types/shared': 3.19.0(react@18.2.0)
       react: 18.2.0
+    dev: false
+
+  /react-toastify@9.1.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-fPfb8ghtn/XMxw3LkxQBk3IyagNpF/LIKjOBflbexr2AWxAH1MJgvnESwEwBn9liLFXgTKWgBSdZpw9m4OTHTg==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@18.2.0:

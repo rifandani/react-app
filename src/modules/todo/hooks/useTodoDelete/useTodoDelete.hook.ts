@@ -1,4 +1,5 @@
 import { ErrorApiResponseSchema } from '@shared/api/api.schema';
+import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todoApi, todoKeys } from '@todo/api/todo.api';
 import {
@@ -7,6 +8,7 @@ import {
   TodoListApiResponseSchema,
 } from '@todo/api/todo.schema';
 import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
+import { toast } from 'react-toastify';
 
 /**
  * delete todo mutation based on `useTodosParams` and show toast
@@ -14,8 +16,7 @@ import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
 export const useTodoDelete = () => {
   const queryClient = useQueryClient();
   const params = useTodosParams();
-  // const [t] = useI18n();
-  // const [, toaster] = useToaster();
+  const [t] = useI18n();
   const queryKey = todoKeys.list(params);
 
   return useMutation<
@@ -46,12 +47,11 @@ export const useTodoDelete = () => {
     },
     mutationFn: (id) => todoApi.delete(id),
     onSettled: (_id, error, _variables, context) => {
-      // toaster.add({
-      //   type: error ? 'error' : 'success',
-      //   title: t(error ? 'xDeleteError' : 'xDeleteSuccess', {
-      //     feature: 'Todo',
-      //   }),
-      // });
+      toast[error ? 'error' : 'success'](
+        t(error ? 'xDeleteError' : 'xDeleteSuccess', {
+          feature: 'Todo',
+        }),
+      );
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error)

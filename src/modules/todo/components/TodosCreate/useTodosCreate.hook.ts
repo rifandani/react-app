@@ -16,6 +16,7 @@ import { useCallback } from 'react';
 import { useId } from 'react-aria';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useBeforeUnload, useFetcher } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function useTodosCreate() {
   const queryClient = useQueryClient();
@@ -23,7 +24,6 @@ export default function useTodosCreate() {
     CreateTodoApiResponseSchema | ErrorApiResponseSchema
   >();
   const [t] = useI18n();
-  // const [, toaster] = useToaster();
   const { user } = useUserStore();
   const params = useTodosParams();
   const todoCreateMutation = useTodoCreate();
@@ -52,12 +52,11 @@ export default function useTodosCreate() {
         // reset form
         form.reset();
 
-        // toaster.add({
-        //   type: error ? 'error' : 'success',
-        //   title: t(error ? 'xCreateError' : 'xCreateSuccess', {
-        //     feature: 'Todo',
-        //   }),
-        // });
+        toast[error ? 'error' : 'success'](
+          t(error ? 'xCreateError' : 'xCreateSuccess', {
+            feature: 'Todo',
+          }),
+        );
 
         // If the mutation fails, use the context returned from `onMutate` to roll back
         if (error)

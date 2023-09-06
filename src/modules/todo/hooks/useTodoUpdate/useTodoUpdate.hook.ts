@@ -1,4 +1,5 @@
 import { ErrorApiResponseSchema } from '@shared/api/api.schema';
+import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todoApi, todoKeys } from '@todo/api/todo.api';
 import {
@@ -7,6 +8,7 @@ import {
   UpdateTodoSchema,
 } from '@todo/api/todo.schema';
 import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
+import { toast } from 'react-toastify';
 
 /**
  * update todo mutation based on `useTodosParams` and show toast
@@ -14,8 +16,7 @@ import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
 export const useTodoUpdate = () => {
   const queryClient = useQueryClient();
   const params = useTodosParams();
-  // const [t] = useI18n();
-  // const [, toaster] = useToaster();
+  const [t] = useI18n();
   const queryKey = todoKeys.list(params);
 
   return useMutation<
@@ -46,12 +47,11 @@ export const useTodoUpdate = () => {
     },
     mutationFn: (updateTodo) => todoApi.update(updateTodo),
     onSettled: (_updateTodo, error, _variables, context) => {
-      // toaster.add({
-      //   type: error ? 'error' : 'success',
-      //   title: t(error ? 'xUpdateError' : 'xUpdateSuccess', {
-      //     feature: 'Todo',
-      //   }),
-      // });
+      toast[error ? 'error' : 'success'](
+        t(error ? 'xUpdateError' : 'xUpdateSuccess', {
+          feature: 'Todo',
+        }),
+      );
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error)

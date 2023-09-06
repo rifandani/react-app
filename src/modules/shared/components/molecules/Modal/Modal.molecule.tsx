@@ -14,7 +14,7 @@ export default function Modal({ id, title, description, children }: Props) {
         <button type="submit">close</button>
       </form>
 
-      <div className="modal-box bg-accent">
+      <div className="modal-box">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
           <button
@@ -25,8 +25,8 @@ export default function Modal({ id, title, description, children }: Props) {
           </button>
         </form>
 
-        <h1 className="text-lg font-bold text-accent-content">{title}</h1>
-        <p className="pt-4 text-accent-content">{description}</p>
+        <h1 className="text-lg font-bold">{title}</h1>
+        <p className="pt-4">{description}</p>
 
         {children && <footer className="modal-action">{children}</footer>}
       </div>
