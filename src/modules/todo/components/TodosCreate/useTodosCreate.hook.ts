@@ -13,6 +13,7 @@ import {
 import { useTodoCreate } from '@todo/hooks/useTodoCreate/useTodoCreate.hook';
 import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
 import { useCallback } from 'react';
+import { useId } from 'react-aria';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useBeforeUnload, useFetcher } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ export default function useTodosCreate() {
   const { user } = useUserStore();
   const params = useTodosParams();
   const todoCreateMutation = useTodoCreate();
+  const modalId = useId();
 
   const form = useForm<TodoSchema>({
     resolver: zodResolver(todoSchema),
@@ -74,13 +76,18 @@ export default function useTodosCreate() {
         if (!evt.defaultPrevented && !!form.getValues().todo) {
           // preventDefault to block immediately and prompt user async
           evt.preventDefault();
+          // eslint-disable-next-line no-param-reassign
+          evt.returnValue = '';
 
-          // TODO: show custom unsaved changes alert modal
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          const modal = window[modalId] as HTMLDialogElement;
+          modal.showModal();
         }
       },
-      [form],
+      [form, modalId],
     ),
   );
 
-  return { fetcher, t, form, onSubmit };
+  return { modalId, fetcher, t, form, onSubmit };
 }

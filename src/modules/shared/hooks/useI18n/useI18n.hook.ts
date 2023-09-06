@@ -1,10 +1,11 @@
 import { I18nContext } from '@app/providers/i18n/I18nProvider';
 import { localeDict } from '@shared/configs/locale/locale.config';
+import { Formatter } from '@shared/configs/locale/locale.type';
 import { useContext } from 'react';
 import { useMessageFormatter } from 'react-aria';
 
 export default function useI18n() {
-  const formatter = useMessageFormatter(localeDict);
+  const formatter: Formatter = useMessageFormatter(localeDict);
   const context = useContext(I18nContext);
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!context) {
