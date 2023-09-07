@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useLocalStorageState } from 'ahooks';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useMediaQuery } from '../useMediaQuery/useMediaQuery.hook';
@@ -95,7 +96,6 @@ export function useColorMode<T extends string = BasicColorMode>(
     [preferredDark],
   );
   const state = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     () => (store[0] === 'auto' ? system : store[0])!,
     [store, system],
   );
@@ -128,9 +128,9 @@ export function useColorMode<T extends string = BasicColorMode>(
       }
 
       if (disableTransition) {
-        // Calling getComputedStyle forces the browser to redraw
-        (() => window.getComputedStyle(style as Element).opacity)();
-        document.head.removeChild(style as Node);
+        // Calling getComputedStyle forces the browser to redraw
+        (() => window.getComputedStyle(style!).opacity)();
+        document.head.removeChild(style!);
       }
     },
     [disableTransition, modes],
@@ -139,10 +139,11 @@ export function useColorMode<T extends string = BasicColorMode>(
   useEffect(() => {
     if (options.onChanged)
       options.onChanged(state, (mode: T | BasicColorMode) => {
-        updateHTMLAttrs(selector, attribute, modes[mode]); //  ?? mode
+        updateHTMLAttrs(selector, attribute, modes[mode]);
       });
-    else updateHTMLAttrs(selector, attribute, modes[state]); // ?? state
-  }, [attribute, modes, options, selector, state, updateHTMLAttrs]);
+    else updateHTMLAttrs(selector, attribute, modes[state]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attribute, modes, options.onChanged, selector, state, updateHTMLAttrs]);
 
   return store;
 }
