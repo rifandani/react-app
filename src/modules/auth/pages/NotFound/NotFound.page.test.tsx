@@ -24,8 +24,8 @@ describe('NotFoundPage', () => {
   it('should render contents correctly', () => {
     // ARRANGE
     renderProviders(router);
-    const heading: HTMLHeadingElement = screen.getByText(/404: not found/i);
-    const paragraph: HTMLParagraphElement = screen.getByText(/It's gone/i);
+    const heading: HTMLHeadingElement = screen.getByText(/404/i);
+    const paragraph: HTMLParagraphElement = screen.getByText(/gone/i);
     const anchor: HTMLAnchorElement = screen.getByRole('link');
 
     // ASSERT

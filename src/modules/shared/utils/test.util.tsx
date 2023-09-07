@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import I18nProvider from '@app/providers/i18n/I18nProvider';
+import ToastProvider from '@app/providers/toast/ToastProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { RouterProvider, RouterProviderProps } from 'react-router-dom';
@@ -10,11 +12,6 @@ const queryClient = new QueryClient({
       cacheTime: 0,
     },
   },
-  logger: {
-    log: console.log,
-    warn: console.warn,
-    error: console.error,
-  },
 });
 
 export const setupTest = () => {
@@ -24,7 +21,11 @@ export const setupTest = () => {
   ) =>
     render(
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <I18nProvider>
+          <ToastProvider>
+            <RouterProvider router={router} />
+          </ToastProvider>
+        </I18nProvider>
       </QueryClientProvider>,
       options,
     );

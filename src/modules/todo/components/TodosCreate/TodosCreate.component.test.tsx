@@ -37,7 +37,7 @@ describe('TodosCreate', () => {
       'button',
       createOptions,
     );
-    formCreate.addEventListener('submit', mockCreateSubmitFn);
+    buttonSubmit.addEventListener('click', mockCreateSubmitFn);
 
     // ACT & ASSERT
     expect(formCreate).toBeInTheDocument();

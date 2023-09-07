@@ -8,12 +8,12 @@ describe('LoginForm', () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '/',
+      path: '/login',
       element: <LoginForm />,
     },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/'],
+    initialEntries: ['/login'],
     initialIndex: 0,
   });
   const validUsernameValue = 'kminchelle';
@@ -38,7 +38,7 @@ describe('LoginForm', () => {
     const buttonSubmit: HTMLButtonElement = screen.getByRole('button', {
       name: /login/i,
     });
-    formLogin.addEventListener('submit', mockSubmitFn);
+    buttonSubmit.addEventListener('click', mockSubmitFn);
 
     // ACT & ASSERT
     expect(formLogin).toBeInTheDocument();

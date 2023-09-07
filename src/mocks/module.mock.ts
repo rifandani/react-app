@@ -1,5 +1,7 @@
+import * as reactAria from 'react-aria';
 import { vi } from 'vitest';
 import * as zustand from 'zustand';
+import { tSpy } from './react-aria.mock';
 import { storeResetFns } from './zustand.mock';
 
 // mock ResizeObserver
@@ -41,7 +43,7 @@ Object.defineProperty(window, 'scrollTo', {
 
 // zustand
 vi.mock('zustand', async () => {
-  const { create: actualCreate } =
+  const { create: actualCreate, createStore: actualCreateStore } =
     await vi.importActual<typeof zustand>('zustand');
 
   // when creating a store, we get its initial state, create a reset function and add it in the set
@@ -55,7 +57,27 @@ vi.mock('zustand', async () => {
       return store;
     }) as typeof zustand.create;
 
+  // when creating a store, we get its initial state, create a reset function and add it in the set
+  const createStore = (<T>(stateCreator: zustand.StateCreator<T>) => {
+    const store = actualCreateStore(stateCreator);
+    const initialState = store.getState();
+    storeResetFns.add(() => {
+      store.setState(initialState, true);
+    });
+    return store;
+  }) as typeof zustand.createStore;
+
   return {
     create,
+    createStore,
+  };
+});
+
+vi.mock('react-aria', async () => {
+  const all = await vi.importActual<typeof reactAria>('react-aria');
+
+  return {
+    ...all,
+    useMessageFormatter: () => tSpy,
   };
 });

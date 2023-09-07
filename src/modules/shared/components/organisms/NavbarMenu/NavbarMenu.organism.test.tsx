@@ -1,28 +1,32 @@
 import { themes } from '@shared/constants/theme.constant';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { I18nProvider } from 'react-aria';
+import { setupTest } from '@shared/utils/test.util';
+import { fireEvent, screen } from '@testing-library/react';
+import { RouteObject, createMemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import NavbarMenu from './NavbarMenu.organism';
 
 describe('NavBarMenu', () => {
   const mockModeBtn = vi.fn();
+  const { renderProviders } = setupTest();
+  const routes = [
+    {
+      path: '/',
+      element: <NavbarMenu />,
+    },
+  ] satisfies RouteObject[];
+  const router = createMemoryRouter(routes, {
+    initialEntries: ['/'],
+    initialIndex: 0,
+  });
 
   it('should render properly', () => {
-    const view = render(
-      <I18nProvider>
-        <NavbarMenu />
-      </I18nProvider>,
-    );
+    const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
   it('should render role contents correctly', () => {
     // ARRANGE
-    render(
-      <I18nProvider>
-        <NavbarMenu />
-      </I18nProvider>,
-    );
+    renderProviders(router);
     const link: HTMLAnchorElement = screen.getByRole('link', {
       name: /todos/i,
     });

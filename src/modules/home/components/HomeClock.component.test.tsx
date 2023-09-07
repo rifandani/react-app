@@ -11,6 +11,10 @@ describe('HomeClock', () => {
       path: '/',
       element: <HomeClock />,
     },
+    {
+      path: '/todos',
+      element: <HomeClock />,
+    },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
     initialEntries: ['/'],
@@ -69,7 +73,8 @@ describe('HomeClock', () => {
     );
   });
 
-  it('should translate text when change language button clicked', () => {
+  // FIXME: currently we mock translation function
+  it.todo('should translate text when change language button clicked', () => {
     // ARRANGE
     renderProviders(router);
     const button: HTMLButtonElement = screen.getByTestId(

@@ -1,4 +1,4 @@
-import { mockTodo } from '@mocks/http/entities.http';
+import { mockLogin, mockTodo } from '@mocks/http/entities.http';
 import { setupTest } from '@shared/utils/test.util';
 import { fireEvent, screen } from '@testing-library/react';
 import { TodoSchema } from '@todo/api/todo.schema';
@@ -7,6 +7,7 @@ import TodosItem from './TodosItem.component';
 
 describe('TodosItem', () => {
   const todo: TodoSchema = mockTodo();
+  const user = mockLogin({ id: todo.userId });
   const { renderProviders } = setupTest();
   const routes = [
     {
@@ -18,11 +19,11 @@ describe('TodosItem', () => {
     initialEntries: ['/todos'],
     initialIndex: 0,
   });
-  // const onDeleteTodo = vi.fn();
+  const mockDeleteTodo = vi.fn();
   const mockSubmit = vi.fn();
   const mockChangeTodo = vi.fn();
   const getItemSpy = vi.spyOn(localStorage, 'getItem');
-  localStorage.getItem = vi.fn(() => JSON.stringify({ id: todo.id }));
+  localStorage.getItem = vi.fn(() => JSON.stringify(user));
 
   afterEach(() => {
     getItemSpy.mockClear(); // clear call history
@@ -34,7 +35,7 @@ describe('TodosItem', () => {
     expect(() => view).not.toThrow();
   });
 
-  it('should render, check, and remove todo correctly', async () => {
+  it('should update todo correctly', async () => {
     // ARRANGE
     renderProviders(router);
     const form: HTMLFormElement = await screen.findByRole('form', {
@@ -61,16 +62,16 @@ describe('TodosItem', () => {
     expect(mockChangeTodo).toHaveBeenCalled();
   });
 
-  // FIXME: Unable to find role="button" -> mock storage doesn't work
-  it.todo('should remove todo item correctly', async () => {
+  // FIXME: button not exists, because zustand store `useUserStore`
+  it.todo('should remove todo correctly', async () => {
     // ARRANGE
     renderProviders(router);
     const removeBtn: HTMLButtonElement = await screen.findByRole('button');
 
     // ACT & ASSERT
     expect(removeBtn).toBeInTheDocument();
-    // await fireEvent.click(buttonRemove);
-    // expect(mockSubmit).toHaveBeenCalled();
-    // expect(onDeleteTodo).toHaveBeenCalled();
+    fireEvent.click(removeBtn);
+    expect(mockSubmit).toHaveBeenCalled();
+    expect(mockDeleteTodo).toHaveBeenCalled();
   });
 });

@@ -1,19 +1,19 @@
-import NotFoundPage from '@auth/pages/NotFound/NotFound.page';
 import { setupTest } from '@shared/utils/test.util';
 import { screen } from '@testing-library/react';
 import { RouteObject, createMemoryRouter } from 'react-router-dom';
+import Navbar from './Navbar.organism';
 
 describe('Navbar', () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '*',
-      element: <NotFoundPage />,
+      path: '/login', // to make `useCheckAuth` works
+      element: <Navbar />,
     },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/', '/whatever'],
-    initialIndex: 1,
+    initialEntries: ['/login'],
+    initialIndex: 0,
   });
 
   it('should render properly', () => {
