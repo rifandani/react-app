@@ -1,5 +1,5 @@
+import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
 import { authPath } from '@auth/routes/auth.route';
-import { useUserStore } from '@auth/stores/useUser/useUser.hook';
 import { modes } from '@shared/constants/theme.constant';
 import { useColorMode } from '@shared/hooks/useColorMode/useColorMode.hook';
 import useI18n from '@shared/hooks/useI18n/useI18n.hook';

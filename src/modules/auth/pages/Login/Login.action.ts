@@ -1,6 +1,6 @@
 import { authApi } from '@auth/api/auth.api';
 import { loginSchema } from '@auth/api/auth.schema';
-import { useUserStore } from '@auth/stores/useUser/useUser.hook';
+import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
 import { homePath } from '@home/routes/home.route';
 import { unstable_batchedUpdates } from 'react-dom';
 import { ActionFunctionArgs, json, redirect } from 'react-router-dom';

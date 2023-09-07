@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { For } from '@shared/components/atoms';
-import TodosItem from '../TodosItem/TodosItem.component';
+import TodosItem from '@todo/components/TodosItem/TodosItem.component';
 import useTodosList from './useTodosList.hook';
 
 export default function TodosList() {

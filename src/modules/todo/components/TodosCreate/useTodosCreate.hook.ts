@@ -1,4 +1,4 @@
-import { useUserStore } from '@auth/stores/useUser/useUser.hook';
+import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { random } from '@rifandani/nxact-yutiriti';
 import { ErrorApiResponseSchema } from '@shared/api/api.schema';

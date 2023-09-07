@@ -1,5 +1,5 @@
+import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
 import { authPath } from '@auth/routes/auth.route';
-import { useUserStore } from '@auth/stores/useUser/useUser.hook';
 import { homePath } from '@home/routes/home.route';
 import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { useMount } from 'ahooks';

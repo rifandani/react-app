@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import I18nProvider from '@app/providers/i18n/I18nProvider';
 import ToastProvider from '@app/providers/toast/ToastProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
