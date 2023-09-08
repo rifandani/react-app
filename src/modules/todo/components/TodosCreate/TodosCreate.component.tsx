@@ -22,18 +22,18 @@ export default function TodosCreate() {
           id="todo"
           type="text"
           aria-label="textbox-add"
-          className="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
+          className="input input-bordered input-primary w-full lg:w-10/12"
           placeholder={t('todoPlaceholder')}
           {...form.register('todo', { required: true, minLength: 3 })}
         />
 
         <button
           aria-label="button-add"
-          className="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
+          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content lg:ml-2 lg:mt-0 lg:w-2/12"
           type="submit"
           disabled={form.formState.isSubmitting || !form.formState.isValid}
         >
-          {t('add', { icon: '✔' })}
+          {t('add', { icon: '💾' })}
         </button>
       </form>
     </>

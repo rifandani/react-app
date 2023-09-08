@@ -1,4 +1,5 @@
 import { loginAction } from '@auth/pages/Login/Login.action';
+import { loginLoader } from '@auth/pages/Login/Login.loader';
 import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
 import { RouteObject } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ export const loginRoute = {
 
     return {
       action: loginAction,
+      loader: loginLoader,
       element: <LoginPage />,
       errorElement: <RouteErrorBoundary />,
     };

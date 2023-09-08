@@ -10,7 +10,7 @@ export default function Navbar({ children }: PropsWithChildren) {
   const { t } = useNavbar();
 
   return (
-    <nav className="drawer min-h-screen text-primary-content">
+    <nav className="drawer min-h-screen">
       <input
         id="my-nav-drawer"
         type="checkbox"
@@ -20,29 +20,21 @@ export default function Navbar({ children }: PropsWithChildren) {
 
       <section className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
-        <div className="navbar w-full bg-base-300">
+        <div className="navbar w-full shadow-md">
           <div className="flex-none lg:hidden">
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="my-nav-drawer" className="btn btn-square btn-ghost">
-              <Icon
-                icon="lucide:menu"
-                height="2em"
-                className="text-primary-content"
-              />
+              <Icon icon="lucide:menu" height="2em" />
             </label>
           </div>
 
           <Link
             to={homePath.root}
             aria-label="logo"
-            className="link-primary link mx-2 flex-1 px-2"
+            className="link mx-2 flex flex-1 items-center space-x-2 px-2 text-2xl"
           >
-            <span className="flex items-center space-x-2 pl-2 text-2xl">
-              <SvgIcon id="icon-reactjs" className="h-6 w-6" />
-              <p className="font-semibold tracking-wider text-primary">
-                {t('appName')}
-              </p>
-            </span>
+            <SvgIcon id="icon-reactjs" className="h-6 w-6" />
+            <p className="font-semibold tracking-wider">{t('appName')}</p>
           </Link>
 
           <div className="hidden flex-none lg:block">
@@ -61,7 +53,7 @@ export default function Navbar({ children }: PropsWithChildren) {
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="my-nav-drawer" className="drawer-overlay" />
 
-        <ul className="menu h-full w-80 bg-base-200 p-4">
+        <ul className="menu h-full w-80 bg-base-100 p-4">
           {/* <!-- Sidebar content here --> */}
           <NavbarMenu />
         </ul>

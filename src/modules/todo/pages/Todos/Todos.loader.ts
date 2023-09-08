@@ -1,14 +1,25 @@
 import { queryClient } from '@app/providers/query/queryClient';
+import { authPath } from '@auth/routes/auth.route';
 import { ResourceParamsSchema } from '@shared/api/api.schema';
+import { checkAuthUser } from '@shared/utils/checker/checker.util';
 import { todoApi, todoKeys } from '@todo/api/todo.api';
 import { TodoListApiResponseSchema } from '@todo/api/todo.schema';
 import { defaultLimit } from '@todo/constants/todos.constant';
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { LoaderFunctionArgs, redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { SetRequired } from 'type-fest';
 
 export const todosLoader =
   (_queryClient: typeof queryClient) =>
   async ({ request }: LoaderFunctionArgs) => {
+    const authed = checkAuthUser();
+
+    // redirect NOT authed user to login
+    if (!authed) {
+      toast.error('Unauthorized');
+      return redirect(authPath.login);
+    }
+
     const url = new URL(request.url);
     const searchParams = Object.fromEntries(url.searchParams);
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

@@ -29,7 +29,7 @@ export default function TodosItem({ todo }: Props) {
 
       <input
         aria-label="checkbox-todo"
-        className="checkbox-accent checkbox"
+        className="checkbox-primary checkbox"
         type="checkbox"
         id={`todo-${todo.id}`}
         name={`todo-${todo.id}`}
@@ -42,7 +42,7 @@ export default function TodosItem({ todo }: Props) {
       <Link
         aria-label="todo"
         className={twJoin(
-          'ml-5 w-full text-left text-lg text-secondary-content hover:font-bold',
+          'ml-5 w-full text-left text-lg hover:font-bold',
           todo.completed && 'line-through',
         )}
         to={todo.id.toString()}
@@ -53,7 +53,7 @@ export default function TodosItem({ todo }: Props) {
       {todo.userId === user?.id && (
         <button
           aria-label="button-submit"
-          className="btn btn-accent btn-sm normal-case"
+          className="btn btn-primary btn-sm normal-case"
           type="submit"
         >
           {t('remove', { icon: '💥' })}

@@ -3,13 +3,24 @@ import { z } from 'zod';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
-type State = z.infer<typeof userStoreSchema>;
+export type UserStoreState = z.infer<typeof userStoreStateSchema>;
+export type UserStore = z.infer<typeof userStoreSchema>;
+export type UserStoreLocalStorage = z.infer<typeof userStoreLocalStorageSchema>;
 
-const uniqueName = 'app-user' as const;
-const userStoreSchema = z.object({
+export const userStoreName = 'app-user' as const;
+const userStoreStateSchema = z.object({
   user: loginApiResponseSchema.nullable(),
+});
+const userStoreActionSchema = z.object({
   setUser: z.function().args(loginApiResponseSchema).returns(z.void()),
   clearUser: z.function().args(z.void()).returns(z.void()),
+});
+export const userStoreSchema = userStoreStateSchema.merge(
+  userStoreActionSchema,
+);
+export const userStoreLocalStorageSchema = z.object({
+  state: userStoreStateSchema,
+  version: z.number(),
 });
 
 /**
@@ -21,7 +32,7 @@ const userStoreSchema = z.object({
  * const { user, setUser, clearUser } = useUserStore()
  * ```
  */
-export const useUserStore = create<State>()(
+export const useUserStore = create<UserStore>()(
   devtools(
     persist(
       (set) => ({
@@ -34,7 +45,7 @@ export const useUserStore = create<State>()(
         },
       }),
       {
-        name: uniqueName, // name of the item in the storage (must be unique)
+        name: userStoreName, // name of the item in the storage (must be unique)
         version: 0, // a migration will be triggered if the version in the storage mismatches this one
         storage: createJSONStorage(() => localStorage), // by default, 'localStorage' is used
       },

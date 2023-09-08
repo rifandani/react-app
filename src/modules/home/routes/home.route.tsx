@@ -1,3 +1,4 @@
+import { homeLoader } from '@home/pages/Home.loader';
 import { NavbarWrapper } from '@shared/components/templates';
 import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
 import { RouteObject } from 'react-router-dom';
@@ -19,6 +20,7 @@ const homeIndexRoute = {
     const { default: HomePage } = await import('../pages/Home.page');
 
     return {
+      loader: homeLoader,
       element: <HomePage />,
       errorElement: <RouteErrorBoundary />,
     };

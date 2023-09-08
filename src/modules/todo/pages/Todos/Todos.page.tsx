@@ -8,11 +8,11 @@ export default function TodosPage() {
 
   return (
     <main className="flex flex-col items-center justify-center px-10 py-20 duration-300 md:px-24 lg:px-40 xl:px-52">
-      <h1 className="mb-10 text-2xl font-semibold tracking-wider text-primary-content">
+      <h1 className="mb-10 text-2xl font-semibold tracking-wider">
         {t('xList', { feature: 'Todo' })}
       </h1>
 
-      <section className="card w-full rounded-lg border bg-secondary p-5 text-secondary-content shadow-lg">
+      <section className="card w-full bg-base-200 p-5 shadow-lg">
         <TodosCreate />
 
         <TodosFilter />

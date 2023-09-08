@@ -1,3 +1,4 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { shuffle } from '@rifandani/nxact-yutiriti';
 import useI18n from '@shared/hooks/useI18n/useI18n.hook';
 import { todosPath } from '@todo/routes/todos.route';
@@ -10,6 +11,7 @@ export default function useHomeClock() {
   const navigate = useNavigate();
   const [t, { changeLocale }] = useI18n();
   const { locale } = useLocale();
+  const [parentRef] = useAutoAnimate();
 
   const [showClock, setShowClock] = useState(true);
   const [seconds, setSeconds] = useState(0);
@@ -18,12 +20,12 @@ export default function useHomeClock() {
   const [buttons, setButtons] = useState([
     {
       id: 'sort',
-      class: 'btn-neutral btn',
+      class: 'btn-primary btn',
       text: 'sortButtons',
     },
     {
       id: 'clock',
-      class: 'btn-active btn',
+      class: 'btn-secondary btn',
       text: 'toggleClock',
     },
     {
@@ -33,7 +35,7 @@ export default function useHomeClock() {
     },
     {
       id: 'start',
-      class: 'btn-secondary btn',
+      class: 'btn-neutral btn',
       text: 'getStarted',
     },
   ] as const);
@@ -82,6 +84,7 @@ export default function useHomeClock() {
 
   return {
     t,
+    parentRef,
     seconds,
     minutes,
     hours,

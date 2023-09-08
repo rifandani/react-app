@@ -1,5 +1,5 @@
 export const homeEnLocale = {
-  title: 'React App',
+  title: 'Home',
   sortButtons: 'Sort Buttons',
   clock: 'Clock',
   toggleClock: 'Toggle Clock',
@@ -9,7 +9,7 @@ export const homeEnLocale = {
 } as const;
 
 export const homeIdLocale = {
-  title: 'Aplikasi React',
+  title: 'Home',
   sortButtons: 'Urutkan Tombol',
   clock: 'Jam',
   toggleClock: 'Toggle Jam',

@@ -16,7 +16,7 @@ export default function TodosList() {
           <Icon
             icon="svg-spinners:3-dots-fade"
             height="5em"
-            className="text-secondary-content"
+            className="text-primary-content"
           />
         </div>
       )}

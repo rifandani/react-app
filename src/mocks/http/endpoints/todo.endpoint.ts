@@ -1,5 +1,8 @@
 import { rest } from 'msw';
-import { ResourceParamsSchema, resourceParamsSchema } from '../../../modules/shared/api/api.schema';
+import {
+  ResourceParamsSchema,
+  resourceParamsSchema,
+} from '../../../modules/shared/api/api.schema';
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
@@ -32,10 +35,13 @@ let todos = Array.from({ length: 10 }, (_, idx) =>
 
 export const todoHandlers = [
   rest.get(getBaseUrl('todos'), async (req, res, ctx) => {
-    const searchParamsObject = Object.fromEntries(req.url.searchParams) as ResourceParamsSchema;
+    const searchParamsObject = Object.fromEntries(
+      req.url.searchParams,
+    ) as ResourceParamsSchema;
     const hasSearchParams = !!Object.keys(searchParamsObject).length;
 
-    const parsedSearchParams = resourceParamsSchema.safeParse(searchParamsObject);
+    const parsedSearchParams =
+      resourceParamsSchema.safeParse(searchParamsObject);
 
     if (!hasSearchParams || !parsedSearchParams.success)
       return res(
@@ -48,8 +54,8 @@ export const todoHandlers = [
         }),
       );
 
-    const limit = parsedSearchParams.data?.limit ?? 10;
-    const skip = parsedSearchParams.data?.skip ?? 0;
+    const limit = parsedSearchParams.data.limit ?? 10;
+    const skip = parsedSearchParams.data.skip ?? 0;
 
     return res(
       ctx.status(200),
@@ -89,10 +95,15 @@ export const todoHandlers = [
 
     if (todo) {
       todos = todos.map((_todo) =>
-        _todo.id === todo.id ? { ..._todo, completed: todoPayload.completed } : _todo,
+        _todo.id === todo.id
+          ? { ..._todo, completed: todoPayload.completed }
+          : _todo,
       );
 
-      return res(ctx.status(200), ctx.json({ ...todo, completed: todoPayload.completed }));
+      return res(
+        ctx.status(200),
+        ctx.json({ ...todo, completed: todoPayload.completed }),
+      );
     }
 
     return res(

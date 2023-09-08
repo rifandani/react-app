@@ -10,12 +10,12 @@ export default function TodosFilter() {
       className="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
     >
       <label htmlFor="limit" className="label">
-        <span className="label-text text-primary-content">{t('limit')}</span>
+        <span className="label-text">{t('limit')}</span>
       </label>
 
       <select
         aria-label="combobox-filter"
-        className="select select-bordered select-secondary"
+        className="select select-bordered select-primary"
         name="limit"
         id="limit"
         value={selectedOption}

@@ -11,12 +11,12 @@ export default function TodoPage() {
         <Link
           to={todosPath.root}
           aria-label="go-back"
-          className="btn-link w-fit normal-case text-primary-content "
+          className="link w-fit normal-case hover:skew-x-12"
         >
           ⬅ {t('goBackTo', { target: 'Todos' })}
         </Link>
 
-        <h1 className="text-2xl font-semibold tracking-wider text-primary-content">
+        <h1 className="text-2xl font-semibold tracking-wider">
           {t('xDetail', { feature: 'Todo' })}
         </h1>
       </div>
@@ -44,14 +44,14 @@ export default function TodoPage() {
             id="todo"
             type="text"
             aria-label="textbox-todo"
-            className="input join-item input-bordered input-accent w-full text-accent-content"
+            className="input join-item input-bordered input-primary w-full"
             {...form.register('todo', { required: true })}
           />
 
           {user?.id === todoQuery.data.userId && (
             <button
               aria-label="button-submit"
-              className="btn btn-accent join-item normal-case"
+              className="btn btn-primary join-item normal-case"
               type="submit"
               disabled={fetcher.state === 'submitting'}
             >
