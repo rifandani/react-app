@@ -51,7 +51,7 @@ export default function TodoPage() {
           {user?.id === todoQuery.data.userId && (
             <button
               aria-label="button-submit"
-              className="btn btn-primary join-item normal-case"
+              className="btn btn-primary join-item normal-case disabled:btn-disabled"
               type="submit"
               disabled={fetcher.state === 'submitting'}
             >

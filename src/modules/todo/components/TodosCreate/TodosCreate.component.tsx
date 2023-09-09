@@ -29,7 +29,7 @@ export default function TodosCreate() {
 
         <button
           aria-label="button-add"
-          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content lg:ml-2 lg:mt-0 lg:w-2/12"
+          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           type="submit"
           disabled={form.formState.isSubmitting || !form.formState.isValid}
         >

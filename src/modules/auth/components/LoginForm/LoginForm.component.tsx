@@ -22,9 +22,7 @@ export default function LoginForm() {
           type="text"
           aria-label="textbox-username"
           aria-labelledby="#username"
-          aria-invalid={
-            form.formState.errors.username?.message ? 'true' : 'false'
-          }
+          aria-invalid={!!form.formState.errors.username?.message}
           className="peer input input-primary mt-1 shadow-md aria-[invalid='true']:input-error"
           placeholder={t('usernamePlaceholder')}
           {...form.register('username', { required: true, minLength: 3 })}
@@ -48,9 +46,7 @@ export default function LoginForm() {
           type="password"
           aria-label="textbox-password"
           aria-labelledby="#password"
-          aria-invalid={
-            form.formState.errors.password?.message ? 'true' : 'false'
-          }
+          aria-invalid={!!form.formState.errors.password?.message}
           className="peer input input-primary mt-1 shadow-md aria-[invalid='true']:input-error"
           placeholder={t('passwordPlaceholder')}
           {...form.register('password', { required: true, minLength: 6 })}
