@@ -46,14 +46,6 @@ export default function Toast({
           {data.description}
         </p>
       )}
-
-      {/* {props.toast.timeout && Number.isFinite(props.toast.timeout) && (
-        <progress
-          className={`progress absolute bottom-0 ${`progress-${type}`}`}
-          value={props.toast.timeout}
-          max={props.toast.timeout}
-        />
-      )} */}
     </li>
   );
 }
