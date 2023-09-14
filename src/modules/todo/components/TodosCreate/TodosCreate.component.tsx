@@ -1,4 +1,5 @@
 import { Modal } from '@shared/components/molecules';
+import { Button } from 'react-aria-components';
 import useTodosCreate from './useTodosCreate.hook';
 
 export default function TodosCreate() {
@@ -27,14 +28,14 @@ export default function TodosCreate() {
           {...form.register('todo', { required: true, minLength: 3 })}
         />
 
-        <button
+        <Button
           aria-label="button-add"
           className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           type="submit"
-          disabled={form.formState.isSubmitting || !form.formState.isValid}
+          isDisabled={form.formState.isSubmitting || !form.formState.isValid}
         >
           {t('add', { icon: '💾' })}
-        </button>
+        </Button>
       </form>
     </>
   );

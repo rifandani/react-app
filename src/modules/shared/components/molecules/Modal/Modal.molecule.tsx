@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { Button } from 'react-aria-components';
 
 interface Props extends PropsWithChildren {
   id: string;
@@ -11,18 +12,18 @@ export default function Modal({ id, title, description, children }: Props) {
     <dialog className="modal modal-bottom sm:modal-middle" id={id}>
       <form method="dialog" className="modal-backdrop">
         {/* if there is a button in form, it will close the modal */}
-        <button type="submit">close</button>
+        <Button type="submit">close</Button>
       </form>
 
       <div className="modal-box">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
-          <button
+          <Button
             className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
             type="submit"
           >
             ✕
-          </button>
+          </Button>
         </form>
 
         <h1 className="text-lg font-bold">{title}</h1>

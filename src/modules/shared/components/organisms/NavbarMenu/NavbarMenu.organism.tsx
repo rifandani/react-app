@@ -1,5 +1,6 @@
 import { themes } from '@shared/constants/theme.constant';
 import { todosPath } from '@todo/routes/todos.route';
+import { Button } from 'react-aria-components';
 import { NavLink } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import useNavbarMenu from './useNavbarMenu.hook';
@@ -25,29 +26,28 @@ export default function NavbarMenu() {
         </NavLink>
       </li>
 
-      <li className="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
-        <button
+      <li className="dropdown-top dropdown mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+        <Button
           type="button"
-          tabIndex={0}
           aria-label="themes-opener"
           className="btn btn-outline btn-sm btn-block normal-case"
         >
           {t('theme')}
-        </button>
+        </Button>
 
         <ul className="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-base-200 p-2 shadow lg:w-52">
           {themes.map((theme) => (
             <li key={theme}>
-              <button
+              <Button
                 type="button"
                 className="capitalize tracking-wide"
                 aria-label={`theme-${theme}`}
-                onClick={() => {
+                onPress={() => {
                   setTheme(theme);
                 }}
               >
                 {theme}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>
@@ -55,13 +55,13 @@ export default function NavbarMenu() {
 
       {!!user && (
         <li className="ml-0 lg:ml-3 lg:mt-0">
-          <button
+          <Button
             type="button"
             className="btn btn-error btn-sm normal-case tracking-wide text-error-content"
-            onClick={handleClickLogout}
+            onPress={handleClickLogout}
           >
             {t('logout')} ({user.username})
-          </button>
+          </Button>
         </li>
       )}
     </>

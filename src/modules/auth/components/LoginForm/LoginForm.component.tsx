@@ -1,4 +1,5 @@
 import { ErrorApiResponseSchema } from '@shared/api/api.schema';
+import { Button } from 'react-aria-components';
 import useLoginForm from './useLoginForm.hook';
 
 export default function LoginForm() {
@@ -67,13 +68,13 @@ export default function LoginForm() {
         </div>
       )}
 
-      <button
+      <Button
         type="submit"
         className="btn btn-primary mt-8 normal-case disabled:btn-disabled"
-        disabled={fetcher.state === 'submitting' || !form.formState.isValid}
+        isDisabled={fetcher.state === 'submitting' || !form.formState.isValid}
       >
         {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')}
-      </button>
+      </Button>
     </fetcher.Form>
   );
 }

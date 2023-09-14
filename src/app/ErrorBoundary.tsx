@@ -1,6 +1,7 @@
 'use client';
 
 import { PropsWithChildren } from 'react';
+import { Button } from 'react-aria-components';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 function Fallback({ error, resetErrorBoundary }: FallbackProps) {
@@ -8,9 +9,9 @@ function Fallback({ error, resetErrorBoundary }: FallbackProps) {
     <main className="flex min-h-screen flex-col items-center justify-center">
       <h1 className="mb-3">Something went wrong.</h1>
 
-      <button type="button" onClick={resetErrorBoundary}>
+      <Button type="button" onPress={resetErrorBoundary}>
         Reload Page
-      </button>
+      </Button>
 
       <pre>{JSON.stringify(error, null, 2)}</pre>
     </main>

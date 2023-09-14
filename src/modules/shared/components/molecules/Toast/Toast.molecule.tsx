@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { Button } from 'react-aria-components';
 import { ToastContentProps } from 'react-toastify';
 import { twJoin } from 'tailwind-merge';
 
@@ -32,13 +33,13 @@ export default function Toast({
           {data?.title}
         </h3>
 
-        <button
+        <Button
           className="btn btn-ghost btn-xs"
           type="button"
-          onClick={closeToast}
+          onPress={closeToast}
         >
           <Icon icon="lucide:x" height="1.5em" />
-        </button>
+        </Button>
       </div>
 
       {!!data?.description && (

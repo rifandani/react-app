@@ -1,3 +1,4 @@
+import { Button } from 'react-aria-components';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 export default function RouteErrorBoundary() {
@@ -25,15 +26,15 @@ export default function RouteErrorBoundary() {
       <main className="flex min-h-screen flex-col items-center justify-center">
         <h1 className="mb-3 text-primary-content">Something went wrong</h1>
 
-        <button
+        <Button
           className="btn btn-neutral text-primary-content"
           type="button"
-          onClick={() => {
+          onPress={() => {
             window.location.assign(window.location.href);
           }}
         >
           Reload Page
-        </button>
+        </Button>
 
         <pre>{JSON.stringify(error, null, 2)}</pre>
       </main>

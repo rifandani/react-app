@@ -1,4 +1,5 @@
 import { TodoSchema } from '@todo/api/todo.schema';
+import { Button } from 'react-aria-components';
 import { Link } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import useTodosItem from './useTodosItem.hook';
@@ -51,13 +52,13 @@ export default function TodosItem({ todo }: Props) {
       </Link>
 
       {todo.userId === user?.id && (
-        <button
+        <Button
           aria-label="button-submit"
           className="btn btn-primary btn-sm normal-case"
           type="submit"
         >
           {t('remove', { icon: '💥' })}
-        </button>
+        </Button>
       )}
     </form>
   );

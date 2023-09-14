@@ -1,3 +1,4 @@
+import { Button } from 'react-aria-components';
 import useHomeClock from './useHomeClock.hook';
 
 export default function HomeClock() {
@@ -34,17 +35,17 @@ export default function HomeClock() {
         className="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {buttons.map((btn) => (
-          <button
+          <Button
             data-testid={`home-clock-button-${btn.id}`}
             type="button"
             key={btn.id}
             className={btn.class}
-            onClick={() => {
+            onPress={() => {
               onClickMapper(btn.id);
             }}
           >
             {t(btn.text)}
-          </button>
+          </Button>
         ))}
       </div>
     </>

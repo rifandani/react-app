@@ -56,5 +56,7 @@ You can deploy the `dist` folder to any static host provider (netlify, surge, no
 
 Todos:
 
+- [ ] use `react-aria-components`, which will be the recommended way to use react-aria in the future
+- [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (think `useMemo`, `useCallback`, `memo`)
 - [ ] fix all tests
 - [ ] add `/docs` folder, including all my decisions why or technical considerations.

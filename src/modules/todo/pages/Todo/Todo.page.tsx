@@ -1,4 +1,5 @@
 import { todosPath } from '@todo/routes/todos.route';
+import { Button } from 'react-aria-components';
 import { Link } from 'react-router-dom';
 import useTodoPageVM from './Todo.vm';
 
@@ -49,14 +50,14 @@ export default function TodoPage() {
           />
 
           {user?.id === todoQuery.data.userId && (
-            <button
+            <Button
               aria-label="button-submit"
               className="btn btn-primary join-item normal-case disabled:btn-disabled"
               type="submit"
-              disabled={fetcher.state === 'submitting'}
+              isDisabled={fetcher.state === 'submitting'}
             >
               {t('update', { icon: '🖋' })}
-            </button>
+            </Button>
           )}
         </form>
       )}

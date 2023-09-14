@@ -3,6 +3,7 @@ import { todoApi, todoKeys } from '@todo/api/todo.api';
 import { UpdateTodoSchema } from '@todo/api/todo.schema';
 import { todosPath } from '@todo/routes/todos.route';
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const todoAction =
   (_queryClient: typeof queryClient) =>
@@ -19,8 +20,10 @@ export const todoAction =
       // invalidate only change the status to inactive, the cache is still there
       // await _queryClient.invalidateQueries({ queryKey: queryKeyLists }); // `await` is the "lever"
 
+      toast.success('Todo successfully updated');
       return redirect(todosPath.root);
     }
 
+    toast.warning('Not Implemented');
     return new Response('Not Implemented', { status: 501 });
   };
