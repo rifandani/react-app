@@ -1,4 +1,4 @@
-import HomeClock from '@home/components/HomeClock.component';
+import HomeClock from '@home/components/HomeClock/HomeClock.component';
 import useHomePageVM from './Home.vm';
 
 export default function HomePage() {
