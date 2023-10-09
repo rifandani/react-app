@@ -39,7 +39,6 @@ export default function Designer() {
                       <Button
                         type="button"
                         className="btn btn-sm justify-start capitalize tracking-wide"
-                        aria-label={`theme-${theme}`}
                         onPress={() => {
                           setTheme(theme);
                         }}
