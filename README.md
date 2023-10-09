@@ -1,6 +1,6 @@
 # Intro
 
-<!-- [![DeepScan grade](https://deepscan.io/api/teams/13942/projects/24678/branches/761600/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=24678&bid=761600) -->
+[![DeepScan grade](https://deepscan.io/api/teams/13942/projects/25435/branches/795942/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=25435&bid=795942)
 
 React template built with:
 
@@ -12,12 +12,13 @@ React template built with:
 - `axios` + `@tanstack/react-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
 - `@iconify-icon/react` -> SVG icon on demand
-- `type-fest` -> collection of useful type helpers
-- `react-aria-components` -> adaptive, accessible and robust unstyled UI components like radix-ui
+- `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components like radix-ui
 - `react-hook-form` -> form management
-- `ahooks` -> collection of useful react custom hooks
 - `zustand` -> performant global state
 - `react-toastify` -> toast outside of react components
+- `type-fest` -> collection of useful type helpers
+- `ahooks` -> collection of useful react custom hooks
+- `@rifandani/nxact-yutiriti` -> collection of useful utils
 
 ## Development
 
@@ -59,6 +60,7 @@ You can deploy the `dist` folder to any static host provider (netlify, surge, no
 
 ## Notes
 
+- [ ] support PWA
 - [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (ex: `useMemo`, `useCallback`, `memo`). When I try to use automatic mode in `v2.6.0-beta.16`, my tests breaks because it renders `<slots />` replacing some of optimized components.
 - [ ] fix all tests
 - [ ] add `/docs` folder, including all my decisions why or technical considerations.
