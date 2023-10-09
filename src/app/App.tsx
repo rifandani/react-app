@@ -23,7 +23,7 @@ export default function App() {
             future={{ v7_startTransition: true }}
           />
 
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </AppProviders>
       </AppErrorBoundary>
     </StrictMode>

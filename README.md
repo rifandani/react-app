@@ -4,15 +4,20 @@
 
 React template built with:
 
-- `vite` + `typescript` + `eslint` + `prettier` -> built-in dev productivity
-- `vitest` + `@reactj/testing-library` -> unit test, integration test, coverage
-- `msw` -> browser and server mocking
-- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> styling
+- `vite` + `typescript` + `eslint` + `prettier` -> development productivity
+- `vitest` + `@testing-library/react` -> unit test, integration test, coverage
+- `msw` -> browser and server API response mocking
+- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
-- `axios` + `@tanstack/react-query` -> data fetching
-- `zod` -> schema validation
-- `@iconify-icon/react` -> icon on demand (based on web-component)
-- `type-fest` -> useful type helpers
+- `axios` + `@tanstack/react-query` -> server state management + data fetching
+- `zod` -> runtime schema validation
+- `@iconify-icon/react` -> SVG icon on demand
+- `type-fest` -> collection of useful type helpers
+- `react-aria-components` -> adaptive, accessible and robust unstyled UI components like radix-ui
+- `react-hook-form` -> form management
+- `ahooks` -> collection of useful react custom hooks
+- `zustand` -> performant global state
+- `react-toastify` -> toast outside of react components
 
 ## Development
 
@@ -53,8 +58,6 @@ $ pnpm build
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
 
 ## Notes
-
-Todos:
 
 - [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (ex: `useMemo`, `useCallback`, `memo`). When I try to use automatic mode in `v2.6.0-beta.16`, my tests breaks because it renders `<slots />` replacing some of optimized components.
 - [ ] fix all tests
