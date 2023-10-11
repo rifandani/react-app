@@ -71,7 +71,7 @@ export default function LoginForm() {
 
       <Button
         type="submit"
-        className="btn btn-primary mt-8 disabled:btn-outline"
+        className="btn btn-primary mt-8 capitalize disabled:btn-outline"
         isDisabled={fetcher.state === 'submitting' || !form.formState.isValid}
       >
         {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')} (0lelplR)

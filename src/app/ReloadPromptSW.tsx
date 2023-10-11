@@ -42,36 +42,40 @@ export default function ReloadPromptSW() {
   };
 
   return (
-    <aside id="ReloadPromptSW" className="fixed bottom-5 right-5 rounded p-3">
+    <aside id="ReloadPromptSW" className="toast">
       {(offlineReady || needRefresh) && (
-        <div className="border-1 m-4 rounded bg-white text-left shadow-md">
-          <div className="mb-2">
-            <span>
-              {offlineReady
-                ? 'App ready to work offline'
-                : 'New content available, click on reload button to update'}
-            </span>
-          </div>
+        <div className="alert relative block min-w-[20rem] max-w-[20rem] overflow-hidden p-3 shadow-lg">
+          <h3 className="line-clamp-3 whitespace-pre-wrap break-words pb-3">
+            {offlineReady
+              ? 'App ready to work offline'
+              : 'New content available, click on reload button to update'}
+          </h3>
 
-          {needRefresh && (
+          <section className="flex justify-between">
+            {needRefresh && (
+              <button
+                type="button"
+                className="btn btn-primary btn-sm w-1/2"
+                onClick={() => {
+                  void updateServiceWorker(true);
+                }}
+              >
+                Reload
+              </button>
+            )}
+
             <button
               type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                void updateServiceWorker(true);
-              }}
+              className="btn-outlined btn btn-sm w-1/2"
+              onClick={close}
             >
-              Reload
+              Close
             </button>
-          )}
-
-          <button type="button" className="btn-outlined btn" onClick={close}>
-            Close
-          </button>
+          </section>
         </div>
       )}
 
-      <span className="invisible">{buildDate}</span>
+      <span className="hidden">{buildDate}</span>
     </aside>
   );
 }
