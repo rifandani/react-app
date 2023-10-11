@@ -10,20 +10,5 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-// ONLY include browser worker on 'development' env
-if (import.meta.env.DEV) {
-  void import('./mocks/browser.mock')
-    .then(({ worker }) => {
-      // insert it into global window object, so we can debug the worker in runtime (e.g Chrome DevTools)
-      window.msw = { worker };
-      // start browser worker
-      return worker.start({ onUnhandledRequest: 'bypass' });
-    })
-    .then(() => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      ReactDOM.createRoot(root!).render(<App />);
-    });
-} else {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  ReactDOM.createRoot(root!).render(<App />);
-}
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+ReactDOM.createRoot(root!).render(<App />);

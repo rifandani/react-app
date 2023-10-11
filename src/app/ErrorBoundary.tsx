@@ -1,5 +1,3 @@
-'use client';
-
 import { PropsWithChildren } from 'react';
 import { Button } from 'react-aria-components';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';

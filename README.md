@@ -6,7 +6,7 @@ React template built with:
 
 - `vite` + `typescript` + `eslint` + `prettier` -> development productivity
 - `vitest` + `@testing-library/react` -> unit test, integration test, coverage
-- `msw` -> browser and server API response mocking
+- `msw` -> API response mocking for tests
 - `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
 - `axios` + `@tanstack/react-query` -> server state management + data fetching
@@ -19,19 +19,23 @@ React template built with:
 - `type-fest` -> collection of useful type helpers
 - `ahooks` -> collection of useful react custom hooks
 - `@rifandani/nxact-yutiriti` -> collection of useful utils
+- `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
 
 ## Development
+
+Rename `.env.development.example` to `.env.development`.
+Rename `.env.staging.example` to `.env.staging`.
+Rename `.env.production.example` to `.env.production`.
 
 ```bash
 # install deps
 $ pnpm install
 
-# init msw for browser mocking
-$ pnpm msw:init
-
 # Runs the app
-$ pnpm start
+$ pnpm dev
 ```
+
+## Testing
 
 ```bash
 # run test
@@ -43,20 +47,29 @@ $ pnpm test:coverage
 
 ## Build
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
 ```bash
-# build app
+# build app in "staging" mode
+$ pnpm build:staging
+
+# build app in "production" mode
 $ pnpm build
 ```
 
+## Start
+
+PWA relies on [https-localhost](https://github.com/daquinoaldo/https-localhost) to serve the dist files on https://localhost/.
+Please refer to it's docs for the steps to setup your local environment.
+
+```bash
+pnpm start
+```
+
+Open up https://localhost/, then restart the server, you will see a notification ask you to restart reload the offline content.
+
 ## Deployment
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+For now only supports deployment to Vercel.
+Check out `vercel.json` file fo further details.
 
 ## Notes
 

@@ -3,6 +3,16 @@
 @tailwind utilities;
 @tailwind variants;
 
+/* lato-regular - latin */
+@font-face {
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/lato-v24-latin-regular.woff2') format('woff2');
+}
+
 @layer base {
   /* override default toastify colors with daisyui */
   :root {

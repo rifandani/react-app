@@ -7,6 +7,7 @@ export default function LoginForm() {
 
   return (
     <fetcher.Form
+      id="LoginForm"
       aria-label="form-login"
       className="form-control pt-3 md:pt-8"
       method="POST"
@@ -70,10 +71,10 @@ export default function LoginForm() {
 
       <Button
         type="submit"
-        className="btn btn-primary mt-8 normal-case disabled:btn-disabled"
+        className="btn btn-primary mt-8 disabled:btn-outline"
         isDisabled={fetcher.state === 'submitting' || !form.formState.isValid}
       >
-        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')}
+        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')} (0lelplR)
       </Button>
     </fetcher.Form>
   );

@@ -2,9 +2,8 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 import defaultTheme from 'tailwindcss/defaultTheme';
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
-const animate = require('tailwindcss-animate');
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -12,7 +11,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Josefin Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Lato', ...defaultTheme.fontFamily.sans],
       },
       lineClamp: {
         7: '7',

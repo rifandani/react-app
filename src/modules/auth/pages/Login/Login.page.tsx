@@ -1,4 +1,4 @@
-import reactjs from '@assets/reactjs.svg';
+import reactjs from '@assets/images/reactjs.svg';
 import LoginForm from '@auth/components/LoginForm/LoginForm.component';
 import { homePath } from '@home/routes/home.route';
 import { Icon } from '@iconify/react';
@@ -9,7 +9,7 @@ export default function LoginPage() {
   const { t } = useLoginPageVM();
 
   return (
-    <main className="h-screen bg-white">
+    <main id="LoginPage" className="h-screen">
       <div className="flex w-full flex-wrap">
         {/* <!-- Login Section --> */}
         <section className="flex w-full flex-col md:w-1/2">

@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import AppErrorBoundary from './ErrorBoundary';
 import AppProviders from './Providers';
+import ReloadPromptSW from './ReloadPromptSW';
 import { router } from './router.app';
 
 export default function App() {
@@ -23,7 +24,9 @@ export default function App() {
             future={{ v7_startTransition: true }}
           />
 
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          <ReloadPromptSW />
+
+          <ReactQueryDevtools initialIsOpen={false} />
         </AppProviders>
       </AppErrorBoundary>
     </StrictMode>

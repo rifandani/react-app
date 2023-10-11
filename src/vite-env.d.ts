@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/client" />
+/// <reference types="vite-plugin-pwa/info" />
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string | undefined; // prefixed with "VITE_" -> exposed to our Vite-processed code
