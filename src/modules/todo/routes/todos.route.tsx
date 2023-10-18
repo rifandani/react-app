@@ -1,5 +1,5 @@
 import { queryClient } from '@app/providers/query/queryClient';
-import { NavbarWrapper } from '@shared/components/templates';
+import NavbarWrapper from '@shared/components/templates/NavbarWrapper/NavbarWrapper.template';
 import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
 import { todoAction } from '@todo/pages/Todo/Todo.action';
 import { todoLoader } from '@todo/pages/Todo/Todo.loader';

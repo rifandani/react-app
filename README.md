@@ -19,6 +19,7 @@ React template built with:
 - `type-fest` -> collection of useful type helpers
 - `ahooks` -> collection of useful react custom hooks
 - `@rifandani/nxact-yutiriti` -> collection of useful utils
+- `@internationalized/date` -> collection of useful date utils
 - `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
 
 ## Development
@@ -31,7 +32,7 @@ Rename `.env.production.example` to `.env.production`.
 # install deps
 $ pnpm install
 
-# Runs the app
+# Runs the app + PWA
 $ pnpm dev
 ```
 
@@ -73,6 +74,7 @@ Check out `vercel.json` file fo further details.
 
 ## Notes
 
-- [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (ex: `useMemo`, `useCallback`, `memo`). When I try to use automatic mode in `v2.6.0-beta.16`, my tests breaks because it renders `<slots />` replacing some of optimized components.
+- [ ] add more component examples
 - [ ] fix all tests
 - [ ] add `/docs` folder, including all my decisions why or technical considerations.
+- [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (ex: `useMemo`, `useCallback`, `memo`). When I try to use automatic mode in `v2.6.0-beta.16`, my tests breaks because it renders `<slots />` replacing some of optimized components.

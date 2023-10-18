@@ -1,4 +1,4 @@
-import { Modal } from '@shared/components/molecules';
+import Modal from '@shared/components/molecules/Modal/Modal.molecule';
 import { Button } from 'react-aria-components';
 import useTodosCreate from './useTodosCreate.hook';
 
@@ -7,11 +7,10 @@ export default function TodosCreate() {
 
   return (
     <>
-      <Modal
-        id={modalId}
-        title="Unsaved Changes"
-        description={t('unsavedChanges')}
-      />
+      <Modal id={modalId}>
+        <h1 className="text-lg font-bold">Unsaved Changes</h1>
+        <p className="pt-4">{t('unsavedChanges')}</p>
+      </Modal>
 
       <form
         aria-label="form-add"

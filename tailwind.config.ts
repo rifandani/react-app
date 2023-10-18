@@ -3,7 +3,9 @@ import typography from '@tailwindcss/typography';
 import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
+import trac from 'tailwindcss-react-aria-components';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -20,23 +22,37 @@ export default {
         10: '10',
       },
       keyframes: {
-        'swipe-right': {
-          '0%': {
-            '-webkit-transform': 'translateX(var(--kb-toast-swipe-end-x))',
-            transform: 'translateX(var(--kb-toast-swipe-end-x))',
-          },
-          '100%': {
-            '-webkit-transform': 'translateX(var(--kb-toast-swipe-end-x))',
-            transform: 'translateX(var(--kb-toast-swipe-end-x))',
-          },
+        'accordion-down': {
+          from: { height: '0px' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0px' },
         },
       },
       animation: {
-        'swipe-right': 'swipe-right 0.5s ease-out both',
+        'accordion-down': 'accordion-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
+        'accordion-up': 'accordion-up 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
       },
     },
   },
-  plugins: [typography, forms, daisyui, animate],
+  plugins: [
+    typography,
+    forms,
+    daisyui,
+    animate,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    trac({ prefix: 'rac' }),
+    plugin(({ matchUtilities }) => {
+      matchUtilities({
+        vg: (value) => ({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          [`@apply ${value.replaceAll(',', ' ')}`]: {},
+        }),
+      });
+    }),
+  ],
   daisyui: {
     logs: false,
     themes: [

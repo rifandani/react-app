@@ -1,5 +1,5 @@
 import { homeLoader } from '@home/pages/Home.loader';
-import { NavbarWrapper } from '@shared/components/templates';
+import NavbarWrapper from '@shared/components/templates/NavbarWrapper/NavbarWrapper.template';
 import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
 import { RouteObject } from 'react-router-dom';
 

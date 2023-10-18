@@ -3,11 +3,9 @@ import { Button } from 'react-aria-components';
 
 interface Props extends PropsWithChildren {
   id: string;
-  title: string;
-  description: string;
 }
 
-export default function Modal({ id, title, description, children }: Props) {
+export default function Modal({ id, children }: Props) {
   return (
     <dialog className="modal modal-bottom sm:modal-middle" id={id}>
       <form method="dialog" className="modal-backdrop">
@@ -26,10 +24,7 @@ export default function Modal({ id, title, description, children }: Props) {
           </Button>
         </form>
 
-        <h1 className="text-lg font-bold">{title}</h1>
-        <p className="pt-4">{description}</p>
-
-        {children && <footer className="modal-action">{children}</footer>}
+        {children}
       </div>
     </dialog>
   );

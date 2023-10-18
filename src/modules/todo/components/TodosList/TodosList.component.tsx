@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react/dist/iconify.js';
-import { For } from '@shared/components/atoms';
+import { Icon } from '@iconify/react';
+import For from '@shared/components/atoms/For/For.atom';
 import TodosItem from '@todo/components/TodosItem/TodosItem.component';
 import useTodosList from './useTodosList.hook';
 

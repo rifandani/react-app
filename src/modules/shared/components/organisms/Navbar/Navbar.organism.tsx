@@ -1,6 +1,6 @@
 import { homePath } from '@home/routes/home.route';
 import { Icon } from '@iconify/react';
-import { SvgIcon } from '@shared/components/atoms';
+import SvgIcon from '@shared/components/atoms/SvgIcon/SvgIcon.atom';
 import { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import NavbarMenu from '../NavbarMenu/NavbarMenu.organism';

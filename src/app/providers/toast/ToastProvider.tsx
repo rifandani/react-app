@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.css';
 import { ToastContext, createToastContext } from './context';
 
-export default function ToastProvider({ children }: PropsWithChildren) {
+export default function AppToastProvider({ children }: PropsWithChildren) {
   const value = createToastContext();
 
   return (

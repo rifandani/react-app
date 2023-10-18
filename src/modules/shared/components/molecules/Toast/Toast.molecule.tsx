@@ -2,12 +2,7 @@ import { Icon } from '@iconify/react';
 import { Button } from 'react-aria-components';
 import { ToastContentProps } from 'react-toastify';
 import { twJoin } from 'tailwind-merge';
-
-export interface ToastData {
-  type: 'success' | 'error' | 'info' | 'warning';
-  title: string;
-  description?: string;
-}
+import { ToastData } from './types';
 
 /**
  * Custom toast component, instead of using default from `react-toastify`

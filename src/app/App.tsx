@@ -1,33 +1,30 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
-import { RouterProvider } from 'react-router-dom';
 import AppErrorBoundary from './ErrorBoundary';
-import AppProviders from './Providers';
 import ReloadPromptSW from './ReloadPromptSW';
-import { router } from './router.app';
+import AppI18nProvider from './providers/i18n/I18nProvider';
+import AppQueryProvider from './providers/query/QueryProvider';
+import AppRouterProvider from './providers/router/RouterProvider';
+import AppToastProvider from './providers/toast/ToastProvider';
 
 export default function App() {
   return (
     <StrictMode>
       <AppErrorBoundary>
-        <AppProviders>
-          <RouterProvider
-            router={router}
-            /**
-             * Wrap all router state updates in `startTransition`
-             * `startTransition` lets us update the state without blocking the UI
-             *
-             * @example
-             *
-             * if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
-             */
-            future={{ v7_startTransition: true }}
-          />
+        <AppQueryProvider>
+          <AppI18nProvider>
+            <AppToastProvider>
+              {/* router entry point */}
+              <AppRouterProvider />
 
-          <ReloadPromptSW />
+              {/* PWA */}
+              <ReloadPromptSW />
 
-          <ReactQueryDevtools initialIsOpen={false} />
-        </AppProviders>
+              {/* react query devtools */}
+              <ReactQueryDevtools initialIsOpen={false} />
+            </AppToastProvider>
+          </AppI18nProvider>
+        </AppQueryProvider>
       </AppErrorBoundary>
     </StrictMode>
   );

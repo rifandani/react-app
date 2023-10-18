@@ -78,8 +78,7 @@ export default function useTodosCreate() {
           // eslint-disable-next-line no-param-reassign
           evt.returnValue = '';
 
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+          // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
           const modal = window[modalId] as HTMLDialogElement;
           modal.showModal();
         }

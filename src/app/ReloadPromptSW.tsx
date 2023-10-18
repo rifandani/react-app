@@ -41,6 +41,10 @@ export default function ReloadPromptSW() {
     setNeedRefresh(false);
   };
 
+  const reloadAndUpdateSW = () => {
+    void updateServiceWorker(true);
+  };
+
   return (
     <aside id="ReloadPromptSW" className="toast">
       {(offlineReady || needRefresh) && (
@@ -52,18 +56,6 @@ export default function ReloadPromptSW() {
           </h3>
 
           <section className="flex justify-between">
-            {needRefresh && (
-              <button
-                type="button"
-                className="btn btn-primary btn-sm w-1/2"
-                onClick={() => {
-                  void updateServiceWorker(true);
-                }}
-              >
-                Reload
-              </button>
-            )}
-
             <button
               type="button"
               className="btn-outlined btn btn-sm w-1/2"
@@ -71,6 +63,16 @@ export default function ReloadPromptSW() {
             >
               Close
             </button>
+
+            {needRefresh && (
+              <button
+                type="button"
+                className="btn btn-primary btn-sm w-1/2"
+                onClick={reloadAndUpdateSW}
+              >
+                Reload
+              </button>
+            )}
           </section>
         </div>
       )}
