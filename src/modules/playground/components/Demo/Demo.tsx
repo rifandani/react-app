@@ -1,3 +1,4 @@
+import DemoBreadcrumbs from './aria/DemoBreadcrumbs';
 import DemoButton from './aria/DemoButton';
 import DemoCalendar from './aria/DemoCalendar';
 import DemoCheckbox from './aria/DemoCheckbox';
@@ -17,6 +18,7 @@ import DemoSearchField from './aria/DemoSearchField';
 import DemoSlider from './aria/DemoSlider';
 import DemoSwitch from './aria/DemoSwitch';
 import DemoTable from './aria/DemoTable';
+import DemoTabs from './aria/DemoTabs';
 import DemoTagGroup from './aria/DemoTagGroup';
 import DemoTextField from './aria/DemoTextField';
 import DemoTimeField from './aria/DemoTimeField';
@@ -58,6 +60,9 @@ export default function Demo() {
         <DemoSlider />
         <DemoSwitch />
         <DemoTextField />
+
+        <DemoBreadcrumbs />
+        <DemoTabs />
 
         <DemoDialog />
         <DemoPopover />
