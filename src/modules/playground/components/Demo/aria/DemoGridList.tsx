@@ -17,7 +17,7 @@ function GridListItem({ children, ...props }: ItemProps) {
 
   return (
     <Item
-      className="flex w-full items-center px-3 py-1 data-[selected]:bg-primary data-[disabled]:text-slate-500 data-[selected]:text-primary-content [&>div]:flex"
+      className="flex w-full items-center px-3 py-1 rac-disabled:text-slate-500 rac-selected:bg-primary rac-selected:text-primary-content [&>div]:flex"
       textValue={textValue}
       {...props}
     >

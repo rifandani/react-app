@@ -79,7 +79,7 @@ function MyDateRangePicker<T extends DateValue>({
                 {(date) => (
                   <CalendarCell
                     date={date}
-                    className="flex h-11 w-11 items-center justify-center data-[selected]:bg-primary data-[selected]:text-primary-content data-[unavailable]:text-slate-500 data-[unavailable]:line-through"
+                    className="flex h-11 w-11 items-center justify-center rac-selected:bg-primary rac-selected:text-primary-content rac-unavailable:text-slate-500 rac-unavailable:line-through"
                   />
                 )}
               </CalendarGridBody>

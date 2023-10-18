@@ -11,7 +11,7 @@ export default function DemoToggleButton() {
   return (
     <section className="flex flex-wrap items-center gap-3">
       <ToggleButton
-        className="flex w-fit items-center rounded-lg border p-2 focus:ring data-[selected]:border-primary-focus data-[selected]:bg-primary data-[selected]:text-primary-content"
+        className="flex w-fit items-center rounded-lg border p-2 focus:ring rac-selected:border-primary-focus rac-selected:bg-primary rac-selected:text-primary-content"
         isSelected={isSelected}
         onChange={setSelected}
       >
@@ -20,21 +20,21 @@ export default function DemoToggleButton() {
 
       <div className="join">
         <ToggleButton
-          className="btn join-item data-[selected]:bg-secondary data-[selected]:text-secondary-content"
+          className="btn join-item rac-selected:bg-secondary rac-selected:text-secondary-content"
           isSelected={isBoldSelected}
           onChange={setBoldSelected}
         >
           <Icon icon="lucide:bold" />
         </ToggleButton>
         <ToggleButton
-          className="btn join-item data-[selected]:bg-accent data-[selected]:text-accent-content"
+          className="btn join-item rac-selected:bg-accent rac-selected:text-accent-content"
           isSelected={isItalicSelected}
           onChange={setItalicSelected}
         >
           <Icon icon="lucide:italic" />
         </ToggleButton>
         <ToggleButton
-          className="btn join-item data-[selected]:bg-success data-[selected]:text-success-content"
+          className="btn join-item rac-selected:bg-success rac-selected:text-success-content"
           isSelected={isUnderlineSelected}
           onChange={setUnderlineSelected}
         >
