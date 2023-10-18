@@ -15,8 +15,10 @@ import DemoRadioGroup from './aria/DemoRadioGroup';
 import DemoRangeCalendar from './aria/DemoRangeCalendar';
 import DemoSearchField from './aria/DemoSearchField';
 import DemoSlider from './aria/DemoSlider';
+import DemoSwitch from './aria/DemoSwitch';
 import DemoTable from './aria/DemoTable';
 import DemoTagGroup from './aria/DemoTagGroup';
+import DemoTextField from './aria/DemoTextField';
 import DemoTimeField from './aria/DemoTimeField';
 import DemoToggleButton from './aria/DemoToggleButton';
 import DemoDaisyAccordion from './daisy/DemoDaisyAccordion';
@@ -54,6 +56,8 @@ export default function Demo() {
         <DemoRadioGroup />
         <DemoSearchField />
         <DemoSlider />
+        <DemoSwitch />
+        <DemoTextField />
 
         <DemoDialog />
         <DemoPopover />

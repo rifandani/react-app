@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
   Label,
   Slider,
@@ -50,8 +50,8 @@ function MySlider<T extends number | number[]>({
                 : 'h-full w-5 before:left-1/2 before:h-full before:w-2 before:-translate-x-1/2 before:rounded-full',
             )}
           >
-            {state.values.map((num, i) => (
-              <>
+            {state.values.map((num, idx) => (
+              <Fragment key={num}>
                 <span
                   className={twMerge(
                     'absolute rounded-full bg-primary',
@@ -61,7 +61,7 @@ function MySlider<T extends number | number[]>({
                   )}
                   style={{
                     [orientation === 'horizontal' ? 'width' : 'height']: `${
-                      state.getThumbPercent(i) * 100
+                      state.getThumbPercent(idx) * 100
                     }%`,
                   }}
                 />
@@ -71,11 +71,12 @@ function MySlider<T extends number | number[]>({
                     'h-5 w-5 rounded-full bg-primary rac-focus-visible:ring rac-focus-visible:ring-primary rac-focus-visible:ring-offset-1 rac-dragging:bg-primary-focus',
                     orientation === 'horizontal' ? 'top-1/2' : 'left-1/2',
                   )}
-                  key={num}
-                  index={i}
-                  aria-label={thumbLabels?.[i]}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`slider-thumb-${idx}-${num}`}
+                  index={idx}
+                  aria-label={thumbLabels?.[idx]}
                 />
-              </>
+              </Fragment>
             ))}
           </SliderTrack>
         </>
@@ -86,10 +87,11 @@ function MySlider<T extends number | number[]>({
 
 export default function DemoSlider() {
   const [single, setSingle] = useState(20);
+  const [vertical, setVertical] = useState(10);
   const [double, setDouble] = useState<number[]>([10, 20]);
 
   return (
-    <section className="flex flex-wrap items-center gap-3">
+    <section className="!mb-56 flex flex-wrap items-center gap-3">
       <MySlider<number>
         className="rounded border p-3"
         label="Slider: Single Horizontal"
@@ -110,8 +112,8 @@ export default function DemoSlider() {
         className="rounded border p-3"
         label="Slider: Single Vertical"
         orientation="vertical"
-        value={single}
-        onChange={setSingle}
+        value={vertical}
+        onChange={setVertical}
       />
     </section>
   );

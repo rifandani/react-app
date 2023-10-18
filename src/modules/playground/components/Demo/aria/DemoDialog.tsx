@@ -91,7 +91,7 @@ function DaisyDialog() {
 
 export default function DemoDialog() {
   return (
-    <section className="mt-60 flex flex-wrap items-center gap-3">
+    <section className="flex flex-wrap items-center gap-3">
       <AriaDialog />
       <DaisyDialog />
     </section>

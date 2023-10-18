@@ -56,7 +56,10 @@ function MyTag({ children, ...props }: TagProps) {
         <>
           {children}
           {allowsRemoving && (
-            <Button className="btn btn-ghost btn-xs px-1" slot="remove">
+            <Button
+              className="btn btn-circle btn-ghost btn-xs px-1"
+              slot="remove"
+            >
               <Icon icon="lucide:x" color="red" />
             </Button>
           )}
