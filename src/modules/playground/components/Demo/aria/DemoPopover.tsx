@@ -95,7 +95,7 @@ function AriaPopover() {
 
 export default function DemoPopover() {
   return (
-    <section className="flex flex-wrap gap-3">
+    <section className="flex flex-wrap gap-3 rounded border p-3">
       <DaisyPopover />
 
       <div className="divider divider-horizontal">atau</div>

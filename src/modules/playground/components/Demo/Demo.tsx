@@ -23,6 +23,7 @@ import DemoTagGroup from './aria/DemoTagGroup';
 import DemoTextField from './aria/DemoTextField';
 import DemoTimeField from './aria/DemoTimeField';
 import DemoToggleButton from './aria/DemoToggleButton';
+import DemoTooltip from './aria/DemoTooltip';
 import DemoDaisyAccordion from './daisy/DemoDaisyAccordion';
 import DemoDaisyAlert from './daisy/DemoDaisyAlert';
 import DemoDaisyAvatar from './daisy/DemoDaisyAvatar';
@@ -66,6 +67,7 @@ export default function Demo() {
 
         <DemoDialog />
         <DemoPopover />
+        <DemoTooltip />
       </div>
 
       <div className="flex flex-col space-y-5 p-5">

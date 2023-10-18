@@ -13,8 +13,8 @@ function AriaDialog() {
     <DialogTrigger>
       <Button className="btn btn-sm">Aria Dialog</Button>
 
-      <ModalOverlay className="fixed inset-0 z-10 backdrop-blur-sm data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:fade-in-0 data-[exiting]:fade-out-0">
-        <Modal className="flex h-full items-center justify-center data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:zoom-in-0 data-[exiting]:zoom-out-0">
+      <ModalOverlay className="fixed inset-0 z-10 backdrop-blur-sm rac-entering:animate-in rac-entering:fade-in-0 rac-exiting:animate-out rac-exiting:fade-out-0">
+        <Modal className="flex h-full items-center justify-center rac-entering:animate-in rac-entering:zoom-in-0 rac-exiting:animate-out rac-exiting:zoom-out-0">
           <Dialog role="alertdialog" className="modal-box">
             {({ close }) => (
               <>
