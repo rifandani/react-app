@@ -1,13 +1,13 @@
-import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
-import daisyui from 'daisyui';
-import type { Config } from 'tailwindcss';
-import animate from 'tailwindcss-animate';
-import trac from 'tailwindcss-react-aria-components';
-import defaultTheme from 'tailwindcss/defaultTheme';
-import plugin from 'tailwindcss/plugin';
+const forms = require('@tailwindcss/forms');
+const typography = require('@tailwindcss/typography');
+const daisyui = require('daisyui');
+const animate = require('tailwindcss-animate');
+const trac = require('tailwindcss-react-aria-components');
+const defaultTheme = require('tailwindcss/defaultTheme');
+const plugin = require('tailwindcss/plugin');
 
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class', // default 'media'
   theme: {
@@ -48,7 +48,6 @@ export default {
     forms,
     daisyui,
     animate,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     trac({ prefix: 'rac' }),
     plugin(({ matchUtilities }) => {
       matchUtilities({
@@ -93,4 +92,4 @@ export default {
       'winter',
     ],
   },
-} satisfies Config;
+};

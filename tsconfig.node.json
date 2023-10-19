@@ -3,9 +3,8 @@
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",
-    "lib": ["ES2021"],
     "moduleResolution": "bundler",
     "types": ["node"]
   },
-  "include": ["vite.config.*", "vitest.config.*", "tailwind.config.*"]
+  "include": ["vite.config.*", "vitest.config.*"]
 }

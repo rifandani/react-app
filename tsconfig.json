@@ -3,7 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -24,12 +24,7 @@
     "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"]
   },
   "extends": "./tsconfig.paths.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "postcss.config.cjs",
-    "commitlint.config.cjs"
-  ],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

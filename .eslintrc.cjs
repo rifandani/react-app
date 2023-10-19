@@ -59,7 +59,7 @@ module.exports = {
   settings: {
     tailwindcss: {
       callees: ['classnames', 'clsx', 'ctl', 'tw', 'twMerge', 'twJoin'],
-      config: 'tailwind.config.ts',
+      config: 'tailwind.config.cjs',
       // classRegex: '^class(Name)?$', // can be modified to support custom attributes. E.g. "^tw$" for `twin.macro`
     },
     'testing-library/custom-renders': ['renderWithProviders'],
