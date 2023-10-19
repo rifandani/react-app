@@ -11,8 +11,10 @@ import DemoDialog from './aria/DemoDialog';
 import DemoGridList from './aria/DemoGridList';
 import DemoListBox from './aria/DemoListBox';
 import DemoMenu from './aria/DemoMenu';
+import DemoMeter from './aria/DemoMeter';
 import DemoNumberField from './aria/DemoNumberField';
 import DemoPopover from './aria/DemoPopover';
+import DemoProgressBar from './aria/DemoProgressBar';
 import DemoRadioGroup from './aria/DemoRadioGroup';
 import DemoRangeCalendar from './aria/DemoRangeCalendar';
 import DemoSearchField from './aria/DemoSearchField';
@@ -73,6 +75,9 @@ export default function Demo() {
 
         <DemoCombobox />
         <DemoSelect />
+
+        <DemoMeter />
+        <DemoProgressBar />
       </div>
 
       <div className="flex flex-col space-y-5 p-5">

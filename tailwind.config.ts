@@ -30,10 +30,16 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0px' },
         },
+        'progressbar-indeterminate': {
+          from: { transform: 'translate(0)' },
+          to: { transform: 'translate(175%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
         'accordion-up': 'accordion-up 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
+        'progressbar-indeterminate':
+          'progressbar-indeterminate 1.5s ease-in-out infinite',
       },
     },
   },

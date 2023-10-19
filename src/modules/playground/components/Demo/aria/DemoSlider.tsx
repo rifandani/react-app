@@ -33,14 +33,16 @@ function MySlider<T extends number | number[]>({
     >
       {({ state, orientation }) => (
         <>
-          <Label>{label}</Label>
+          <div className="flex">
+            <Label className="flex-1">{label}</Label>
 
-          {/* we can put the output anywhere actually */}
-          <SliderOutput>
-            {state.values
-              .map((_, i) => state.getThumbValueLabel(i))
-              .join(' - ')}
-          </SliderOutput>
+            {/* we can put the output anywhere actually */}
+            <SliderOutput>
+              {state.values
+                .map((_, i) => state.getThumbValueLabel(i))
+                .join(' - ')}
+            </SliderOutput>
+          </div>
 
           <SliderTrack
             className={twMerge(
@@ -109,7 +111,7 @@ export default function DemoSlider() {
       />
 
       <MySlider<number>
-        className="rounded border p-3"
+        className="min-w-[300px] rounded border p-3"
         label="Slider: Single Vertical"
         orientation="vertical"
         value={vertical}
