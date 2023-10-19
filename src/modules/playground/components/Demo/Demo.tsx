@@ -3,6 +3,7 @@ import DemoButton from './aria/DemoButton';
 import DemoCalendar from './aria/DemoCalendar';
 import DemoCheckbox from './aria/DemoCheckbox';
 import DemoCheckboxGroup from './aria/DemoCheckboxGroup';
+import DemoCombobox from './aria/DemoCombobox';
 import DemoDateField from './aria/DemoDateField';
 import DemoDatePicker from './aria/DemoDatePicker';
 import DemoDateRangePicker from './aria/DemoDateRangePicker';
@@ -15,6 +16,7 @@ import DemoPopover from './aria/DemoPopover';
 import DemoRadioGroup from './aria/DemoRadioGroup';
 import DemoRangeCalendar from './aria/DemoRangeCalendar';
 import DemoSearchField from './aria/DemoSearchField';
+import DemoSelect from './aria/DemoSelect';
 import DemoSlider from './aria/DemoSlider';
 import DemoSwitch from './aria/DemoSwitch';
 import DemoTable from './aria/DemoTable';
@@ -68,6 +70,9 @@ export default function Demo() {
         <DemoDialog />
         <DemoPopover />
         <DemoTooltip />
+
+        <DemoCombobox />
+        <DemoSelect />
       </div>
 
       <div className="flex flex-col space-y-5 p-5">
