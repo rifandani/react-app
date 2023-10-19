@@ -1,73 +1,54 @@
 import { useState } from 'react';
-import { usePress } from 'react-aria';
-import { FileTrigger } from 'react-aria-components';
+import { Button, FileTrigger } from 'react-aria-components';
 
-function Pressable() {
-  const [, setEvents] = useState<string[]>([]);
-  const { pressProps, isPressed } = usePress({
-    onPressStart: (e) => {
-      setEvents((prev) => [...prev, `press start with ${e.pointerType}`]);
-    },
-    onPressEnd: (e) => {
-      setEvents((prev) => [...prev, `press end with ${e.pointerType}`]);
-    },
-    onPress: (e) => {
-      setEvents((prev) => [...prev, `press with ${e.pointerType}`]);
-    },
-  });
-
+function DaisyFileInput() {
   return (
-    <>
-      <div
-        {...pressProps}
-        style={{
-          background: isPressed ? 'darkgreen' : 'green',
-          color: 'white',
-          display: 'inline-block',
-          padding: 4,
-          cursor: 'pointer',
-        }}
-        role="button"
-        tabIndex={0}
-      >
-        Pressable
-      </div>
+    <div className="form-control w-full max-w-xs">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label className="label">
+        <span className="label-text">Pick a file</span>
+        <span className="label-text-alt">Alt label</span>
+      </label>
+      <input
+        type="file"
+        className="file-input file-input-bordered w-full max-w-xs"
+      />
 
-      {/*
-      <ul
-        style={{
-          maxHeight: '200px',
-          overflow: 'auto',
-        }}
-      >
-        {events.map((evt) => (
-          <li key={evt}>{evt}</li>
-        ))}
-      </ul> */}
-    </>
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label className="label">
+        <span className="label-text-alt">Alt label</span>
+        <span className="label-text-alt">Alt label</span>
+      </label>
+    </div>
   );
 }
 
-/**
- * still not working
- */
 export default function DemoFileTrigger() {
-  // const [file, setFile] = useState(null);
+  const [file, setFile] = useState<string[] | null>(null);
 
   return (
-    <section className="flex flex-wrap items-center gap-3">
+    <section className="flex flex-wrap items-center gap-3 rounded border p-3">
+      {file?.map((val) => <p>{val}</p>)}
+
       <FileTrigger
         allowsMultiple
-        onChange={(fileList) => {
-          console.log(
-            '🚀 ~ file: DemoAriaFileTrigger.tsx:13 ~ DemoAriaFileTrigger ~ fileList:',
-            fileList,
-          );
+        onSelect={(fileList) => {
+          if (!fileList) return;
+
+          const files = Array.from(fileList);
+          const urls = files.map((_file) => _file.name);
+          setFile(urls);
         }}
       >
-        <Pressable />
+        <div className="join">
+          <Button className="btn join-item">Choose File</Button>
+          <span className="join-item flex items-center border px-3">
+            Select images
+          </span>
+        </div>
       </FileTrigger>
-      {/* <Button className="">Select images</Button> */}
+
+      <DaisyFileInput />
     </section>
   );
 }

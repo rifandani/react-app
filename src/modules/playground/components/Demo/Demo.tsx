@@ -8,6 +8,7 @@ import DemoDateField from './aria/DemoDateField';
 import DemoDatePicker from './aria/DemoDatePicker';
 import DemoDateRangePicker from './aria/DemoDateRangePicker';
 import DemoDialog from './aria/DemoDialog';
+import DemoFileTrigger from './aria/DemoFileTrigger';
 import DemoGridList from './aria/DemoGridList';
 import DemoListBox from './aria/DemoListBox';
 import DemoMenu from './aria/DemoMenu';
@@ -41,7 +42,7 @@ export default function Demo() {
           React Aria Components
         </h1>
         <DemoButton />
-        {/* <DemoFileTrigger /> does not works */}
+        <DemoFileTrigger />
         <DemoToggleButton />
 
         <DemoGridList />

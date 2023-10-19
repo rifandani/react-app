@@ -75,15 +75,13 @@ function DaisySelect() {
         <span className="label-text-alt">Alt label</span>
       </label>
 
-      <select className="select select-bordered">
-        <option disabled selected>
+      <select className="select select-bordered" defaultValue="">
+        <option disabled value="none">
           Pick one
         </option>
-        <option>Star Wars</option>
-        <option>Harry Potter</option>
-        <option>Lord of the Rings</option>
-        <option>Planet of the Apes</option>
-        <option>Star Trek</option>
+        <option value="star-wars">Star Wars</option>
+        <option value="harry-potter">Harry Potter</option>
+        <option value="lord-of-the-rings">Lord of the Rings</option>
       </select>
 
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
