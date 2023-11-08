@@ -21,7 +21,10 @@ export default function App() {
               <ReloadPromptSW />
 
               {/* react query devtools */}
-              <ReactQueryDevtools initialIsOpen={false} />
+              <ReactQueryDevtools
+                buttonPosition="bottom-left"
+                initialIsOpen={false}
+              />
             </AppToastProvider>
           </AppI18nProvider>
         </AppQueryProvider>
