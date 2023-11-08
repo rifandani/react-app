@@ -1,15 +1,20 @@
 import { storeResetFns } from '@mocks/zustand.mock';
+import { queryClientTest } from '@shared/utils/test.util';
 import '@testing-library/jest-dom'; // automatically `expect.extend(matchers)`
 import { act } from '@testing-library/react';
 import { server } from 'mocks/http/server.http';
 import 'mocks/module.mock';
-import 'whatwg-fetch'; // polyfill fetch
 
 // Establish API mocking before all tests with MSW
 beforeAll(() => {
   server.listen({
     onUnhandledRequest: 'warn',
   });
+});
+
+beforeEach(() => {
+  // Reset the cache before each new test so there are no stale responses when requesting same endpoints.
+  queryClientTest.clear();
 });
 
 // Reset any request handlers that we may add during the tests, so they don't affect other tests.

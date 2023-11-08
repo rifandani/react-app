@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { RouterProvider, RouterProviderProps } from 'react-router-dom';
 
-const queryClient = new QueryClient({
+export const queryClientTest = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
@@ -19,7 +19,7 @@ export const setupTest = () => {
     options?: Parameters<typeof render>[1],
   ) =>
     render(
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClientTest}>
         <I18nProvider>
           <ToastProvider>
             <RouterProvider router={router} />

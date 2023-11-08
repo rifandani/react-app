@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { HttpResponse, http } from 'msw';
 import {
   ResourceParamsSchema,
   resourceParamsSchema,
@@ -34,9 +34,10 @@ let todos = Array.from({ length: 10 }, (_, idx) =>
 );
 
 export const todoHandlers = [
-  rest.get(getBaseUrl('todos'), async (req, res, ctx) => {
+  http.get(getBaseUrl('todos'), ({ request }) => {
+    const { searchParams } = new URL(request.url);
     const searchParamsObject = Object.fromEntries(
-      req.url.searchParams,
+      searchParams,
     ) as ResourceParamsSchema;
     const hasSearchParams = !!Object.keys(searchParamsObject).length;
 
@@ -44,51 +45,54 @@ export const todoHandlers = [
       resourceParamsSchema.safeParse(searchParamsObject);
 
     if (!hasSearchParams || !parsedSearchParams.success)
-      return res(
-        ctx.status(200),
-        ctx.json({
+      return HttpResponse.json(
+        {
           todos: getTodos(10),
           limit: 10,
           skip: 0,
           total: 150,
-        }),
+        },
+        { status: 200 },
       );
 
     const limit = parsedSearchParams.data.limit ?? 10;
     const skip = parsedSearchParams.data.skip ?? 0;
 
-    return res(
-      ctx.status(200),
-      ctx.json({
+    return HttpResponse.json(
+      {
         todos: getTodos(limit),
         limit,
         skip,
         total: 150,
-      }),
+      },
+      { status: 200 },
     );
   }),
-  rest.post(getBaseUrl('todos/add'), async (req, res, ctx) => {
-    const todoPayload = await req.json<CreateTodoSchema>();
+
+  // @ts-expect-error ignore
+  http.post(getBaseUrl('todos/add'), async ({ request }) => {
+    const todoPayload = (await request.json()) as CreateTodoSchema;
     const todoId = todos.at(-1)?.id;
 
     if (todoId) {
       const newTodo: TodoSchema = todoPayload;
-
       todos = [newTodo, ...todos];
 
-      return res(ctx.status(200), ctx.json(todoPayload));
+      return HttpResponse.json(todoPayload, { status: 201 });
     }
 
-    return res(
-      ctx.status(400),
-      ctx.json({
+    return HttpResponse.json(
+      {
         message: `ooppss, unknown error occurred`,
-      }),
+      },
+      { status: 400 },
     );
   }),
-  rest.put(getBaseUrl('todos/:id'), async (req, res, ctx) => {
-    const todoPayload = await req.json<UpdateTodoSchema>();
-    const { id } = req.params;
+
+  // @ts-expect-error ignore
+  http.put(getBaseUrl('todos/:id'), async ({ request, params }) => {
+    const todoPayload = (await request.json()) as UpdateTodoSchema;
+    const { id } = params;
     const todoId = parseInt(id as string, 10);
 
     const todo = todos.find((_todo) => _todo.id === todoId);
@@ -100,21 +104,23 @@ export const todoHandlers = [
           : _todo,
       );
 
-      return res(
-        ctx.status(200),
-        ctx.json({ ...todo, completed: todoPayload.completed }),
+      return HttpResponse.json(
+        { ...todo, completed: todoPayload.completed },
+        { status: 200 },
       );
     }
 
-    return res(
-      ctx.status(404),
-      ctx.json({
+    return HttpResponse.json(
+      {
         message: `there is no todo with id: ${todoId}`,
-      }),
+      },
+      { status: 404 },
     );
   }),
-  rest.delete(getBaseUrl('todos/:id'), async (req, res, ctx) => {
-    const { id } = req.params;
+
+  // @ts-expect-error ignore
+  http.delete(getBaseUrl('todos/:id'), ({ params }) => {
+    const { id } = params;
     const todoId = parseInt(id as string, 10);
 
     const todo = todos.find((_todo) => _todo.id === todoId);
@@ -128,14 +134,14 @@ export const todoHandlers = [
         deletedOn: new Date().toISOString(),
       };
 
-      return res(ctx.status(200), ctx.json(deleteResponse));
+      return HttpResponse.json(deleteResponse, { status: 200 });
     }
 
-    return res(
-      ctx.status(404),
-      ctx.json({
+    return HttpResponse.json(
+      {
         message: `there is no todo with id: ${todoId}`,
-      }),
+      },
+      { status: 404 },
     );
   }),
 ];

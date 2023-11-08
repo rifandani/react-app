@@ -38,6 +38,8 @@ $ pnpm dev
 
 ## Testing
 
+We are using MSW v2 which utilize Node v18+. Make sure you install Node v18+, because it has a built-in fetch.
+
 ```bash
 # run test
 $ pnpm test
