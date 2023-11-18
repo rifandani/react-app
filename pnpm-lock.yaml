@@ -181,6 +181,9 @@ devDependencies:
   msw:
     specifier: ^2.0.3
     version: 2.0.3(typescript@5.2.2)
+  pnpm:
+    specifier: ^8.10.5
+    version: 8.10.5
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -8267,6 +8270,12 @@ packages:
       jsonc-parser: 3.2.0
       mlly: 1.4.0
       pathe: 1.1.1
+    dev: true
+
+  /pnpm@8.10.5:
+    resolution: {integrity: sha512-nBYfQz2FVRxY8bOhCxjMPfcrWgLSyu5lZswFtvIK3e+UfnldkMOQM7+S3lUXfq1p2H9iqdqtyR56LjtY9JNToA==}
+    engines: {node: '>=16.14'}
+    hasBin: true
     dev: true
 
   /postcss-import@15.1.0(postcss@8.4.31):
