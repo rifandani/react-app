@@ -1,13 +1,13 @@
-import AriaCheckbox from '@shared/components/atoms/Checkbox/AriaCheckbox.atom';
-import { useState } from 'react';
+import AriaCheckbox from "@shared/components/atoms/Checkbox/AriaCheckbox.atom";
+import { useState } from "react";
 import {
   CheckboxGroup,
   CheckboxGroupProps,
   Label,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
-interface MyCheckboxGroupProps extends Omit<CheckboxGroupProps, 'children'> {
+interface MyCheckboxGroupProps extends Omit<CheckboxGroupProps, "children"> {
   children?: React.ReactNode;
   label?: string;
   description?: string;
@@ -39,7 +39,7 @@ function MyCheckboxGroup({
 }
 
 export default function DemoCheckboxGroup() {
-  const [selected, setSelected] = useState<string[]>(['soccer']);
+  const [selected, setSelected] = useState<string[]>(["soccer"]);
 
   const isInvalid = selected.length === 0;
 

@@ -1,6 +1,6 @@
-import { isWeekend, parseDateTime } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { useState } from 'react';
+import { isWeekend, parseDateTime } from "@internationalized/date";
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from "@shared/constants/date.constant";
+import { useState } from "react";
 import {
   DateField,
   DateFieldProps,
@@ -9,7 +9,7 @@ import {
   DateValue,
   Label,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyDateFieldProps<T extends DateValue> extends DateFieldProps<T> {
   label?: string;
@@ -43,7 +43,7 @@ function MyDateField<T extends DateValue>({
 }
 
 export default function DemoDateField() {
-  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'));
+  const [value, setValue] = useState<DateValue>(parseDateTime("2023-10-15"));
 
   const isInvalid = isWeekend(
     value,
@@ -60,7 +60,7 @@ export default function DemoDateField() {
         value={value}
         onChange={setValue}
         isInvalid={isInvalid}
-        errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
+        errorMessage={isInvalid ? "We are closed on weekend" : undefined}
       />
     </section>
   );

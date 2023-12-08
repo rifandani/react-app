@@ -1,13 +1,13 @@
-import { Checkbox, CheckboxProps } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import { Checkbox, CheckboxProps } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 export default function AriaCheckbox({ className, ...props }: CheckboxProps) {
   return (
     <Checkbox
       className={(classProps) =>
         twMerge(
-          'group flex items-center',
-          typeof className === 'string' ? className : className?.(classProps),
+          "group flex items-center",
+          typeof className === "string" ? className : className?.(classProps),
         )
       }
       {...props}
@@ -22,17 +22,17 @@ export default function AriaCheckbox({ className, ...props }: CheckboxProps) {
         <div
           aria-hidden="true"
           className={twMerge(
-            'flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 text-white transition duration-150 ease-in-out',
+            "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 text-white transition duration-150 ease-in-out",
             isSelected
-              ? 'bg-primary group-active:bg-primary-focus'
-              : 'bg-white',
+              ? "bg-primary group-active:bg-primary-focus"
+              : "bg-white",
             isDisabled
-              ? 'border-slate-300'
+              ? "border-slate-300"
               : isFocusVisible || isSelected
-              ? 'border-primary group-active:border-primary-focus'
-              : 'border-slate-500 group-active:border-slate-600',
-            isFocusVisible && 'ring ring-primary-focus',
-            isInvalid && 'border-error',
+              ? "border-primary group-active:border-primary-focus"
+              : "border-slate-500 group-active:border-slate-600",
+            isFocusVisible && "ring ring-primary-focus",
+            isInvalid && "border-error",
           )}
         >
           <svg
@@ -47,7 +47,7 @@ export default function AriaCheckbox({ className, ...props }: CheckboxProps) {
                 width={15}
                 height={3}
                 style={{
-                  transition: 'all 400ms',
+                  transition: "all 400ms",
                 }}
               />
             ) : (
@@ -58,7 +58,7 @@ export default function AriaCheckbox({ className, ...props }: CheckboxProps) {
                 strokeDasharray={22}
                 strokeDashoffset={isSelected ? 44 : 66}
                 style={{
-                  transition: 'all 400ms',
+                  transition: "all 400ms",
                 }}
               />
             )}

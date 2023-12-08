@@ -1,7 +1,7 @@
-import { Switch, SwitchProps } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import { Switch, SwitchProps } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
-interface MySwitchProps extends Omit<SwitchProps, 'children'> {
+interface MySwitchProps extends Omit<SwitchProps, "children"> {
   children: React.ReactNode;
 }
 
@@ -14,8 +14,8 @@ export default function AriaSwitch({
     <Switch
       className={(classProps) =>
         twMerge(
-          'group flex items-center',
-          typeof className === 'string' ? className : className?.(classProps),
+          "group flex items-center",
+          typeof className === "string" ? className : className?.(classProps),
         )
       }
       {...props}

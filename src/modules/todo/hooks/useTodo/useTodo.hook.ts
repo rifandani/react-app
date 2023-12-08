@@ -1,8 +1,8 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { todoApi, todoKeys } from '@todo/api/todo.api';
-import { TodoDetailApiResponseSchema, TodoSchema } from '@todo/api/todo.schema';
-import { Except } from 'type-fest';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import { QueryOptions, useQuery } from "@tanstack/react-query";
+import { todoApi, todoKeys } from "@todo/api/todo.api";
+import { TodoDetailApiResponseSchema, TodoSchema } from "@todo/api/todo.schema";
+import { Except } from "type-fest";
 
 /**
  * fetch todo
@@ -10,10 +10,10 @@ import { Except } from 'type-fest';
  * @param {number} id - todo id
  */
 export const useTodo = (
-  id: TodoSchema['id'],
+  id: TodoSchema["id"],
   options?: Except<
     QueryOptions<TodoDetailApiResponseSchema, ErrorApiResponseSchema>,
-    'queryKey' | 'queryFn'
+    "queryKey" | "queryFn"
   >,
 ) => {
   const queryKey = todoKeys.detail(id);

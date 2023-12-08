@@ -1,12 +1,12 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { todoApi, todoKeys } from '@todo/api/todo.api';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { todoApi, todoKeys } from "@todo/api/todo.api";
 import {
   CreateTodoApiResponseSchema,
   CreateTodoSchema,
   TodoListApiResponseSchema,
-} from '@todo/api/todo.schema';
-import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
+} from "@todo/api/todo.schema";
+import { useTodosParams } from "@todo/hooks/useTodos/useTodos.hook";
 
 /**
  * create todo mutation (optimistic update) based on `useTodosParams`

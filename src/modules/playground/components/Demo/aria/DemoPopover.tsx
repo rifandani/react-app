@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
 import {
   Button,
   Dialog,
   DialogTrigger,
   Popover,
   PopoverProps,
-} from 'react-aria-components';
+} from "react-aria-components";
 
-interface MyPopoverProps extends Omit<PopoverProps, 'children'> {
+interface MyPopoverProps extends Omit<PopoverProps, "children"> {
   children: React.ReactNode;
 }
 

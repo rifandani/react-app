@@ -1,6 +1,6 @@
-import { isWeekend } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { useState } from 'react';
+import { isWeekend } from "@internationalized/date";
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from "@shared/constants/date.constant";
+import { useState } from "react";
 import {
   Button,
   Calendar,
@@ -13,7 +13,7 @@ import {
   DateValue,
   Heading,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyCalendarProps<T extends DateValue> extends CalendarProps<T> {
   errorMessage?: string;

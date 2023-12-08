@@ -1,13 +1,13 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 import {
   AriaCheckboxProps,
   VisuallyHidden,
   mergeProps,
   useCheckbox,
   useFocusRing,
-} from 'react-aria';
-import { useToggleState } from 'react-stately';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria";
+import { useToggleState } from "react-stately";
+import { twMerge } from "tailwind-merge";
 
 export default function TheCheckbox(props: AriaCheckboxProps) {
   const state = useToggleState(props);
@@ -28,10 +28,10 @@ export default function TheCheckbox(props: AriaCheckboxProps) {
       {props.children && (
         <span
           className={twMerge(
-            'select-none',
+            "select-none",
             props.isDisabled
-              ? 'text-gray-400'
-              : 'text-gray-700 group-active:text-gray-800',
+              ? "text-gray-400"
+              : "text-gray-700 group-active:text-gray-800",
           )}
         >
           {props.children}
@@ -41,16 +41,16 @@ export default function TheCheckbox(props: AriaCheckboxProps) {
       <div
         aria-hidden="true"
         className={twMerge(
-          'flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 text-white transition duration-150 ease-in-out',
+          "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 text-white transition duration-150 ease-in-out",
           state.isSelected
-            ? 'bg-indigo-500 group-active:bg-indigo-600'
-            : 'bg-white',
+            ? "bg-indigo-500 group-active:bg-indigo-600"
+            : "bg-white",
           props.isDisabled
-            ? 'border-gray-300'
+            ? "border-gray-300"
             : isFocusVisible || state.isSelected
-            ? 'border-indigo-500 group-active:border-indigo-600'
-            : 'border-gray-500 group-active:border-gray-600',
-          isFocusVisible && 'shadow-outline',
+            ? "border-indigo-500 group-active:border-indigo-600"
+            : "border-gray-500 group-active:border-gray-600",
+          isFocusVisible && "shadow-outline",
         )}
       >
         <svg className="h-3 w-3 stroke-current" viewBox="0 0 18 18">
@@ -61,7 +61,7 @@ export default function TheCheckbox(props: AriaCheckboxProps) {
             strokeDasharray={22}
             strokeDashoffset={state.isSelected ? 44 : 66}
             style={{
-              transition: 'all 400ms',
+              transition: "all 400ms",
             }}
           />
         </svg>

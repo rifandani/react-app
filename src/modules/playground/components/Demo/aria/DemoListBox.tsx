@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Collection,
   DropIndicator,
@@ -10,9 +10,9 @@ import {
   isTextDropItem,
   useDragAndDrop,
   type Selection,
-} from 'react-aria-components';
-import { useListData } from 'react-stately';
-import { twJoin, twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { useListData } from "react-stately";
+import { twJoin, twMerge } from "tailwind-merge";
 
 interface ImageItem {
   id: number;
@@ -28,7 +28,7 @@ interface FileItem {
 
 interface DndListBoxProps {
   initialItems: FileItem[];
-  'aria-label': string;
+  "aria-label": string;
 }
 
 function DndListBox(props: DndListBoxProps) {
@@ -42,17 +42,17 @@ function DndListBox(props: DndListBoxProps) {
       return [...keys].map((key) => {
         const item = list.getItem(key);
         return {
-          'custom-app-type': JSON.stringify(item),
-          'text/plain': item.name,
+          "custom-app-type": JSON.stringify(item),
+          "text/plain": item.name,
         };
       });
     },
 
     // Accept drops with the custom format.
-    acceptedDragTypes: ['custom-app-type'],
+    acceptedDragTypes: ["custom-app-type"],
 
     // Ensure items are always moved rather than copied.
-    getDropOperation: () => 'move',
+    getDropOperation: () => "move",
 
     // Handle drops between items from other lists.
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -62,12 +62,12 @@ function DndListBox(props: DndListBoxProps) {
           .filter(isTextDropItem)
           .map(
             async (item) =>
-              JSON.parse(await item.getText('custom-app-type')) as FileItem,
+              JSON.parse(await item.getText("custom-app-type")) as FileItem,
           ),
       );
-      if (e.target.dropPosition === 'before') {
+      if (e.target.dropPosition === "before") {
         list.insertBefore(e.target.key, ...processedItems);
-      } else if (e.target.dropPosition === 'after') {
+      } else if (e.target.dropPosition === "after") {
         list.insertAfter(e.target.key, ...processedItems);
       }
     },
@@ -80,7 +80,7 @@ function DndListBox(props: DndListBoxProps) {
           .filter(isTextDropItem)
           .map(
             async (item) =>
-              JSON.parse(await item.getText('custom-app-type')) as FileItem,
+              JSON.parse(await item.getText("custom-app-type")) as FileItem,
           ),
       );
       list.append(...processedItems);
@@ -88,9 +88,9 @@ function DndListBox(props: DndListBoxProps) {
 
     // Handle reordering items within the same list.
     onReorder(e) {
-      if (e.target.dropPosition === 'before') {
+      if (e.target.dropPosition === "before") {
         list.moveBefore(e.target.key, e.keys);
-      } else if (e.target.dropPosition === 'after') {
+      } else if (e.target.dropPosition === "after") {
         list.moveAfter(e.target.key, e.keys);
       }
     },
@@ -98,7 +98,7 @@ function DndListBox(props: DndListBoxProps) {
     // Remove the items from the source list on drop
     // if they were moved to a different list.
     onDragEnd(e) {
-      if (e.dropOperation === 'move' && !e.isInternal) {
+      if (e.dropOperation === "move" && !e.isInternal) {
         list.remove(...e.keys);
       }
     },
@@ -106,7 +106,7 @@ function DndListBox(props: DndListBoxProps) {
     renderDragPreview(items) {
       return (
         <div className="flex items-center gap-3 rounded-md bg-base-300 px-2 py-1 text-base-content">
-          {items[0]['text/plain']}
+          {items[0]["text/plain"]}
           <span className="badge badge-info">{items.length}</span>
         </div>
       );
@@ -123,19 +123,19 @@ function DndListBox(props: DndListBoxProps) {
 
   return (
     <ListBox
-      aria-label={props['aria-label']}
+      aria-label={props["aria-label"]}
       selectionMode="multiple"
       selectedKeys={list.selectedKeys}
       // eslint-disable-next-line @typescript-eslint/unbound-method
       onSelectionChange={list.setSelectedKeys}
       items={list.items}
       dragAndDropHooks={dragAndDropHooks}
-      renderEmptyState={() => 'Drop items here'}
+      renderEmptyState={() => "Drop items here"}
     >
       {(item) => (
         <Item
           className={() =>
-            'flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-disabled:text-slate-500 rac-selected:text-primary-content [&>div]:flex'
+            "flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-disabled:text-slate-500 rac-selected:text-primary-content [&>div]:flex"
           }
         >
           {item.name}
@@ -148,19 +148,19 @@ function DndListBox(props: DndListBoxProps) {
 function SectionListBox() {
   const options = [
     {
-      name: 'Australian',
+      name: "Australian",
       children: [
-        { id: 2, label: 'Koala', description: 'Description...' },
-        { id: 3, label: 'Kangaroo', description: 'Description...' },
-        { id: 4, label: 'Platypus', description: 'Description...' },
+        { id: 2, label: "Koala", description: "Description..." },
+        { id: 3, label: "Kangaroo", description: "Description..." },
+        { id: 4, label: "Platypus", description: "Description..." },
       ],
     },
     {
-      name: 'American',
+      name: "American",
       children: [
-        { id: 6, label: 'Bald Eagle', description: 'Description...' },
-        { id: 7, label: 'Bison', description: 'Description...' },
-        { id: 8, label: 'Skunk', description: 'Description...' },
+        { id: 6, label: "Bald Eagle", description: "Description..." },
+        { id: 7, label: "Bison", description: "Description..." },
+        { id: 8, label: "Skunk", description: "Description..." },
       ],
     },
   ];
@@ -176,7 +176,7 @@ function SectionListBox() {
     >
       {(section) => (
         <Section id={section.name}>
-          <Header className={twMerge('text-sm tracking-widest')}>
+          <Header className={twMerge("text-sm tracking-widest")}>
             {section.name}
           </Header>
 
@@ -202,7 +202,7 @@ function ImageListBox() {
   const [items, setItems] = useState<ImageItem[]>([]);
 
   const { dragAndDropHooks } = useDragAndDrop({
-    acceptedDragTypes: ['image/jpeg', 'image/png'],
+    acceptedDragTypes: ["image/jpeg", "image/png"],
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     async onRootDrop(e) {
       const newItems = await Promise.all(
@@ -222,7 +222,7 @@ function ImageListBox() {
       aria-label="Droppable list"
       items={items}
       dragAndDropHooks={dragAndDropHooks}
-      renderEmptyState={() => 'Drop images here'}
+      renderEmptyState={() => "Drop images here"}
     >
       {(item) => (
         <Item className="avatar" textValue={item.name}>
@@ -242,23 +242,23 @@ export default function DemoListBox() {
       <DndListBox
         aria-label="First ListBox"
         initialItems={[
-          { id: '1', type: 'file', name: 'Adobe Photoshop' },
-          { id: '2', type: 'file', name: 'Adobe XD' },
-          { id: '3', type: 'folder', name: 'Documents' },
-          { id: '4', type: 'file', name: 'Adobe InDesign' },
-          { id: '5', type: 'folder', name: 'Utilities' },
-          { id: '6', type: 'file', name: 'Adobe AfterEffects' },
+          { id: "1", type: "file", name: "Adobe Photoshop" },
+          { id: "2", type: "file", name: "Adobe XD" },
+          { id: "3", type: "folder", name: "Documents" },
+          { id: "4", type: "file", name: "Adobe InDesign" },
+          { id: "5", type: "folder", name: "Utilities" },
+          { id: "6", type: "file", name: "Adobe AfterEffects" },
         ]}
       />
       <DndListBox
         aria-label="Second ListBox"
         initialItems={[
-          { id: '7', type: 'folder', name: 'Pictures' },
-          { id: '8', type: 'file', name: 'Adobe Fresco' },
-          { id: '9', type: 'folder', name: 'Apps' },
-          { id: '10', type: 'file', name: 'Adobe Illustrator' },
-          { id: '11', type: 'file', name: 'Adobe Lightroom' },
-          { id: '12', type: 'file', name: 'Adobe Dreamweaver' },
+          { id: "7", type: "folder", name: "Pictures" },
+          { id: "8", type: "file", name: "Adobe Fresco" },
+          { id: "9", type: "folder", name: "Apps" },
+          { id: "10", type: "file", name: "Adobe Illustrator" },
+          { id: "11", type: "file", name: "Adobe Lightroom" },
+          { id: "12", type: "file", name: "Adobe Dreamweaver" },
         ]}
       />
 

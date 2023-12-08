@@ -1,13 +1,13 @@
-import { loginApiResponseSchema } from '@auth/api/auth.schema';
-import { z } from 'zod';
-import { create } from 'zustand';
-import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { loginApiResponseSchema } from "@auth/api/auth.schema";
+import { z } from "zod";
+import { create } from "zustand";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 export type UserStoreState = z.infer<typeof userStoreStateSchema>;
 export type UserStore = z.infer<typeof userStoreSchema>;
 export type UserStoreLocalStorage = z.infer<typeof userStoreLocalStorageSchema>;
 
-export const userStoreName = 'app-user' as const;
+export const userStoreName = "app-user" as const;
 const userStoreStateSchema = z.object({
   user: loginApiResponseSchema.nullable(),
 });

@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { Key, PropsWithChildren, useState } from 'react';
+import { Icon } from "@iconify/react";
+import { Key, PropsWithChildren, useState } from "react";
 import {
   Button,
   Item,
@@ -11,11 +11,11 @@ import {
   SelectProps,
   SelectValue,
   Text,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 interface MySelectProps<T extends object>
-  extends Omit<SelectProps<T>, 'children'> {
+  extends Omit<SelectProps<T>, "children"> {
   label?: string;
   description?: string;
   errorMessage?: string;
@@ -35,8 +35,8 @@ function MySelect<T extends object>({
     <Select
       className={(classProps) =>
         twMerge(
-          'group flex flex-col',
-          typeof className === 'string' ? className : className?.(classProps),
+          "group flex flex-col",
+          typeof className === "string" ? className : className?.(classProps),
         )
       }
       {...props}
@@ -118,15 +118,15 @@ function MyItem(props: PropsWithChildren<ItemProps>) {
 
 export default function DemoSelect() {
   const options = [
-    { id: 1, name: 'Aerospace' },
-    { id: 2, name: 'Mechanical' },
-    { id: 3, name: 'Civil' },
-    { id: 4, name: 'Biomedical' },
-    { id: 5, name: 'Nuclear' },
-    { id: 6, name: 'Industrial' },
-    { id: 7, name: 'Chemical' },
-    { id: 8, name: 'Agricultural' },
-    { id: 9, name: 'Electrical' },
+    { id: 1, name: "Aerospace" },
+    { id: 2, name: "Mechanical" },
+    { id: 3, name: "Civil" },
+    { id: 4, name: "Biomedical" },
+    { id: 5, name: "Nuclear" },
+    { id: 6, name: "Industrial" },
+    { id: 7, name: "Chemical" },
+    { id: 8, name: "Agricultural" },
+    { id: 9, name: "Electrical" },
   ];
 
   const [selected, setSelected] = useState<Key | null>(null);

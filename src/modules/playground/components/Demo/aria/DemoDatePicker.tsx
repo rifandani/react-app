@@ -1,6 +1,6 @@
-import { isWeekend, parseDateTime } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { useState } from 'react';
+import { isWeekend, parseDateTime } from "@internationalized/date";
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from "@shared/constants/date.constant";
+import { useState } from "react";
 import {
   Button,
   Calendar,
@@ -20,7 +20,7 @@ import {
   Label,
   Popover,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyDatePickerProps<T extends DateValue> extends DatePickerProps<T> {
   label?: string;
@@ -93,7 +93,7 @@ function MyDatePicker<T extends DateValue>({
 }
 
 export default function DemoDatePicker() {
-  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'));
+  const [value, setValue] = useState<DateValue>(parseDateTime("2023-10-15"));
 
   const isInvalid = isWeekend(
     value,
@@ -110,7 +110,7 @@ export default function DemoDatePicker() {
         value={value}
         onChange={setValue}
         isInvalid={isInvalid}
-        errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
+        errorMessage={isInvalid ? "We are closed on weekend" : undefined}
       />
     </section>
   );

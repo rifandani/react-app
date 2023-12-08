@@ -1,5 +1,5 @@
-import { Button } from 'react-aria-components';
-import useHomeClock from './useHomeClock.hook';
+import { Button } from "react-aria-components";
+import useHomeClock from "./useHomeClock.hook";
 
 export default function HomeClock() {
   const {
@@ -21,11 +21,11 @@ export default function HomeClock() {
           className="stats mt-8 bg-base-200 shadow-lg"
         >
           <div className="stat">
-            <div className="stat-title">{t('clock')}:</div>
+            <div className="stat-title">{t("clock")}:</div>
             <div className="stat-value">
-              {hours} : {minutes} : {seconds}{' '}
+              {hours} : {minutes} : {seconds}{" "}
             </div>
-            <div className="stat-desc">{t('clickToggleClock')}</div>
+            <div className="stat-desc">{t("clickToggleClock")}</div>
           </div>
         </div>
       )}

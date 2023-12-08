@@ -1,13 +1,13 @@
-import AriaRadio from '@shared/components/atoms/Radio/AriaRadio.atom';
-import { useState } from 'react';
+import AriaRadio from "@shared/components/atoms/Radio/AriaRadio.atom";
+import { useState } from "react";
 import {
   Label,
   RadioGroup,
   RadioGroupProps,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
-interface MyRadioGroupProps extends Omit<RadioGroupProps, 'children'> {
+interface MyRadioGroupProps extends Omit<RadioGroupProps, "children"> {
   children?: React.ReactNode;
   label?: string;
   description?: string;
@@ -40,9 +40,9 @@ function MyRadioGroup({
 }
 
 export default function DemoRadioGroup() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
-  const isInvalid = value !== 'basketball';
+  const isInvalid = value !== "basketball";
 
   return (
     <section className="flex flex-wrap items-center space-x-3">

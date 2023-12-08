@@ -1,14 +1,14 @@
-import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
-import { zodResolver } from '@hookform/resolvers/zod';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
+import { useUserStore } from "@auth/hooks/useUserStore/useUserStore.hook";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
 import {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,
   updateTodoSchema,
-} from '@todo/api/todo.schema';
-import { useTodo } from '@todo/hooks/useTodo/useTodo.hook';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useFetcher, useLoaderData, useParams } from 'react-router-dom';
+} from "@todo/api/todo.schema";
+import { useTodo } from "@todo/hooks/useTodo/useTodo.hook";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useFetcher, useLoaderData, useParams } from "react-router-dom";
 
 export default function useTodoPageVM() {
   const [t] = useI18n();
@@ -29,7 +29,7 @@ export default function useTodoPageVM() {
 
   // #region HANDLERS
   const onSubmit: SubmitHandler<UpdateTodoSchema> = (values) => {
-    fetcher.submit(values, { method: 'PUT', encType: 'application/json' });
+    fetcher.submit(values, { method: "PUT", encType: "application/json" });
   };
   // #endregion
 

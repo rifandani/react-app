@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Button,
   Group,
@@ -7,7 +7,7 @@ import {
   NumberField,
   NumberFieldProps,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyNumberFieldProps extends NumberFieldProps {
   label?: string;

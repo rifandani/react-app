@@ -1,9 +1,9 @@
-import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
-import { authPath } from '@auth/routes/auth.route';
-import { modes } from '@shared/constants/theme.constant';
-import { useColorMode } from '@shared/hooks/useColorMode/useColorMode.hook';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { useNavigate } from 'react-router-dom';
+import { useUserStore } from "@auth/hooks/useUserStore/useUserStore.hook";
+import { authPath } from "@auth/routes/auth.route";
+import { modes } from "@shared/constants/theme.constant";
+import { useColorMode } from "@shared/hooks/useColorMode/useColorMode.hook";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { useNavigate } from "react-router-dom";
 
 export default function useNavbarMenu() {
   const [t] = useI18n();
@@ -11,7 +11,7 @@ export default function useNavbarMenu() {
   const { user, clearUser } = useUserStore();
   const [, setTheme] = useColorMode({
     modes,
-    attribute: 'data-theme',
+    attribute: "data-theme",
   });
 
   // #region HANDLERS

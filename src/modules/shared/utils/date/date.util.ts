@@ -18,7 +18,7 @@ export function isValidTimezoneIANAString(timeZoneString: string) {
  * The `getLocalTimeZone` from `@internationalized/date` will throw error in Chrome 118
  */
 export function getLocalTimeZone() {
-  return Intl.DateTimeFormat('id-ID', {
-    timeZone: 'GMT', // Asia/Jakarta
+  return Intl.DateTimeFormat("id-ID", {
+    timeZone: "GMT", // Asia/Jakarta
   }).resolvedOptions().timeZone;
 }

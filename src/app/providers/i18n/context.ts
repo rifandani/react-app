@@ -1,11 +1,11 @@
-import { LocaleDictLanguage } from '@shared/configs/locale/locale.type';
-import { createContext, useState } from 'react';
+import { LocaleDictLanguage } from "@shared/configs/locale/locale.type";
+import { createContext, useState } from "react";
 
 export type I18nContextInterface = ReturnType<typeof useI18nContext>;
 
 // It's extracted into a function to be able to type the Context before it's even initialized.
 export const useI18nContext = () => {
-  const [locale, setLocale] = useState<LocaleDictLanguage>('en-US');
+  const [locale, setLocale] = useState<LocaleDictLanguage>("en-US");
 
   const actions = {
     changeLocale: (newLocale: LocaleDictLanguage) => {

@@ -1,5 +1,5 @@
-import AriaCheckbox from '@shared/components/atoms/Checkbox/AriaCheckbox.atom';
-import { useState } from 'react';
+import AriaCheckbox from "@shared/components/atoms/Checkbox/AriaCheckbox.atom";
+import { useState } from "react";
 import {
   Button,
   Cell,
@@ -14,7 +14,7 @@ import {
   TableHeader,
   TableHeaderProps,
   useTableOptions,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 function MyTableHeader<T extends object>({
   columns,
@@ -29,9 +29,9 @@ function MyTableHeader<T extends object>({
       {/* Add extra columns for drag and drop and selection. */}
       {allowsDragging && <Column />}
 
-      {selectionBehavior === 'toggle' && (
+      {selectionBehavior === "toggle" && (
         <Column>
-          {selectionMode === 'multiple' && <AriaCheckbox slot="selection" />}
+          {selectionMode === "multiple" && <AriaCheckbox slot="selection" />}
         </Column>
       )}
 
@@ -49,7 +49,7 @@ function MyColumn<T extends object>(props: ColumnProps<T>) {
 
           {allowsSorting && (
             <span aria-hidden="true" className="sort-indicator">
-              {sortDirection === 'ascending' ? '▲' : '▼'}
+              {sortDirection === "ascending" ? "▲" : "▼"}
             </span>
           )}
         </>
@@ -73,7 +73,7 @@ function MyRow<T extends object>({
           <Button slot="drag">≡</Button>
         </Cell>
       )}
-      {selectionBehavior === 'toggle' && (
+      {selectionBehavior === "toggle" && (
         <Cell>
           <AriaCheckbox slot="selection" />
         </Cell>
@@ -85,16 +85,16 @@ function MyRow<T extends object>({
 
 export default function DemoTable() {
   const columns = [
-    { name: 'Name', key: 'name', isRowHeader: true },
-    { name: 'Type', key: 'type' },
-    { name: 'Date Modified', key: 'date' },
+    { name: "Name", key: "name", isRowHeader: true },
+    { name: "Type", key: "type" },
+    { name: "Date Modified", key: "date" },
   ];
 
   const items = [
-    { id: 1, name: 'Games', date: '6/7/2020', type: 'File folder' },
-    { id: 2, name: 'Program Files', date: '4/7/2021', type: 'File folder' },
-    { id: 3, name: 'bootmgr', date: '11/20/2010', type: 'System file' },
-    { id: 4, name: 'log.txt', date: '1/18/2016', type: 'Text Document' },
+    { id: 1, name: "Games", date: "6/7/2020", type: "File folder" },
+    { id: 2, name: "Program Files", date: "4/7/2021", type: "File folder" },
+    { id: 3, name: "bootmgr", date: "11/20/2010", type: "System file" },
+    { id: 4, name: "log.txt", date: "1/18/2016", type: "Text Document" },
   ];
 
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());

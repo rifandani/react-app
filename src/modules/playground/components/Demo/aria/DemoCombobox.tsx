@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { Key, PropsWithChildren, useState } from 'react';
+import { Icon } from "@iconify/react";
+import { Key, PropsWithChildren, useState } from "react";
 import {
   Button,
   ComboBox,
@@ -12,11 +12,11 @@ import {
   ListBox,
   Popover,
   Text,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 interface MyComboBoxProps<T extends object>
-  extends Omit<ComboBoxProps<T>, 'children'> {
+  extends Omit<ComboBoxProps<T>, "children"> {
   label?: string;
   description?: string | null;
   errorMessage?: string | null;
@@ -35,8 +35,8 @@ function MyComboBox<T extends object>({
     <ComboBox
       className={(classProps) =>
         twMerge(
-          'group flex flex-col',
-          typeof className === 'string' ? className : className?.(classProps),
+          "group flex flex-col",
+          typeof className === "string" ? className : className?.(classProps),
         )
       }
       {...props}
@@ -91,15 +91,15 @@ function MyItem(props: PropsWithChildren<ItemProps>) {
 
 export default function DemoCombobox() {
   const options = [
-    { id: 1, name: 'Aerospace' },
-    { id: 2, name: 'Mechanical' },
-    { id: 3, name: 'Civil' },
-    { id: 4, name: 'Biomedical' },
-    { id: 5, name: 'Nuclear' },
-    { id: 6, name: 'Industrial' },
-    { id: 7, name: 'Chemical' },
-    { id: 8, name: 'Agricultural' },
-    { id: 9, name: 'Electrical' },
+    { id: 1, name: "Aerospace" },
+    { id: 2, name: "Mechanical" },
+    { id: 3, name: "Civil" },
+    { id: 4, name: "Biomedical" },
+    { id: 5, name: "Nuclear" },
+    { id: 6, name: "Industrial" },
+    { id: 7, name: "Chemical" },
+    { id: 8, name: "Agricultural" },
+    { id: 9, name: "Electrical" },
   ];
 
   const [fieldState, setFieldState] = useState<{
@@ -107,19 +107,19 @@ export default function DemoCombobox() {
     inputValue: string;
   }>({
     selectedKey: null,
-    inputValue: '',
+    inputValue: "",
   });
 
   const onSelectionChange = (id: Key) => {
     setFieldState({
       selectedKey: id,
-      inputValue: options.find((o) => o.id === id)?.name ?? '',
+      inputValue: options.find((o) => o.id === id)?.name ?? "",
     });
   };
 
   const onInputChange = (value: string) => {
     setFieldState((prevState) => ({
-      selectedKey: value === '' ? null : prevState.selectedKey,
+      selectedKey: value === "" ? null : prevState.selectedKey,
       inputValue: value,
     }));
   };

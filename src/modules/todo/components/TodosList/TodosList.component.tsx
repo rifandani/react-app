@@ -1,7 +1,7 @@
-import { Icon } from '@iconify/react';
-import For from '@shared/components/atoms/For/For.atom';
-import TodosItem from '@todo/components/TodosItem/TodosItem.component';
-import useTodosList from './useTodosList.hook';
+import { Icon } from "@iconify/react";
+import For from "@shared/components/atoms/For/For.atom";
+import TodosItem from "@todo/components/TodosItem/TodosItem.component";
+import useTodosList from "./useTodosList.hook";
 
 export default function TodosList() {
   const { t, todosQuery } = useTodosList();
@@ -27,7 +27,7 @@ export default function TodosList() {
           className="alert alert-error mt-2 shadow-lg"
         >
           <div className="flex items-center">
-            <span>{t('error', { module: 'Todos' })}:</span>
+            <span>{t("error", { module: "Todos" })}:</span>
             <pre>{JSON.stringify(todosQuery.error, null, 2)}</pre>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function TodosList() {
               data-testid="list-empty"
               className="flex items-center justify-center py-5"
             >
-              {t('empty')}
+              {t("empty")}
             </div>
           }
         >

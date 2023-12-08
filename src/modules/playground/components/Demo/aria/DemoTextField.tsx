@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, useState } from 'react';
+import { ComponentPropsWithRef, useState } from "react";
 import {
   Input,
   Label,
@@ -6,8 +6,8 @@ import {
   TextArea,
   TextField,
   TextFieldProps,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 interface MyTextFieldProps extends TextFieldProps {
   label?: string;
@@ -39,9 +39,9 @@ function MyTextField({
       <Input
         className={({ isInvalid, isDisabled }) =>
           twMerge(
-            'input input-bordered',
-            isInvalid && 'input-error',
-            isDisabled && 'input-disabled',
+            "input input-bordered",
+            isInvalid && "input-error",
+            isDisabled && "input-disabled",
           )
         }
         {...inputProps}
@@ -79,9 +79,9 @@ function MyTextArea({
       <TextArea
         className={({ isInvalid, isDisabled }) =>
           twMerge(
-            'textarea textarea-bordered',
-            isInvalid && 'textarea-error',
-            isDisabled && 'textarea-disabled',
+            "textarea textarea-bordered",
+            isInvalid && "textarea-error",
+            isDisabled && "textarea-disabled",
           )
         }
         {...inputProps}
@@ -100,11 +100,11 @@ function MyTextArea({
 }
 
 export default function DemoTextField() {
-  const [text, setText] = useState('');
-  const [textarea, setTextarea] = useState('');
+  const [text, setText] = useState("");
+  const [textarea, setTextarea] = useState("");
 
-  const isInvalid = text === 'invalid';
-  const isInvalidTextarea = textarea === 'invalid';
+  const isInvalid = text === "invalid";
+  const isInvalidTextarea = textarea === "invalid";
 
   return (
     <section className="flex flex-wrap items-center gap-3 rounded border p-3">
@@ -116,7 +116,7 @@ export default function DemoTextField() {
         onChange={setText}
         isInvalid={isInvalid}
         errorMessage="Invalid Message"
-        inputProps={{ placeholder: 'Message...' }}
+        inputProps={{ placeholder: "Message..." }}
       />
 
       <MyTextArea
@@ -127,7 +127,7 @@ export default function DemoTextField() {
         onChange={setTextarea}
         isInvalid={isInvalidTextarea}
         errorMessage="Invalid Message Area"
-        inputProps={{ placeholder: 'Message Area...' }}
+        inputProps={{ placeholder: "Message Area..." }}
       />
     </section>
   );

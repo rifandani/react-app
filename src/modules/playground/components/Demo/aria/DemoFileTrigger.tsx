@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, FileTrigger } from 'react-aria-components';
+import { useState } from "react";
+import { Button, FileTrigger } from "react-aria-components";
 
 function DaisyFileInput() {
   return (

@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/ReactToastify.css';
-import { ToastContext, createToastContext } from './context';
+import { PropsWithChildren } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import { ToastContext, createToastContext } from "./context";
 
 export default function AppToastProvider({ children }: PropsWithChildren) {
   const value = createToastContext();

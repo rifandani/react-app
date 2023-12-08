@@ -1,4 +1,4 @@
-import { Button } from 'react-aria-components';
+import { Button } from "react-aria-components";
 
 export default function DemoButton() {
   return (

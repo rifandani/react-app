@@ -1,5 +1,5 @@
-import { Label, ProgressBar, ProgressBarProps } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import { Label, ProgressBar, ProgressBarProps } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 interface MyProgressBarProps extends ProgressBarProps {
   label?: string;
@@ -18,9 +18,9 @@ function MyProgressBar({ label, ...props }: MyProgressBarProps) {
           <div className="relative h-5 w-full before:absolute before:top-1/2 before:block before:h-2 before:w-full before:-translate-y-1/2 before:rounded-full before:bg-base-200">
             <span
               className={twMerge(
-                'absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary',
+                "absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary",
                 isIndeterminate &&
-                  'top-[30%] w-[100px] translate-y-0 animate-progressbar-indeterminate transition',
+                  "top-[30%] w-[100px] translate-y-0 animate-progressbar-indeterminate transition",
               )}
               style={{ width: `${percentage}%` }}
             />

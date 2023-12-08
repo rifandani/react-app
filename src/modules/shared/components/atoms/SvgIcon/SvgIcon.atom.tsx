@@ -1,7 +1,7 @@
-import { SVGProps } from 'react';
+import { SVGProps } from "react";
 
 interface Props extends SVGProps<SVGSVGElement> {
-  id: 'icon-reactjs';
+  id: "icon-reactjs";
 }
 
 export default function SvgIcon({ id, ...rest }: Props) {

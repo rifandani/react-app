@@ -1,6 +1,6 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import { Button } from 'react-aria-components';
-import useLoginForm from './useLoginForm.hook';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import { Button } from "react-aria-components";
+import useLoginForm from "./useLoginForm.hook";
 
 export default function LoginForm() {
   const { t, fetcher, form } = useLoginForm();
@@ -16,7 +16,7 @@ export default function LoginForm() {
       <fieldset className="group/username form-control pt-4">
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="label" htmlFor="username">
-          <span className="label-text">{t('username')}</span>
+          <span className="label-text">{t("username")}</span>
         </label>
 
         <input
@@ -26,13 +26,13 @@ export default function LoginForm() {
           aria-labelledby="#username"
           aria-invalid={!!form.formState.errors.username?.message}
           className="peer input input-primary mt-1 shadow-md aria-[invalid='true']:input-error"
-          placeholder={t('usernamePlaceholder')}
-          {...form.register('username', { required: true, minLength: 3 })}
+          placeholder={t("usernamePlaceholder")}
+          {...form.register("username", { required: true, minLength: 3 })}
         />
 
         {form.formState.errors.username?.message && (
           <p role="alert" className="flex pt-2 text-error">
-            {t('errorMinLength', { field: 'username', length: '3' })}
+            {t("errorMinLength", { field: "username", length: "3" })}
           </p>
         )}
       </fieldset>
@@ -40,7 +40,7 @@ export default function LoginForm() {
       {/* password */}
       <fieldset className="group/password form-control pt-4">
         <label className="label" htmlFor="password">
-          <span className="label-text">{t('password')}</span>
+          <span className="label-text">{t("password")}</span>
         </label>
 
         <input
@@ -50,13 +50,13 @@ export default function LoginForm() {
           aria-labelledby="#password"
           aria-invalid={!!form.formState.errors.password?.message}
           className="peer input input-primary mt-1 shadow-md aria-[invalid='true']:input-error"
-          placeholder={t('passwordPlaceholder')}
-          {...form.register('password', { required: true, minLength: 6 })}
+          placeholder={t("passwordPlaceholder")}
+          {...form.register("password", { required: true, minLength: 6 })}
         />
 
         {form.formState.errors.password?.message && (
           <p role="alert" className="flex pt-2 text-error">
-            {t('errorMinLength', { field: 'password', length: '6' })}
+            {t("errorMinLength", { field: "password", length: "6" })}
           </p>
         )}
       </fieldset>
@@ -72,9 +72,9 @@ export default function LoginForm() {
       <Button
         type="submit"
         className="btn btn-primary mt-8 capitalize disabled:btn-outline"
-        isDisabled={fetcher.state === 'submitting' || !form.formState.isValid}
+        isDisabled={fetcher.state === "submitting" || !form.formState.isValid}
       >
-        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')} (0lelplR)
+        {t(fetcher.state === "submitting" ? "loginLoading" : "login")} (0lelplR)
       </Button>
     </fetcher.Form>
   );

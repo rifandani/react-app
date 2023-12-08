@@ -1,6 +1,6 @@
-import AriaCheckbox from '@shared/components/atoms/Checkbox/AriaCheckbox.atom';
-import BaseAriaCheckbox from '@shared/components/atoms/Checkbox/BaseAriaCheckbox.atom';
-import DaisyCheckbox from '@shared/components/atoms/Checkbox/DaisyCheckbox.atom';
+import AriaCheckbox from "@shared/components/atoms/Checkbox/AriaCheckbox.atom";
+import BaseAriaCheckbox from "@shared/components/atoms/Checkbox/BaseAriaCheckbox.atom";
+import DaisyCheckbox from "@shared/components/atoms/Checkbox/DaisyCheckbox.atom";
 
 export default function DemoCheckbox() {
   return (

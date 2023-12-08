@@ -1,44 +1,44 @@
-import { themes } from '@shared/constants/theme.constant';
-import { setupTest } from '@shared/utils/test.util';
-import { fireEvent, screen } from '@testing-library/react';
-import { RouteObject, createMemoryRouter } from 'react-router-dom';
-import { vi } from 'vitest';
-import NavbarMenu from './NavbarMenu.organism';
+import { themes } from "@shared/constants/theme.constant";
+import { setupTest } from "@shared/utils/test.util";
+import { fireEvent, screen } from "@testing-library/react";
+import { RouteObject, createMemoryRouter } from "react-router-dom";
+import { vi } from "vitest";
+import NavbarMenu from "./NavbarMenu.organism";
 
-describe('NavBarMenu', () => {
+describe("NavBarMenu", () => {
   const mockModeBtn = vi.fn();
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '/',
+      path: "/",
       element: <NavbarMenu />,
     },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/'],
+    initialEntries: ["/"],
     initialIndex: 0,
   });
 
-  it('should render properly', () => {
+  it("should render properly", () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
-  it('should render role contents correctly', () => {
+  it("should render role contents correctly", () => {
     // ARRANGE
     renderProviders(router);
-    const link: HTMLAnchorElement = screen.getByRole('link', {
+    const link: HTMLAnchorElement = screen.getByRole("link", {
       name: /todos/i,
     });
-    const themeBtn: HTMLButtonElement = screen.getByRole('button', {
+    const themeBtn: HTMLButtonElement = screen.getByRole("button", {
       name: /themes-opener/i,
     });
-    const modesBtn: HTMLButtonElement[] = screen.getAllByRole('button', {
+    const modesBtn: HTMLButtonElement[] = screen.getAllByRole("button", {
       name: /theme-/i,
     });
 
     // ACT & ASSERT
-    modesBtn[0].addEventListener('click', mockModeBtn);
+    modesBtn[0].addEventListener("click", mockModeBtn);
     fireEvent.click(modesBtn[0]);
     expect(link).toBeInTheDocument();
     expect(themeBtn).toBeInTheDocument();

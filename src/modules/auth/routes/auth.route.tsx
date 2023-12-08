@@ -1,23 +1,23 @@
-import { loginAction } from '@auth/pages/Login/Login.action';
-import { loginLoader } from '@auth/pages/Login/Login.loader';
-import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
-import { RouteObject } from 'react-router-dom';
+import { loginAction } from "@auth/pages/Login/Login.action";
+import { loginLoader } from "@auth/pages/Login/Login.loader";
+import RouteErrorBoundary from "@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template";
+import { RouteObject } from "react-router-dom";
 
 export const authId = {
   root: undefined,
-  login: 'auth:login',
+  login: "auth:login",
 } as const;
 
 export const authPath = {
   root: undefined,
-  login: '/login',
+  login: "/login",
 } as const;
 
 export const loginRoute = {
   id: authId.login,
   path: authPath.login,
   lazy: async () => {
-    const { default: LoginPage } = await import('../pages/Login/Login.page');
+    const { default: LoginPage } = await import("../pages/Login/Login.page");
 
     return {
       action: loginAction,
@@ -32,11 +32,11 @@ export const loginRoute = {
  * should be last route
  */
 export const notFoundRoute = {
-  id: 'notFound',
-  path: '*',
+  id: "notFound",
+  path: "*",
   lazy: async () => {
     const { default: NotFoundPage } = await import(
-      '../pages/NotFound/NotFound.page'
+      "../pages/NotFound/NotFound.page"
     );
 
     return { element: <NotFoundPage /> };

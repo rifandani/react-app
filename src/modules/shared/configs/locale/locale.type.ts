@@ -1,6 +1,6 @@
-import { enLocale } from './locale.config';
+import { enLocale } from "./locale.config";
 
-export type LocaleDictLanguage = 'en-US' | 'id-ID';
+export type LocaleDictLanguage = "en-US" | "id-ID";
 export type LocaleDict = Record<LocaleDictLanguage, Record<string, string>>;
 
 export type Translations = typeof enLocale;

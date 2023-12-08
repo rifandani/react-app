@@ -46,14 +46,19 @@ export default function useHomeClock() {
         setButtons((prev) => shuffle(prev) as unknown as typeof prev);
       },
       clock: () => {
-        if (!showClock) setSeconds(0);
+        if (!showClock) setSeconds(0); // console.log('🦙 ~ showClock -> ', showClock);
         setShowClock((prev) => !prev);
       },
       language: () => {
-        changeLocale(locale === 'en-US' ? 'id-ID' : 'en-US');
+        changeLocale(locale === 'en-US' ? 'id-ID' : 'en-US'); //          console.log('🦘 ~ locale -> ', locale);
+        // console.log('🦘 ~ locale -> ', locale);
+        // console.log('🦘 ~ locale -> ', locale);
+        // locale // console.log('🦘 ~ locale -> ', locale);
       },
       start: () => {
         navigate(todosPath.root);
+        console.log('🐎 ~ todosPath -> ', todosPath);
+        console.log('🐎 ~ todosPath -> ', todosPath);
       },
     };
 

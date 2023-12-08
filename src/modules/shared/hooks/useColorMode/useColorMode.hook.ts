@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useLocalStorageState } from 'ahooks';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useMediaQuery } from '../useMediaQuery/useMediaQuery.hook';
+import { useLocalStorageState } from "ahooks";
+import { useCallback, useEffect, useMemo } from "react";
+import { useMediaQuery } from "../useMediaQuery/useMediaQuery.hook";
 
-export type BasicColorSchema = BasicColorMode | 'auto';
-export type BasicColorMode = 'light' | 'dark';
+export type BasicColorSchema = BasicColorMode | "auto";
+export type BasicColorMode = "light" | "dark";
 
 export interface UseColorModeOptions<T extends string = BasicColorMode> {
   /**
@@ -60,7 +60,7 @@ export interface UseColorModeOptions<T extends string = BasicColorMode> {
   disableTransition?: boolean;
 }
 
-const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
+const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)";
 
 /**
  * Reactive color mode with auto data persistence.
@@ -69,10 +69,10 @@ export function useColorMode<T extends string = BasicColorMode>(
   options: UseColorModeOptions<T>,
 ) {
   const {
-    selector = 'html',
-    attribute = 'class',
-    initialValue = 'auto',
-    storageKey = 'app-color-scheme',
+    selector = "html",
+    attribute = "class",
+    initialValue = "auto",
+    storageKey = "app-color-scheme",
     disableTransition = true,
   } = options;
 
@@ -84,19 +84,19 @@ export function useColorMode<T extends string = BasicColorMode>(
   const modes = useMemo(
     () =>
       ({
-        auto: '',
-        light: 'light',
-        dark: 'dark',
+        auto: "",
+        light: "light",
+        dark: "dark",
         ...(options.modes ?? {}),
       }) as Record<BasicColorSchema | T, string>,
     [options.modes],
   );
   const system = useMemo(
-    () => (preferredDark ? 'dark' : 'light'),
+    () => (preferredDark ? "dark" : "light"),
     [preferredDark],
   );
   const state = useMemo(
-    () => (store[0] === 'auto' ? system : store[0])!,
+    () => (store[0] === "auto" ? system : store[0])!,
     [store, system],
   );
 
@@ -107,17 +107,17 @@ export function useColorMode<T extends string = BasicColorMode>(
 
       let style: HTMLStyleElement | undefined;
       if (disableTransition) {
-        style = window.document.createElement('style');
+        style = window.document.createElement("style");
         const styleString =
-          '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+          "*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}";
         style.appendChild(document.createTextNode(styleString));
         window.document.head.appendChild(style);
       }
 
-      if (_attribute === 'class') {
+      if (_attribute === "class") {
         const current = _value.split(/\s/g);
         Object.values(modes)
-          .flatMap((i) => (i || '').split(/\s/g))
+          .flatMap((i) => (i || "").split(/\s/g))
           .filter(Boolean)
           .forEach((v) => {
             if (current.includes(v)) el.classList.add(v);

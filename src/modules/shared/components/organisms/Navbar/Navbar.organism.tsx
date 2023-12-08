@@ -1,10 +1,10 @@
-import { homePath } from '@home/routes/home.route';
-import { Icon } from '@iconify/react';
-import SvgIcon from '@shared/components/atoms/SvgIcon/SvgIcon.atom';
-import { PropsWithChildren } from 'react';
-import { Link } from 'react-router-dom';
-import NavbarMenu from '../NavbarMenu/NavbarMenu.organism';
-import useNavbar from './useNavbar.hook';
+import { homePath } from "@home/routes/home.route";
+import { Icon } from "@iconify/react";
+import SvgIcon from "@shared/components/atoms/SvgIcon/SvgIcon.atom";
+import { PropsWithChildren } from "react";
+import { Link } from "react-router-dom";
+import NavbarMenu from "../NavbarMenu/NavbarMenu.organism";
+import useNavbar from "./useNavbar.hook";
 
 export default function Navbar({ children }: PropsWithChildren) {
   const { t } = useNavbar();
@@ -34,7 +34,7 @@ export default function Navbar({ children }: PropsWithChildren) {
             className="link mx-2 flex flex-1 items-center space-x-2 px-2 text-2xl"
           >
             <SvgIcon id="icon-reactjs" className="h-6 w-6" />
-            <p className="font-semibold tracking-wider">{t('appName')}</p>
+            <p className="font-semibold tracking-wider">{t("appName")}</p>
           </Link>
 
           <div className="hidden flex-none lg:block">
@@ -46,7 +46,7 @@ export default function Navbar({ children }: PropsWithChildren) {
         </div>
 
         {/* <!-- Page content here --> */}
-        {children ?? <h1 className="text-lg/10">{t('noPageContent')}</h1>}
+        {children ?? <h1 className="text-lg/10">{t("noPageContent")}</h1>}
       </section>
 
       <section className="drawer-side">

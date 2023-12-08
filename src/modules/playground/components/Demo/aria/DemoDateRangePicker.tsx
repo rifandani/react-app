@@ -1,7 +1,7 @@
-import { parseDateTime, today } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { RangeValue } from '@shared/types/date.type';
-import { useState } from 'react';
+import { parseDateTime, today } from "@internationalized/date";
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from "@shared/constants/date.constant";
+import { RangeValue } from "@shared/types/date.type";
+import { useState } from "react";
 import {
   Button,
   CalendarCell,
@@ -21,7 +21,7 @@ import {
   Popover,
   RangeCalendar,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyDateRangePickerProps<T extends DateValue>
   extends DateRangePickerProps<T> {
@@ -99,8 +99,8 @@ function MyDateRangePicker<T extends DateValue>({
 
 export default function DemoDateRangePicker() {
   const [value, setValue] = useState<RangeValue<DateValue>>({
-    start: parseDateTime('2023-10-10'),
-    end: parseDateTime('2023-10-11'),
+    start: parseDateTime("2023-10-10"),
+    end: parseDateTime("2023-10-11"),
   });
 
   const now = today(RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone);
@@ -133,7 +133,7 @@ export default function DemoDateRangePicker() {
         onChange={setValue}
         isInvalid={isInvalid}
         isDateUnavailable={isDateUnavailable}
-        errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
+        errorMessage={isInvalid ? "We are closed on weekend" : undefined}
       />
     </section>
   );

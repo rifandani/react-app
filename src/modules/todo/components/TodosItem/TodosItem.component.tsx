@@ -1,8 +1,8 @@
-import { TodoSchema } from '@todo/api/todo.schema';
-import { Button } from 'react-aria-components';
-import { Link } from 'react-router-dom';
-import { twJoin } from 'tailwind-merge';
-import useTodosItem from './useTodosItem.hook';
+import { TodoSchema } from "@todo/api/todo.schema";
+import { Button } from "react-aria-components";
+import { Link } from "react-router-dom";
+import { twJoin } from "tailwind-merge";
+import useTodosItem from "./useTodosItem.hook";
 
 // #region INTERFACES
 interface Props {
@@ -43,8 +43,8 @@ export default function TodosItem({ todo }: Props) {
       <Link
         aria-label="todo"
         className={twJoin(
-          'ml-5 w-full text-left text-lg hover:font-bold',
-          todo.completed && 'line-through',
+          "ml-5 w-full text-left text-lg hover:font-bold",
+          todo.completed && "line-through",
         )}
         to={todo.id.toString()}
       >
@@ -57,7 +57,7 @@ export default function TodosItem({ todo }: Props) {
           className="btn btn-primary btn-sm normal-case"
           type="submit"
         >
-          {t('remove', { icon: '💥' })}
+          {t("remove", { icon: "💥" })}
         </Button>
       )}
     </form>

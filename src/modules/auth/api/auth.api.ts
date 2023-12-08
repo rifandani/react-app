@@ -1,6 +1,6 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import { http } from '@shared/services/api/http.api';
-import { LoginApiResponseSchema, type LoginSchema } from './auth.schema';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import { http } from "@shared/services/api/http.api";
+import { LoginApiResponseSchema, type LoginSchema } from "./auth.schema";
 
 export const authApi = {
   login: async (creds: LoginSchema) => {
@@ -12,7 +12,7 @@ export const authApi = {
     // const loginApiResponse = loginApiResponseSchema.parse(resp.data);
 
     // set 'Authorization' headers
-    if (resp.status === 200 && 'token' in resp.data)
+    if (resp.status === 200 && "token" in resp.data)
       http.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
 
     return resp.data;

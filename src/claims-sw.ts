@@ -1,10 +1,10 @@
-import { clientsClaim } from 'workbox-core';
+import { clientsClaim } from "workbox-core";
 import {
   cleanupOutdatedCaches,
   createHandlerBoundToURL,
   precacheAndRoute,
-} from 'workbox-precaching';
-import { NavigationRoute, registerRoute } from 'workbox-routing';
+} from "workbox-precaching";
+import { NavigationRoute, registerRoute } from "workbox-routing";
 
 declare let self: ServiceWorkerGlobalScope;
 
@@ -20,7 +20,7 @@ if (import.meta.env.DEV) allowlist = [/^\/$/];
 
 // to allow work offline
 registerRoute(
-  new NavigationRoute(createHandlerBoundToURL('index.html'), { allowlist }),
+  new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist }),
 );
 
 // @ts-expect-error ignore

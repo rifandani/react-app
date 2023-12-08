@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Breadcrumb, Breadcrumbs, Link } from 'react-aria-components';
+import { useState } from "react";
+import { Breadcrumb, Breadcrumbs, Link } from "react-aria-components";
 
 export default function DemoBreadcrumbs() {
   const [breadcrumbs, setBreadcrumbs] = useState([
-    { id: 1, label: 'Home' },
-    { id: 2, label: 'Trendy' },
-    { id: 3, label: 'March 2022 Assets' },
+    { id: 1, label: "Home" },
+    { id: 2, label: "Trendy" },
+    { id: 3, label: "March 2022 Assets" },
   ]);
 
   const navigate = (id: React.Key) => {

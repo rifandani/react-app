@@ -1,5 +1,5 @@
-import { limits } from '@todo/constants/todos.constant';
-import useTodosFilter from './useTodosFilter.hook';
+import { limits } from "@todo/constants/todos.constant";
+import useTodosFilter from "./useTodosFilter.hook";
 
 export default function TodosFilter() {
   const { t, selectedOption, handleChangeLimit } = useTodosFilter();
@@ -10,7 +10,7 @@ export default function TodosFilter() {
       className="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
     >
       <label htmlFor="limit" className="label">
-        <span className="label-text">{t('limit')}</span>
+        <span className="label-text">{t("limit")}</span>
       </label>
 
       <select

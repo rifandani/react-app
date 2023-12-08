@@ -1,12 +1,12 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 import {
   AriaSwitchProps,
   VisuallyHidden,
   useFocusRing,
   useSwitch,
-} from 'react-aria';
-import { useToggleState } from 'react-stately';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria";
+import { useToggleState } from "react-stately";
+import { twMerge } from "tailwind-merge";
 
 export default function TheSwitch(props: AriaSwitchProps) {
   const state = useToggleState(props);
@@ -18,8 +18,8 @@ export default function TheSwitch(props: AriaSwitchProps) {
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className={twMerge(
-        'flex items-center opacity-100',
-        props.isDisabled && 'opacity-40',
+        "flex items-center opacity-100",
+        props.isDisabled && "opacity-40",
       )}
     >
       <VisuallyHidden>
@@ -33,7 +33,7 @@ export default function TheSwitch(props: AriaSwitchProps) {
           width={32}
           height={16}
           rx={8}
-          fill={state.isSelected ? 'orange' : 'gray'}
+          fill={state.isSelected ? "orange" : "gray"}
         />
 
         <circle cx={state.isSelected ? 28 : 12} cy={12} r={5} fill="white" />

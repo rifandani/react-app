@@ -1,6 +1,6 @@
-import { Icon } from '@iconify/react';
-import { isFunction } from '@rifandani/nxact-yutiriti';
-import AriaCheckbox from '@shared/components/atoms/Checkbox/AriaCheckbox.atom';
+import { Icon } from "@iconify/react";
+import { isFunction } from "@rifandani/nxact-yutiriti";
+import AriaCheckbox from "@shared/components/atoms/Checkbox/AriaCheckbox.atom";
 import {
   Button,
   DropIndicator,
@@ -8,12 +8,12 @@ import {
   Item,
   ItemProps,
   useDragAndDrop,
-} from 'react-aria-components';
-import { useListData } from 'react-stately';
-import { twJoin, twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { useListData } from "react-stately";
+import { twJoin, twMerge } from "tailwind-merge";
 
 function GridListItem({ children, ...props }: ItemProps) {
-  const textValue = typeof children === 'string' ? children : undefined;
+  const textValue = typeof children === "string" ? children : undefined;
 
   return (
     <Item
@@ -30,8 +30,8 @@ function GridListItem({ children, ...props }: ItemProps) {
             </Button>
           )}
 
-          {item.selectionMode === 'multiple' &&
-            item.selectionBehavior === 'toggle' && (
+          {item.selectionMode === "multiple" &&
+            item.selectionBehavior === "toggle" && (
               <AriaCheckbox
                 slot="selection"
                 aria-label={`gridlist-checkbox-${props.id}`}
@@ -49,28 +49,28 @@ function GridListItem({ children, ...props }: ItemProps) {
 function DraggableGridList() {
   const list = useListData({
     initialItems: [
-      { id: 1, name: 'Adobe Photoshop' },
-      { id: 2, name: 'Adobe XD' },
-      { id: 3, name: 'Adobe Dreamweaver' },
-      { id: 4, name: 'Adobe InDesign' },
-      { id: 5, name: 'Adobe Connect' },
+      { id: 1, name: "Adobe Photoshop" },
+      { id: 2, name: "Adobe XD" },
+      { id: 3, name: "Adobe Dreamweaver" },
+      { id: 4, name: "Adobe InDesign" },
+      { id: 5, name: "Adobe Connect" },
     ],
   });
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) =>
-      [...keys].map((key) => ({ 'text/plain': list.getItem(key).name })),
+      [...keys].map((key) => ({ "text/plain": list.getItem(key).name })),
     onReorder(e) {
-      if (e.target.dropPosition === 'before') {
+      if (e.target.dropPosition === "before") {
         list.moveBefore(e.target.key, e.keys);
-      } else if (e.target.dropPosition === 'after') {
+      } else if (e.target.dropPosition === "after") {
         list.moveAfter(e.target.key, e.keys);
       }
     },
     renderDragPreview(items) {
       return (
         <div className="flex items-center gap-3 rounded-md bg-base-300 px-2 py-1 text-base-content">
-          {items[0]['text/plain']}
+          {items[0]["text/plain"]}
           <span className="badge badge-info">{items.length}</span>
         </div>
       );
@@ -103,9 +103,9 @@ function DraggableGridList() {
 
 export default function DemoGridList() {
   const rows = [
-    { id: '1', name: 'Games' },
-    { id: '2', name: 'Program Files' },
-    { id: '3', name: 'Documents' },
+    { id: "1", name: "Games" },
+    { id: "2", name: "Program Files" },
+    { id: "3", name: "Documents" },
   ];
 
   return (
@@ -131,13 +131,13 @@ export default function DemoGridList() {
         aria-label="Multiple checkbox selection with replace behavior"
         selectionMode="multiple"
         selectionBehavior="replace"
-        disabledKeys={['2']}
+        disabledKeys={["2"]}
         items={rows.slice()}
       >
         {(item) => (
           <GridListItem textValue={item.name}>
             {({ selectionBehavior }) => (
-              <p className={twMerge(selectionBehavior === 'toggle' && 'ml-3')}>
+              <p className={twMerge(selectionBehavior === "toggle" && "ml-3")}>
                 {item.name}
               </p>
             )}

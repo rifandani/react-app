@@ -7,12 +7,12 @@ import {
   MenuTrigger,
   MenuTriggerProps,
   Popover,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 interface MyMenuButtonProps<T>
   extends MenuProps<T>,
-    Omit<MenuTriggerProps, 'children'> {
+    Omit<MenuTriggerProps, "children"> {
   label?: string;
 }
 
@@ -38,7 +38,7 @@ function MyItem(props: ItemProps) {
     <Item
       {...props}
       className={({ isFocused }) =>
-        twMerge(`min-w-[5rem]`, isFocused && 'focused')
+        twMerge(`min-w-[5rem]`, isFocused && "focused")
       }
     />
   );

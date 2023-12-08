@@ -1,16 +1,16 @@
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, http } from "msw";
 import {
   ResourceParamsSchema,
   resourceParamsSchema,
-} from '../../../modules/shared/api/api.schema';
+} from "../../../modules/shared/api/api.schema";
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '../../../modules/todo/api/todo.schema';
-import { getBaseUrl } from '../../util.mock';
-import { mockTodo } from '../entities.http';
+} from "../../../modules/todo/api/todo.schema";
+import { getBaseUrl } from "../../util.mock";
+import { mockTodo } from "../entities.http";
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>
@@ -34,7 +34,7 @@ let todos = Array.from({ length: 10 }, (_, idx) =>
 );
 
 export const todoHandlers = [
-  http.get(getBaseUrl('todos'), ({ request }) => {
+  http.get(getBaseUrl("todos"), ({ request }) => {
     const { searchParams } = new URL(request.url);
     const searchParamsObject = Object.fromEntries(
       searchParams,
@@ -70,7 +70,7 @@ export const todoHandlers = [
   }),
 
   // @ts-expect-error ignore
-  http.post(getBaseUrl('todos/add'), async ({ request }) => {
+  http.post(getBaseUrl("todos/add"), async ({ request }) => {
     const todoPayload = (await request.json()) as CreateTodoSchema;
     const todoId = todos.at(-1)?.id;
 
@@ -90,7 +90,7 @@ export const todoHandlers = [
   }),
 
   // @ts-expect-error ignore
-  http.put(getBaseUrl('todos/:id'), async ({ request, params }) => {
+  http.put(getBaseUrl("todos/:id"), async ({ request, params }) => {
     const todoPayload = (await request.json()) as UpdateTodoSchema;
     const { id } = params;
     const todoId = parseInt(id as string, 10);
@@ -119,7 +119,7 @@ export const todoHandlers = [
   }),
 
   // @ts-expect-error ignore
-  http.delete(getBaseUrl('todos/:id'), ({ params }) => {
+  http.delete(getBaseUrl("todos/:id"), ({ params }) => {
     const { id } = params;
     const todoId = parseInt(id as string, 10);
 

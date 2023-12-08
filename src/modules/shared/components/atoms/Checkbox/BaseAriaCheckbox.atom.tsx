@@ -1,8 +1,8 @@
-import { ForwardedRef, forwardRef } from 'react';
-import { AriaCheckboxProps, useCheckbox } from 'react-aria';
-import { CheckboxContext, useContextProps } from 'react-aria-components';
-import { useToggleState } from 'react-stately';
-import { twMerge } from 'tailwind-merge';
+import { ForwardedRef, forwardRef } from "react";
+import { AriaCheckboxProps, useCheckbox } from "react-aria";
+import { CheckboxContext, useContextProps } from "react-aria-components";
+import { useToggleState } from "react-stately";
+import { twMerge } from "tailwind-merge";
 
 interface Props extends AriaCheckboxProps {
   className?: string;
@@ -21,7 +21,7 @@ const BaseAriaCheckbox = forwardRef(
       <input
         {...inputProps}
         ref={ref}
-        className={twMerge('checkbox', className)}
+        className={twMerge("checkbox", className)}
       />
     );
   },

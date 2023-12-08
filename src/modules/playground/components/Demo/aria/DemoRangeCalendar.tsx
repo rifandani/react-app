@@ -1,7 +1,7 @@
-import { isWeekend, parseDate } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { RangeValue } from '@shared/types/date.type';
-import { useState } from 'react';
+import { isWeekend, parseDate } from "@internationalized/date";
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from "@shared/constants/date.constant";
+import { RangeValue } from "@shared/types/date.type";
+import { useState } from "react";
 import {
   Button,
   CalendarCell,
@@ -14,7 +14,7 @@ import {
   RangeCalendar,
   RangeCalendarProps,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyRangeCalendarProps<T extends DateValue>
   extends RangeCalendarProps<T> {
@@ -113,8 +113,8 @@ function MyDoubleRangeCalendar<T extends DateValue>({
 export default function DemoRangeCalendar() {
   // `start` and `end` can not be null
   const [value, setValue] = useState<RangeValue<DateValue>>({
-    start: parseDate('2023-10-09'),
-    end: parseDate('2023-10-10'),
+    start: parseDate("2023-10-09"),
+    end: parseDate("2023-10-10"),
   });
 
   const isDateUnavailable = (date: DateValue) =>

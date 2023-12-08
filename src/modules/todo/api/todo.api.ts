@@ -1,8 +1,8 @@
 import {
   ErrorApiResponseSchema,
   ResourceParamsSchema,
-} from '../../shared/api/api.schema';
-import { http } from '../../shared/services/api/http.api';
+} from "../../shared/api/api.schema";
+import { http } from "../../shared/services/api/http.api";
 import {
   CreateTodoApiResponseSchema,
   DeleteTodoApiResponseSchema,
@@ -17,27 +17,27 @@ import {
   type CreateTodoSchema,
   type TodoSchema,
   type UpdateTodoSchema,
-} from './todo.schema';
+} from "./todo.schema";
 
 export const todoKeys = {
-  all: ['todos'] as const,
-  lists: () => [...todoKeys.all, 'list'] as const,
+  all: ["todos"] as const,
+  lists: () => [...todoKeys.all, "list"] as const,
   list: (params: ResourceParamsSchema) =>
     [...todoKeys.lists(), params] as const,
-  details: () => [...todoKeys.all, 'detail'] as const,
-  detail: (id: TodoSchema['id']) => [...todoKeys.details(), id] as const,
+  details: () => [...todoKeys.all, "detail"] as const,
+  detail: (id: TodoSchema["id"]) => [...todoKeys.details(), id] as const,
 };
 
 export const todoApi = {
   list: async (params: ResourceParamsSchema) => {
     const resp = await http.get<
       TodoListApiResponseSchema | ErrorApiResponseSchema
-    >('todos', { params });
+    >("todos", { params });
 
     // `parse` will throw if `resp.data` is not correct, and therefore can render `errorElement` if specified
     return todoListApiResponseSchema.parse(resp.data);
   },
-  detail: async (id: TodoSchema['id']) => {
+  detail: async (id: TodoSchema["id"]) => {
     const resp = await http.get<
       TodoDetailApiResponseSchema | ErrorApiResponseSchema
     >(`todos/${id}`);
@@ -58,7 +58,7 @@ export const todoApi = {
 
     return updateTodoApiResponseSchema.parse(resp.data);
   },
-  delete: async (id: TodoSchema['id']) => {
+  delete: async (id: TodoSchema["id"]) => {
     const resp = await http.delete<
       DeleteTodoApiResponseSchema | ErrorApiResponseSchema
     >(`todos/${id}`);

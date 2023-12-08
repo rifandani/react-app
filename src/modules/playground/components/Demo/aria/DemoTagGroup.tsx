@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { Icon } from "@iconify/react";
+import { useState } from "react";
 import {
   Button,
   Label,
@@ -10,12 +10,12 @@ import {
   TagList,
   TagListProps,
   TagProps,
-} from 'react-aria-components';
-import { useListData } from 'react-stately';
+} from "react-aria-components";
+import { useListData } from "react-stately";
 
 interface MyTagGroupProps<T>
-  extends Omit<TagGroupProps, 'children'>,
-    Pick<TagListProps<T>, 'items' | 'children' | 'renderEmptyState'> {
+  extends Omit<TagGroupProps, "children">,
+    Pick<TagListProps<T>, "items" | "children" | "renderEmptyState"> {
   label?: string;
   description?: string;
   errorMessage?: string;
@@ -48,7 +48,7 @@ function MyTagGroup<T extends object>({
 }
 
 function MyTag({ children, ...props }: TagProps) {
-  const textValue = typeof children === 'string' ? children : undefined;
+  const textValue = typeof children === "string" ? children : undefined;
 
   return (
     <Tag textValue={textValue} {...props}>
@@ -72,14 +72,14 @@ function MyTag({ children, ...props }: TagProps) {
 export default function DemoTagGroup() {
   const list = useListData({
     initialItems: [
-      { id: 1, name: 'News' },
-      { id: 2, name: 'Travel' },
-      { id: 3, name: 'Gaming' },
-      { id: 4, name: 'Shopping' },
+      { id: 1, name: "News" },
+      { id: 2, name: "Travel" },
+      { id: 3, name: "Gaming" },
+      { id: 4, name: "Shopping" },
     ],
   });
 
-  const [selected, setSelected] = useState<Selection>(new Set(['News']));
+  const [selected, setSelected] = useState<Selection>(new Set(["News"]));
 
   return (
     <section className="flex flex-wrap gap-3">

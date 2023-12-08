@@ -1,6 +1,6 @@
-import { PropsWithChildren } from 'react';
-import { Button } from 'react-aria-components';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { PropsWithChildren } from "react";
+import { Button } from "react-aria-components";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 function Fallback({ error, resetErrorBoundary }: FallbackProps) {
   return (

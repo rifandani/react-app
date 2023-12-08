@@ -1,5 +1,5 @@
-import { Time } from '@internationalized/date';
-import { useState } from 'react';
+import { Time } from "@internationalized/date";
+import { useState } from "react";
 import {
   DateInput,
   DateSegment,
@@ -8,7 +8,7 @@ import {
   TimeField,
   TimeFieldProps,
   TimeValue,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MyTimeFieldProps<T extends TimeValue> extends TimeFieldProps<T> {
   label?: string;
@@ -57,7 +57,7 @@ export default function DemoTimeField() {
         minValue={new Time(8)}
         maxValue={new Time(20)}
         isInvalid={isInvalid}
-        errorMessage={isInvalid ? 'Meetings start every 15 minutes' : undefined}
+        errorMessage={isInvalid ? "Meetings start every 15 minutes" : undefined}
       />
     </section>
   );

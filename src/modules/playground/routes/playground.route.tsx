@@ -1,12 +1,12 @@
-import RouteErrorBoundary from '@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template';
-import { RouteObject } from 'react-router-dom';
+import RouteErrorBoundary from "@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template";
+import { RouteObject } from "react-router-dom";
 
 export const playgroundId = {
-  root: 'playground',
+  root: "playground",
 } as const;
 
 export const playgroundPath = {
-  root: '/playground',
+  root: "/playground",
 } as const;
 
 export const playgroundRoute = {
@@ -14,7 +14,7 @@ export const playgroundRoute = {
   path: playgroundPath.root,
   lazy: async () => {
     const { default: PlaygroundPage } = await import(
-      '../pages/Playground.page'
+      "../pages/Playground.page"
     );
 
     return {

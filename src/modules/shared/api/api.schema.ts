@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // #region SCHEMAS
 export const errorApiResponseSchema = z.object({

@@ -1,34 +1,34 @@
-import { setupTest } from '@shared/utils/test.util';
-import { fireEvent, screen } from '@testing-library/react';
-import { RouteObject, createMemoryRouter } from 'react-router-dom';
-import { vi } from 'vitest';
-import HomeClock from './HomeClock.component';
+import { setupTest } from "@shared/utils/test.util";
+import { fireEvent, screen } from "@testing-library/react";
+import { RouteObject, createMemoryRouter } from "react-router-dom";
+import { vi } from "vitest";
+import HomeClock from "./HomeClock.component";
 
-describe('HomeClock', () => {
+describe("HomeClock", () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '/',
+      path: "/",
       element: <HomeClock />,
     },
     {
-      path: '/todos',
+      path: "/todos",
       element: <HomeClock />,
     },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/'],
+    initialEntries: ["/"],
     initialIndex: 0,
   });
   const mockButtonFn = vi.fn();
 
-  it('should render properly', () => {
+  it("should render properly", () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
   // FIXME: TestingLibraryElementError: Unable to find an element by: [data-testid="home-clock-show"]
-  it.todo('should render clock when toggle clock button clicked', async () => {
+  it.todo("should render clock when toggle clock button clicked", async () => {
     // ARRANGE
     renderProviders(router);
     const button: HTMLButtonElement = screen.getByTestId(
@@ -38,11 +38,11 @@ describe('HomeClock', () => {
     // ACT & ASSERT
     expect(button).toBeInTheDocument();
     fireEvent.click(button);
-    expect(await screen.findByTestId('home-clock-show')).toBeInTheDocument();
+    expect(await screen.findByTestId("home-clock-show")).toBeInTheDocument();
   });
 
   // FIXME: figure out how to solve the randomness behavior
-  it.todo('should shuffle buttons when sort button clicked', () => {
+  it.todo("should shuffle buttons when sort button clicked", () => {
     // ARRANGE
     renderProviders(router);
     const buttonsBefore: HTMLButtonElement[] =
@@ -74,7 +74,7 @@ describe('HomeClock', () => {
   });
 
   // FIXME: currently we mock translation function
-  it.todo('should translate text when change language button clicked', () => {
+  it.todo("should translate text when change language button clicked", () => {
     // ARRANGE
     renderProviders(router);
     const button: HTMLButtonElement = screen.getByTestId(
@@ -87,13 +87,13 @@ describe('HomeClock', () => {
     expect(button).toHaveTextContent(/ganti bahasa/i);
   });
 
-  it('should call mocked navigate function when get started button clicked', () => {
+  it("should call mocked navigate function when get started button clicked", () => {
     // ARRANGE
     renderProviders(router);
     const button: HTMLButtonElement = screen.getByTestId(
       /home-clock-button-start/i,
     );
-    button.addEventListener('click', mockButtonFn);
+    button.addEventListener("click", mockButtonFn);
 
     // ACT & ASSERT
     fireEvent.click(button);

@@ -1,9 +1,9 @@
-import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { TodoSchema } from '@todo/api/todo.schema';
-import { useTodoDelete } from '@todo/hooks/useTodoDelete/useTodoDelete.hook';
-import { useTodoUpdate } from '@todo/hooks/useTodoUpdate/useTodoUpdate.hook';
-import { FormEvent } from 'react';
+import { useUserStore } from "@auth/hooks/useUserStore/useUserStore.hook";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { TodoSchema } from "@todo/api/todo.schema";
+import { useTodoDelete } from "@todo/hooks/useTodoDelete/useTodoDelete.hook";
+import { useTodoUpdate } from "@todo/hooks/useTodoUpdate/useTodoUpdate.hook";
+import { FormEvent } from "react";
 
 export default function useTodosItem() {
   const [t] = useI18n();

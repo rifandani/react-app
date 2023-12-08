@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import {
   AriaRadioProps,
   VisuallyHidden,
   useFocusRing,
   useRadio,
-} from 'react-aria';
-import { twMerge } from 'tailwind-merge';
-import { RadioContext } from './context';
+} from "react-aria";
+import { twMerge } from "tailwind-merge";
+import { RadioContext } from "./context";
 
 export default function TheRadio(props: AriaRadioProps) {
   const { children } = props;
@@ -25,8 +25,8 @@ export default function TheRadio(props: AriaRadioProps) {
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className={twMerge(
-        'flex items-center opacity-100',
-        isDisabled && 'opacity-40',
+        "flex items-center opacity-100",
+        isDisabled && "opacity-40",
       )}
     >
       <VisuallyHidden>
@@ -39,7 +39,7 @@ export default function TheRadio(props: AriaRadioProps) {
           cy={12}
           r={8 - strokeWidth / 2}
           fill="none"
-          stroke={isSelected ? 'orange' : 'gray'}
+          stroke={isSelected ? "orange" : "gray"}
           strokeWidth={strokeWidth}
         />
         {isFocusVisible && (

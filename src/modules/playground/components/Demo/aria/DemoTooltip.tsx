@@ -4,10 +4,10 @@ import {
   Tooltip,
   TooltipProps,
   TooltipTrigger,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
-interface MyTooltipProps extends Omit<TooltipProps, 'children'> {
+interface MyTooltipProps extends Omit<TooltipProps, "children"> {
   children: React.ReactNode;
 }
 
@@ -26,16 +26,16 @@ function MyTooltip({ children, className, ...props }: MyTooltipProps) {
     <Tooltip
       className={(classProps) =>
         twMerge(
-          'rounded-md outline outline-1 outline-black rac-entering:animate-in rac-entering:fade-in-0 rac-exiting:animate-out rac-exiting:fade-out-0',
-          classProps.placement === 'left' &&
-            'rac-entering:slide-in-from-right-1 rac-exiting:slide-in-from-left-1',
-          classProps.placement === 'right' &&
-            'rac-entering:slide-in-from-left-1 rac-exiting:slide-in-from-right-1',
-          classProps.placement === 'top' &&
-            'rac-entering:slide-in-from-bottom-1 rac-exiting:slide-in-from-top-1',
-          classProps.placement === 'bottom' &&
-            'rac-entering:slide-in-from-top-1 rac-exiting:slide-in-from-bottom-1',
-          typeof className === 'string' ? className : className?.(classProps),
+          "rounded-md outline outline-1 outline-black rac-entering:animate-in rac-entering:fade-in-0 rac-exiting:animate-out rac-exiting:fade-out-0",
+          classProps.placement === "left" &&
+            "rac-entering:slide-in-from-right-1 rac-exiting:slide-in-from-left-1",
+          classProps.placement === "right" &&
+            "rac-entering:slide-in-from-left-1 rac-exiting:slide-in-from-right-1",
+          classProps.placement === "top" &&
+            "rac-entering:slide-in-from-bottom-1 rac-exiting:slide-in-from-top-1",
+          classProps.placement === "bottom" &&
+            "rac-entering:slide-in-from-top-1 rac-exiting:slide-in-from-bottom-1",
+          typeof className === "string" ? className : className?.(classProps),
         )
       }
       {...props}
@@ -47,9 +47,9 @@ function MyTooltip({ children, className, ...props }: MyTooltipProps) {
               width={8}
               height={8}
               className={twMerge(
-                placement === 'left' && '-rotate-90',
-                placement === 'right' && 'rotate-90',
-                placement === 'bottom' && 'rotate-180',
+                placement === "left" && "-rotate-90",
+                placement === "right" && "rotate-90",
+                placement === "bottom" && "rotate-180",
               )}
             >
               <path d="M0 0,L4 4,L8 0" />

@@ -1,5 +1,5 @@
-import { Button } from 'react-aria-components';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { Button } from "react-aria-components";
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 export default function RouteErrorBoundary() {
   const error = useRouteError();

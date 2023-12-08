@@ -1,4 +1,4 @@
-import * as en from './en-US.json';
-import * as id from './id-ID.json';
+import * as en from "./en-US.json";
+import * as id from "./id-ID.json";
 
-export default { 'en-US': en, 'id-ID': id };
+export default { "en-US": en, "id-ID": id };

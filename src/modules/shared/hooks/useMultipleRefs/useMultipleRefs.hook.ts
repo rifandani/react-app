@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
 function iterator(this: { next(): void; [Symbol.iterator]: () => unknown }) {
   return this;
 }
 
-export default function useMultipleRefs<T>(initialValue: T) {
+export function useMultipleRefs<T>(initialValue: T) {
   return {
     next() {
       return {

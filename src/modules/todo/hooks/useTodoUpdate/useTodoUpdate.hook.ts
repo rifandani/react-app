@@ -1,14 +1,14 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { todoApi, todoKeys } from '@todo/api/todo.api';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { todoApi, todoKeys } from "@todo/api/todo.api";
 import {
   TodoListApiResponseSchema,
   UpdateTodoApiResponseSchema,
   UpdateTodoSchema,
-} from '@todo/api/todo.schema';
-import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
-import { toast } from 'react-toastify';
+} from "@todo/api/todo.schema";
+import { useTodosParams } from "@todo/hooks/useTodos/useTodos.hook";
+import { toast } from "react-toastify";
 
 /**
  * update todo mutation based on `useTodosParams` and show toast
@@ -47,9 +47,9 @@ export const useTodoUpdate = () => {
     },
     mutationFn: (updateTodo) => todoApi.update(updateTodo),
     onSettled: (_updateTodo, error, _variables, context) => {
-      toast[error ? 'error' : 'success'](
-        t(error ? 'xUpdateError' : 'xUpdateSuccess', {
-          feature: 'Todo',
+      toast[error ? "error" : "success"](
+        t(error ? "xUpdateError" : "xUpdateSuccess", {
+          feature: "Todo",
         }),
       );
 

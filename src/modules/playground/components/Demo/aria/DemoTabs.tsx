@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Collection,
@@ -6,14 +6,14 @@ import {
   TabList,
   TabPanel,
   Tabs,
-} from 'react-aria-components';
-import { twJoin } from 'tailwind-merge';
+} from "react-aria-components";
+import { twJoin } from "tailwind-merge";
 
 export default function DemoTabs() {
   const [tabs, setTabs] = React.useState([
-    { id: 1, title: 'Tab 1', content: 'Tab body 1' },
-    { id: 2, title: 'Tab 2', content: 'Tab body 2' },
-    { id: 3, title: 'Tab 3', content: 'Tab body 3' },
+    { id: 1, title: "Tab 1", content: "Tab body 1" },
+    { id: 2, title: "Tab 2", content: "Tab body 2" },
+    { id: 3, title: "Tab 3", content: "Tab body 3" },
   ]);
 
   const addTab = () => {
@@ -45,7 +45,7 @@ export default function DemoTabs() {
             {(item) => (
               <Tab
                 className={({ isSelected }) =>
-                  twJoin('tab', isSelected && 'tab-active')
+                  twJoin("tab", isSelected && "tab-active")
                 }
               >
                 {item.title}

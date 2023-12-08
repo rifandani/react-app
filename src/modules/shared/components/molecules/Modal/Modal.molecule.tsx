@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
-import { Button } from 'react-aria-components';
+import { PropsWithChildren } from "react";
+import { Button } from "react-aria-components";
 
 interface Props extends PropsWithChildren {
   id: string;

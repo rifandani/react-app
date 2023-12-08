@@ -1,1 +1,1 @@
-export default 'test-file';
+export default "test-file";

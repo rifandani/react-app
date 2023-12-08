@@ -1,4 +1,4 @@
-import react from '@assets/images/reactjs.svg';
+import react from "@assets/images/reactjs.svg";
 
 export default function DemoDaisyAvatar() {
   return (

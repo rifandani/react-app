@@ -1,7 +1,7 @@
-import { todosPath } from '@todo/routes/todos.route';
-import { Button } from 'react-aria-components';
-import { Link } from 'react-router-dom';
-import useTodoPageVM from './Todo.vm';
+import { todosPath } from "@todo/routes/todos.route";
+import { Button } from "react-aria-components";
+import { Link } from "react-router-dom";
+import useTodoPageVM from "./Todo.vm";
 
 export default function TodoPage() {
   const { t, user, fetcher, todoQuery, form, onSubmit } = useTodoPageVM();
@@ -14,11 +14,11 @@ export default function TodoPage() {
           aria-label="go-back"
           className="link w-fit normal-case hover:skew-x-12"
         >
-          ⬅ {t('goBackTo', { target: 'Todos' })}
+          ⬅ {t("goBackTo", { target: "Todos" })}
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-wider">
-          {t('xDetail', { feature: 'Todo' })}
+          {t("xDetail", { feature: "Todo" })}
         </h1>
       </div>
 
@@ -28,7 +28,7 @@ export default function TodoPage() {
           className="alert alert-error mt-2 shadow-lg"
         >
           <div className="flex items-center">
-            <span>{t('error', { module: 'Todos' })}:</span>
+            <span>{t("error", { module: "Todos" })}:</span>
             <pre>{JSON.stringify(todoQuery.error, null, 2)}</pre>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default function TodoPage() {
             type="text"
             aria-label="textbox-todo"
             className="input join-item input-bordered input-primary w-full"
-            {...form.register('todo', { required: true })}
+            {...form.register("todo", { required: true })}
           />
 
           {user?.id === todoQuery.data.userId && (
@@ -54,9 +54,9 @@ export default function TodoPage() {
               aria-label="button-submit"
               className="btn btn-primary join-item normal-case disabled:btn-disabled"
               type="submit"
-              isDisabled={fetcher.state === 'submitting'}
+              isDisabled={fetcher.state === "submitting"}
             >
-              {t('update', { icon: '🖋' })}
+              {t("update", { icon: "🖋" })}
             </Button>
           )}
         </form>

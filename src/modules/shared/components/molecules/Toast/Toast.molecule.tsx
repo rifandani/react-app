@@ -1,8 +1,8 @@
-import { Icon } from '@iconify/react';
-import { Button } from 'react-aria-components';
-import { ToastContentProps } from 'react-toastify';
-import { twJoin } from 'tailwind-merge';
-import { ToastData } from './types';
+import { Icon } from "@iconify/react";
+import { Button } from "react-aria-components";
+import { ToastContentProps } from "react-toastify";
+import { twJoin } from "tailwind-merge";
+import { ToastData } from "./types";
 
 /**
  * Custom toast component, instead of using default from `react-toastify`

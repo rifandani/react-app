@@ -1,12 +1,12 @@
-import DaisyModal from '@shared/components/molecules/Modal/Modal.molecule';
-import { useId } from 'react';
+import DaisyModal from "@shared/components/molecules/Modal/Modal.molecule";
+import { useId } from "react";
 import {
   Button,
   Dialog,
   DialogTrigger,
   Modal,
   ModalOverlay,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 function AriaDialog() {
   return (

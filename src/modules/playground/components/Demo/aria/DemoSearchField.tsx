@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { Icon } from "@iconify/react";
+import { useState } from "react";
 import {
   Button,
   Group,
@@ -8,7 +8,7 @@ import {
   SearchField,
   SearchFieldProps,
   Text,
-} from 'react-aria-components';
+} from "react-aria-components";
 
 interface MySearchFieldProps extends SearchFieldProps {
   label?: string;
@@ -47,9 +47,9 @@ function MySearchField({
 }
 
 export default function DemoRadioGroup() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
-  const isInvalid = value === 'invalid';
+  const isInvalid = value === "invalid";
 
   return (
     <section className="flex flex-wrap items-center space-x-3">

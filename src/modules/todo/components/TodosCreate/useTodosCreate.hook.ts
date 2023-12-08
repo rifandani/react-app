@@ -1,22 +1,22 @@
-import { useUserStore } from '@auth/hooks/useUserStore/useUserStore.hook';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { random } from '@rifandani/nxact-yutiriti';
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { useQueryClient } from '@tanstack/react-query';
-import { todoKeys } from '@todo/api/todo.api';
+import { useUserStore } from "@auth/hooks/useUserStore/useUserStore.hook";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { random } from "@rifandani/nxact-yutiriti";
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { useQueryClient } from "@tanstack/react-query";
+import { todoKeys } from "@todo/api/todo.api";
 import {
   CreateTodoApiResponseSchema,
   TodoSchema,
   todoSchema,
-} from '@todo/api/todo.schema';
-import { useTodoCreate } from '@todo/hooks/useTodoCreate/useTodoCreate.hook';
-import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
-import { useCallback } from 'react';
-import { useId } from 'react-aria';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useBeforeUnload, useFetcher } from 'react-router-dom';
-import { toast } from 'react-toastify';
+} from "@todo/api/todo.schema";
+import { useTodoCreate } from "@todo/hooks/useTodoCreate/useTodoCreate.hook";
+import { useTodosParams } from "@todo/hooks/useTodos/useTodos.hook";
+import { useCallback } from "react";
+import { useId } from "react-aria";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useBeforeUnload, useFetcher } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function useTodosCreate() {
   const queryClient = useQueryClient();
@@ -33,7 +33,7 @@ export default function useTodosCreate() {
     resolver: zodResolver(todoSchema),
     defaultValues: {
       id: 1, // we override it later on `onSubmit`
-      todo: '',
+      todo: "",
       userId: 1,
       completed: false,
     },
@@ -52,9 +52,9 @@ export default function useTodosCreate() {
         // reset form
         form.reset();
 
-        toast[error ? 'error' : 'success'](
-          t(error ? 'xCreateError' : 'xCreateSuccess', {
-            feature: 'Todo',
+        toast[error ? "error" : "success"](
+          t(error ? "xCreateError" : "xCreateSuccess", {
+            feature: "Todo",
           }),
         );
 
@@ -76,7 +76,7 @@ export default function useTodosCreate() {
           // preventDefault to block immediately and prompt user async
           evt.preventDefault();
           // eslint-disable-next-line no-param-reassign
-          evt.returnValue = '';
+          evt.returnValue = "";
 
           // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
           const modal = window[modalId] as HTMLDialogElement;

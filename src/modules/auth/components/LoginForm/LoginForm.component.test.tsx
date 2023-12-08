@@ -1,44 +1,44 @@
-import { setupTest } from '@shared/utils/test.util';
-import { fireEvent, screen } from '@testing-library/react';
-import { RouteObject, createMemoryRouter } from 'react-router-dom';
-import { vi } from 'vitest';
-import LoginForm from './LoginForm.component';
+import { setupTest } from "@shared/utils/test.util";
+import { fireEvent, screen } from "@testing-library/react";
+import { RouteObject, createMemoryRouter } from "react-router-dom";
+import { vi } from "vitest";
+import LoginForm from "./LoginForm.component";
 
-describe('LoginForm', () => {
+describe("LoginForm", () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
-      path: '/login',
+      path: "/login",
       element: <LoginForm />,
     },
   ] satisfies RouteObject[];
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/login'],
+    initialEntries: ["/login"],
     initialIndex: 0,
   });
-  const validUsernameValue = 'kminchelle';
-  const validPasswordValue = '0lelplR';
+  const validUsernameValue = "kminchelle";
+  const validPasswordValue = "0lelplR";
   const mockSubmitFn = vi.fn();
 
-  it('should render properly', () => {
+  it("should render properly", () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
-  it('should be able to type the inputs and submit the login form', () => {
+  it("should be able to type the inputs and submit the login form", () => {
     // ARRANGE
     renderProviders(router);
-    const formLogin: HTMLFormElement = screen.getByRole('form', {
+    const formLogin: HTMLFormElement = screen.getByRole("form", {
       name: /login/i,
     });
     const inputUsername: HTMLInputElement =
       screen.getByPlaceholderText(/username/i);
     const inputPassword: HTMLInputElement =
       screen.getByPlaceholderText(/password/i);
-    const buttonSubmit: HTMLButtonElement = screen.getByRole('button', {
+    const buttonSubmit: HTMLButtonElement = screen.getByRole("button", {
       name: /login/i,
     });
-    buttonSubmit.addEventListener('click', mockSubmitFn);
+    buttonSubmit.addEventListener("click", mockSubmitFn);
 
     // ACT & ASSERT
     expect(formLogin).toBeInTheDocument();

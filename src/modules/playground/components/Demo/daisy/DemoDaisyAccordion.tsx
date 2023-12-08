@@ -2,7 +2,7 @@ interface BaseAccordionProps {
   name?: string;
 }
 
-function BaseAccordion({ name = 'base-accordion' }: BaseAccordionProps) {
+function BaseAccordion({ name = "base-accordion" }: BaseAccordionProps) {
   return (
     <div className="collapse-arrow collapse join-item border border-base-300">
       <input className="w-full" type="radio" name={name} />

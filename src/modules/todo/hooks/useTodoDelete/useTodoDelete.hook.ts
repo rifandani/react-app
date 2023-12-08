@@ -1,14 +1,14 @@
-import { ErrorApiResponseSchema } from '@shared/api/api.schema';
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { todoApi, todoKeys } from '@todo/api/todo.api';
+import { ErrorApiResponseSchema } from "@shared/api/api.schema";
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { todoApi, todoKeys } from "@todo/api/todo.api";
 import {
   DeleteTodoApiResponseSchema,
   DeleteTodoSchema,
   TodoListApiResponseSchema,
-} from '@todo/api/todo.schema';
-import { useTodosParams } from '@todo/hooks/useTodos/useTodos.hook';
-import { toast } from 'react-toastify';
+} from "@todo/api/todo.schema";
+import { useTodosParams } from "@todo/hooks/useTodos/useTodos.hook";
+import { toast } from "react-toastify";
 
 /**
  * delete todo mutation based on `useTodosParams` and show toast
@@ -22,7 +22,7 @@ export const useTodoDelete = () => {
   return useMutation<
     DeleteTodoApiResponseSchema,
     ErrorApiResponseSchema,
-    DeleteTodoSchema['id'],
+    DeleteTodoSchema["id"],
     { previousTodosQueryResponse: TodoListApiResponseSchema }
   >({
     // Called before `mutationFn`:
@@ -47,9 +47,9 @@ export const useTodoDelete = () => {
     },
     mutationFn: (id) => todoApi.delete(id),
     onSettled: (_id, error, _variables, context) => {
-      toast[error ? 'error' : 'success'](
-        t(error ? 'xDeleteError' : 'xDeleteSuccess', {
-          feature: 'Todo',
+      toast[error ? "error" : "success"](
+        t(error ? "xDeleteError" : "xDeleteSuccess", {
+          feature: "Todo",
         }),
       );
 

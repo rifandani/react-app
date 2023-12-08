@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface Props<T> {
   each: T[];
@@ -8,7 +8,7 @@ interface Props<T> {
 
 function simpleMap<T>(
   props: Props<T>,
-  wrap: (fn: Props<T>['children'], item: T, i: number) => ReactNode,
+  wrap: (fn: Props<T>["children"], item: T, i: number) => ReactNode,
 ) {
   const list = props.each;
   const len = list.length;

@@ -1,81 +1,31 @@
-# Intro
+# React App
 
 [![DeepScan grade](https://deepscan.io/api/teams/13942/projects/25435/branches/795942/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=25435&bid=795942)
 
-React template built with:
+An opinionated and scalable project starter and reference for building bulletproof production ready React applications.
 
-- `vite` + `typescript` + `eslint` + `prettier` -> development productivity
-- `vitest` + `@testing-library/react` -> unit test, integration test, coverage
-- `msw` -> API response mocking for tests
-- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
-- `@formkit/auto-animate` -> automate transition animation when component mount/unmount
-- `axios` + `@tanstack/react-query` -> server state management + data fetching
-- `zod` -> runtime schema validation
-- `@iconify-icon/react` -> SVG icon on demand
-- `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components like radix-ui
-- `react-hook-form` -> form management
-- `zustand` -> performant global state
-- `react-toastify` -> toast outside of react components
-- `type-fest` -> collection of useful type helpers
-- `ahooks` -> collection of useful react custom hooks
-- `@rifandani/nxact-yutiriti` -> collection of useful utils
-- `@internationalized/date` -> collection of useful date utils
-- `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
+## Intro
 
-## Development
+React is an excellent tool for building front-end applications. It has a diverse ecosystem with hundreds of great libraries for literally anything you might need. However, being forced to make so many choices can be overwhelming. It is also very flexible, you can write React applications in any way you like, but that flexibility comes with a cost. Since there is no pre-defined architecture that developers can follow, it often leads to a messy, inconsistent, and over-complicated codebase.
 
-Rename `.env.development.example` to `.env.development`.
-Rename `.env.staging.example` to `.env.staging`.
-Rename `.env.production.example` to `.env.production`.
+This repo attempts to present a way of creating React applications using some of the best tools in the ecosystem with a good project structure that scales very well. Based on my experience working with different codebases, this architecture turns out to be the most effective.
 
-```bash
-# install deps
-$ pnpm install
+The goal here is to serve as a collection of resources and best practices when developing React applications. It is supposed to showcase solving most of the real-world problems of an application in a practical way and help developers write better applications.
 
-# Runs the app + PWA
-$ pnpm dev
-```
+Feel free to explore the codebase to get the most value out of the repo.
 
-## Testing
+## Table of Contents
 
-We are using MSW v2 which utilize Node v18+. Make sure you install Node v18+, because it has a built-in fetch.
+- [Application Overview](https://github.com/rifandani/react-app/tree/main/docs/application-verview.md)
+- [](https://github.com/rifandani/react-app/tree/main/docs/.md)
 
-```bash
-# run test
-$ pnpm test
+## License
 
-# coverage with instanbul
-$ pnpm test:coverage
-```
+[MIT](https://choosealicense.com/licenses/mit/)
 
-## Build
+## Acknowledgements
 
-```bash
-# build app in "staging" mode
-$ pnpm build:staging
+This project greatly inspired by these awesome projects:
 
-# build app in "production" mode
-$ pnpm build
-```
-
-## Start
-
-PWA relies on [https-localhost](https://github.com/daquinoaldo/https-localhost) to serve the dist files on https://localhost/.
-Please refer to it's docs for the steps to setup your local environment.
-
-```bash
-pnpm start
-```
-
-Open up https://localhost/, then restart the server, you will see a notification ask you to restart reload the offline content.
-
-## Deployment
-
-For now only supports deployment to Vercel.
-Check out `vercel.json` file fo further details.
-
-## Notes
-
-- [ ] fix all tests
-- [ ] add `/docs` folder, including all my decisions why or technical considerations.
-- [ ] add `million.js`. it solves better reconciliation (diffing vnode), while React Forget solves auto memoization (ex: `useMemo`, `useCallback`, `memo`). When I try to use automatic mode in `v2.6.0-beta.16`, my tests breaks because it renders `<slots />` replacing some of optimized components.
+- [Bulletproof React by alan2207](https://github.com/alan2207/bulletproof-react)
+- [Epic Stack by Kent C. Dodds](https://github.com/epicweb-dev/epic-stack)

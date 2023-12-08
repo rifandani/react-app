@@ -1,6 +1,6 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
-import { ToggleButton } from 'react-aria-components';
+import { Icon } from "@iconify/react";
+import { useState } from "react";
+import { ToggleButton } from "react-aria-components";
 
 export default function DemoToggleButton() {
   const [isSelected, setSelected] = useState(false);

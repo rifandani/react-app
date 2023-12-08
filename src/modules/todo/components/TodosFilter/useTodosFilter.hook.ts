@@ -1,7 +1,7 @@
-import useI18n from '@shared/hooks/useI18n/useI18n.hook';
-import { defaultLimit } from '@todo/constants/todos.constant';
-import { ChangeEventHandler } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import useI18n from "@shared/hooks/useI18n/useI18n.hook";
+import { defaultLimit } from "@todo/constants/todos.constant";
+import { ChangeEventHandler } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function useTodosFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +16,7 @@ export default function useTodosFilter() {
     currentTarget,
   }) => {
     // set to url params
-    searchParams.set('limit', currentTarget.value);
+    searchParams.set("limit", currentTarget.value);
     setSearchParams(searchParams);
   };
   // #endregion

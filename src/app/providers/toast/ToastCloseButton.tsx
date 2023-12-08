@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { CloseButtonProps } from 'react-toastify';
+import { Icon } from "@iconify/react";
+import { CloseButtonProps } from "react-toastify";
 
 export default function ToastCloseButton({
   type,
