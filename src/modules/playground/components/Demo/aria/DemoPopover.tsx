@@ -27,7 +27,7 @@ function DaisyPopover() {
 
         <div
           tabIndex={0}
-          className="card dropdown-content compact rounded-box z-[1] w-64 bg-base-100 shadow"
+          className="card dropdown-content compact z-[1] w-64 rounded-box bg-base-100 shadow"
         >
           <div className="card-body">
             <h2 className="card-title">You needed more info?</h2>

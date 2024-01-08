@@ -33,7 +33,7 @@ export default function LoginPage() {
             <p className="py-12 text-center">
               {t("noAccount")}{" "}
               <Link
-                className="link-primary link"
+                className="link link-primary"
                 aria-label="link-register"
                 to="/register"
               >

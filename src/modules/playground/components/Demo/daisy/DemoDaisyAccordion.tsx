@@ -4,7 +4,7 @@ interface BaseAccordionProps {
 
 function BaseAccordion({ name = "base-accordion" }: BaseAccordionProps) {
   return (
-    <div className="collapse-arrow collapse join-item border border-base-300">
+    <div className="collapse join-item collapse-arrow border border-base-300">
       <input className="w-full" type="radio" name={name} />
       <div className="collapse-title text-xl font-medium">
         Click to open this one and close others

@@ -7,7 +7,7 @@ export default function DemoButton() {
         Glass button
       </Button>
 
-      <Button type="button" className="btn btn-primary btn-outline">
+      <Button type="button" className="btn btn-outline btn-primary">
         <span className="loading loading-spinner" />
         Loading
       </Button>

@@ -11,7 +11,7 @@ export default function DemoToggleButton() {
   return (
     <section className="flex flex-wrap items-center gap-3">
       <ToggleButton
-        className="flex w-fit items-center rounded-lg border p-2 focus:ring rac-selected:border-primary-focus rac-selected:bg-primary rac-selected:text-primary-content"
+        className="rac-selected:border-primary-focus flex w-fit items-center rounded-lg border p-2 focus:ring rac-selected:bg-primary rac-selected:text-primary-content"
         isSelected={isSelected}
         onChange={setSelected}
       >

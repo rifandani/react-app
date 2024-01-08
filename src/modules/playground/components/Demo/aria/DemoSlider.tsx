@@ -70,7 +70,7 @@ function MySlider<T extends number | number[]>({
 
                 <SliderThumb
                   className={twMerge(
-                    "h-5 w-5 rounded-full bg-primary rac-focus-visible:ring rac-focus-visible:ring-primary rac-focus-visible:ring-offset-1 rac-dragging:bg-primary-focus",
+                    "rac-dragging:bg-primary-focus h-5 w-5 rounded-full bg-primary rac-focus-visible:ring rac-focus-visible:ring-primary rac-focus-visible:ring-offset-1",
                     orientation === "horizontal" ? "top-1/2" : "left-1/2",
                   )}
                   // eslint-disable-next-line react/no-array-index-key

@@ -9,12 +9,12 @@ export default function DemoDaisyAvatar() {
         </div>
       </div>
       <div className="avatar placeholder online">
-        <div className="w-16 rounded-full bg-neutral-focus text-neutral-content">
+        <div className="bg-neutral-focus w-16 rounded-full text-neutral-content">
           <span className="text-xl">JO</span>
         </div>
       </div>
       <div className="avatar placeholder">
-        <div className="mask mask-diamond w-12 bg-neutral-focus text-neutral-content">
+        <div className="bg-neutral-focus mask mask-diamond w-12 text-neutral-content">
           <span>MX</span>
         </div>
       </div>
@@ -31,7 +31,7 @@ export default function DemoDaisyAvatar() {
           </div>
         </div>
         <div className="avatar placeholder">
-          <div className="w-12 bg-neutral-focus text-neutral-content">
+          <div className="bg-neutral-focus w-12 text-neutral-content">
             <span>+99</span>
           </div>
         </div>

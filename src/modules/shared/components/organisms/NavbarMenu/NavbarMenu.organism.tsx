@@ -26,7 +26,7 @@ export default function NavbarMenu() {
         </NavLink>
       </li>
 
-      <li className="dropdown-top dropdown mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+      <li className="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
         <Button
           type="button"
           aria-label="themes-opener"
@@ -35,7 +35,7 @@ export default function NavbarMenu() {
           {t("theme")}
         </Button>
 
-        <ul className="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-base-200 p-2 shadow lg:w-52">
+        <ul className="menu dropdown-content z-10 block max-h-60 w-72 overflow-y-auto rounded-box bg-base-200 p-2 shadow lg:w-52">
           {themes.map((theme) => (
             <li key={theme}>
               <Button

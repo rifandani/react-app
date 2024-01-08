@@ -226,7 +226,7 @@ function ImageListBox() {
     >
       {(item) => (
         <Item className="avatar" textValue={item.name}>
-          <div className="max-w-24 max-h-24">
+          <div className="max-h-24 max-w-24">
             <img className="" src={item.url} alt="list box" />
           </div>
           <span>{item.name}</span>

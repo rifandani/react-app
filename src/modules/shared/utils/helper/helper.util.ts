@@ -1,6 +1,6 @@
-import { deepReadObject } from "@rifandani/nxact-yutiriti";
-import React from "react";
-import { extendTailwindMerge } from "tailwind-merge";
+import { deepReadObject } from '@rifandani/nxact-yutiriti';
+import React from 'react';
+import { extendTailwindMerge } from 'tailwind-merge';
 
 // declare a type that works with generic components
 type FixedForwardRef = <T, P = object>(
@@ -31,7 +31,7 @@ export const template = (
   params: Record<string, string>,
   reg = /{{(.*?)}}/g,
 ): string =>
-  str.replace(reg, (_, key: string) => deepReadObject(params, key, ""));
+  str.replace(reg, (_, key: string) => deepReadObject(params, key, ''));
 
 export const clamp = ({
   value,
@@ -46,7 +46,7 @@ export const clamp = ({
 /**
  * Check if we are in browser, not server
  */
-export const isBrowser = () => typeof window !== "undefined";
+export const isBrowser = () => typeof window !== 'undefined';
 
 /**
  * Format phone number based on mockup, currently only covered minimum 11 characters and max 15 characters include +62
@@ -55,7 +55,7 @@ export const isBrowser = () => typeof window !== "undefined";
  * @param phoneNumber
  */
 export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
-  if (!phoneNumber) return "";
+  if (!phoneNumber) return '';
   // e.g: +62
   const code = phoneNumber.slice(0, 3);
   const numbers = phoneNumber.slice(3);
@@ -75,9 +75,9 @@ export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
     regexp = /(\d{4})(\d{5,})/;
   }
 
-  const matches = uniqNumber.replace(regexp, "$1-$2");
+  const matches = uniqNumber.replace(regexp, '$1-$2');
 
-  return [code, ndc, matches].join("-");
+  return [code, ndc, matches].join('-');
 };
 
 /**
@@ -85,7 +85,7 @@ export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
  */
 export const toCamelCase = <T>(object: unknown): T => {
   let transformedObject = object as Record<string, unknown>;
-  if (typeof object === "object" && object !== null) {
+  if (typeof object === 'object' && object !== null) {
     if (object instanceof Array) {
       transformedObject = object.map(toCamelCase) as unknown as Record<
         string,
@@ -95,7 +95,7 @@ export const toCamelCase = <T>(object: unknown): T => {
       transformedObject = {};
       Object.keys(object).forEach((key) => {
         if ((object as Record<string, unknown>)[key] !== undefined) {
-          const firstUnderscore = key.replace(/^_/, "");
+          const firstUnderscore = key.replace(/^_/, '');
           const newKey = firstUnderscore.replace(/(_\w)|(-\w)/g, (k) =>
             k[1].toUpperCase(),
           );
@@ -114,7 +114,7 @@ export const toCamelCase = <T>(object: unknown): T => {
  */
 export const toSnakeCase = <T>(object: unknown): T => {
   let transformedObject = object as Record<string, unknown>;
-  if (typeof object === "object" && object !== null) {
+  if (typeof object === 'object' && object !== null) {
     if (object instanceof Array) {
       transformedObject = object.map(toSnakeCase) as unknown as Record<
         string,
@@ -127,9 +127,9 @@ export const toSnakeCase = <T>(object: unknown): T => {
           const newKey = key
             .replace(
               /\.?([A-Z]+)/g,
-              (_, y) => `_${y ? (y as string).toLowerCase() : ""}`,
+              (_, y) => `_${y ? (y as string).toLowerCase() : ''}`,
             )
-            .replace(/^_/, "");
+            .replace(/^_/, '');
           transformedObject[newKey] = toSnakeCase(
             (object as Record<string, unknown>)[key],
           );
@@ -145,19 +145,19 @@ export const toSnakeCase = <T>(object: unknown): T => {
  */
 export const removeLeadingZeros = (value: string) => {
   if (/^([0]{1,})([1-9]{1,})/i.test(value)) {
-    return value.replace(/^(0)/i, "");
+    return value.replace(/^(0)/i, '');
   }
 
-  return value.replace(/^[0]{2,}/i, "0");
+  return value.replace(/^[0]{2,}/i, '0');
 };
 
 /**
  * Remove leading whitespaces
  */
 export const removeLeadingWhitespace = (value?: string) => {
-  if (!value) return "";
+  if (!value) return '';
   if (/^[\s]*$/i.test(value)) {
-    return value.replace(/^[\s]*/i, "");
+    return value.replace(/^[\s]*/i, '');
   }
 
   return value;
@@ -171,10 +171,10 @@ export const removeLeadingWhitespace = (value?: string) => {
  */
 export const doDownload = (url: string) => {
   if (!url) return;
-  const link = document.createElement("a");
+  const link = document.createElement('a');
   link.href = url;
   link.download = url;
-  link.target = "_blank";
+  link.target = '_blank';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -184,18 +184,20 @@ export const doDownload = (url: string) => {
  * create merge function with custom config which extends the default config.
  * Use this if you use the default Tailwind config and just extend it in some places.
  */
-export const tw = extendTailwindMerge({
-  classGroups: {
-    // ↓ The `foo` key here is the class group ID
-    //   ↓ Creates group of classes which have conflicting styles
-    //     Classes here: 'alert-info', 'alert-success', 'alert-warning', 'alert-error'
-    alert: ["alert-info", "alert-success", "alert-warning", "alert-error"],
-  },
-  // ↓ Here you can define additional conflicts across different groups
-  conflictingClassGroups: {
-    // ↓ ID of class group which creates a conflict with…
-    //     ↓ …classes from groups with these IDs
-    // In this case `tw('alert-success alert-error') → 'alert-error'`
-    alert: ["alert"],
+export const tw = extendTailwindMerge<'alert'>({
+  extend: {
+    classGroups: {
+      // ↓ The `foo` key here is the class group ID
+      //   ↓ Creates group of classes which have conflicting styles
+      //     Classes here: 'alert-info', 'alert-success', 'alert-warning', 'alert-error'
+      alert: ['alert-info', 'alert-success', 'alert-warning', 'alert-error'],
+    },
+    // ↓ Here you can define additional conflicts across different groups
+    conflictingClassGroups: {
+      // ↓ ID of class group which creates a conflict with…
+      //     ↓ …classes from groups with these IDs
+      // In this case `tw('alert-success alert-error') → 'alert-error'`
+      alert: ['alert'],
+    },
   },
 });
