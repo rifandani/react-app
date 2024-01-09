@@ -22,8 +22,8 @@ export default function AriaRadio({ className, ...props }: RadioProps) {
             isDisabled
               ? "border-slate-300"
               : isFocusVisible || isSelected
-              ? "group-active:border-primary-focus border-primary"
-              : "border-slate-500 group-active:border-slate-600",
+                ? "group-active:border-primary-focus border-primary"
+                : "border-slate-500 group-active:border-slate-600",
             isFocusVisible && "ring-primary-focus ring",
             isInvalid && "border-error",
           )}

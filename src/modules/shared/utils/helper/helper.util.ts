@@ -52,10 +52,9 @@ export const isBrowser = () => typeof window !== 'undefined';
  * Format phone number based on mockup, currently only covered minimum 11 characters and max 15 characters include +62
  * e.g +62-812-7363-6365
  *
- * @param phoneNumber
+ * @param phoneNumber - input should include "+62"
  */
-export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
-  if (!phoneNumber) return '';
+export const indonesianPhoneNumberFormat = (phoneNumber: string) => {
   // e.g: +62
   const code = phoneNumber.slice(0, 3);
   const numbers = phoneNumber.slice(3);
@@ -164,10 +163,9 @@ export const removeLeadingWhitespace = (value?: string) => {
 };
 
 /**
- * This will works with some rules:
+ * This will works with below rules, otherwise it only view on new tab
  * 1. If the file source located in the same origin as the application.
  * 2. If the file source is on different location e.g s3 bucket, etc. Set the response headers `Content-Disposition: attachment`.
- * Otherwise it only view on new tab.
  */
 export const doDownload = (url: string) => {
   if (!url) return;

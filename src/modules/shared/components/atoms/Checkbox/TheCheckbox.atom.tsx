@@ -48,8 +48,8 @@ export default function TheCheckbox(props: AriaCheckboxProps) {
           props.isDisabled
             ? "border-gray-300"
             : isFocusVisible || state.isSelected
-            ? "border-indigo-500 group-active:border-indigo-600"
-            : "border-gray-500 group-active:border-gray-600",
+              ? "border-indigo-500 group-active:border-indigo-600"
+              : "border-gray-500 group-active:border-gray-600",
           isFocusVisible && "shadow-outline",
         )}
       >

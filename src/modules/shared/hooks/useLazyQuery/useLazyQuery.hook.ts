@@ -1,11 +1,11 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query';
-import { useCallback, useState } from 'react';
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { useCallback, useState } from "react";
 
 /**
  * the lazy version of `useQuery`
  */
 export default function useLazyQuery<TData, TError>(
-  options: Omit<UseQueryOptions<TData, TError>, 'enabled'>,
+  options: Omit<UseQueryOptions<TData, TError>, "enabled">,
 ) {
   const [enabled, setEnabled] = useState(false);
 
