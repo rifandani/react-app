@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import { RouteObject, createMemoryRouter } from 'react-router-dom';
 import { TodosPage } from './todos.page';
 
-describe('TodosPage', () => {
+describe('<TodosPage />', () => {
   const todos = mockTodoListApiResponse();
   const { renderProviders } = setupTest();
   const routes = [
@@ -19,13 +19,12 @@ describe('TodosPage', () => {
     initialIndex: 0,
   });
 
-  // FIXME: TypeError: mutate is not a function
-  it.todo('should render correctly', () => {
+  it('should render correctly', () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
-  // FIXME: TypeError: mutate is not a function
+  // FIXME: Unexpected Application Error, because of react-aria i18n hooks
   it.todo('should render content roles correctly', () => {
     // ARRANGE
     renderProviders(router);

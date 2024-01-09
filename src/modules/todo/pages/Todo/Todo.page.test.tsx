@@ -7,7 +7,7 @@ import { UpdateTodoSchema } from '@todo/schemas/todo.schema';
 import { RouteObject, createMemoryRouter, redirect } from 'react-router-dom';
 import { TodoPage } from './todo.page';
 
-describe('TodoPage', () => {
+describe('<TodoPage />', () => {
   const todo = mockTodo();
   const { renderProviders } = setupTest();
   const routes = [
@@ -32,11 +32,12 @@ describe('TodoPage', () => {
     initialIndex: 0,
   });
 
-  it.todo('should render correctly', () => {
+  it('should render correctly', () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
+  // FIXME: Unexpected Application Error, because of react-aria i18n hooks
   it.todo('should render role contents correctly', () => {
     // ARRANGE
     renderProviders(router);

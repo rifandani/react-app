@@ -6,7 +6,7 @@ import { HttpResponse } from 'msw';
 import { RouteObject, createMemoryRouter } from 'react-router-dom';
 import { TodosList } from './todos-list';
 
-describe('TodosList', () => {
+describe('<TodosList />', () => {
   const { renderProviders } = setupTest();
   const routes = [
     {
@@ -20,14 +20,12 @@ describe('TodosList', () => {
   });
   const loadingId = 'list-loading';
 
-  // FIXME: TypeError: mutate is not a function
-  it.todo('should render properly', () => {
+  it('should render properly', () => {
     const view = renderProviders(router);
     expect(() => view).not.toThrow();
   });
 
-  // FIXME: TypeError: mutate is not a function
-  it.todo('should be able to query and show error alert', async () => {
+  it('should be able to query and show error alert', async () => {
     // ARRANGE
     server.use(
       http.get(

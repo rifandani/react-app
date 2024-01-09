@@ -2,7 +2,7 @@ import { setupTest } from '@shared/utils/test.util';
 import { RouteObject, createMemoryRouter } from 'react-router-dom';
 import { ClockSectionTimer } from './clock-section-timer';
 
-describe('ClockSectionTimer', () => {
+describe('<ClockSectionTimer />', () => {
   const { renderProviders } = setupTest();
   const routes = [
     {

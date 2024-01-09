@@ -5,7 +5,7 @@ import { TodoSchema } from '@todo/schemas/todo.schema';
 import { RouteObject, createMemoryRouter } from 'react-router-dom';
 import { TodosItem } from './todos-item';
 
-describe('TodosItem', () => {
+describe('<TodosItem />', () => {
   const todo: TodoSchema = mockTodo();
   const user = mockLogin({ id: todo.userId });
   const { renderProviders } = setupTest();
