@@ -1,5 +1,5 @@
-import I18nProvider from '@app/providers/i18n/I18nProvider';
-import ToastProvider from '@app/providers/toast/ToastProvider';
+import { AppI18nProvider } from '@app/providers/i18n/provider';
+import { AppToastProvider } from '@app/providers/toast/provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -22,11 +22,11 @@ export const setupTest = () => {
     user: userEvent.setup(),
     providers: render(
       <QueryClientProvider client={queryClientTest}>
-        <I18nProvider>
-          <ToastProvider>
+        <AppI18nProvider>
+          <AppToastProvider>
             <RouterProvider router={router} />
-          </ToastProvider>
-        </I18nProvider>
+          </AppToastProvider>
+        </AppI18nProvider>
       </QueryClientProvider>,
       options,
     ),

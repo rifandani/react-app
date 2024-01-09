@@ -1,10 +1,10 @@
-import { queryClient } from "@app/providers/query/queryClient";
-import { authPath } from "@auth/routes/auth.route";
-import { checkAuthUser } from "@shared/utils/checker/checker.util";
-import { todoApi, todoKeys } from "@todo/api/todo.api";
-import { TodoDetailApiResponseSchema } from "@todo/api/todo.schema";
-import { LoaderFunctionArgs, redirect } from "react-router-dom";
-import { toast } from "react-toastify";
+import { queryClient } from '@app/providers/query/client';
+import { authPath } from '@auth/routes/auth.route';
+import { checkAuthUser } from '@shared/utils/checker.util';
+import { todoApi, todoKeys } from '@todo/apis/todo.api';
+import { TodoDetailApiResponseSchema } from '@todo/schemas/todo.schema';
+import { LoaderFunctionArgs, redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const todoLoader =
   (_queryClient: typeof queryClient) =>
@@ -13,7 +13,7 @@ export const todoLoader =
 
     // redirect NOT authed user to login
     if (!authed) {
-      toast.error("Unauthorized");
+      toast.error('Unauthorized');
       return redirect(authPath.login);
     }
 

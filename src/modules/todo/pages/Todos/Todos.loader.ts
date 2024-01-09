@@ -1,13 +1,13 @@
-import { queryClient } from "@app/providers/query/queryClient";
-import { authPath } from "@auth/routes/auth.route";
-import { ResourceParamsSchema } from "@shared/api/api.schema";
-import { checkAuthUser } from "@shared/utils/checker/checker.util";
-import { todoApi, todoKeys } from "@todo/api/todo.api";
-import { TodoListApiResponseSchema } from "@todo/api/todo.schema";
-import { defaultLimit } from "@todo/constants/todos.constant";
-import { LoaderFunctionArgs, redirect } from "react-router-dom";
-import { toast } from "react-toastify";
-import { SetRequired } from "type-fest";
+import { queryClient } from '@app/providers/query/client';
+import { authPath } from '@auth/routes/auth.route';
+import { ResourceParamsSchema } from '@shared/schemas/api.schema';
+import { checkAuthUser } from '@shared/utils/checker.util';
+import { todoApi, todoKeys } from '@todo/apis/todo.api';
+import { defaultLimit } from '@todo/constants/todos.constant';
+import { TodoListApiResponseSchema } from '@todo/schemas/todo.schema';
+import { LoaderFunctionArgs, redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { SetRequired } from 'type-fest';
 
 export const todosLoader =
   (_queryClient: typeof queryClient) =>
@@ -16,7 +16,7 @@ export const todosLoader =
 
     // redirect NOT authed user to login
     if (!authed) {
-      toast.error("Unauthorized");
+      toast.error('Unauthorized');
       return redirect(authPath.login);
     }
 
@@ -24,7 +24,7 @@ export const todosLoader =
     const searchParams = Object.fromEntries(url.searchParams);
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const limit = Number(searchParams?.limit ?? defaultLimit);
-    const params: SetRequired<ResourceParamsSchema, "limit"> = {
+    const params: SetRequired<ResourceParamsSchema, 'limit'> = {
       ...searchParams,
       limit,
     };

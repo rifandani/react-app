@@ -1,21 +1,21 @@
-import Demo from "@playground/components/Demo/Demo";
-import For from "@shared/components/atoms/For/For.atom";
-import { modes, themes } from "@shared/constants/theme.constant";
-import { useColorMode } from "@shared/hooks/useColorMode/useColorMode.hook";
-import { ComponentPropsWithoutRef } from "react";
-import { Button, Tab, TabList, TabPanel, Tabs } from "react-aria-components";
-import { twJoin } from "tailwind-merge";
+import { Demo } from '@playground/components/demo/demo';
+import { For } from '@shared/components/for/for';
+import { modes, themes } from '@shared/constants/theme.constant';
+import { useColorMode } from '@shared/hooks/use-color-mode.hook';
+import { ComponentPropsWithoutRef } from 'react';
+import { Button, Tab, TabList, TabPanel, Tabs } from 'react-aria-components';
+import { twJoin } from 'tailwind-merge';
 
-export default function Playground() {
+export function PlaygroundPage() {
   const [, setTheme] = useColorMode({
     modes,
-    attribute: "data-theme",
+    attribute: 'data-theme',
   });
 
-  const className: ComponentPropsWithoutRef<typeof Tab>["className"] = ({
+  const tabClassName: ComponentPropsWithoutRef<typeof Tab>['className'] = ({
     isSelected,
     isDisabled,
-  }) => twJoin("tab", isSelected && "tab-active", isDisabled && "tab-disabled");
+  }) => twJoin('tab', isSelected && 'tab-active', isDisabled && 'tab-disabled');
 
   return (
     <main className="flex min-h-screen w-full flex-col">
@@ -50,11 +50,11 @@ export default function Playground() {
           aria-label="Playground"
           className="tabs-boxed tabs mx-auto my-5 flex w-fit justify-center"
         >
-          <Tab id="demo" className={className}>
+          <Tab id="demo" className={tabClassName}>
             Demo
           </Tab>
 
-          <Tab id="playground" className={className}>
+          <Tab id="playground" className={tabClassName}>
             Playground
           </Tab>
         </TabList>

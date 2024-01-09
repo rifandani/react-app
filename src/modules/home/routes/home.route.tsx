@@ -1,23 +1,23 @@
-import { homeLoader } from "@home/pages/Home.loader";
-import NavbarWrapper from "@shared/components/templates/NavbarWrapper/NavbarWrapper.template";
-import RouteErrorBoundary from "@shared/components/templates/RouteErrorBoundary/RouteErrorBoundary.template";
-import { RouteObject } from "react-router-dom";
+import { homeLoader } from '@home/pages/home.loader';
+import { PageWrapper } from '@shared/components/page-wrapper/page-wrapper';
+import { RouteErrorBoundary } from '@shared/components/route-error-boundary/route-error-boundary';
+import { RouteObject } from 'react-router-dom';
 
 export const homeId = {
-  root: "home",
-  index: "home:index",
+  root: 'home',
+  index: 'home:index',
 } as const;
 
 export const homePath = {
-  root: "/",
-  index: "",
+  root: '/',
+  index: '',
 } as const;
 
 const homeIndexRoute = {
   id: homeId.index,
   index: true,
   lazy: async () => {
-    const { default: HomePage } = await import("../pages/Home.page");
+    const { HomePage } = await import('../pages/home.page');
 
     return {
       loader: homeLoader,
@@ -30,6 +30,6 @@ const homeIndexRoute = {
 export const homeRoute = {
   id: homeId.root,
   path: homePath.root,
-  element: <NavbarWrapper />,
+  element: <PageWrapper />,
   children: [homeIndexRoute],
 } satisfies RouteObject;

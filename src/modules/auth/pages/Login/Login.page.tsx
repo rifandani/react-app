@@ -1,12 +1,12 @@
-import reactjs from "@assets/images/reactjs.svg";
-import LoginForm from "@auth/components/LoginForm/LoginForm.component";
-import { homePath } from "@home/routes/home.route";
-import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
-import useLoginPageVM from "./Login.vm";
+import reactjs from '@assets/images/reactjs.svg';
+import { LoginForm } from '@auth/components/login-form/login-form';
+import { homePath } from '@home/routes/home.route';
+import { Icon } from '@iconify/react';
+import { useI18n } from '@shared/hooks/use-i18n.hook';
+import { Link } from 'react-router-dom';
 
-export default function LoginPage() {
-  const { t } = useLoginPageVM();
+export function LoginPage() {
+  const [t] = useI18n();
 
   return (
     <main id="LoginPage" className="h-screen">
@@ -25,19 +25,19 @@ export default function LoginPage() {
 
           <div className="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32">
             <h1 className="text-center text-3xl text-primary">
-              {t("welcome")}
+              {t('welcome')}
             </h1>
 
             <LoginForm />
 
             <p className="py-12 text-center">
-              {t("noAccount")}{" "}
+              {t('noAccount')}{' '}
               <Link
                 className="link link-primary"
                 aria-label="link-register"
                 to="/register"
               >
-                {t("registerHere")}
+                {t('registerHere')}
               </Link>
             </p>
           </div>

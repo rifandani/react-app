@@ -1,10 +1,39 @@
-import { todosPath } from "@todo/routes/todos.route";
-import { Button } from "react-aria-components";
-import { Link } from "react-router-dom";
-import useTodoPageVM from "./Todo.vm";
+import { useUserStore } from '@auth/hooks/use-user-store.hook';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useI18n } from '@shared/hooks/use-i18n.hook';
+import { useTodo } from '@todo/hooks/use-todo.hook';
+import { todosPath } from '@todo/routes/todos.route';
+import {
+  TodoDetailApiResponseSchema,
+  UpdateTodoSchema,
+  updateTodoSchema,
+} from '@todo/schemas/todo.schema';
+import { Button } from 'react-aria-components';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
 
-export default function TodoPage() {
-  const { t, user, fetcher, todoQuery, form, onSubmit } = useTodoPageVM();
+export function TodoPage() {
+  const [t] = useI18n();
+  const { id } = useParams();
+  const fetcher = useFetcher();
+  const initialData = useLoaderData() as TodoDetailApiResponseSchema;
+  const { user } = useUserStore();
+  const todoQuery = useTodo(Number(id), { initialData });
+
+  const form = useForm<UpdateTodoSchema>({
+    resolver: zodResolver(updateTodoSchema),
+    defaultValues: {
+      id: initialData.id,
+      completed: initialData.completed,
+      todo: initialData.todo,
+    },
+  });
+
+  // #region HANDLERS
+  const onSubmit: SubmitHandler<UpdateTodoSchema> = (values) => {
+    fetcher.submit(values, { method: 'PUT', encType: 'application/json' });
+  };
+  // #endregion
 
   return (
     <section className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
@@ -14,11 +43,11 @@ export default function TodoPage() {
           aria-label="go-back"
           className="link w-fit normal-case hover:skew-x-12"
         >
-          ⬅ {t("goBackTo", { target: "Todos" })}
+          ⬅ {t('goBackTo', { target: 'Todos' })}
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-wider">
-          {t("xDetail", { feature: "Todo" })}
+          {t('xDetail', { feature: 'Todo' })}
         </h1>
       </div>
 
@@ -28,7 +57,7 @@ export default function TodoPage() {
           className="alert alert-error mt-2 shadow-lg"
         >
           <div className="flex items-center">
-            <span>{t("error", { module: "Todos" })}:</span>
+            <span>{t('error', { module: 'Todos' })}:</span>
             <pre>{JSON.stringify(todoQuery.error, null, 2)}</pre>
           </div>
         </div>
@@ -46,7 +75,7 @@ export default function TodoPage() {
             type="text"
             aria-label="textbox-todo"
             className="input join-item input-bordered input-primary w-full"
-            {...form.register("todo", { required: true })}
+            {...form.register('todo', { required: true })}
           />
 
           {user?.id === todoQuery.data.userId && (
@@ -54,9 +83,9 @@ export default function TodoPage() {
               aria-label="button-submit"
               className="btn btn-primary join-item normal-case disabled:btn-disabled"
               type="submit"
-              isDisabled={fetcher.state === "submitting"}
+              isDisabled={fetcher.state === 'submitting'}
             >
-              {t("update", { icon: "🖋" })}
+              {t('update', { icon: '🖋' })}
             </Button>
           )}
         </form>

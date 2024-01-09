@@ -80,7 +80,9 @@ export default defineConfig({
   plugins: [
     tsconfigPaths(),
     react(),
-    visualizer() as unknown as PluginOption,
+    visualizer({
+      filename: 'html/visualizer-stats.html',
+    }) as unknown as PluginOption,
     VitePWA(pwaOptions),
     replace(replaceOptions) as unknown as PluginOption,
   ],
