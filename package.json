@@ -14,7 +14,7 @@
     "gen:pwa-assets": "pwa-assets-generator --preset minimal public/favicon.svg",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --project tsconfig.json",
+    "typecheck": "tsc",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
