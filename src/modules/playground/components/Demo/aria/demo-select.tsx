@@ -1,27 +1,26 @@
-import { Icon } from '@iconify/react';
-import { PropsWithChildren, useState } from 'react';
+import { Icon } from '@iconify/react'
+import type { PropsWithChildren } from 'react'
+import { useState } from 'react'
+import type { Key, ListBoxItemProps, SelectProps } from 'react-aria-components'
 import {
   Button,
-  Key,
   Label,
   ListBox,
   ListBoxItem,
-  ListBoxItemProps,
   Popover,
   Select,
-  SelectProps,
   SelectValue,
   Text,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 interface MySelectProps<T extends object>
   extends Omit<SelectProps<T>, 'children'> {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
-  items?: Iterable<T>;
-  children: React.ReactNode | ((item: T) => React.ReactNode);
+  label?: string
+  description?: string
+  errorMessage?: string
+  items?: Iterable<T>
+  children: React.ReactNode | ((item: T) => React.ReactNode)
 }
 
 function MySelect<T extends object>({
@@ -34,12 +33,11 @@ function MySelect<T extends object>({
 }: MySelectProps<T>) {
   return (
     <Select
-      className={(classProps) =>
+      className={classProps =>
         twMerge(
           'group flex flex-col',
           typeof className === 'string' ? className : className?.(classProps),
-        )
-      }
+      )}
       {...props}
     >
       <Label className="cursor-default">{label}</Label>
@@ -64,13 +62,12 @@ function MySelect<T extends object>({
         </ListBox>
       </Popover>
     </Select>
-  );
+  )
 }
 
 function DaisySelect() {
   return (
     <div className="form-control w-full max-w-xs">
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text">Pick the best fantasy franchise</span>
         <span className="label-text-alt">Alt label</span>
@@ -85,13 +82,12 @@ function DaisySelect() {
         <option value="lord-of-the-rings">Lord of the Rings</option>
       </select>
 
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text-alt">Alt label</span>
         <span className="label-text-alt">Alt label</span>
       </label>
     </div>
-  );
+  )
 }
 
 function MyItem(props: PropsWithChildren<ListBoxItemProps>) {
@@ -114,7 +110,7 @@ function MyItem(props: PropsWithChildren<ListBoxItemProps>) {
         </>
       )}
     </ListBoxItem>
-  );
+  )
 }
 
 export function DemoSelect() {
@@ -128,14 +124,17 @@ export function DemoSelect() {
     { id: 7, name: 'Chemical' },
     { id: 8, name: 'Agricultural' },
     { id: 9, name: 'Electrical' },
-  ];
+  ]
 
-  const [selected, setSelected] = useState<Key | null>(null);
+  const [selected, setSelected] = useState<Key | null>(null)
 
   return (
     <section className="flex flex-wrap gap-3 rounded border p-3">
       <div>
-        <p>Current selected major: {selected?.toString()}</p>
+        <p>
+          Current selected major:
+          {selected?.toString()}
+        </p>
         <MySelect
           className="w-[200px] gap-1"
           label="Pick a engineering major"
@@ -143,7 +142,7 @@ export function DemoSelect() {
           selectedKey={selected}
           onSelectionChange={setSelected}
         >
-          {(item) => (
+          {item => (
             <MyItem id={item.id} textValue={item.name}>
               {item.name}
             </MyItem>
@@ -153,5 +152,5 @@ export function DemoSelect() {
 
       <DaisySelect />
     </section>
-  );
+  )
 }

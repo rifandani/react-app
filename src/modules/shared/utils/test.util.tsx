@@ -1,9 +1,10 @@
-import { AppI18nProvider } from '@app/providers/i18n/provider';
-import { AppToastProvider } from '@app/providers/toast/provider';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { RouterProvider, RouterProviderProps } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import type { RouterProviderProps } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
+import { AppToastProvider } from '#app/providers/toast/provider'
+import { AppI18nProvider } from '#app/providers/i18n/provider'
 
 export const queryClientTest = new QueryClient({
   defaultOptions: {
@@ -12,9 +13,9 @@ export const queryClientTest = new QueryClient({
       gcTime: 0,
     },
   },
-});
+})
 
-export const setupTest = () => {
+export function setupTest() {
   const renderProviders = (
     router: RouterProviderProps['router'],
     options?: Parameters<typeof render>[1],
@@ -30,7 +31,7 @@ export const setupTest = () => {
       </QueryClientProvider>,
       options,
     ),
-  });
+  })
 
-  return { renderProviders };
-};
+  return { renderProviders }
+}

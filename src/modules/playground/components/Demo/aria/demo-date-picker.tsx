@@ -1,6 +1,6 @@
-import { isWeekend, parseDateTime } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { useState } from 'react';
+import { isWeekend, parseDateTime } from '@internationalized/date'
+import { useState } from 'react'
+import type { DatePickerProps, DateValue } from 'react-aria-components'
 import {
   Button,
   Calendar,
@@ -11,21 +11,20 @@ import {
   CalendarHeaderCell,
   DateInput,
   DatePicker,
-  DatePickerProps,
   DateSegment,
-  DateValue,
   Dialog,
   Group,
   Heading,
   Label,
   Popover,
   Text,
-} from 'react-aria-components';
+} from 'react-aria-components'
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant'
 
 interface MyDatePickerProps<T extends DateValue> extends DatePickerProps<T> {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  label?: string
+  description?: string
+  errorMessage?: string
 }
 
 function MyDatePicker<T extends DateValue>({
@@ -39,7 +38,7 @@ function MyDatePicker<T extends DateValue>({
       <Label>{label}</Label>
       <Group className="join flex items-center rounded border px-2 py-1">
         <DateInput className="join-item flex min-w-[15rem] items-center">
-          {(segment) => <DateSegment segment={segment} />}
+          {segment => <DateSegment segment={segment} />}
         </DateInput>
         <Button className="join-item">▼</Button>
       </Group>
@@ -67,11 +66,11 @@ function MyDatePicker<T extends DateValue>({
 
             <CalendarGrid className="w-full">
               <CalendarGridHeader>
-                {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+                {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
               </CalendarGridHeader>
 
               <CalendarGridBody className="[&>tr>td]:p-0">
-                {(date) => (
+                {date => (
                   <CalendarCell
                     date={date}
                     className="flex h-11 w-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -89,16 +88,16 @@ function MyDatePicker<T extends DateValue>({
         </Dialog>
       </Popover>
     </DatePicker>
-  );
+  )
 }
 
 export function DemoDatePicker() {
-  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'));
+  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'))
 
   const isInvalid = isWeekend(
     value,
     RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone,
-  );
+  )
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -113,5 +112,5 @@ export function DemoDatePicker() {
         errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
       />
     </section>
-  );
+  )
 }

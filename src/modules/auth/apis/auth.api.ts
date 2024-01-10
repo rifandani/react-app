@@ -1,23 +1,23 @@
-import { ErrorApiResponseSchema } from '@shared/schemas/api.schema';
-import { http } from '@shared/services/http.service';
-import {
+import type {
   LoginApiResponseSchema,
-  type LoginSchema,
-} from '../schemas/auth.schema';
+  LoginSchema,
+} from '../schemas/auth.schema'
+import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema'
+import { http } from '#shared/services/http.service'
 
 export const authApi = {
   login: async (creds: LoginSchema) => {
     const resp = await http.post<
       LoginApiResponseSchema | ErrorApiResponseSchema
-    >(`auth/login`, creds);
+    >(`auth/login`, creds)
 
     // we also can use `parse` here. `parse` will throw if `resp.data` is not correct, and therefore can render `errorElement` if specified
     // const loginApiResponse = loginApiResponseSchema.parse(resp.data);
 
     // set 'Authorization' headers
     if (resp.status === 200 && 'token' in resp.data)
-      http.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
+      http.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`
 
-    return resp.data;
+    return resp.data
   },
-} as const;
+} as const

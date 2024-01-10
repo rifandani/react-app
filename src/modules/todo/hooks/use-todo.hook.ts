@@ -1,30 +1,31 @@
-import { ErrorApiResponseSchema } from '@shared/schemas/api.schema';
-import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { todoApi, todoKeys } from '@todo/apis/todo.api';
-import {
+import type { QueryOptions } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+import type { Except } from 'type-fest'
+import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema'
+import { todoApi, todoKeys } from '#todo/apis/todo.api'
+import type {
   TodoDetailApiResponseSchema,
   TodoSchema,
-} from '@todo/schemas/todo.schema';
-import { Except } from 'type-fest';
+} from '#todo/schemas/todo.schema'
 
 /**
  * fetch todo detail
  *
  * @param id - todo id
  */
-export const useTodo = (
+export function useTodo(
   id: TodoSchema['id'],
   options?: Except<
     QueryOptions<TodoDetailApiResponseSchema, ErrorApiResponseSchema>,
     'queryKey' | 'queryFn'
   >,
-) => {
-  const queryKey = todoKeys.detail(id);
-  const queryFn = () => todoApi.detail(id);
+) {
+  const queryKey = todoKeys.detail(id)
+  const queryFn = () => todoApi.detail(id)
 
   return useQuery({
     ...options,
     queryKey,
     queryFn,
-  });
-};
+  })
+}

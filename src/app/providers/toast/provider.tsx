@@ -1,15 +1,15 @@
-import { PropsWithChildren } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/ReactToastify.css';
-import { ToastContext, createToastContext } from './context';
+import type { PropsWithChildren } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/ReactToastify.css'
+import { ToastContext, createToastContext } from './context'
 
 export function AppToastProvider({ children }: PropsWithChildren) {
-  const value = createToastContext();
+  const value = createToastContext()
 
   return (
     <ToastContext.Provider value={value}>
       {children}
       <ToastContainer {...value[0]} />
     </ToastContext.Provider>
-  );
+  )
 }

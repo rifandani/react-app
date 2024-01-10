@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import { Fragment } from 'react'
 
 interface Props {
-  seconds: number;
-  minutes: number;
-  hours: number;
+  seconds: number
+  minutes: number
+  hours: number
 }
 
 export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
@@ -13,7 +13,7 @@ export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
         <circle className="fill-white stroke-slate-900" r="48" />
 
         {/* <!-- markers --> */}
-        {[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map((minute) => (
+        {[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map(minute => (
           <Fragment key={minute}>
             <line
               className="stroke-slate-700 stroke-1"
@@ -22,7 +22,7 @@ export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
               transform={`rotate(${30 * minute})`}
             />
 
-            {[1, 2, 3, 4].map((offset) => (
+            {[1, 2, 3, 4].map(offset => (
               <line
                 key={offset}
                 className="stroke-slate-500 stroke-1"
@@ -57,5 +57,5 @@ export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
         </g>
       </svg>
     </section>
-  );
+  )
 }

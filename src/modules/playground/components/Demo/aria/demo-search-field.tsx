@@ -1,19 +1,19 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import type { SearchFieldProps } from 'react-aria-components'
 import {
   Button,
   Group,
   Input,
   Label,
   SearchField,
-  SearchFieldProps,
   Text,
-} from 'react-aria-components';
+} from 'react-aria-components'
 
 interface MySearchFieldProps extends SearchFieldProps {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  label?: string
+  description?: string
+  errorMessage?: string
 }
 
 function MySearchField({
@@ -43,13 +43,13 @@ function MySearchField({
         </Text>
       )}
     </SearchField>
-  );
+  )
 }
 
 export function DemoSearchField() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
 
-  const isInvalid = value === 'invalid';
+  const isInvalid = value === 'invalid'
 
   return (
     <section className="flex flex-wrap items-center space-x-3">
@@ -62,5 +62,5 @@ export function DemoSearchField() {
         errorMessage="Do not input invalid value"
       />
     </section>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { Icon } from '@iconify/react';
-import { Button } from 'react-aria-components';
-import { ToastContentProps } from 'react-toastify';
-import { twJoin } from 'tailwind-merge';
-import { ToastData } from './toast.type';
+import { Icon } from '@iconify/react'
+import { Button } from 'react-aria-components'
+import type { ToastContentProps } from 'react-toastify'
+import { twJoin } from 'tailwind-merge'
+import type { ToastData } from './toast.type'
 
 /**
  * Custom toast component, instead of using default from `react-toastify`
@@ -40,5 +40,5 @@ export function Toast({ closeToast, data }: ToastContentProps<ToastData>) {
         </p>
       )}
     </li>
-  );
+  )
 }

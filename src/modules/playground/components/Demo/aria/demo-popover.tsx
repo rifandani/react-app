@@ -1,15 +1,9 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import { Icon } from '@iconify/react';
-import {
-  Button,
-  Dialog,
-  DialogTrigger,
-  Popover,
-  PopoverProps,
-} from 'react-aria-components';
+import { Icon } from '@iconify/react'
+import type { PopoverProps } from 'react-aria-components'
+import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components'
 
 interface MyPopoverProps extends Omit<PopoverProps, 'children'> {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 function DaisyPopover() {
@@ -17,7 +11,6 @@ function DaisyPopover() {
     <div className="flex items-center">
       <p>Daisy popover</p>
       <div className="dropdown dropdown-bottom">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label
           tabIndex={0}
           className="btn btn-circle btn-ghost btn-xs text-info"
@@ -36,7 +29,7 @@ function DaisyPopover() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function MyPopover({ children, ...props }: MyPopoverProps) {
@@ -57,7 +50,7 @@ function MyPopover({ children, ...props }: MyPopoverProps) {
       </OverlayArrow> */}
       <Dialog>{children}</Dialog>
     </Popover>
-  );
+  )
 }
 
 function AriaPopover() {
@@ -90,7 +83,7 @@ function AriaPopover() {
         </MyPopover>
       </DialogTrigger>
     </div>
-  );
+  )
 }
 
 export function DemoPopover() {
@@ -102,5 +95,5 @@ export function DemoPopover() {
 
       <AriaPopover />
     </section>
-  );
+  )
 }

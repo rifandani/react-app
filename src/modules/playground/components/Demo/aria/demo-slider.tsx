@@ -1,17 +1,17 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react'
+import type { SliderProps } from 'react-aria-components'
 import {
   Label,
   Slider,
   SliderOutput,
-  SliderProps,
   SliderThumb,
   SliderTrack,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 interface MySliderProps<T> extends SliderProps<T> {
-  label?: string;
-  thumbLabels?: string[];
+  label?: string
+  thumbLabels?: string[]
 }
 
 function MySlider<T extends number | number[]>({
@@ -22,13 +22,12 @@ function MySlider<T extends number | number[]>({
 }: MySliderProps<T>) {
   return (
     <Slider
-      className={(classProps) =>
+      className={classProps =>
         twMerge(
           'flex flex-col',
           classProps.orientation === 'horizontal' ? 'w-full' : 'h-full',
           typeof className === 'string' ? className : className?.(classProps),
-        )
-      }
+      )}
       {...props}
     >
       {({ state, orientation }) => (
@@ -73,7 +72,6 @@ function MySlider<T extends number | number[]>({
                     'rac-dragging:bg-primary-focus h-5 w-5 rounded-full bg-primary rac-focus-visible:ring rac-focus-visible:ring-primary rac-focus-visible:ring-offset-1',
                     orientation === 'horizontal' ? 'top-1/2' : 'left-1/2',
                   )}
-                  // eslint-disable-next-line react/no-array-index-key
                   key={`slider-thumb-${idx}-${num}`}
                   index={idx}
                   aria-label={thumbLabels?.[idx]}
@@ -84,13 +82,13 @@ function MySlider<T extends number | number[]>({
         </>
       )}
     </Slider>
-  );
+  )
 }
 
 export function DemoSlider() {
-  const [single, setSingle] = useState(20);
-  const [vertical, setVertical] = useState(10);
-  const [double, setDouble] = useState<number[]>([10, 20]);
+  const [single, setSingle] = useState(20)
+  const [vertical, setVertical] = useState(10)
+  const [double, setDouble] = useState<number[]>([10, 20])
 
   return (
     <section className="!mb-56 flex flex-wrap items-center gap-3">
@@ -118,5 +116,5 @@ export function DemoSlider() {
         onChange={setVertical}
       />
     </section>
-  );
+  )
 }

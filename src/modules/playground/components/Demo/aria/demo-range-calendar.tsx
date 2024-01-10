@@ -1,7 +1,6 @@
-import { isWeekend, parseDate } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { RangeValue } from '@shared/types/date.type';
-import { useState } from 'react';
+import { isWeekend, parseDate } from '@internationalized/date'
+import { useState } from 'react'
+import type { DateValue, RangeCalendarProps } from 'react-aria-components'
 import {
   Button,
   CalendarCell,
@@ -9,16 +8,16 @@ import {
   CalendarGridBody,
   CalendarGridHeader,
   CalendarHeaderCell,
-  DateValue,
   Heading,
   RangeCalendar,
-  RangeCalendarProps,
   Text,
-} from 'react-aria-components';
+} from 'react-aria-components'
+import type { RangeValue } from '#shared/types/date.type'
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant'
 
 interface MyRangeCalendarProps<T extends DateValue>
   extends RangeCalendarProps<T> {
-  errorMessage?: string;
+  errorMessage?: string
 }
 
 function MyRangeCalendar<T extends DateValue>({
@@ -35,11 +34,11 @@ function MyRangeCalendar<T extends DateValue>({
 
       <CalendarGrid>
         <CalendarGridHeader>
-          {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+          {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
         </CalendarGridHeader>
 
         <CalendarGridBody className="[&>tr>td]:p-0">
-          {(date) => (
+          {date => (
             <CalendarCell
               date={date}
               className="flex h-11 w-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -54,7 +53,7 @@ function MyRangeCalendar<T extends DateValue>({
         </Text>
       )}
     </RangeCalendar>
-  );
+  )
 }
 
 function MyDoubleRangeCalendar<T extends DateValue>({
@@ -72,11 +71,11 @@ function MyDoubleRangeCalendar<T extends DateValue>({
       <div className="flex items-center gap-5 overflow-auto">
         <CalendarGrid>
           <CalendarGridHeader>
-            {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+            {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
           </CalendarGridHeader>
 
           <CalendarGridBody className="[&>tr>td]:p-0">
-            {(date) => (
+            {date => (
               <CalendarCell
                 date={date}
                 className="flex h-11 w-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -87,11 +86,11 @@ function MyDoubleRangeCalendar<T extends DateValue>({
 
         <CalendarGrid offset={{ months: 1 }}>
           <CalendarGridHeader>
-            {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+            {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
           </CalendarGridHeader>
 
           <CalendarGridBody className="[&>tr>td]:p-0">
-            {(date) => (
+            {date => (
               <CalendarCell
                 date={date}
                 className="flex h-11 w-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -107,7 +106,7 @@ function MyDoubleRangeCalendar<T extends DateValue>({
         </Text>
       )}
     </RangeCalendar>
-  );
+  )
 }
 
 export function DemoRangeCalendar() {
@@ -115,10 +114,10 @@ export function DemoRangeCalendar() {
   const [value, setValue] = useState<RangeValue<DateValue>>({
     start: parseDate('2023-10-09'),
     end: parseDate('2023-10-10'),
-  });
+  })
 
   const isDateUnavailable = (date: DateValue) =>
-    isWeekend(date, RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone);
+    isWeekend(date, RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone)
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -138,5 +137,5 @@ export function DemoRangeCalendar() {
         visibleDuration={{ months: 2 }}
       />
     </section>
-  );
+  )
 }

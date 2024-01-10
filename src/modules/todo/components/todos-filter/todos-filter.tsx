@@ -1,24 +1,23 @@
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { defaultLimit, limits } from '@todo/constants/todos.constant';
-import { ChangeEventHandler } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import type { ChangeEventHandler } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { defaultLimit, limits } from '#todo/constants/todos.constant'
 
 export function TodosFilter() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [t] = useI18n();
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [t] = useI18n()
 
-  const params = Object.fromEntries(searchParams);
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const selectedOption = params?.limit ?? defaultLimit;
+  const params = Object.fromEntries(searchParams)
+  const selectedOption = params?.limit ?? defaultLimit
 
   // #region HANDLERS
   const handleChangeLimit: ChangeEventHandler<HTMLSelectElement> = ({
     currentTarget,
   }) => {
     // set to url params
-    searchParams.set('limit', currentTarget.value);
-    setSearchParams(searchParams);
-  };
+    searchParams.set('limit', currentTarget.value)
+    setSearchParams(searchParams)
+  }
   // #endregion
 
   return (
@@ -38,7 +37,7 @@ export function TodosFilter() {
         value={selectedOption}
         onChange={handleChangeLimit}
       >
-        {limits.map((limit) => (
+        {limits.map(limit => (
           <option
             key={limit}
             data-testid={`option-limit-${limit}`}
@@ -49,5 +48,5 @@ export function TodosFilter() {
         ))}
       </select>
     </form>
-  );
+  )
 }

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useLocalStorageState } from 'ahooks';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useMediaQuery } from './use-media-query.hook';
+import { useLocalStorageState } from 'ahooks'
+import { useCallback, useEffect, useMemo } from 'react'
+import { useMediaQuery } from './use-media-query.hook'
 
-export type BasicColorSchema = BasicColorMode | 'auto';
-export type BasicColorMode = 'light' | 'dark';
+export type BasicColorSchema = BasicColorMode | 'auto'
+export type BasicColorMode = 'light' | 'dark'
 
 export interface UseColorModeOptions<T extends string = BasicColorMode> {
   /**
@@ -12,26 +11,26 @@ export interface UseColorModeOptions<T extends string = BasicColorMode> {
    *
    * @default 'html'
    */
-  selector?: string;
+  selector?: string
 
   /**
    * HTML attribute applying the target element
    *
    * @default 'class'
    */
-  attribute?: string;
+  attribute?: string
 
   /**
    * The initial color mode
    *
    * @default 'auto'
    */
-  initialValue?: T | BasicColorSchema;
+  initialValue?: T | BasicColorSchema
 
   /**
    * Prefix when adding value to the attribute
    */
-  modes?: Partial<Record<T | BasicColorSchema, string>>;
+  modes?: Partial<Record<T | BasicColorSchema, string>>
 
   /**
    * A custom handler for handle the updates.
@@ -42,14 +41,14 @@ export interface UseColorModeOptions<T extends string = BasicColorMode> {
   onChanged?: (
     mode: T | BasicColorMode,
     defaultHandler: (mode: T | BasicColorMode) => void,
-  ) => void;
+  ) => void
 
   /**
    * Key to persist the data into localStorage/sessionStorage.
    *
    * @default 'app-color-scheme'
    */
-  storageKey?: string;
+  storageKey?: string
 
   /**
    * Disable transition on switch
@@ -57,10 +56,10 @@ export interface UseColorModeOptions<T extends string = BasicColorMode> {
    * @see https://paco.me/writing/disable-theme-transitions
    * @default true
    */
-  disableTransition?: boolean;
+  disableTransition?: boolean
 }
 
-const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
+const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)'
 
 /**
  * Reactive color mode with auto data persistence.
@@ -74,12 +73,12 @@ export function useColorMode<T extends string = BasicColorMode>(
     initialValue = 'auto',
     storageKey = 'app-color-scheme',
     disableTransition = true,
-  } = options;
+  } = options
 
   const store = useLocalStorageState(storageKey, {
     defaultValue: initialValue,
-  });
-  const preferredDark = useMediaQuery(COLOR_SCHEME_QUERY);
+  })
+  const preferredDark = useMediaQuery(COLOR_SCHEME_QUERY)
 
   const modes = useMemo(
     () =>
@@ -90,60 +89,65 @@ export function useColorMode<T extends string = BasicColorMode>(
         ...(options.modes ?? {}),
       }) as Record<BasicColorSchema | T, string>,
     [options.modes],
-  );
+  )
   const system = useMemo(
     () => (preferredDark ? 'dark' : 'light'),
     [preferredDark],
-  );
+  )
   const state = useMemo(
     () => (store[0] === 'auto' ? system : store[0])!,
     [store, system],
-  );
+  )
 
   const updateHTMLAttrs = useCallback(
     (_selector: string, _attribute: string, _value: string) => {
-      const el = window.document.querySelector(_selector);
-      if (!el) return;
+      const el = window.document.querySelector(_selector)
+      if (!el)
+        return
 
-      let style: HTMLStyleElement | undefined;
+      let style: HTMLStyleElement | undefined
       if (disableTransition) {
-        style = window.document.createElement('style');
-        const styleString =
-          '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
-        style.appendChild(document.createTextNode(styleString));
-        window.document.head.appendChild(style);
+        style = window.document.createElement('style')
+        const styleString
+          = '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}'
+        style.appendChild(document.createTextNode(styleString))
+        window.document.head.appendChild(style)
       }
 
       if (_attribute === 'class') {
-        const current = _value.split(/\s/g);
+        const current = _value.split(/\s/g)
         Object.values(modes)
-          .flatMap((i) => (i || '').split(/\s/g))
+          .flatMap(i => (i || '').split(/\s/g))
           .filter(Boolean)
           .forEach((v) => {
-            if (current.includes(v)) el.classList.add(v);
-            else el.classList.remove(v);
-          });
-      } else {
-        el.setAttribute(_attribute, _value);
+            if (current.includes(v))
+              el.classList.add(v)
+            else el.classList.remove(v)
+          })
+      }
+      else {
+        el.setAttribute(_attribute, _value)
       }
 
       if (disableTransition) {
         // Calling getComputedStyle forces the browser to redraw
-        (() => window.getComputedStyle(style!).opacity)();
-        document.head.removeChild(style!);
+        (() => window.getComputedStyle(style!).opacity)()
+        document.head.removeChild(style!)
       }
     },
     [disableTransition, modes],
-  );
+  )
 
   useEffect(() => {
-    if (options.onChanged)
+    if (options.onChanged) {
       options.onChanged(state, (mode: T | BasicColorMode) => {
-        updateHTMLAttrs(selector, attribute, modes[mode]);
-      });
-    else updateHTMLAttrs(selector, attribute, modes[state]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attribute, modes, options.onChanged, selector, state, updateHTMLAttrs]);
+        updateHTMLAttrs(selector, attribute, modes[mode])
+      })
+    }
+    else {
+      updateHTMLAttrs(selector, attribute, modes[state])
+    }
+  }, [attribute, modes, options.onChanged, selector, state, updateHTMLAttrs])
 
-  return store;
+  return store
 }

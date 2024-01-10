@@ -1,22 +1,21 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
+import type { AriaCheckboxProps } from 'react-aria'
 import {
-  AriaCheckboxProps,
   VisuallyHidden,
   mergeProps,
   useCheckbox,
   useFocusRing,
-} from 'react-aria';
-import { useToggleState } from 'react-stately';
-import { twMerge } from 'tailwind-merge';
+} from 'react-aria'
+import { useToggleState } from 'react-stately'
+import { twMerge } from 'tailwind-merge'
 
 export function TheCheckbox(props: AriaCheckboxProps) {
-  const state = useToggleState(props);
-  const ref = useRef<HTMLInputElement>(null);
-  const { inputProps } = useCheckbox(props, state, ref);
-  const { focusProps, isFocusVisible } = useFocusRing();
+  const state = useToggleState(props)
+  const ref = useRef<HTMLInputElement>(null)
+  const { inputProps } = useCheckbox(props, state, ref)
+  const { focusProps, isFocusVisible } = useFocusRing()
 
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className="group flex items-center gap-3"
       aria-label="label-checkbox"
@@ -67,5 +66,5 @@ export function TheCheckbox(props: AriaCheckboxProps) {
         </svg>
       </div>
     </label>
-  );
+  )
 }

@@ -1,26 +1,28 @@
-import { useUserStore } from '@auth/hooks/use-user-store.hook';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { random } from '@rifandani/nxact-yutiriti';
-import { Modal as DaisyModal } from '@shared/components/modal/modal';
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { useQueryClient } from '@tanstack/react-query';
-import { todoKeys } from '@todo/apis/todo.api';
-import { useTodoCreate } from '@todo/hooks/use-todo-create.hook';
-import { useTodosParams } from '@todo/hooks/use-todos.hook';
-import { TodoSchema, todoSchema } from '@todo/schemas/todo.schema';
-import { useCallback, useId } from 'react';
-import { Button } from 'react-aria-components';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useBeforeUnload } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { random } from '@rifandani/nxact-yutiriti'
+import { useQueryClient } from '@tanstack/react-query'
+import { useCallback, useId } from 'react'
+import { Button } from 'react-aria-components'
+import type { SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useBeforeUnload } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { todoSchema } from '#todo/schemas/todo.schema'
+import type { TodoSchema } from '#todo/schemas/todo.schema'
+import { useTodosParams } from '#todo/hooks/use-todos.hook'
+import { useTodoCreate } from '#todo/hooks/use-todo-create.hook'
+import { todoKeys } from '#todo/apis/todo.api'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { Modal as DaisyModal } from '#shared/components/modal/modal'
+import { useUserStore } from '#auth/hooks/use-user-store.hook'
 
 export function TodosCreate() {
-  const queryClient = useQueryClient();
-  const [t] = useI18n();
-  const { user } = useUserStore();
-  const params = useTodosParams();
-  const todoCreateMutation = useTodoCreate();
-  const modalId = useId();
+  const queryClient = useQueryClient()
+  const [t] = useI18n()
+  const { user } = useUserStore()
+  const params = useTodosParams()
+  const todoCreateMutation = useTodoCreate()
+  const modalId = useId()
 
   const form = useForm<TodoSchema>({
     resolver: zodResolver(todoSchema),
@@ -30,7 +32,7 @@ export function TodosCreate() {
       userId: 1,
       completed: false,
     },
-  });
+  })
 
   // #region HANDLERS
   const onSubmit: SubmitHandler<TodoSchema> = (data) => {
@@ -38,28 +40,29 @@ export function TodosCreate() {
       ...data,
       userId: user?.id ?? 1,
       id: random(11, 999_999), // generate different id everytime
-    };
+    }
 
     todoCreateMutation.mutate(payload, {
       onSettled: (_newTodo, error, _variables, context) => {
         // reset form
-        form.reset();
+        form.reset()
 
         toast[error ? 'error' : 'success'](
           t(error ? 'xCreateError' : 'xCreateSuccess', {
             feature: 'Todo',
           }),
-        );
+        )
 
         // If the mutation fails, use the context returned from `onMutate` to roll back
-        if (error)
+        if (error) {
           queryClient.setQueryData(
             todoKeys.list(params),
             context?.previousTodosQueryResponse,
-          );
+          )
+        }
       },
-    });
-  };
+    })
+  }
   // #endregion
 
   useBeforeUnload(
@@ -67,18 +70,18 @@ export function TodosCreate() {
       (evt) => {
         if (!evt.defaultPrevented && !!form.getValues().todo) {
           // preventDefault to block immediately and prompt user async
-          evt.preventDefault();
-          // eslint-disable-next-line no-param-reassign
-          evt.returnValue = '';
+          evt.preventDefault()
+
+          evt.returnValue = ''
 
           // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-          const modal = window[modalId] as HTMLDialogElement;
-          modal.showModal();
+          const modal = window[modalId] as HTMLDialogElement
+          modal.showModal()
         }
       },
       [form, modalId],
     ),
-  );
+  )
 
   return (
     <>
@@ -90,7 +93,6 @@ export function TodosCreate() {
       <form
         aria-label="form-add"
         className="form-control mb-3 w-full duration-300 lg:flex-row"
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <input
@@ -112,5 +114,5 @@ export function TodosCreate() {
         </Button>
       </form>
     </>
-  );
+  )
 }

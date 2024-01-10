@@ -1,23 +1,25 @@
-import {
+import type {
   ErrorApiResponseSchema,
   ResourceParamsSchema,
-} from '../../shared/schemas/api.schema';
-import { http } from '../../shared/services/http.service';
+} from '../../shared/schemas/api.schema'
+import { http } from '../../shared/services/http.service'
 import {
-  CreateTodoApiResponseSchema,
-  DeleteTodoApiResponseSchema,
-  TodoDetailApiResponseSchema,
-  TodoListApiResponseSchema,
-  UpdateTodoApiResponseSchema,
   createTodoApiResponseSchema,
   deleteTodoApiResponseSchema,
   todoDetailApiResponseSchema,
   todoListApiResponseSchema,
   updateTodoApiResponseSchema,
-  type CreateTodoSchema,
-  type TodoSchema,
-  type UpdateTodoSchema,
-} from '../schemas/todo.schema';
+} from '../schemas/todo.schema'
+import type {
+  CreateTodoApiResponseSchema,
+  CreateTodoSchema,
+  DeleteTodoApiResponseSchema,
+  TodoDetailApiResponseSchema,
+  TodoListApiResponseSchema,
+  TodoSchema,
+  UpdateTodoApiResponseSchema,
+  UpdateTodoSchema,
+} from '../schemas/todo.schema'
 
 export const todoKeys = {
   all: ['todos'] as const,
@@ -26,43 +28,43 @@ export const todoKeys = {
     [...todoKeys.lists(), params] as const,
   details: () => [...todoKeys.all, 'detail'] as const,
   detail: (id: TodoSchema['id']) => [...todoKeys.details(), id] as const,
-};
+}
 
 export const todoApi = {
   list: async (params: ResourceParamsSchema) => {
     const resp = await http.get<
       TodoListApiResponseSchema | ErrorApiResponseSchema
-    >('todos', { params });
+    >('todos', { params })
 
     // `parse` will throw if `resp.data` is not correct, and therefore can render `errorElement` if specified
-    return todoListApiResponseSchema.parse(resp.data);
+    return todoListApiResponseSchema.parse(resp.data)
   },
   detail: async (id: TodoSchema['id']) => {
     const resp = await http.get<
       TodoDetailApiResponseSchema | ErrorApiResponseSchema
-    >(`todos/${id}`);
+    >(`todos/${id}`)
 
-    return todoDetailApiResponseSchema.parse(resp.data);
+    return todoDetailApiResponseSchema.parse(resp.data)
   },
   create: async (todo: CreateTodoSchema) => {
     const resp = await http.post<
       CreateTodoApiResponseSchema | ErrorApiResponseSchema
-    >(`todos/add`, todo);
+    >(`todos/add`, todo)
 
-    return createTodoApiResponseSchema.parse(resp.data);
+    return createTodoApiResponseSchema.parse(resp.data)
   },
   update: async ({ id, ...body }: UpdateTodoSchema) => {
     const resp = await http.put<
       UpdateTodoApiResponseSchema | ErrorApiResponseSchema
-    >(`todos/${id}`, body);
+    >(`todos/${id}`, body)
 
-    return updateTodoApiResponseSchema.parse(resp.data);
+    return updateTodoApiResponseSchema.parse(resp.data)
   },
   delete: async (id: TodoSchema['id']) => {
     const resp = await http.delete<
       DeleteTodoApiResponseSchema | ErrorApiResponseSchema
-    >(`todos/${id}`);
+    >(`todos/${id}`)
 
-    return deleteTodoApiResponseSchema.parse(resp.data);
+    return deleteTodoApiResponseSchema.parse(resp.data)
   },
-} as const;
+} as const

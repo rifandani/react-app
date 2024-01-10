@@ -1,16 +1,14 @@
-import { HttpResponse, http } from 'msw';
-import {
-  ResourceParamsSchema,
-  resourceParamsSchema,
-} from '../../../modules/shared/schemas/api.schema';
+import { HttpResponse, http } from 'msw'
+import type { ResourceParamsSchema } from '../../../modules/shared/schemas/api.schema'
+import { resourceParamsSchema } from '../../../modules/shared/schemas/api.schema'
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '../../../modules/todo/schemas/todo.schema';
-import { getBaseUrl } from '../../util.mock';
-import { mockTodo } from '../entities.http';
+} from '../../../modules/todo/schemas/todo.schema'
+import { getBaseUrl } from '../../util.mock'
+import { mockTodo } from '../entities.http'
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>
@@ -19,8 +17,7 @@ function getTodos(length: number) {
       userId: idx + 1,
       todo: `Todo title ${idx + 1}`,
       completed: idx % 2 === 0,
-    }),
-  );
+    }))
 }
 
 // mock 10 Todo entity
@@ -30,21 +27,20 @@ let todos = Array.from({ length: 10 }, (_, idx) =>
     userId: idx + 1,
     todo: `Todo title ${idx + 1}`,
     completed: idx % 2 === 0,
-  }),
-);
+  }))
 
 export const todoHandlers = [
   http.get(getBaseUrl('todos'), ({ request }) => {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url)
     const searchParamsObject = Object.fromEntries(
       searchParams,
-    ) as ResourceParamsSchema;
-    const hasSearchParams = !!Object.keys(searchParamsObject).length;
+    ) as ResourceParamsSchema
+    const hasSearchParams = !!Object.keys(searchParamsObject).length
 
-    const parsedSearchParams =
-      resourceParamsSchema.safeParse(searchParamsObject);
+    const parsedSearchParams
+      = resourceParamsSchema.safeParse(searchParamsObject)
 
-    if (!hasSearchParams || !parsedSearchParams.success)
+    if (!hasSearchParams || !parsedSearchParams.success) {
       return HttpResponse.json(
         {
           todos: getTodos(10),
@@ -53,10 +49,11 @@ export const todoHandlers = [
           total: 150,
         },
         { status: 200 },
-      );
+      )
+    }
 
-    const limit = parsedSearchParams.data.limit ?? 10;
-    const skip = parsedSearchParams.data.skip ?? 0;
+    const limit = parsedSearchParams.data.limit ?? 10
+    const skip = parsedSearchParams.data.skip ?? 0
 
     return HttpResponse.json(
       {
@@ -66,19 +63,19 @@ export const todoHandlers = [
         total: 150,
       },
       { status: 200 },
-    );
+    )
   }),
 
   // @ts-expect-error ignore
   http.post(getBaseUrl('todos/add'), async ({ request }) => {
-    const todoPayload = (await request.json()) as CreateTodoSchema;
-    const todoId = todos.at(-1)?.id;
+    const todoPayload = (await request.json()) as CreateTodoSchema
+    const todoId = todos.at(-1)?.id
 
     if (todoId) {
-      const newTodo: TodoSchema = todoPayload;
-      todos = [newTodo, ...todos];
+      const newTodo: TodoSchema = todoPayload
+      todos = [newTodo, ...todos]
 
-      return HttpResponse.json(todoPayload, { status: 201 });
+      return HttpResponse.json(todoPayload, { status: 201 })
     }
 
     return HttpResponse.json(
@@ -86,28 +83,28 @@ export const todoHandlers = [
         message: `ooppss, unknown error occurred`,
       },
       { status: 400 },
-    );
+    )
   }),
 
   // @ts-expect-error ignore
   http.put(getBaseUrl('todos/:id'), async ({ request, params }) => {
-    const todoPayload = (await request.json()) as UpdateTodoSchema;
-    const { id } = params;
-    const todoId = parseInt(id as string, 10);
+    const todoPayload = (await request.json()) as UpdateTodoSchema
+    const { id } = params
+    const todoId = Number.parseInt(id as string, 10)
 
-    const todo = todos.find((_todo) => _todo.id === todoId);
+    const todo = todos.find(_todo => _todo.id === todoId)
 
     if (todo) {
-      todos = todos.map((_todo) =>
+      todos = todos.map(_todo =>
         _todo.id === todo.id
           ? { ..._todo, completed: todoPayload.completed }
           : _todo,
-      );
+      )
 
       return HttpResponse.json(
         { ...todo, completed: todoPayload.completed },
         { status: 200 },
-      );
+      )
     }
 
     return HttpResponse.json(
@@ -115,26 +112,26 @@ export const todoHandlers = [
         message: `there is no todo with id: ${todoId}`,
       },
       { status: 404 },
-    );
+    )
   }),
 
   // @ts-expect-error ignore
   http.delete(getBaseUrl('todos/:id'), ({ params }) => {
-    const { id } = params;
-    const todoId = parseInt(id as string, 10);
+    const { id } = params
+    const todoId = Number.parseInt(id as string, 10)
 
-    const todo = todos.find((_todo) => _todo.id === todoId);
+    const todo = todos.find(_todo => _todo.id === todoId)
 
     if (todo) {
-      todos = todos.filter((_todo) => _todo.id !== todo.id);
+      todos = todos.filter(_todo => _todo.id !== todo.id)
 
       const deleteResponse: DeleteTodoApiResponseSchema = {
         ...todo,
         isDeleted: true,
         deletedOn: new Date().toISOString(),
-      };
+      }
 
-      return HttpResponse.json(deleteResponse, { status: 200 });
+      return HttpResponse.json(deleteResponse, { status: 200 })
     }
 
     return HttpResponse.json(
@@ -142,6 +139,6 @@ export const todoHandlers = [
         message: `there is no todo with id: ${todoId}`,
       },
       { status: 404 },
-    );
+    )
   }),
-];
+]

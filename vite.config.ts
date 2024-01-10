@@ -1,11 +1,15 @@
 /// <reference types="vitest" />
-import replace, { RollupReplaceOptions } from '@rollup/plugin-replace';
-import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
-import { defineConfig, type PluginOption } from 'vite';
-import { ManifestOptions, VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import { configDefaults } from 'vitest/config';
+import { fileURLToPath } from 'node:url'
+import process from 'node:process'
+import type { RollupReplaceOptions } from '@rollup/plugin-replace'
+import replace from '@rollup/plugin-replace'
+import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
+import { type PluginOption, defineConfig } from 'vite'
+import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import { configDefaults } from 'vitest/config'
 
 const pwaOptions: Partial<VitePWAOptions> = {
   mode: 'development',
@@ -46,29 +50,32 @@ const pwaOptions: Partial<VitePWAOptions> = {
   //     '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
   //   ],
   // },
-};
+}
 
 const replaceOptions: RollupReplaceOptions = {
   __DATE__: new Date().toISOString(),
-};
-const sw = process.env.SW === 'true';
-const claims = process.env.CLAIMS === 'true';
-const reload = process.env.RELOAD_SW === 'true';
-const selfDestroying = process.env.SW_DESTROY === 'true';
+}
+const sw = process.env.SW === 'true'
+const claims = process.env.CLAIMS === 'true'
+const reload = process.env.RELOAD_SW === 'true'
+const selfDestroying = process.env.SW_DESTROY === 'true'
 
 if (sw) {
-  pwaOptions.srcDir = 'src';
-  pwaOptions.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts';
+  pwaOptions.srcDir = 'src'
+  pwaOptions.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts'
   pwaOptions.strategies = 'injectManifest';
-  (pwaOptions.manifest as Partial<ManifestOptions>).name =
-    'PWA Inject Manifest';
-  (pwaOptions.manifest as Partial<ManifestOptions>).short_name = 'PWA Inject';
+  (pwaOptions.manifest as Partial<ManifestOptions>).name
+    = 'PWA Inject Manifest';
+  (pwaOptions.manifest as Partial<ManifestOptions>).short_name = 'PWA Inject'
 }
 
-if (claims) pwaOptions.registerType = 'autoUpdate';
-// eslint-disable-next-line no-underscore-dangle
-if (reload) replaceOptions.__RELOAD_SW__ = 'true';
-if (selfDestroying) pwaOptions.selfDestroying = selfDestroying;
+if (claims)
+  pwaOptions.registerType = 'autoUpdate'
+
+if (reload)
+  replaceOptions.__RELOAD_SW__ = 'true'
+if (selfDestroying)
+  pwaOptions.selfDestroying = selfDestroying
 
 export default defineConfig({
   server: {
@@ -78,7 +85,7 @@ export default defineConfig({
     sourcemap: process.env.SOURCE_MAP === 'true',
   },
   plugins: [
-    tsconfigPaths(),
+    tsconfigPaths({ loose: true }),
     react(),
     visualizer({
       filename: 'html/visualizer-stats.html',
@@ -87,6 +94,7 @@ export default defineConfig({
     replace(replaceOptions) as unknown as PluginOption,
   ],
   test: {
+    root: fileURLToPath(new URL('./', import.meta.url)),
     // to see how your tests are running in real time in the terminal, add "default"
     // to generate HTML output and preview the results of your tests, add "html"
     reporters: ['default', 'html'],
@@ -127,4 +135,4 @@ export default defineConfig({
       ],
     },
   },
-});
+})

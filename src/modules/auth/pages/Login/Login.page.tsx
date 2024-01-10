@@ -1,12 +1,12 @@
-import reactjs from '@assets/images/reactjs.svg';
-import { LoginForm } from '@auth/components/login-form/login-form';
-import { homePath } from '@home/routes/home.route';
-import { Icon } from '@iconify/react';
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react'
+import { Link } from 'react-router-dom'
+import reactjs from '#assets/images/reactjs.svg'
+import { LoginForm } from '#auth/components/login-form/login-form'
+import { homePath } from '#home/routes/home.route'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
 
 export function LoginPage() {
-  const [t] = useI18n();
+  const [t] = useI18n()
 
   return (
     <main id="LoginPage" className="h-screen">
@@ -31,7 +31,8 @@ export function LoginPage() {
             <LoginForm />
 
             <p className="py-12 text-center">
-              {t('noAccount')}{' '}
+              {t('noAccount')}
+              {' '}
               <Link
                 className="link link-primary"
                 aria-label="link-register"
@@ -57,5 +58,5 @@ export function LoginPage() {
         </section>
       </div>
     </main>
-  );
+  )
 }

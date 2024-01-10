@@ -1,4 +1,4 @@
-import react from '@assets/images/reactjs.svg';
+import react from '#assets/images/reactjs.svg'
 
 export function DemoDaisyAvatar() {
   return (
@@ -37,5 +37,5 @@ export function DemoDaisyAvatar() {
         </div>
       </div>
     </section>
-  );
+  )
 }

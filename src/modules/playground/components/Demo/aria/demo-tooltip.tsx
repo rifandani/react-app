@@ -1,14 +1,14 @@
+import type { TooltipProps } from 'react-aria-components'
 import {
   Button,
   OverlayArrow,
   Tooltip,
-  TooltipProps,
   TooltipTrigger,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+} from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 interface MyTooltipProps extends Omit<TooltipProps, 'children'> {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 function DaisyTooltip() {
@@ -18,26 +18,25 @@ function DaisyTooltip() {
         Daisy
       </button>
     </div>
-  );
+  )
 }
 
 function MyTooltip({ children, className, ...props }: MyTooltipProps) {
   return (
     <Tooltip
-      className={(classProps) =>
+      className={classProps =>
         twMerge(
           'rounded-md outline outline-1 outline-black rac-entering:animate-in rac-entering:fade-in-0 rac-exiting:animate-out rac-exiting:fade-out-0',
-          classProps.placement === 'left' &&
-            'rac-entering:slide-in-from-right-1 rac-exiting:slide-in-from-left-1',
-          classProps.placement === 'right' &&
-            'rac-entering:slide-in-from-left-1 rac-exiting:slide-in-from-right-1',
-          classProps.placement === 'top' &&
-            'rac-entering:slide-in-from-bottom-1 rac-exiting:slide-in-from-top-1',
-          classProps.placement === 'bottom' &&
-            'rac-entering:slide-in-from-top-1 rac-exiting:slide-in-from-bottom-1',
+          classProps.placement === 'left'
+          && 'rac-entering:slide-in-from-right-1 rac-exiting:slide-in-from-left-1',
+          classProps.placement === 'right'
+          && 'rac-entering:slide-in-from-left-1 rac-exiting:slide-in-from-right-1',
+          classProps.placement === 'top'
+          && 'rac-entering:slide-in-from-bottom-1 rac-exiting:slide-in-from-top-1',
+          classProps.placement === 'bottom'
+          && 'rac-entering:slide-in-from-top-1 rac-exiting:slide-in-from-bottom-1',
           typeof className === 'string' ? className : className?.(classProps),
-        )
-      }
+      )}
       {...props}
     >
       {({ placement }) => (
@@ -60,7 +59,7 @@ function MyTooltip({ children, className, ...props }: MyTooltipProps) {
         </>
       )}
     </Tooltip>
-  );
+  )
 }
 
 export function DemoTooltip() {
@@ -91,5 +90,5 @@ export function DemoTooltip() {
         </MyTooltip>
       </TooltipTrigger>
     </section>
-  );
+  )
 }

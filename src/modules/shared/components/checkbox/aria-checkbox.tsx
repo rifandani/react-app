@@ -1,15 +1,15 @@
-import { Checkbox, CheckboxProps } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import type { CheckboxProps } from 'react-aria-components'
+import { Checkbox } from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 export function AriaCheckbox({ className, ...props }: CheckboxProps) {
   return (
     <Checkbox
-      className={(classProps) =>
+      className={classProps =>
         twMerge(
           'group flex items-center',
           typeof className === 'string' ? className : className?.(classProps),
-        )
-      }
+      )}
       {...props}
     >
       {({
@@ -40,31 +40,33 @@ export function AriaCheckbox({ className, ...props }: CheckboxProps) {
             aria-hidden="true"
             viewBox="0 0 18 18"
           >
-            {isIndeterminate ? (
-              <rect
-                x={1}
-                y={7.5}
-                width={15}
-                height={3}
-                style={{
-                  transition: 'all 400ms',
-                }}
-              />
-            ) : (
-              <polyline
-                points="1 9 7 14 15 4"
-                fill="none"
-                strokeWidth={3}
-                strokeDasharray={22}
-                strokeDashoffset={isSelected ? 44 : 66}
-                style={{
-                  transition: 'all 400ms',
-                }}
-              />
-            )}
+            {isIndeterminate
+              ? (
+                <rect
+                  x={1}
+                  y={7.5}
+                  width={15}
+                  height={3}
+                  style={{
+                    transition: 'all 400ms',
+                  }}
+                />
+                )
+              : (
+                <polyline
+                  points="1 9 7 14 15 4"
+                  fill="none"
+                  strokeWidth={3}
+                  strokeDasharray={22}
+                  strokeDashoffset={isSelected ? 44 : 66}
+                  style={{
+                    transition: 'all 400ms',
+                  }}
+                />
+                )}
           </svg>
         </div>
       )}
     </Checkbox>
-  );
+  )
 }

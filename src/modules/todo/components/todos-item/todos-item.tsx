@@ -1,33 +1,34 @@
-import { useUserStore } from '@auth/hooks/use-user-store.hook';
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { useTodoDelete } from '@todo/hooks/use-todo-delete.hook';
-import { useTodoUpdate } from '@todo/hooks/use-todo-update.hook';
-import { TodoSchema } from '@todo/schemas/todo.schema';
-import { FormEvent } from 'react';
-import { Button } from 'react-aria-components';
-import { Link } from 'react-router-dom';
-import { twJoin } from 'tailwind-merge';
+import type { FormEvent } from 'react'
+import { Button } from 'react-aria-components'
+import { Link } from 'react-router-dom'
+import { twJoin } from 'tailwind-merge'
+import { useUserStore } from '#auth/hooks/use-user-store.hook'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook'
+import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook'
+import type { TodoSchema } from '#todo/schemas/todo.schema'
 
 interface Props {
-  todo: TodoSchema;
+  todo: TodoSchema
 }
 
 export function TodosItem({ todo }: Props) {
-  const [t] = useI18n();
-  const { user } = useUserStore();
-  const updateTodoMutation = useTodoUpdate();
-  const deleteTodoMutation = useTodoDelete();
+  const [t] = useI18n()
+  const { user } = useUserStore()
+  const updateTodoMutation = useTodoUpdate()
+  const deleteTodoMutation = useTodoDelete()
 
   // #region HANDLERS
   const handleUpdateTodo = (_todo: TodoSchema) => {
-    updateTodoMutation.mutate({ ..._todo, completed: !_todo.completed });
-  };
+    updateTodoMutation.mutate({ ..._todo, completed: !_todo.completed })
+  }
 
   const onSubmit = (_todo: TodoSchema) => (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+    evt.preventDefault()
     // only allow for the correct auth user
-    if (_todo.userId === user?.id) deleteTodoMutation.mutate(_todo.id);
-  };
+    if (_todo.userId === user?.id)
+      deleteTodoMutation.mutate(_todo.id)
+  }
   // #endregion
 
   return (
@@ -53,7 +54,7 @@ export function TodosItem({ todo }: Props) {
         name={`todo-${todo.id}`}
         checked={todo.completed}
         onChange={() => {
-          handleUpdateTodo(todo);
+          handleUpdateTodo(todo)
         }}
       />
 
@@ -78,5 +79,5 @@ export function TodosItem({ todo }: Props) {
         </Button>
       )}
     </form>
-  );
+  )
 }

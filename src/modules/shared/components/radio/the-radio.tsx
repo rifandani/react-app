@@ -1,28 +1,18 @@
-import React from 'react';
-import {
-  AriaRadioProps,
-  VisuallyHidden,
-  useFocusRing,
-  useRadio,
-} from 'react-aria';
-import { twMerge } from 'tailwind-merge';
-import { RadioContext } from './context';
+import React from 'react'
+import type { AriaRadioProps } from 'react-aria'
+import { VisuallyHidden, useFocusRing, useRadio } from 'react-aria'
+import { twMerge } from 'tailwind-merge'
+import { RadioContext } from './context'
 
 export function TheRadio(props: AriaRadioProps) {
-  const { children } = props;
-  const state = React.useContext(RadioContext);
-  const ref = React.useRef(null);
-  const { inputProps, isSelected, isDisabled } = useRadio(
-    props,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    state!,
-    ref,
-  );
-  const { isFocusVisible, focusProps } = useFocusRing();
-  const strokeWidth = isSelected ? 6 : 2;
+  const { children } = props
+  const state = React.useContext(RadioContext)
+  const ref = React.useRef(null)
+  const { inputProps, isSelected, isDisabled } = useRadio(props, state!, ref)
+  const { isFocusVisible, focusProps } = useFocusRing()
+  const strokeWidth = isSelected ? 6 : 2
 
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className={twMerge(
         'flex items-center opacity-100',
@@ -55,5 +45,5 @@ export function TheRadio(props: AriaRadioProps) {
       </svg>
       {children}
     </label>
-  );
+  )
 }

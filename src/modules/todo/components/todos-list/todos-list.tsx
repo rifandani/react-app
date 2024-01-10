@@ -1,15 +1,15 @@
-import { Icon } from '@iconify/react';
-import { For } from '@shared/components/for/for';
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { TodosItem } from '@todo/components/todos-item/todos-item';
-import { useTodos } from '@todo/hooks/use-todos.hook';
-import { TodoListApiResponseSchema } from '@todo/schemas/todo.schema';
-import { useLoaderData } from 'react-router-dom';
+import { Icon } from '@iconify/react'
+import { useLoaderData } from 'react-router-dom'
+import { For } from '#shared/components/for/for'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { TodosItem } from '#todo/components/todos-item/todos-item'
+import { useTodos } from '#todo/hooks/use-todos.hook'
+import type { TodoListApiResponseSchema } from '#todo/schemas/todo.schema'
 
 export function TodosList() {
-  const [t] = useI18n();
-  const initialData = useLoaderData() as TodoListApiResponseSchema;
-  const todosQuery = useTodos({ initialData });
+  const [t] = useI18n()
+  const initialData = useLoaderData() as TodoListApiResponseSchema
+  const todosQuery = useTodos({ initialData })
 
   return (
     <>
@@ -32,7 +32,10 @@ export function TodosList() {
           className="alert alert-error mt-2 shadow-lg"
         >
           <div className="flex items-center">
-            <span>{t('error', { module: 'Todos' })}:</span>
+            <span>
+              {t('error', { module: 'Todos' })}
+              :
+            </span>
             <pre>{JSON.stringify(todosQuery.error, null, 2)}</pre>
           </div>
         </div>
@@ -41,18 +44,18 @@ export function TodosList() {
       {todosQuery.isSuccess && (
         <For
           each={todosQuery.data.todos}
-          fallback={
+          fallback={(
             <div
               data-testid="list-empty"
               className="flex items-center justify-center py-5"
             >
               {t('empty')}
             </div>
-          }
+          )}
         >
-          {(todo) => <TodosItem key={todo.id} todo={todo} />}
+          {todo => <TodosItem key={todo.id} todo={todo} />}
         </For>
       )}
     </>
-  );
+  )
 }

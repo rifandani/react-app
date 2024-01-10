@@ -1,24 +1,20 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
-import {
-  Button,
-  Label,
+import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import type {
   Selection,
-  Tag,
-  TagGroup,
   TagGroupProps,
-  TagList,
   TagListProps,
   TagProps,
-} from 'react-aria-components';
-import { useListData } from 'react-stately';
+} from 'react-aria-components'
+import { Button, Label, Tag, TagGroup, TagList } from 'react-aria-components'
+import { useListData } from 'react-stately'
 
 interface MyTagGroupProps<T>
   extends Omit<TagGroupProps, 'children'>,
-    Pick<TagListProps<T>, 'items' | 'children' | 'renderEmptyState'> {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  Pick<TagListProps<T>, 'items' | 'children' | 'renderEmptyState'> {
+  label?: string
+  description?: string
+  errorMessage?: string
 }
 
 function MyTagGroup<T extends object>({
@@ -44,11 +40,11 @@ function MyTagGroup<T extends object>({
       {description && <p slot="description">{description}</p>}
       {errorMessage && <p slot="errorMessage">{errorMessage}</p>}
     </TagGroup>
-  );
+  )
 }
 
 function MyTag({ children, ...props }: TagProps) {
-  const textValue = typeof children === 'string' ? children : undefined;
+  const textValue = typeof children === 'string' ? children : undefined
 
   return (
     <Tag textValue={textValue} {...props}>
@@ -66,7 +62,7 @@ function MyTag({ children, ...props }: TagProps) {
         </>
       )}
     </Tag>
-  );
+  )
 }
 
 export function DemoTagGroup() {
@@ -77,9 +73,9 @@ export function DemoTagGroup() {
       { id: 3, name: 'Gaming' },
       { id: 4, name: 'Shopping' },
     ],
-  });
+  })
 
-  const [selected, setSelected] = useState<Selection>(new Set(['News']));
+  const [selected, setSelected] = useState<Selection>(new Set(['News']))
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -91,15 +87,15 @@ export function DemoTagGroup() {
         onSelectionChange={setSelected}
         items={list.items}
         onRemove={(keys) => {
-          list.remove(...keys);
+          list.remove(...keys)
         }}
       >
-        {(item) => (
+        {item => (
           <MyTag className="rounded border px-2 py-1 aria-selected:bg-primary aria-selected:text-primary-content [&>div]:flex [&>div]:items-center [&>div]:gap-3">
             {item.name}
           </MyTag>
         )}
       </MyTagGroup>
     </section>
-  );
+  )
 }

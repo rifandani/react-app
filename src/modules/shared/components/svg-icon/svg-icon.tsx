@@ -1,7 +1,7 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react'
 
 interface Props extends SVGProps<SVGSVGElement> {
-  id: 'icon-reactjs';
+  id: 'icon-reactjs'
 }
 
 export function SvgIcon({ id, ...rest }: Props) {
@@ -14,5 +14,5 @@ export function SvgIcon({ id, ...rest }: Props) {
     >
       <use href={`#${id}`} />
     </svg>
-  );
+  )
 }

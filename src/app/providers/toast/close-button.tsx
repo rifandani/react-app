@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
-import { CloseButtonProps } from 'react-toastify';
+import { Icon } from '@iconify/react'
+import type { CloseButtonProps } from 'react-toastify'
 
 export function ToastCloseButton({
   type,
@@ -15,5 +15,5 @@ export function ToastCloseButton({
     >
       <Icon icon="lucide:x" height="1em" />
     </button>
-  );
+  )
 }

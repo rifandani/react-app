@@ -1,8 +1,9 @@
-import { Label, ProgressBar, ProgressBarProps } from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
+import type { ProgressBarProps } from 'react-aria-components'
+import { Label, ProgressBar } from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 interface MyProgressBarProps extends ProgressBarProps {
-  label?: string;
+  label?: string
 }
 
 function MyProgressBar({ label, ...props }: MyProgressBarProps) {
@@ -19,8 +20,8 @@ function MyProgressBar({ label, ...props }: MyProgressBarProps) {
             <span
               className={twMerge(
                 'absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary',
-                isIndeterminate &&
-                  'top-[30%] w-[100px] translate-y-0 animate-progressbar-indeterminate transition',
+                isIndeterminate
+                && 'top-[30%] w-[100px] translate-y-0 animate-progressbar-indeterminate transition',
               )}
               style={{ width: `${percentage}%` }}
             />
@@ -28,7 +29,7 @@ function MyProgressBar({ label, ...props }: MyProgressBarProps) {
         </>
       )}
     </ProgressBar>
-  );
+  )
 }
 
 function DaisyLoading() {
@@ -41,7 +42,7 @@ function DaisyLoading() {
       <span className="loading loading-bars text-primary" />
       <span className="loading loading-infinity text-primary" />
     </>
-  );
+  )
 }
 
 export function DemoProgressBar() {
@@ -62,5 +63,5 @@ export function DemoProgressBar() {
 
       <DaisyLoading />
     </section>
-  );
+  )
 }

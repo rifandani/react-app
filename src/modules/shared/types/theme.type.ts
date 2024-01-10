@@ -31,4 +31,4 @@ export type Theme =
   | 'winter'
   | 'dim'
   | 'nord'
-  | 'sunset';
+  | 'sunset'

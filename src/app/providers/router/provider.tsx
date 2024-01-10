@@ -1,5 +1,5 @@
-import { RouterProvider } from 'react-router-dom';
-import { browserRouter } from './router';
+import { RouterProvider } from 'react-router-dom'
+import { browserRouter } from './router'
 
 export function AppRouterProvider() {
   return (
@@ -15,5 +15,5 @@ export function AppRouterProvider() {
        */
       future={{ v7_startTransition: true }}
     />
-  );
+  )
 }

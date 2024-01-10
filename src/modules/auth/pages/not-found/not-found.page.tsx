@@ -1,18 +1,18 @@
-import { useUserStore } from '@auth/hooks/use-user-store.hook';
-import { authPath } from '@auth/routes/auth.route';
-import { homePath } from '@home/routes/home.route';
-import { modes } from '@shared/constants/theme.constant';
-import { useColorMode } from '@shared/hooks/use-color-mode.hook';
-import { useI18n } from '@shared/hooks/use-i18n.hook';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { useUserStore } from '#auth/hooks/use-user-store.hook'
+import { authPath } from '#auth/routes/auth.route'
+import { homePath } from '#home/routes/home.route'
+import { modes } from '#shared/constants/theme.constant'
+import { useColorMode } from '#shared/hooks/use-color-mode.hook'
+import { useI18n } from '#shared/hooks/use-i18n.hook'
 
 export function NotFoundPage() {
-  const userStore = useUserStore();
-  const [t] = useI18n();
+  const userStore = useUserStore()
+  const [t] = useI18n()
   useColorMode({
     modes,
     attribute: 'data-theme',
-  });
+  })
 
   return (
     <main className="flex h-screen flex-col items-center justify-center space-y-3 bg-base-100">
@@ -26,5 +26,5 @@ export function NotFoundPage() {
         {t('goBackTo', { target: userStore.user ? 'home' : 'login' })}
       </Link>
     </main>
-  );
+  )
 }

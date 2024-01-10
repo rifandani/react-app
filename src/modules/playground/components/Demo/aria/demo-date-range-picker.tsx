@@ -1,7 +1,6 @@
-import { parseDateTime, today } from '@internationalized/date';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '@shared/constants/date.constant';
-import { RangeValue } from '@shared/types/date.type';
-import { useState } from 'react';
+import { parseDateTime, today } from '@internationalized/date'
+import { useState } from 'react'
+import type { DateRangePickerProps, DateValue } from 'react-aria-components'
 import {
   Button,
   CalendarCell,
@@ -11,9 +10,7 @@ import {
   CalendarHeaderCell,
   DateInput,
   DateRangePicker,
-  DateRangePickerProps,
   DateSegment,
-  DateValue,
   Dialog,
   Group,
   Heading,
@@ -21,13 +18,15 @@ import {
   Popover,
   RangeCalendar,
   Text,
-} from 'react-aria-components';
+} from 'react-aria-components'
+import type { RangeValue } from '#shared/types/date.type'
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant'
 
 interface MyDateRangePickerProps<T extends DateValue>
   extends DateRangePickerProps<T> {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  label?: string
+  description?: string
+  errorMessage?: string
 }
 
 function MyDateRangePicker<T extends DateValue>({
@@ -41,13 +40,13 @@ function MyDateRangePicker<T extends DateValue>({
       <Label>{label}</Label>
       <Group className="join items-center gap-3 rounded border px-2 py-1">
         <DateInput className="join-item flex" slot="start">
-          {(segment) => <DateSegment segment={segment} />}
+          {segment => <DateSegment segment={segment} />}
         </DateInput>
         <span className="join-item" aria-hidden="true">
           -
         </span>
         <DateInput className="join-item flex" slot="end">
-          {(segment) => <DateSegment segment={segment} />}
+          {segment => <DateSegment segment={segment} />}
         </DateInput>
         <Button className="join-item">▼</Button>
       </Group>
@@ -72,11 +71,11 @@ function MyDateRangePicker<T extends DateValue>({
 
             <CalendarGrid>
               <CalendarGridHeader>
-                {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+                {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
               </CalendarGridHeader>
 
               <CalendarGridBody className="[&>tr>td]:p-0">
-                {(date) => (
+                {date => (
                   <CalendarCell
                     date={date}
                     className="flex h-11 w-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -94,33 +93,33 @@ function MyDateRangePicker<T extends DateValue>({
         </Dialog>
       </Popover>
     </DateRangePicker>
-  );
+  )
 }
 
 export function DemoDateRangePicker() {
   const [value, setValue] = useState<RangeValue<DateValue>>({
     start: parseDateTime('2023-10-10'),
     end: parseDateTime('2023-10-11'),
-  });
+  })
 
-  const now = today(RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone);
+  const now = today(RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone)
   const disabledRanges = [
     [now, now.add({ days: 5 })],
     [now.add({ days: 14 }), now.add({ days: 16 })],
     [now.add({ days: 23 }), now.add({ days: 24 })],
-  ];
+  ]
 
   const isInvalid = disabledRanges.some(
-    (interval) =>
-      value.end.compare(interval[0]) >= 0 &&
-      value.start.compare(interval[1]) <= 0,
-  );
+    interval =>
+      value.end.compare(interval[0]) >= 0
+      && value.start.compare(interval[1]) <= 0,
+  )
 
   const isDateUnavailable = (date: DateValue) =>
     disabledRanges.some(
-      (interval) =>
+      interval =>
         date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0,
-    );
+    )
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -136,5 +135,5 @@ export function DemoDateRangePicker() {
         errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
       />
     </section>
-  );
+  )
 }

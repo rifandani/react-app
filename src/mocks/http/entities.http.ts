@@ -1,8 +1,8 @@
-import type { LoginApiResponseSchema } from '@auth/schemas/auth.schema';
+import type { LoginApiResponseSchema } from '#auth/schemas/auth.schema'
 import type {
   TodoListApiResponseSchema,
   TodoSchema,
-} from '@todo/schemas/todo.schema';
+} from '#todo/schemas/todo.schema'
 
 // #region AUTH MODULE
 export function mockLogin(
@@ -19,7 +19,7 @@ export function mockLogin(
     token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZyIsImlhdCI6MTY4NTU5NzcxNiwiZXhwIjoxNjg1NjAxMzE2fQ.nmKDmEtDztT2ufadJrDiJfolMtiP-fS_ZNk1XJVPSJE',
     ...(initialValue && initialValue),
-  };
+  }
 }
 // #endregion
 
@@ -31,7 +31,7 @@ export function mockTodo(initialValue?: Partial<TodoSchema>): TodoSchema {
     todo: 'Mocked Todo 1',
     completed: false,
     ...(initialValue && initialValue),
-  };
+  }
 }
 
 export function mockTodoListApiResponse(
@@ -45,6 +45,6 @@ export function mockTodoListApiResponse(
       mockTodo({ id, userId: id }),
     ),
     ...(initialValue && initialValue),
-  };
+  }
 }
 // #endregion

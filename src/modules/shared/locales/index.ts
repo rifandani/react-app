@@ -1,9 +1,9 @@
-import { authEnLocale, authIdLocale } from './_auth.locale';
-import { commonEnLocale, commonIdLocale } from './_common.locale';
-import { homeEnLocale, homeIdLocale } from './_home.locale';
-import { playgroundEnLocale, playgroundIdLocale } from './_playground.locale';
-import { todoEnLocale, todoIdLocale } from './_todo.locale';
-import { LocaleDict } from './locale.type';
+import { authEnLocale, authIdLocale } from './_auth.locale'
+import { commonEnLocale, commonIdLocale } from './_common.locale'
+import { homeEnLocale, homeIdLocale } from './_home.locale'
+import { playgroundEnLocale, playgroundIdLocale } from './_playground.locale'
+import { todoEnLocale, todoIdLocale } from './_todo.locale'
+import type { LocaleDict } from './locale.type'
 
 export const enLocale = {
   ...commonEnLocale,
@@ -11,7 +11,7 @@ export const enLocale = {
   ...playgroundEnLocale,
   ...homeEnLocale,
   ...todoEnLocale,
-} as const;
+} as const
 
 export const idLocale = {
   ...commonIdLocale,
@@ -19,9 +19,9 @@ export const idLocale = {
   ...playgroundIdLocale,
   ...homeIdLocale,
   ...todoIdLocale,
-} as const;
+} as const
 
 export const localeDict: LocaleDict = {
   'en-US': enLocale,
   'id-ID': idLocale,
-} as const;
+} as const

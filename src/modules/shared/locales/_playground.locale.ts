@@ -1,7 +1,7 @@
 export const playgroundEnLocale = {
-  playgroundTitle: "Playground",
-} as const;
+  playgroundTitle: 'Playground',
+} as const
 
 export const playgroundIdLocale = {
-  playgroundTitle: "Taman Bermain",
-} as const;
+  playgroundTitle: 'Taman Bermain',
+} as const

@@ -1,17 +1,13 @@
-import { AriaCheckbox } from '@shared/components/checkbox/aria-checkbox';
-import { useState } from 'react';
-import {
-  CheckboxGroup,
-  CheckboxGroupProps,
-  Label,
-  Text,
-} from 'react-aria-components';
+import { useState } from 'react'
+import type { CheckboxGroupProps } from 'react-aria-components'
+import { CheckboxGroup, Label, Text } from 'react-aria-components'
+import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox'
 
 interface MyCheckboxGroupProps extends Omit<CheckboxGroupProps, 'children'> {
-  children?: React.ReactNode;
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  children?: React.ReactNode
+  label?: string
+  description?: string
+  errorMessage?: string
 }
 
 function MyCheckboxGroup({
@@ -35,13 +31,13 @@ function MyCheckboxGroup({
         </Text>
       )}
     </CheckboxGroup>
-  );
+  )
 }
 
 export function DemoCheckboxGroup() {
-  const [selected, setSelected] = useState<string[]>(['soccer']);
+  const [selected, setSelected] = useState<string[]>(['soccer'])
 
-  const isInvalid = selected.length === 0;
+  const isInvalid = selected.length === 0
 
   return (
     <section className="flex flex-wrap items-center space-x-3">
@@ -62,5 +58,5 @@ export function DemoCheckboxGroup() {
         </div>
       </MyCheckboxGroup>
     </section>
-  );
+  )
 }

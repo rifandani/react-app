@@ -1,4 +1,4 @@
-import { Button } from 'react-aria-components';
+import { Button } from 'react-aria-components'
 
 export function DemoButton() {
   return (
@@ -16,5 +16,5 @@ export function DemoButton() {
         I do not have click animation
       </Button>
     </section>
-  );
+  )
 }

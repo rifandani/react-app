@@ -1,5 +1,5 @@
-import { Navbar } from '@shared/components/navbar/navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'
+import { Navbar } from '#shared/components/navbar/navbar'
 
 /**
  * wrap the page with navbar
@@ -9,5 +9,5 @@ export function PageWrapper() {
     <Navbar>
       <Outlet />
     </Navbar>
-  );
+  )
 }

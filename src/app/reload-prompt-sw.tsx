@@ -1,31 +1,29 @@
-import { useCallback } from 'react';
-import { useRegisterSW } from 'virtual:pwa-register/react';
+import { useCallback } from 'react'
+import { useRegisterSW } from 'virtual:pwa-register/react'
 
 export function ReloadPromptSw() {
   // replaced dynamically
-  const buildDate = '__DATE__';
+  const buildDate = '__DATE__'
   // replaced dynamically
-  const reloadSW = '__RELOAD_SW__';
+  const reloadSW = '__RELOAD_SW__'
 
   const onRegisteredSW = useCallback(
     (_swUrl: string, registration: ServiceWorkerRegistration | undefined) => {
       // @ts-expect-error just ignore
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (reloadSW === 'true' && registration) {
         setInterval(() => {
           // eslint-disable-next-line no-console
-          console.log('🔵 Checking for Service Worker updates...');
-          void registration.update();
-        }, 20_000 /* 20s for testing purposes */);
+          console.log('🔵 Checking for Service Worker updates...')
+          void registration.update()
+        }, 20_000 /* 20s for testing purposes */)
       }
     },
     [],
-  );
+  )
 
   const onRegisterError = useCallback((error: unknown) => {
-    // eslint-disable-next-line no-console
-    console.error('🛑 Service Worker registration error', error);
-  }, []);
+    console.error('🛑 Service Worker registration error', error)
+  }, [])
 
   const {
     offlineReady: [offlineReady, setOfflineReady],
@@ -34,16 +32,16 @@ export function ReloadPromptSw() {
   } = useRegisterSW({
     onRegisteredSW,
     onRegisterError,
-  });
+  })
 
   const close = () => {
-    setOfflineReady(false);
-    setNeedRefresh(false);
-  };
+    setOfflineReady(false)
+    setNeedRefresh(false)
+  }
 
   const reloadAndUpdateSW = () => {
-    void updateServiceWorker(true);
-  };
+    void updateServiceWorker(true)
+  }
 
   return (
     <aside id="ReloadPromptSW" className="toast">
@@ -79,5 +77,5 @@ export function ReloadPromptSw() {
 
       <span className="hidden">{buildDate}</span>
     </aside>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Collection,
   DropIndicator,
@@ -6,46 +6,46 @@ import {
   ListBox,
   ListBoxItem,
   Section,
+  type Selection,
   isFileDropItem,
   isTextDropItem,
   useDragAndDrop,
-  type Selection,
-} from 'react-aria-components';
-import { useListData } from 'react-stately';
-import { twJoin, twMerge } from 'tailwind-merge';
+} from 'react-aria-components'
+import { useListData } from 'react-stately'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 interface ImageItem {
-  id: number;
-  url: string;
-  name: string;
+  id: number
+  url: string
+  name: string
 }
 
 interface FileItem {
-  id: string;
-  name: string;
-  type: string;
+  id: string
+  name: string
+  type: string
 }
 
 interface DndListBoxProps {
-  initialItems: FileItem[];
-  'aria-label': string;
+  initialItems: FileItem[]
+  'aria-label': string
 }
 
 function DndListBox(props: DndListBoxProps) {
   const list = useListData({
     initialItems: props.initialItems,
-  });
+  })
 
   const { dragAndDropHooks } = useDragAndDrop({
     // Provide drag data in a custom format as well as plain text.
     getItems(keys) {
       return [...keys].map((key) => {
-        const item = list.getItem(key);
+        const item = list.getItem(key)
         return {
           'custom-app-type': JSON.stringify(item),
           'text/plain': item.name,
-        };
-      });
+        }
+      })
     },
 
     // Accept drops with the custom format.
@@ -55,52 +55,47 @@ function DndListBox(props: DndListBoxProps) {
     getDropOperation: () => 'move',
 
     // Handle drops between items from other lists.
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     async onInsert(e) {
       const processedItems = await Promise.all(
         e.items
           .filter(isTextDropItem)
           .map(
-            async (item) =>
+            async item =>
               JSON.parse(await item.getText('custom-app-type')) as FileItem,
           ),
-      );
-      if (e.target.dropPosition === 'before') {
-        list.insertBefore(e.target.key, ...processedItems);
-      } else if (e.target.dropPosition === 'after') {
-        list.insertAfter(e.target.key, ...processedItems);
-      }
+      )
+      if (e.target.dropPosition === 'before')
+        list.insertBefore(e.target.key, ...processedItems)
+      else if (e.target.dropPosition === 'after')
+        list.insertAfter(e.target.key, ...processedItems)
     },
 
     // Handle drops on the collection when empty.
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     async onRootDrop(e) {
       const processedItems = await Promise.all(
         e.items
           .filter(isTextDropItem)
           .map(
-            async (item) =>
+            async item =>
               JSON.parse(await item.getText('custom-app-type')) as FileItem,
           ),
-      );
-      list.append(...processedItems);
+      )
+      list.append(...processedItems)
     },
 
     // Handle reordering items within the same list.
     onReorder(e) {
-      if (e.target.dropPosition === 'before') {
-        list.moveBefore(e.target.key, e.keys);
-      } else if (e.target.dropPosition === 'after') {
-        list.moveAfter(e.target.key, e.keys);
-      }
+      if (e.target.dropPosition === 'before')
+        list.moveBefore(e.target.key, e.keys)
+      else if (e.target.dropPosition === 'after')
+        list.moveAfter(e.target.key, e.keys)
     },
 
     // Remove the items from the source list on drop
     // if they were moved to a different list.
     onDragEnd(e) {
-      if (e.dropOperation === 'move' && !e.isInternal) {
-        list.remove(...e.keys);
-      }
+      if (e.dropOperation === 'move' && !e.isInternal)
+        list.remove(...e.keys)
     },
 
     renderDragPreview(items) {
@@ -109,7 +104,7 @@ function DndListBox(props: DndListBoxProps) {
           {items[0]['text/plain']}
           <span className="badge badge-info">{items.length}</span>
         </div>
-      );
+      )
     },
     renderDropIndicator(target) {
       return (
@@ -117,32 +112,30 @@ function DndListBox(props: DndListBoxProps) {
           target={target}
           className={() => twJoin(`outline outline-secondary`)}
         />
-      );
+      )
     },
-  });
+  })
 
   return (
     <ListBox
       aria-label={props['aria-label']}
       selectionMode="multiple"
       selectedKeys={list.selectedKeys}
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       onSelectionChange={list.setSelectedKeys}
       items={list.items}
       dragAndDropHooks={dragAndDropHooks}
       renderEmptyState={() => 'Drop items here'}
     >
-      {(item) => (
+      {item => (
         <ListBoxItem
           className={() =>
-            'flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-disabled:text-slate-500 rac-selected:text-primary-content [&>div]:flex'
-          }
+            'flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-disabled:text-slate-500 rac-selected:text-primary-content [&>div]:flex'}
         >
           {item.name}
         </ListBoxItem>
       )}
     </ListBox>
-  );
+  )
 }
 
 function SectionListBox() {
@@ -163,8 +156,8 @@ function SectionListBox() {
         { id: 8, label: 'Skunk', description: 'Description...' },
       ],
     },
-  ];
-  const [selected, setSelected] = useState<Selection>(new Set());
+  ]
+  const [selected, setSelected] = useState<Selection>(new Set())
 
   return (
     <ListBox
@@ -174,14 +167,14 @@ function SectionListBox() {
       selectionMode="single"
       onSelectionChange={setSelected}
     >
-      {(section) => (
+      {section => (
         <Section id={section.name}>
           <Header className={twMerge('text-sm tracking-widest')}>
             {section.name}
           </Header>
 
           <Collection items={section.children}>
-            {(item) => (
+            {item => (
               <ListBoxItem
                 className="mb-1 last-of-type:mb-3"
                 textValue={item.label}
@@ -198,26 +191,25 @@ function SectionListBox() {
         </Section>
       )}
     </ListBox>
-  );
+  )
 }
 
 function ImageListBox() {
-  const [items, setItems] = useState<ImageItem[]>([]);
+  const [items, setItems] = useState<ImageItem[]>([])
 
   const { dragAndDropHooks } = useDragAndDrop({
     acceptedDragTypes: ['image/jpeg', 'image/png'],
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     async onRootDrop(e) {
       const newItems = await Promise.all(
-        e.items.filter(isFileDropItem).map(async (item) => ({
+        e.items.filter(isFileDropItem).map(async item => ({
           id: Math.random(),
           url: URL.createObjectURL(await item.getFile()),
           name: item.name,
         })),
-      );
-      setItems(newItems);
+      )
+      setItems(newItems)
     },
-  });
+  })
 
   return (
     <ListBox
@@ -227,7 +219,7 @@ function ImageListBox() {
       dragAndDropHooks={dragAndDropHooks}
       renderEmptyState={() => 'Drop images here'}
     >
-      {(item) => (
+      {item => (
         <ListBoxItem className="avatar" textValue={item.name}>
           <div className="max-h-24 max-w-24">
             <img className="" src={item.url} alt="list box" />
@@ -236,7 +228,7 @@ function ImageListBox() {
         </ListBoxItem>
       )}
     </ListBox>
-  );
+  )
 }
 
 export function DemoListBox() {
@@ -273,5 +265,5 @@ export function DemoListBox() {
 
       <ImageListBox />
     </section>
-  );
+  )
 }
