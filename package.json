@@ -12,9 +12,14 @@
   "scripts": {
     "prepare": "husky install",
     "gen:pwa-assets": "pwa-assets-generator --preset minimal public/favicon.svg",
-    "typecheck": "tsc --project tsconfig.json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --project tsconfig.json",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "test:preview": "vite preview --outDir html",
+    "test:preview-coverage": "vite preview --outDir coverage",
     "dev": "rimraf dev-dist && DEBUG=vite-plugin-pwa SW_DEV=true vite --force",
     "dev:claims": "rimraf dev-dist && DEBUG=vite-plugin-pwa SW_DEV=true CLAIMS=true SW=true vite --force",
     "dev:destroy": "rimraf dev-dist && DEBUG=vite-plugin-pwa SW_DEV=true SW_DESTROY=true vite --force",
@@ -55,11 +60,7 @@
     "start:sw-reloadsw-claims-destroy": "pnpm build:sw-reloadsw-claims-destroy && pnpm serve",
     "serve": "serve dist",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "test:preview": "vite preview --outDir html",
-    "test:preview-coverage": "vite preview --outDir coverage"
+    "release": "bumpp"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
@@ -102,6 +103,7 @@
     "@vitest/coverage-istanbul": "^1.1.3",
     "@vitest/ui": "^1.1.3",
     "autoprefixer": "^10.4.16",
+    "bumpp": "^9.2.1",
     "daisyui": " ^4.5.0",
     "eslint": " ^8.56.0",
     "eslint-plugin-format": "^0.1.0",
