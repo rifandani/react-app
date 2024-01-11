@@ -1,10 +1,10 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import { Button, Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
 import { twJoin } from 'tailwind-merge'
-import { DemoContainer } from '../components/demo/root'
 import { For } from '#shared/components/for/for'
 import { modes, themes } from '#shared/constants/theme.constant'
 import { useColorMode } from '#shared/hooks/use-color-mode.hook'
+import { DemoContainer } from '#playground/components/demo'
 
 export function PlaygroundPage() {
   const [, setTheme] = useColorMode({
