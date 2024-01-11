@@ -34,7 +34,7 @@ import { DemoDaisyAlert } from './daisy/demo-daisy-alert'
 import { DemoDaisyAvatar } from './daisy/demo-daisy-avatar'
 import { DemoDaisyBadge } from './daisy/demo-daisy-badge'
 
-export function Demo() {
+export function DemoContainer() {
   return (
     <section className="grid h-full grid-cols-1 gap-5 xl:grid-cols-2">
       <div className="flex flex-col space-y-5 p-5">
