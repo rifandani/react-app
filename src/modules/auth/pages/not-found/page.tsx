@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { homePath } from '#home/routes/home.route'
+import { homePath } from '#home/routes'
 import { modes } from '#shared/constants/theme.constant'
 import { useColorMode } from '#shared/hooks/use-color-mode.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'

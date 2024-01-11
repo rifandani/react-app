@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { NavbarMenu } from './navbar-menu/navbar-menu'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { SvgIcon } from '#shared/components/svg-icon/svg-icon'
-import { homePath } from '#home/routes/home.route'
+import { homePath } from '#home/routes'
 
 export function Navbar({ children }: PropsWithChildren) {
   const [t] = useI18n()

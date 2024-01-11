@@ -4,7 +4,7 @@ import { json, redirect } from 'react-router-dom'
 import { authApi } from '#auth/apis/auth.api'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
 import { loginSchema } from '#auth/schemas/auth.schema'
-import { homePath } from '#home/routes/home.route'
+import { homePath } from '#home/routes'
 
 export async function loginAction({ request }: ActionFunctionArgs) {
   const payload = Object.fromEntries(await request.formData())

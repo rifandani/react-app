@@ -2,8 +2,8 @@ import { useMount } from 'ahooks'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { authPath } from '#auth/routes/auth.route'
-import { homePath } from '#home/routes/home.route'
+import { authPath } from '#auth/routes'
+import { homePath } from '#home/routes'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 
 /**

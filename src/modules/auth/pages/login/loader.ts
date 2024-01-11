@@ -1,7 +1,7 @@
 import type { LoaderFunction } from 'react-router-dom'
 import { redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { homePath } from '#home/routes/home.route'
+import { homePath } from '#home/routes'
 import { checkAuthUser } from '#shared/utils/checker.util'
 
 export const loginLoader: LoaderFunction = () => {

@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom'
 import reactjs from '#assets/images/reactjs.svg'
 import { LoginForm } from '#auth/components/login-form/login-form'
-import { homePath } from '#home/routes/home.route'
+import { homePath } from '#home/routes'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 
 export function LoginPage() {

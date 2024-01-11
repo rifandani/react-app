@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { loginRoute, notFoundRoute } from '#auth/routes/auth.route'
-import { homeRoute } from '#home/routes/home.route'
-import { playgroundRoute } from '#playground/routes/playground.route'
-import { todosRoute } from '#todo/routes/todos.route'
+import { loginRoute, notFoundRoute } from '#auth/routes'
+import { homeRoute } from '#home/routes'
+import { playgroundRoute } from '#playground/routes'
+import { todosRoute } from '#todo/routes'
 
 // router singleton
 export const browserRouter = createBrowserRouter(

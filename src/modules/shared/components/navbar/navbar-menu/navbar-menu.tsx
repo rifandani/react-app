@@ -2,11 +2,11 @@ import { Button } from 'react-aria-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { twJoin } from 'tailwind-merge'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { authPath } from '#auth/routes/auth.route'
+import { authPath } from '#auth/routes'
 import { modes, themes } from '#shared/constants/theme.constant'
 import { useColorMode } from '#shared/hooks/use-color-mode.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
-import { todosPath } from '#todo/routes/todos.route'
+import { todosPath } from '#todo/routes'
 
 export function NavbarMenu() {
   const [t] = useI18n()
