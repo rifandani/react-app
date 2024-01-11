@@ -6,7 +6,7 @@ import { AppRouterProvider } from './providers/router/provider'
 import { AppToastProvider } from './providers/toast/provider'
 import { ReloadPromptSw } from './reload-prompt-sw'
 
-export function App() {
+export function Entry() {
   return (
     <StrictMode>
       <AppQueryProvider>

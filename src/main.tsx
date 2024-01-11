@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { App } from '#app/app'
+import { Entry } from '#app/entry'
 import './main.css'
 
 const root = document.getElementById('root')
@@ -10,4 +10,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   )
 }
 
-createRoot(root!).render(<App />)
+createRoot(root!).render(<Entry />)
