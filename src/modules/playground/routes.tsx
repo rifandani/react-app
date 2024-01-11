@@ -13,7 +13,7 @@ export const playgroundRoute = {
   id: playgroundId.root,
   path: playgroundPath.root,
   lazy: async () => {
-    const { PlaygroundPage } = await import('../pages/playground.page')
+    const { PlaygroundPage } = await import('./pages/page')
 
     return {
       element: <PlaygroundPage />,

@@ -6,7 +6,7 @@ import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { useTodo } from '#todo/hooks/use-todo.hook'
-import { todosPath } from '#todo/routes/todos.route'
+import { todosPath } from '#todo/routes'
 import type {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,

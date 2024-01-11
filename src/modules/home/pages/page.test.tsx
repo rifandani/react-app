@@ -1,38 +1,36 @@
 import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
-import { NotFoundPage } from './not-found.page'
+import { HomePage } from './page'
 import { setupTest } from '#shared/utils/test.util'
 
-describe('<NotFoundPage />', () => {
+describe('<HomePage />', () => {
   const { renderProviders } = setupTest()
   const routes = [
     {
-      path: '*',
-      element: <NotFoundPage />,
+      path: '/',
+      element: <HomePage />,
     },
   ] satisfies RouteObject[]
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/', '/whatever'],
-    initialIndex: 1,
+    initialEntries: ['/'],
+    initialIndex: 0,
   })
 
-  it('should render properly', () => {
+  it('should render correctly', () => {
     const view = renderProviders(router)
     expect(() => view).not.toThrow()
   })
 
   // FIXME: Unexpected Application Error, because of react-aria i18n hooks
-  it.todo('should render contents correctly', () => {
+  it.todo('should render text correctly', () => {
     // ARRANGE
     renderProviders(router)
-    const heading: HTMLHeadingElement = screen.getByText(/404/i)
-    const paragraph: HTMLParagraphElement = screen.getByText(/gone/i)
-    const anchor: HTMLAnchorElement = screen.getByRole('link')
+    const heading: HTMLHeadingElement = screen.getByRole('heading', {
+      level: 1,
+    })
 
     // ASSERT
     expect(heading).toBeInTheDocument()
-    expect(paragraph).toBeInTheDocument()
-    expect(anchor).toBeInTheDocument()
   })
 })

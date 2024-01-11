@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter, redirect } from 'react-router-dom'
-import { TodoPage } from './todo.page'
+import { TodoPage } from './page'
 import { mockTodo } from '#mocks/http/entities.http'
 import { setupTest } from '#shared/utils/test.util'
 import { todoApi } from '#todo/apis/todo.api'
-import { todosPath } from '#todo/routes/todos.route'
+import { todosPath } from '#todo/routes'
 import type { UpdateTodoSchema } from '#todo/schemas/todo.schema'
 
 describe('<TodoPage />', () => {

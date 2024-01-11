@@ -3,12 +3,12 @@ import { redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import type { SetRequired } from 'type-fest'
 import type { queryClient } from '#app/providers/query/client'
-import { authPath } from '#auth/routes/auth.route'
 import type { ResourceParamsSchema } from '#shared/schemas/api.schema'
 import { checkAuthUser } from '#shared/utils/checker.util'
 import { todoApi, todoKeys } from '#todo/apis/todo.api'
 import { defaultLimit } from '#todo/constants/todos.constant'
 import type { TodoListApiResponseSchema } from '#todo/schemas/todo.schema'
+import { authPath } from '#auth/routes'
 
 export function todosLoader(_queryClient: typeof queryClient) {
   return async ({ request }: LoaderFunctionArgs) => {

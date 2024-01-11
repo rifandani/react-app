@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { authPath } from '#auth/routes/auth.route'
 import { homePath } from '#home/routes/home.route'
 import { modes } from '#shared/constants/theme.constant'
 import { useColorMode } from '#shared/hooks/use-color-mode.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { authPath } from '#auth/routes'
 
 export function NotFoundPage() {
   const userStore = useUserStore()

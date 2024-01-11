@@ -2,10 +2,10 @@ import type { LoaderFunctionArgs } from 'react-router-dom'
 import { redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import type { queryClient } from '#app/providers/query/client'
-import { authPath } from '#auth/routes/auth.route'
 import { checkAuthUser } from '#shared/utils/checker.util'
 import { todoApi, todoKeys } from '#todo/apis/todo.api'
 import type { TodoDetailApiResponseSchema } from '#todo/schemas/todo.schema'
+import { authPath } from '#auth/routes'
 
 export function todoLoader(_queryClient: typeof queryClient) {
   return async ({ params }: LoaderFunctionArgs) => {

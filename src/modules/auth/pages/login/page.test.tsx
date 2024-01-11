@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
-import { LoginPage } from './login.page'
+import { LoginPage } from './page'
 import { setupTest } from '#shared/utils/test.util'
 
 describe('<LoginPage />', () => {

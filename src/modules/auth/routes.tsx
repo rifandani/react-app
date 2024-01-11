@@ -1,6 +1,6 @@
 import type { RouteObject } from 'react-router-dom'
-import { loginAction } from '#auth/pages/login/login.action'
-import { loginLoader } from '#auth/pages/login/login.loader'
+import { loginAction } from './pages/login/action'
+import { loginLoader } from './pages/login/loader'
 import { RouteErrorBoundary } from '#shared/components/route-error-boundary/route-error-boundary'
 
 export const authId = {
@@ -17,7 +17,7 @@ export const loginRoute = {
   id: authId.login,
   path: authPath.login,
   lazy: async () => {
-    const { LoginPage } = await import('../pages/login/login.page')
+    const { LoginPage } = await import('./pages/login/page')
 
     return {
       action: loginAction,
@@ -35,7 +35,7 @@ export const notFoundRoute = {
   id: 'notFound',
   path: '*',
   lazy: async () => {
-    const { NotFoundPage } = await import('../pages/not-found/not-found.page')
+    const { NotFoundPage } = await import('./pages/not-found/page')
 
     return { element: <NotFoundPage /> }
   },

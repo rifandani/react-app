@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
-import { TodosPage } from './todos.page'
+import { TodosPage } from './page'
 import { setupTest } from '#shared/utils/test.util'
 import { mockTodoListApiResponse } from '#mocks/http/entities.http'
 
