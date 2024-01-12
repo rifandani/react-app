@@ -2,7 +2,6 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { useRafInterval } from 'ahooks'
 import { useEffect, useState } from 'react'
-import { useLocale } from 'react-aria'
 import { Button } from 'react-aria-components'
 import { useNavigate } from 'react-router-dom'
 import { ClockSectionTimer } from './clock-section-timer'
@@ -11,8 +10,7 @@ import { useI18n } from '#shared/hooks/use-i18n.hook'
 
 export function ClockSection() {
   const navigate = useNavigate()
-  const [t, { changeLocale }] = useI18n()
-  const { locale } = useLocale()
+  const [t] = useI18n()
   const [parentRef] = useAutoAnimate()
   const [showClock, setShowClock] = useState(true)
   const [seconds, setSeconds] = useState(0)
@@ -30,18 +28,13 @@ export function ClockSection() {
       text: 'toggleClock',
     },
     {
-      id: 'language',
-      class: 'btn-accent btn',
-      text: 'changeLanguage',
-    },
-    {
       id: 'start',
       class: 'btn-neutral btn',
       text: 'getStarted',
     },
   ] as const)
 
-  const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
+  const onClickMapper = (btnId: 'sort' | 'clock' | 'start') => {
     const mapper: Record<typeof btnId, () => void> = {
       sort: () => {
         setButtons(prev => shuffle(prev) as unknown as typeof prev)
@@ -50,9 +43,6 @@ export function ClockSection() {
         if (!showClock)
           setSeconds(0)
         setShowClock(prev => !prev)
-      },
-      language: () => {
-        changeLocale(locale === 'en-US' ? 'id-ID' : 'en-US')
       },
       start: () => {
         navigate(todosPath.root)
@@ -94,7 +84,7 @@ export function ClockSection() {
       <div
         ref={parentRef}
         role="presentation"
-        className="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        className="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-3"
       >
         {buttons.map(btn => (
           <Button
