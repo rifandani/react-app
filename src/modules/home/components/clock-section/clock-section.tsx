@@ -1,21 +1,21 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { useRafInterval } from 'ahooks'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from 'react-aria-components'
 import { useNavigate } from 'react-router-dom'
 import { ClockSectionTimer } from './clock-section-timer'
 import { todosPath } from '#todo/routes'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 
+const currentDate = new Date()
+
 export function ClockSection() {
-  const navigate = useNavigate()
   const [t] = useI18n()
+  const navigate = useNavigate()
   const [parentRef] = useAutoAnimate()
   const [showClock, setShowClock] = useState(true)
-  const [seconds, setSeconds] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [hours, setHours] = useState(0)
+  const [time, setTime] = useState(currentDate)
   const [buttons, setButtons] = useState([
     {
       id: 'sort',
@@ -34,51 +34,20 @@ export function ClockSection() {
     },
   ] as const)
 
-  const onClickMapper = (btnId: 'sort' | 'clock' | 'start') => {
-    const mapper: Record<typeof btnId, () => void> = {
-      sort: () => {
-        setButtons(prev => shuffle(prev) as unknown as typeof prev)
-      },
-      clock: () => {
-        if (!showClock)
-          setSeconds(0)
-        setShowClock(prev => !prev)
-      },
-      start: () => {
-        navigate(todosPath.root)
-      },
-    }
-
-    mapper[btnId]()
-  }
-
-  // recalculate `seconds` every 100 ms
+  // recalculate `seconds` every 1_000 ms
   useRafInterval(
     () => {
       if (showClock)
-        setSeconds(+(seconds + 0.1).toFixed(2))
-      else setSeconds(0)
+        setTime(new Date())
     },
-    100,
+    1_000,
     { immediate: true },
   )
-
-  // recalculate `minutes` when `seconds` changes
-  useEffect(() => {
-    setMinutes(seconds > 0 ? (seconds % 2 === 0 ? minutes + 1 : minutes) : 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seconds])
-
-  // recalculate `hours` when `minutes` changes
-  useEffect(() => {
-    setHours(minutes > 0 ? (minutes % 2 === 0 ? hours + 1 : hours) : 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [minutes])
 
   return (
     <>
       {showClock && (
-        <ClockSectionTimer seconds={seconds} minutes={minutes} hours={hours} />
+        <ClockSectionTimer seconds={time.getSeconds()} minutes={time.getMinutes()} hours={time.getHours()} />
       )}
 
       <div
@@ -93,7 +62,12 @@ export function ClockSection() {
             key={btn.id}
             className={btn.class}
             onPress={() => {
-              onClickMapper(btn.id)
+              if (btn.id === 'sort')
+                setButtons(prev => shuffle(prev) as unknown as typeof prev)
+              if (btn.id === 'clock')
+                setShowClock(prev => !prev)
+              else
+                navigate(todosPath.root)
             }}
           >
             {t(btn.text)}
