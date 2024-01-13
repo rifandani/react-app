@@ -23,6 +23,5 @@ registerRoute(
   new NavigationRoute(createHandlerBoundToURL('index.html'), { allowlist }),
 )
 
-// @ts-expect-error ignore
 self.skipWaiting()
 clientsClaim()

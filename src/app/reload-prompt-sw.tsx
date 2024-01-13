@@ -1,21 +1,25 @@
 import { useCallback } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
+import { pwaInfo } from 'virtual:pwa-info'
+
+// eslint-disable-next-line no-console
+console.log(`🐫 ~ "reload-prompt-sw.tsx" at line 3: pwaInfo -> `, { pwaInfo })
 
 export function ReloadPromptSw() {
   // replaced dynamically
   const buildDate = '__DATE__'
   // replaced dynamically
-  const reloadSW = '__RELOAD_SW__'
+  const reloadSW = '__RELOAD_SW__' as '__RELOAD_SW__' | 'true'
 
   const onRegisteredSW = useCallback(
     (_swUrl: string, registration: ServiceWorkerRegistration | undefined) => {
-      // @ts-expect-error just ignore
+      // in `vite.config.ts`, the `reloadSW` could be `'true'` if `process.env.RELOAD_SW === 'true'`
       if (reloadSW === 'true' && registration) {
         setInterval(() => {
           // eslint-disable-next-line no-console
-          console.log('🔵 Checking for Service Worker updates...')
+          console.log('🔵 Updating Service Worker...')
           void registration.update()
-        }, 20_000 /* 20s for testing purposes */)
+        }, 10_000 /* 10s for testing purposes */)
       }
     },
     [],
@@ -34,15 +38,6 @@ export function ReloadPromptSw() {
     onRegisterError,
   })
 
-  const close = () => {
-    setOfflineReady(false)
-    setNeedRefresh(false)
-  }
-
-  const reloadAndUpdateSW = () => {
-    void updateServiceWorker(true)
-  }
-
   return (
     <aside id="ReloadPromptSW" className="toast">
       {(offlineReady || needRefresh) && (
@@ -57,7 +52,10 @@ export function ReloadPromptSw() {
             <button
               type="button"
               className="btn-outlined btn btn-sm w-1/2"
-              onClick={close}
+              onClick={() => {
+                setOfflineReady(false)
+                setNeedRefresh(false)
+              }}
             >
               Close
             </button>
@@ -66,7 +64,7 @@ export function ReloadPromptSw() {
               <button
                 type="button"
                 className="btn btn-primary btn-sm w-1/2"
-                onClick={reloadAndUpdateSW}
+                onClick={() => updateServiceWorker(true)}
               >
                 Reload
               </button>

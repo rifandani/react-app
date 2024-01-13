@@ -12,9 +12,9 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults } from 'vitest/config'
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  mode: 'development',
   base: '/',
-  includeAssets: ['favicon.svg'],
+  mode: 'development',
+  includeAssets: ['*.ico', '*.svg', '*.png'],
   manifest: {
     name: 'React App',
     short_name: 'React App',
@@ -22,48 +22,51 @@ const pwaOptions: Partial<VitePWAOptions> = {
     theme_color: '#ffffff',
     icons: [
       {
-        src: 'pwa-192x192.png', // <== don't add slash, for testing
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
+      {
+        src: 'pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
       },
       {
-        src: '/pwa-512x512.png', // <== don't remove slash, for testing
+        src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+        purpose: 'any',
       },
       {
-        src: 'pwa-512x512.png', // <== don't add slash, for testing
+        src: 'maskable-icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'maskable',
       },
     ],
+    display_override: ['window-controls-overlay'],
   },
   devOptions: {
     enabled: process.env.SW_DEV === 'true',
-    /* when using generateSW the PWA plugin will switch to classic */
-    type: 'module',
-    navigateFallback: 'index.html',
+    type: process.env.SW === 'true' ? 'module' : 'classic',
+    navigateFallbackAllowlist: [/^index.html$/],
   },
-  // workbox: {
-  //   globPatterns: [
-  //     '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
-  //   ],
-  // },
+  workbox: {
+    globPatterns: [
+      '**/*.{html,css,js,json,txt,ico,svg,jpg,png,webp,woff,woff2,ttf,eot,otf,wasm}',
+    ],
+  },
 }
 
+const claims = process.env.CLAIMS === 'true'
 const replaceOptions: RollupReplaceOptions = {
   __DATE__: new Date().toISOString(),
 }
-const sw = process.env.SW === 'true'
-const claims = process.env.CLAIMS === 'true'
-const reload = process.env.RELOAD_SW === 'true'
-const selfDestroying = process.env.SW_DESTROY === 'true'
 
-if (sw) {
+if (process.env.SW === 'true') {
   pwaOptions.srcDir = 'src'
-  pwaOptions.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts'
-  pwaOptions.strategies = 'injectManifest';
+  pwaOptions.strategies = 'injectManifest'
+  pwaOptions.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts';
   (pwaOptions.manifest as Partial<ManifestOptions>).name
     = 'PWA Inject Manifest';
   (pwaOptions.manifest as Partial<ManifestOptions>).short_name = 'PWA Inject'
@@ -71,11 +74,10 @@ if (sw) {
 
 if (claims)
   pwaOptions.registerType = 'autoUpdate'
-
-if (reload)
+if (process.env.SW_DESTROY === 'true')
+  pwaOptions.selfDestroying = true
+if (process.env.RELOAD_SW === 'true')
   replaceOptions.__RELOAD_SW__ = 'true'
-if (selfDestroying)
-  pwaOptions.selfDestroying = selfDestroying
 
 export default defineConfig({
   server: {

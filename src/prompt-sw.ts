@@ -7,10 +7,8 @@ import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 declare let self: ServiceWorkerGlobalScope
 
-// @ts-expect-error ignore
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
-    // @ts-expect-error ignore
     self.skipWaiting()
 })
 
