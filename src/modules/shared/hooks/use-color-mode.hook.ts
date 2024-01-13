@@ -1,6 +1,6 @@
-import { useLocalStorageState } from 'ahooks'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useMediaQuery } from './use-media-query.hook'
+import { useLocalStorageState } from './use-local-storage-state.hook'
 
 export type BasicColorSchema = BasicColorMode | 'auto'
 export type BasicColorMode = 'light' | 'dark'

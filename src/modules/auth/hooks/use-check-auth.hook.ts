@@ -1,6 +1,6 @@
-import { useMount } from 'ahooks'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useMount } from '#shared/hooks/use-mount.hook'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
 import { authPath } from '#auth/routes'
 import { homePath } from '#home/routes'

@@ -1,12 +1,12 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { shuffle } from '@rifandani/nxact-yutiriti'
-import { useRafInterval } from 'ahooks'
 import { useState } from 'react'
 import { Button } from 'react-aria-components'
 import { useNavigate } from 'react-router-dom'
 import { ClockSectionTimer } from './clock-section-timer'
 import { todosPath } from '#todo/routes'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { useRafInterval } from '#shared/hooks/use-raf-interval.hook'
 
 const currentDate = new Date()
 

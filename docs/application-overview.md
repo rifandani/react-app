@@ -15,7 +15,6 @@ The application built with:
 - `zustand` -> performant global state
 - `react-toastify` -> toast outside of react components
 - `type-fest` -> collection of useful type helpers
-- `ahooks` -> collection of useful react custom hooks
 - `@rifandani/nxact-yutiriti` -> collection of useful utils
 - `@internationalized/date` -> collection of useful date utils
 - `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
