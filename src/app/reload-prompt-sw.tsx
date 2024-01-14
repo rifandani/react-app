@@ -1,9 +1,5 @@
 import { useCallback } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
-import { pwaInfo } from 'virtual:pwa-info'
-
-// eslint-disable-next-line no-console
-console.log(`🐫 ~ "reload-prompt-sw.tsx" at line 3: pwaInfo -> `, { pwaInfo })
 
 export function ReloadPromptSw() {
   // replaced dynamically

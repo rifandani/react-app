@@ -2,14 +2,14 @@ const forms = require("@tailwindcss/forms");
 const typography = require("@tailwindcss/typography");
 const daisyui = require("daisyui");
 const animate = require("tailwindcss-animate");
-const trac = require("tailwindcss-react-aria-components");
+const rac = require("tailwindcss-react-aria-components");
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class", // default 'media'
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -38,11 +38,10 @@ module.exports = {
     forms,
     daisyui,
     animate,
-    trac({ prefix: "rac" }),
+    rac({ prefix: "rac" }),
     plugin(({ matchUtilities }) => {
       matchUtilities({
         vg: (value) => ({
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           [`@apply ${value.replaceAll(",", " ")}`]: {},
         }),
       });

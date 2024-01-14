@@ -9,7 +9,7 @@ The application built with:
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
 - `axios` + `@tanstack/react-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
-- `@iconify-icon/react` -> SVG icon on demand
+- `@iconify/react` -> SVG icon on demand
 - `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components like radix-ui
 - `react-hook-form` -> form management
 - `zustand` -> performant global state

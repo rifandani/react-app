@@ -1,6 +1,12 @@
 # React App
 
+<div style="display: flex; gap: 1rem;">
+
+[![CI](https://github.com/rifandani/react-app/actions/workflows/ci.yml/badge.svg)](https://github.com/rifandani/react-app/actions/workflows/ci.yml)
+
 [![DeepScan grade](https://deepscan.io/api/teams/13942/projects/25435/branches/795942/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=25435&bid=795942)
+
+</div>
 
 An opinionated and scalable project starter and reference for building bulletproof production ready React applications.
 

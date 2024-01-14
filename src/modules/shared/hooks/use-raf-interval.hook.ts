@@ -28,7 +28,7 @@ function setRafInterval(callback: () => void, delay: number = 0) {
   return handle
 };
 
-function cancelAnimationFrameIsNotDefined(t: any): t is NodeJS.Timer {
+function cancelAnimationFrameIsNotDefined(_t: any): _t is NodeJS.Timer {
   return typeof cancelAnimationFrame === typeof undefined
 }
 
