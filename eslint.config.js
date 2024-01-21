@@ -1,4 +1,5 @@
 import antfu from '@antfu/eslint-config'
+import { configs as tanstackQueryConfigs, rules as tanstackQueryRules } from '@tanstack/eslint-plugin-query'
 
 export default antfu(
   {
@@ -52,7 +53,21 @@ export default antfu(
       markdown: 'prettier',
     },
   },
-  // tanstackQuery.configs.recommended,
+  {
+    name: '@tanstack/eslint-plugin-query:recommended',
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@tanstack/eslint-plugin-query': {
+        rules: tanstackQueryRules,
+        configs: tanstackQueryConfigs,
+      },
+    },
+    rules: {
+      '@tanstack/eslint-plugin-query/exhaustive-deps': 'error',
+      '@tanstack/eslint-plugin-query/no-rest-destructuring': 'error',
+      '@tanstack/eslint-plugin-query/stable-query-client': 'error',
+    },
+  },
   // jestDom.configs.recommended,
   // jsxA11y.configs.recommended,
   // tailwind.configs.recommended,
