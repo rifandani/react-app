@@ -1,11 +1,12 @@
 import { Icon } from '@iconify/react'
-import type { CloseButtonProps } from 'react-toastify'
+import type { ComponentPropsWithoutRef } from 'react'
+import type { CloseButton } from 'react-toastify'
 
 export function ToastCloseButton({
   type,
   ariaLabel,
   closeToast,
-}: CloseButtonProps) {
+}: ComponentPropsWithoutRef<typeof CloseButton>) {
   return (
     <button
       type="button"
