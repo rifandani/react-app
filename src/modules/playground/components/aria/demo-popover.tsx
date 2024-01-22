@@ -11,15 +11,14 @@ function DaisyPopover() {
     <div className="flex items-center">
       <p>Daisy popover</p>
       <div className="dropdown dropdown-bottom">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label
-          tabIndex={0}
           className="btn btn-circle btn-ghost btn-xs text-info"
         >
           <Icon icon="lucide:info" />
         </label>
 
         <div
-          tabIndex={0}
           className="card dropdown-content compact z-[1] w-64 rounded-box bg-base-100 shadow"
         >
           <div className="card-body">

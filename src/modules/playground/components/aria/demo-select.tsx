@@ -68,6 +68,7 @@ function MySelect<T extends object>({
 function DaisySelect() {
   return (
     <div className="form-control w-full max-w-xs">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text">Pick the best fantasy franchise</span>
         <span className="label-text-alt">Alt label</span>
@@ -82,6 +83,7 @@ function DaisySelect() {
         <option value="lord-of-the-rings">Lord of the Rings</option>
       </select>
 
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text-alt">Alt label</span>
         <span className="label-text-alt">Alt label</span>

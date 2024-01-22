@@ -4,6 +4,7 @@ import { Button, FileTrigger } from 'react-aria-components'
 function DaisyFileInput() {
   return (
     <div className="form-control w-full max-w-xs">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text">Pick a file</span>
         <span className="label-text-alt">Alt label</span>
@@ -13,6 +14,7 @@ function DaisyFileInput() {
         className="file-input file-input-bordered w-full max-w-xs"
       />
 
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label">
         <span className="label-text-alt">Alt label</span>
         <span className="label-text-alt">Alt label</span>

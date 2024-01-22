@@ -2,6 +2,20 @@ import antfu from '@antfu/eslint-config'
 import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
+
+/**
+ * for plugin rules that doesn't have prefix.
+ * map the rules object, overrides the key with provided prefix, and override value with 'error'.
+ *
+ * @param {string} prefix unique eslint plugin name
+ * @param {any} rules eslint plugin rules without prefix (e.g 'no-rest-destructuring')
+ * @returns {object} rules with prefix (e.g '@tanstack/eslint-plugin-query/no-rest-destructuring')
+ */
+// eslint-disable-next-line unused-imports/no-unused-vars
+function mapRulesWithPrefix(prefix, rules) {
+  return Object.entries(rules).reduce((acc, [key]) => ({ ...acc, [`${prefix}/${key}`]: 'error' }), {})
+}
 
 export default antfu(
   {
@@ -56,19 +70,15 @@ export default antfu(
     },
   },
   {
-    name: '@tanstack/eslint-plugin-query',
+    name: '@tanstack/query',
     files: ['src/**/*.{js,jsx,ts,tsx}'],
     plugins: {
-      '@tanstack/eslint-plugin-query': {
+      '@tanstack/query': {
         rules: tanstackQuery.rules,
-        configs: tanstackQuery.configs,
+        configs: tanstackQuery.configs.recommended,
       },
     },
-    rules: {
-      '@tanstack/eslint-plugin-query/exhaustive-deps': 'error',
-      '@tanstack/eslint-plugin-query/no-rest-destructuring': 'error',
-      '@tanstack/eslint-plugin-query/stable-query-client': 'error',
-    },
+    rules: tanstackQuery.configs.recommended.rules,
   },
   {
     name: 'jest-dom',
@@ -76,10 +86,10 @@ export default antfu(
     plugins: {
       'jest-dom': {
         rules: jestDom.rules,
-        configs: jestDom.configs,
+        configs: jestDom.configs.recommended,
       },
     },
-    rules: Object.entries(jestDom.rules).reduce((acc, [key]) => ({ ...acc, [`jest-dom/${key}`]: 'error' }), {}),
+    rules: jestDom.configs.recommended.rules,
   },
   {
     name: 'testing-library',
@@ -87,13 +97,21 @@ export default antfu(
     plugins: {
       'testing-library': {
         rules: testingLibrary.rules,
-        configs: testingLibrary.configs,
+        configs: testingLibrary.configs.react,
       },
     },
-    rules: Object.entries(testingLibrary.rules).reduce((acc, [key]) =>
-      // Error: Key "rules": Key "testing-library/consistent-data-testid": Value {"testIdAttribute":"data-testid"} should have required property 'testIdPattern'.
-      ({ ...acc, ...(!['consistent-data-testid'].includes(key) && { [`testing-library/${key}`]: 'error' }) }), {}),
+    rules: testingLibrary.configs.react.rules,
   },
-  // jsxA11y.configs.recommended,
+  {
+    name: 'jsx-a11y',
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      'jsx-a11y': {
+        rules: jsxA11y.rules,
+        configs: jsxA11y.configs.recommended,
+      },
+    },
+    rules: jsxA11y.configs.recommended.rules,
+  },
   // tailwind.configs.recommended,
 )

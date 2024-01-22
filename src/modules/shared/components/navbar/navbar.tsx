@@ -22,6 +22,7 @@ export function Navbar({ children }: PropsWithChildren) {
         {/* <!-- Navbar --> */}
         <div className="navbar w-full shadow-md">
           <div className="flex-none lg:hidden">
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="my-nav-drawer" className="btn btn-square btn-ghost">
               <Icon icon="lucide:menu" height="2em" />
             </label>
@@ -49,6 +50,7 @@ export function Navbar({ children }: PropsWithChildren) {
       </section>
 
       <section className="drawer-side">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="my-nav-drawer" className="drawer-overlay" />
 
         <ul className="menu h-full w-80 bg-base-100 p-4">
