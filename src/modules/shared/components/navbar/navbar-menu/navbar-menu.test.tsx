@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -28,7 +28,7 @@ describe('<NavBarMenu />', () => {
   // FIXME: Unexpected Application Error, because of react-aria i18n hooks
   it.todo('should render role contents correctly', () => {
     // ARRANGE
-    renderProviders(router)
+    const { user } = renderProviders(router)
     const link: HTMLAnchorElement = screen.getByRole('link', {
       name: /todos/i,
     })
@@ -41,7 +41,7 @@ describe('<NavBarMenu />', () => {
 
     // ACT & ASSERT
     modesBtn[0].addEventListener('click', mockModeBtn)
-    fireEvent.click(modesBtn[0])
+    user.click(modesBtn[0])
     expect(link).toBeInTheDocument()
     expect(themeBtn).toBeInTheDocument()
     expect(modesBtn).toHaveLength(themes.length)

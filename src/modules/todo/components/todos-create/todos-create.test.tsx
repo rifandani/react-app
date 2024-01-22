@@ -1,5 +1,5 @@
 import type { ByRoleOptions } from '@testing-library/react'
-import { fireEvent, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -31,7 +31,7 @@ describe('<TodosCreate />', () => {
     'should be able to type the inputs and submit the create todo form',
     () => {
       // ARRANGE
-      renderProviders(router)
+      const { user } = renderProviders(router)
       const createOptions: ByRoleOptions = { name: /add/i }
       const formCreate: HTMLFormElement = screen.getByRole('form')
       const inputTodo: HTMLInputElement = screen.getByRole(
@@ -48,9 +48,9 @@ describe('<TodosCreate />', () => {
       expect(formCreate).toBeInTheDocument()
       expect(inputTodo).toBeInTheDocument()
       expect(buttonSubmit).toBeInTheDocument()
-      fireEvent.change(inputTodo, { target: { value: todoValue } })
+      user.type(inputTodo, todoValue)
       expect(inputTodo).toHaveValue(todoValue)
-      fireEvent.click(buttonSubmit)
+      user.click(buttonSubmit)
       expect(mockCreateSubmitFn).toHaveBeenCalled()
     },
   )

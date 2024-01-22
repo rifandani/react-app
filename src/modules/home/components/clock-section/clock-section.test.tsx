@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -31,21 +31,21 @@ describe('<ClockSection />', () => {
   // FIXME: TestingLibraryElementError: Unable to find an element by: [data-testid="home-clock-show"]
   it.todo('should render clock when toggle clock button clicked', async () => {
     // ARRANGE
-    renderProviders(router)
+    const { user } = renderProviders(router)
     const button: HTMLButtonElement = screen.getByTestId(
       /home-clock-button-clock/i,
     )
 
     // ACT & ASSERT
     expect(button).toBeInTheDocument()
-    fireEvent.click(button)
-    expect(await screen.findByTestId('home-clock-show')).toBeInTheDocument()
+    user.click(button)
+    expect(await screen.findByTestId('home-clock-show'))
   })
 
   // FIXME: figure out how to solve the randomness behavior
   it.todo('should shuffle buttons when sort button clicked', () => {
     // ARRANGE
-    renderProviders(router)
+    const { user } = renderProviders(router)
     const buttonsBefore: HTMLButtonElement[]
       = screen.queryAllByTestId(/home-clock-button/i)
     const button: HTMLButtonElement = screen.getByTestId(
@@ -53,7 +53,7 @@ describe('<ClockSection />', () => {
     )
 
     // ACT & ASSERT
-    fireEvent.click(button)
+    user.click(button)
     const buttonsAfter: HTMLButtonElement[]
       = screen.queryAllByTestId(/home-clock-button/i)
     expect(buttonsBefore[0]).not.toHaveTextContent(
@@ -73,14 +73,14 @@ describe('<ClockSection />', () => {
   // FIXME: currently we mock translation function
   it.todo('should translate text when change language button clicked', () => {
     // ARRANGE
-    renderProviders(router)
+    const { user } = renderProviders(router)
     const button: HTMLButtonElement = screen.getByTestId(
       /home-clock-button-language/i,
     )
 
     // ACT & ASSERT
     expect(button).toHaveTextContent(/change language/i)
-    fireEvent.click(button)
+    user.click(button)
     expect(button).toHaveTextContent(/ganti bahasa/i)
   })
 
@@ -89,14 +89,14 @@ describe('<ClockSection />', () => {
     'should call mocked navigate function when get started button clicked',
     () => {
       // ARRANGE
-      renderProviders(router)
+      const { user } = renderProviders(router)
       const button: HTMLButtonElement = screen.getByTestId(
         /home-clock-button-start/i,
       )
       button.addEventListener('click', mockButtonFn)
 
       // ACT & ASSERT
-      fireEvent.click(button)
+      user.click(button)
       expect(mockButtonFn).toHaveBeenCalled()
     },
   )

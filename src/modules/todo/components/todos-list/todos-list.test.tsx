@@ -41,7 +41,7 @@ describe('<TodosList />', () => {
     renderProviders(router)
     await waitFor(() => {
       // wait for appearance inside an assertion
-      expect(screen.getByTestId(loadingId)).toBeInTheDocument()
+      expect(screen.getByTestId(loadingId))
     })
   })
 })

@@ -1,6 +1,7 @@
 import antfu from '@antfu/eslint-config'
 import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
+import testingLibrary from 'eslint-plugin-testing-library'
 
 export default antfu(
   {
@@ -55,7 +56,7 @@ export default antfu(
     },
   },
   {
-    name: '@tanstack/eslint-plugin-query:recommended',
+    name: '@tanstack/eslint-plugin-query',
     files: ['src/**/*.{js,jsx,ts,tsx}'],
     plugins: {
       '@tanstack/eslint-plugin-query': {
@@ -80,7 +81,19 @@ export default antfu(
     },
     rules: Object.entries(jestDom.rules).reduce((acc, [key]) => ({ ...acc, [`jest-dom/${key}`]: 'error' }), {}),
   },
+  {
+    name: 'testing-library',
+    files: ['src/**/*.test.{js,jsx,ts,tsx}'],
+    plugins: {
+      'testing-library': {
+        rules: testingLibrary.rules,
+        configs: testingLibrary.configs,
+      },
+    },
+    rules: Object.entries(testingLibrary.rules).reduce((acc, [key]) =>
+      // Error: Key "rules": Key "testing-library/consistent-data-testid": Value {"testIdAttribute":"data-testid"} should have required property 'testIdPattern'.
+      ({ ...acc, ...(!['consistent-data-testid'].includes(key) && { [`testing-library/${key}`]: 'error' }) }), {}),
+  },
   // jsxA11y.configs.recommended,
   // tailwind.configs.recommended,
-  // testingLibrary.configs.recommended,
 )

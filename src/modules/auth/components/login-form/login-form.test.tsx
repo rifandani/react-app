@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import type { RouteObject } from 'react-router-dom'
 import { createMemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
@@ -29,7 +29,7 @@ describe('<LoginForm />', () => {
   // FIXME: Unexpected Application Error, because of react-aria i18n hooks
   it.todo('should be able to type the inputs and submit the login form', () => {
     // ARRANGE
-    renderProviders(router)
+    const { user } = renderProviders(router)
     const formLogin: HTMLFormElement = screen.getByRole('form', {
       name: /login/i,
     })
@@ -46,11 +46,11 @@ describe('<LoginForm />', () => {
     expect(formLogin).toBeInTheDocument()
     expect(inputUsername).toBeInTheDocument()
     expect(inputPassword).toBeInTheDocument()
-    fireEvent.change(inputUsername, { target: { value: validUsernameValue } })
-    fireEvent.change(inputPassword, { target: { value: validPasswordValue } })
+    user.type(inputUsername, validUsernameValue)
+    user.type(inputPassword, validPasswordValue)
     expect(inputUsername).toHaveValue(validUsernameValue)
     expect(inputPassword).toHaveValue(validPasswordValue)
-    fireEvent.click(buttonSubmit)
+    user.click(buttonSubmit)
     expect(mockSubmitFn).toHaveBeenCalled()
   })
 })

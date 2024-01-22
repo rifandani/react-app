@@ -114,6 +114,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-testing-library": "^6.2.0",
     "https-localhost": "^4.7.1",
     "husky": "^8.0.3",
     "jsdom": "^24.0.0",
