@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config'
-import { configs as tanstackQueryConfigs, rules as tanstackQueryRules } from '@tanstack/eslint-plugin-query'
+import * as tanstackQuery from '@tanstack/eslint-plugin-query'
+import * as jestDom from 'eslint-plugin-jest-dom'
 
 export default antfu(
   {
@@ -58,8 +59,8 @@ export default antfu(
     files: ['src/**/*.{js,jsx,ts,tsx}'],
     plugins: {
       '@tanstack/eslint-plugin-query': {
-        rules: tanstackQueryRules,
-        configs: tanstackQueryConfigs,
+        rules: tanstackQuery.rules,
+        configs: tanstackQuery.configs,
       },
     },
     rules: {
@@ -68,7 +69,17 @@ export default antfu(
       '@tanstack/eslint-plugin-query/stable-query-client': 'error',
     },
   },
-  // jestDom.configs.recommended,
+  {
+    name: 'jest-dom',
+    files: ['src/**/*.test.{js,jsx,ts,tsx}'],
+    plugins: {
+      'jest-dom': {
+        rules: jestDom.rules,
+        configs: jestDom.configs,
+      },
+    },
+    rules: Object.entries(jestDom.rules).reduce((acc, [key]) => ({ ...acc, [`jest-dom/${key}`]: 'error' }), {}),
+  },
   // jsxA11y.configs.recommended,
   // tailwind.configs.recommended,
   // testingLibrary.configs.recommended,
