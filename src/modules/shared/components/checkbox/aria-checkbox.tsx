@@ -36,7 +36,7 @@ export function AriaCheckbox({ className, ...props }: CheckboxProps) {
           )}
         >
           <svg
-            className="h-3 w-3 stroke-current"
+            className="size-3 stroke-current"
             aria-hidden="true"
             viewBox="0 0 18 18"
           >

@@ -3,6 +3,7 @@ import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
+import tailwindcss from 'eslint-plugin-tailwindcss'
 
 /**
  * for plugin rules that doesn't have prefix.
@@ -71,7 +72,7 @@ export default antfu(
   },
   {
     name: '@tanstack/query',
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     plugins: {
       '@tanstack/query': {
         rules: tanstackQuery.rules,
@@ -82,7 +83,7 @@ export default antfu(
   },
   {
     name: 'jest-dom',
-    files: ['src/**/*.test.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.test.{ts,tsx}'],
     plugins: {
       'jest-dom': {
         rules: jestDom.rules,
@@ -93,7 +94,7 @@ export default antfu(
   },
   {
     name: 'testing-library',
-    files: ['src/**/*.test.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.test.{ts,tsx}'],
     plugins: {
       'testing-library': {
         rules: testingLibrary.rules,
@@ -104,7 +105,7 @@ export default antfu(
   },
   {
     name: 'jsx-a11y',
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     plugins: {
       'jsx-a11y': {
         rules: jsxA11y.rules,
@@ -113,5 +114,18 @@ export default antfu(
     },
     rules: jsxA11y.configs.recommended.rules,
   },
-  // tailwind.configs.recommended,
+  {
+    name: 'tailwindcss',
+    files: ['src/**/*.{ts,tsx}'],
+    plugins: {
+      tailwindcss: {
+        rules: tailwindcss.rules,
+        configs: tailwindcss.configs.recommended,
+      },
+    },
+    rules: {
+      ...tailwindcss.configs.recommended.rules,
+      'tailwindcss/no-custom-classname': 'off',
+    },
+  },
 )

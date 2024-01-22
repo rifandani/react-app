@@ -9,7 +9,7 @@ interface Props {
 export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
   return (
     <section data-testid="home-clock-show" className="mt-8">
-      <svg className="h-full w-full" viewBox="-50 -50 100 100">
+      <svg className="size-full" viewBox="-50 -50 100 100">
         <circle className="fill-white stroke-slate-900" r="48" />
 
         {/* <!-- markers --> */}

@@ -33,7 +33,7 @@ export function Navbar({ children }: PropsWithChildren) {
             aria-label="logo"
             className="link mx-2 flex flex-1 items-center space-x-2 px-2 text-2xl"
           >
-            <SvgIcon id="icon-reactjs" className="h-6 w-6" />
+            <SvgIcon id="icon-reactjs" className="size-6" />
             <p className="font-semibold tracking-wider">{t('appName')}</p>
           </Link>
 

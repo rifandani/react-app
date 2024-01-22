@@ -59,11 +59,11 @@ export function PlaygroundPage() {
           </Tab>
         </TabList>
 
-        <TabPanel id="demo" className="h-full w-full">
+        <TabPanel id="demo" className="size-full">
           <DemoContainer />
         </TabPanel>
 
-        <TabPanel id="playground" className="h-full w-full">
+        <TabPanel id="playground" className="size-full">
           Playground
         </TabPanel>
       </Tabs>

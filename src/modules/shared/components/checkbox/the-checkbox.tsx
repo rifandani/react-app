@@ -52,7 +52,7 @@ export function TheCheckbox(props: AriaCheckboxProps) {
           isFocusVisible && 'shadow-outline',
         )}
       >
-        <svg className="h-3 w-3 stroke-current" viewBox="0 0 18 18">
+        <svg className="size-3 stroke-current" viewBox="0 0 18 18">
           <polyline
             points="1 9 7 14 15 4"
             fill="none"

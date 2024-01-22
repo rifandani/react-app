@@ -28,7 +28,7 @@ export function AriaRadio({ className, ...props }: RadioProps) {
             isInvalid && 'border-error',
           )}
         >
-          <svg className="h-3 w-3 stroke-current" viewBox="0 0 18 18">
+          <svg className="size-3 stroke-current" viewBox="0 0 18 18">
             <circle
               cx="9"
               cy="9"
