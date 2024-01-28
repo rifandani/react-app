@@ -76,7 +76,6 @@ export default antfu(
     plugins: {
       '@tanstack/query': {
         rules: tanstackQuery.rules,
-        configs: tanstackQuery.configs.recommended,
       },
     },
     rules: tanstackQuery.configs.recommended.rules,
@@ -87,7 +86,6 @@ export default antfu(
     plugins: {
       'jest-dom': {
         rules: jestDom.rules,
-        configs: jestDom.configs.recommended,
       },
     },
     rules: jestDom.configs.recommended.rules,
@@ -98,7 +96,6 @@ export default antfu(
     plugins: {
       'testing-library': {
         rules: testingLibrary.rules,
-        configs: testingLibrary.configs.react,
       },
     },
     rules: testingLibrary.configs.react.rules,
@@ -109,7 +106,6 @@ export default antfu(
     plugins: {
       'jsx-a11y': {
         rules: jsxA11y.rules,
-        configs: jsxA11y.configs.recommended,
       },
     },
     rules: jsxA11y.configs.recommended.rules,
@@ -120,7 +116,6 @@ export default antfu(
     plugins: {
       tailwindcss: {
         rules: tailwindcss.rules,
-        configs: tailwindcss.configs.recommended,
       },
     },
     rules: {
