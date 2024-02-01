@@ -8,7 +8,7 @@ import type {
   DeleteTodoApiResponseSchema,
   DeleteTodoSchema,
   TodoListApiResponseSchema,
-} from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
 
 /**
  * delete todo mutation based on `useTodosParams` and show toast

@@ -1,14 +1,14 @@
 import { HttpResponse, http } from 'msw'
-import type { ResourceParamsSchema } from '../../../modules/shared/schemas/api.schema'
-import { resourceParamsSchema } from '../../../modules/shared/schemas/api.schema'
+import type { ResourceParamsSchema } from '#shared/schemas/api.schema'
+import { resourceParamsSchema } from '#shared/schemas/api.schema'
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '../../../modules/todo/schemas/todo.schema'
-import { getBaseUrl } from '../../util.mock'
-import { mockTodo } from '../entities.http'
+} from '#todo/apis/todo.api'
+import { getBaseUrl } from '#mocks/util.mock'
+import { mockTodo } from '#mocks/http/entities.http'
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>

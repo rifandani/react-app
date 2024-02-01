@@ -6,7 +6,7 @@ import { mockTodo } from '#mocks/http/entities.http'
 import { setupTest } from '#shared/utils/test.util'
 import { todoApi } from '#todo/apis/todo.api'
 import { todosPath } from '#todo/routes'
-import type { UpdateTodoSchema } from '#todo/schemas/todo.schema'
+import type { UpdateTodoSchema } from '#todo/apis/todo.api'
 
 describe('<TodoPage />', () => {
   const todo = mockTodo()

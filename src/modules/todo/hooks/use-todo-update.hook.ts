@@ -8,7 +8,7 @@ import type {
   TodoListApiResponseSchema,
   UpdateTodoApiResponseSchema,
   UpdateTodoSchema,
-} from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
 
 /**
  * update todo mutation based on `useTodosParams` and show toast

@@ -1,9 +1,8 @@
 import { unstable_batchedUpdates } from 'react-dom'
 import type { ActionFunctionArgs } from 'react-router-dom'
 import { json, redirect } from 'react-router-dom'
-import { authApi } from '#auth/apis/auth.api'
+import { authApi, loginSchema } from '#auth/apis/auth.api'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { loginSchema } from '#auth/schemas/auth.schema'
 import { homePath } from '#home/routes'
 
 export async function loginAction({ request }: ActionFunctionArgs) {

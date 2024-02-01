@@ -6,7 +6,7 @@ import type {
   CreateTodoApiResponseSchema,
   CreateTodoSchema,
   TodoListApiResponseSchema,
-} from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
 
 /**
  * create todo mutation (optimistic update) based on `useTodosParams`

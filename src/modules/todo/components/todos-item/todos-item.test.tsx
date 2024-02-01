@@ -4,7 +4,7 @@ import { createMemoryRouter } from 'react-router-dom'
 import { TodosItem } from './todos-item'
 import { mockLogin, mockTodo } from '#mocks/http/entities.http'
 import { setupTest } from '#shared/utils/test.util'
-import type { TodoSchema } from '#todo/schemas/todo.schema'
+import type { TodoSchema } from '#todo/apis/todo.api'
 
 describe('<TodosItem />', () => {
   const todo: TodoSchema = mockTodo()

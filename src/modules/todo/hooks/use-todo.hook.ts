@@ -6,7 +6,7 @@ import { todoApi, todoKeys } from '#todo/apis/todo.api'
 import type {
   TodoDetailApiResponseSchema,
   TodoSchema,
-} from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
 
 /**
  * fetch todo detail

@@ -1,8 +1,8 @@
-import type { LoginApiResponseSchema } from '#auth/schemas/auth.schema'
+import type { LoginApiResponseSchema } from '#auth/apis/auth.api'
 import type {
   TodoListApiResponseSchema,
   TodoSchema,
-} from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
 
 // #region AUTH MODULE
 export function mockLogin(

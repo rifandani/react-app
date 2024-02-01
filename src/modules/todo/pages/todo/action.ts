@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import type { queryClient } from '#app/providers/query/client'
 import { todoApi, todoKeys } from '#todo/apis/todo.api'
 import { todosPath } from '#todo/routes'
-import type { UpdateTodoSchema } from '#todo/schemas/todo.schema'
+import type { UpdateTodoSchema } from '#todo/apis/todo.api'
 
 export function todoAction(_queryClient: typeof queryClient) {
   return async ({ request, params }: ActionFunctionArgs) => {

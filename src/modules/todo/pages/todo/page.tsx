@@ -10,8 +10,8 @@ import { todosPath } from '#todo/routes'
 import type {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,
-} from '#todo/schemas/todo.schema'
-import { updateTodoSchema } from '#todo/schemas/todo.schema'
+} from '#todo/apis/todo.api'
+import { updateTodoSchema } from '#todo/apis/todo.api'
 
 export function TodoPage() {
   const [t] = useI18n()

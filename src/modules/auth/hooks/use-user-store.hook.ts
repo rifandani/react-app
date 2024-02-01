@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
-import { loginApiResponseSchema } from '#auth/schemas/auth.schema'
+import { loginApiResponseSchema } from '#auth/apis/auth.api'
 
 export type UserStoreState = z.infer<typeof userStoreStateSchema>
 export type UserStore = z.infer<typeof userStoreSchema>

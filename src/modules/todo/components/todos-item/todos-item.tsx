@@ -6,7 +6,7 @@ import { useUserStore } from '#auth/hooks/use-user-store.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook'
 import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook'
-import type { TodoSchema } from '#todo/schemas/todo.schema'
+import type { TodoSchema } from '#todo/apis/todo.api'
 
 interface Props {
   todo: TodoSchema

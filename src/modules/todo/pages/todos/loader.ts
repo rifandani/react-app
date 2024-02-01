@@ -7,7 +7,7 @@ import type { ResourceParamsSchema } from '#shared/schemas/api.schema'
 import { checkAuthUser } from '#shared/utils/checker.util'
 import { todoApi, todoKeys } from '#todo/apis/todo.api'
 import { defaultLimit } from '#todo/constants/todos.constant'
-import type { TodoListApiResponseSchema } from '#todo/schemas/todo.schema'
+import type { TodoListApiResponseSchema } from '#todo/apis/todo.api'
 import { authPath } from '#auth/routes'
 
 export function todosLoader(_queryClient: typeof queryClient) {

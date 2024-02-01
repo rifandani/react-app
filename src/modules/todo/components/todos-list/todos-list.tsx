@@ -4,7 +4,7 @@ import { For } from '#shared/components/for/for'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { TodosItem } from '#todo/components/todos-item/todos-item'
 import { useTodos } from '#todo/hooks/use-todos.hook'
-import type { TodoListApiResponseSchema } from '#todo/schemas/todo.schema'
+import type { TodoListApiResponseSchema } from '#todo/apis/todo.api'
 
 export function TodosList() {
   const [t] = useI18n()
