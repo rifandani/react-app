@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-function iterator(this: { next(): void, [Symbol.iterator]: () => unknown }) {
+function iterator(this: { next: () => void, [Symbol.iterator]: () => unknown }) {
   return this
 }
 
