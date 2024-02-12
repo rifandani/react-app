@@ -30,12 +30,6 @@ export function TodoPage() {
     },
   })
 
-  // #region HANDLERS
-  const onSubmit: SubmitHandler<UpdateTodoSchema> = (values) => {
-    fetcher.submit(values, { method: 'PUT', encType: 'application/json' })
-  }
-  // #endregion
-
   return (
     <section className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div className="mb-10 flex w-full flex-col space-y-2">
@@ -73,7 +67,9 @@ export function TodoPage() {
         <form
           aria-label="form-todo"
           className="join"
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit((values) => {
+            fetcher.submit(values, { method: 'PUT', encType: 'application/json' })
+          })}
         >
           <input
             id="todo"

@@ -1,4 +1,3 @@
-import type { ChangeEventHandler } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { defaultLimit, limits } from '#todo/constants/todos.constant'
@@ -9,16 +8,6 @@ export function TodosFilter() {
 
   const params = Object.fromEntries(searchParams)
   const selectedOption = params?.limit ?? defaultLimit
-
-  // #region HANDLERS
-  const handleChangeLimit: ChangeEventHandler<HTMLSelectElement> = ({
-    currentTarget,
-  }) => {
-    // set to url params
-    searchParams.set('limit', currentTarget.value)
-    setSearchParams(searchParams)
-  }
-  // #endregion
 
   return (
     <form
@@ -35,7 +24,11 @@ export function TodosFilter() {
         name="limit"
         id="limit"
         value={selectedOption}
-        onChange={handleChangeLimit}
+        onChange={(evt) => {
+          // set to url params
+          searchParams.set('limit', evt.currentTarget.value)
+          setSearchParams(searchParams)
+        }}
       >
         {limits.map(limit => (
           <option

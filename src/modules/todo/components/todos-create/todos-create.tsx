@@ -3,7 +3,6 @@ import { random } from '@rifandani/nxact-yutiriti'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useId } from 'react'
 import { Button } from 'react-aria-components'
-import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useBeforeUnload } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -33,37 +32,6 @@ export function TodosCreate() {
     },
   })
 
-  // #region HANDLERS
-  const onSubmit: SubmitHandler<TodoSchema> = (data) => {
-    const payload = {
-      ...data,
-      userId: user?.id ?? 1,
-      id: random(11, 999_999), // generate different id everytime
-    }
-
-    todoCreateMutation.mutate(payload, {
-      onSettled: (_newTodo, error, _variables, context) => {
-        // reset form
-        form.reset()
-
-        toast[error ? 'error' : 'success'](
-          t(error ? 'xCreateError' : 'xCreateSuccess', {
-            feature: 'Todo',
-          }),
-        )
-
-        // If the mutation fails, use the context returned from `onMutate` to roll back
-        if (error) {
-          queryClient.setQueryData(
-            todoKeys.list(params),
-            context?.previousTodosQueryResponse,
-          )
-        }
-      },
-    })
-  }
-  // #endregion
-
   useBeforeUnload(
     useCallback(
       (evt) => {
@@ -92,7 +60,34 @@ export function TodosCreate() {
       <form
         aria-label="form-add"
         className="form-control mb-3 w-full duration-300 lg:flex-row"
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((values) => {
+          const payload = {
+            ...values,
+            userId: user?.id ?? 1,
+            id: random(11, 999_999), // generate different id everytime
+          }
+
+          todoCreateMutation.mutate(payload, {
+            onSettled: (_newTodo, error, _variables, context) => {
+              // reset form
+              form.reset()
+
+              toast[error ? 'error' : 'success'](
+                t(error ? 'xCreateError' : 'xCreateSuccess', {
+                  feature: 'Todo',
+                }),
+              )
+
+              // If the mutation fails, use the context returned from `onMutate` to roll back
+              if (error) {
+                queryClient.setQueryData(
+                  todoKeys.list(params),
+                  context?.previousTodosQueryResponse,
+                )
+              }
+            },
+          })
+        })}
       >
         <input
           id="todo"
