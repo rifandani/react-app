@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from 'react-aria-components'
-import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
