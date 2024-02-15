@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from 'react'
-import { Button } from 'react-aria-components'
+import type { PropsWithChildren } from 'react';
+import { Button } from 'react-aria-components';
 
 interface Props extends PropsWithChildren {
-  id: string
+  id: string;
 }
 
 export function Modal({ id, children }: Props) {
@@ -27,5 +27,5 @@ export function Modal({ id, children }: Props) {
         {children}
       </div>
     </dialog>
-  )
+  );
 }

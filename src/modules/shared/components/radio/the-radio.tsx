@@ -1,16 +1,21 @@
-import React from 'react'
-import type { AriaRadioProps } from 'react-aria'
-import { VisuallyHidden, useFocusRing, useRadio } from 'react-aria'
-import { twMerge } from 'tailwind-merge'
-import { RadioContext } from './context'
+import React from 'react';
+import type { AriaRadioProps } from 'react-aria';
+import { VisuallyHidden, useFocusRing, useRadio } from 'react-aria';
+import { RadioGroupState } from 'react-stately';
+import { twMerge } from 'tailwind-merge';
+import { RadioContext } from './context';
 
 export function TheRadio(props: AriaRadioProps) {
-  const { children } = props
-  const state = React.useContext(RadioContext)
-  const ref = React.useRef(null)
-  const { inputProps, isSelected, isDisabled } = useRadio(props, state!, ref)
-  const { isFocusVisible, focusProps } = useFocusRing()
-  const strokeWidth = isSelected ? 6 : 2
+  const { children } = props;
+  const state = React.useContext(RadioContext);
+  const ref = React.useRef(null);
+  const { inputProps, isSelected, isDisabled } = useRadio(
+    props,
+    state as RadioGroupState,
+    ref,
+  );
+  const { isFocusVisible, focusProps } = useFocusRing();
+  const strokeWidth = isSelected ? 6 : 2;
 
   return (
     <label
@@ -45,5 +50,5 @@ export function TheRadio(props: AriaRadioProps) {
       </svg>
       {children}
     </label>
-  )
+  );
 }

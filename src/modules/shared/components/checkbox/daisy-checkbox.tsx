@@ -4,5 +4,5 @@ export function DaisyCheckbox() {
       <span className="label-text">DaisyUI</span>
       <input name="daisy-checkbox" type="checkbox" className="checkbox" />
     </label>
-  )
+  );
 }

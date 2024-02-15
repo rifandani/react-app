@@ -1,6 +1,6 @@
-import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox'
-import { BaseAriaCheckbox } from '#shared/components/checkbox/base-aria-checkbox'
-import { DaisyCheckbox } from '#shared/components/checkbox/daisy-checkbox'
+import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
+import { BaseAriaCheckbox } from '#shared/components/checkbox/base-aria-checkbox';
+import { DaisyCheckbox } from '#shared/components/checkbox/daisy-checkbox';
 
 export function DemoCheckbox() {
   return (
@@ -10,7 +10,6 @@ export function DemoCheckbox() {
         <AriaCheckbox />
       </div>
 
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="label cursor-pointer gap-3">
         <span className="label-text">BaseCheckbox</span>
         <BaseAriaCheckbox />
@@ -18,5 +17,5 @@ export function DemoCheckbox() {
 
       <DaisyCheckbox />
     </section>
-  )
+  );
 }

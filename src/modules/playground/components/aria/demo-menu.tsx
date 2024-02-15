@@ -2,20 +2,20 @@ import type {
   MenuItemProps,
   MenuProps,
   MenuTriggerProps,
-} from 'react-aria-components'
+} from 'react-aria-components';
 import {
   Button,
   Menu,
   MenuItem,
   MenuTrigger,
   Popover,
-} from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
+} from 'react-aria-components';
+import { twMerge } from 'tailwind-merge';
 
 interface MyMenuButtonProps<T>
   extends MenuProps<T>,
-  Omit<MenuTriggerProps, 'children'> {
-  label?: string
+    Omit<MenuTriggerProps, 'children'> {
+  label?: string;
 }
 
 function MyMenuButton<T extends object>({
@@ -32,7 +32,7 @@ function MyMenuButton<T extends object>({
         </Menu>
       </Popover>
     </MenuTrigger>
-  )
+  );
 }
 
 function MyItem(props: MenuItemProps) {
@@ -40,9 +40,10 @@ function MyItem(props: MenuItemProps) {
     <MenuItem
       {...props}
       className={({ isFocused }) =>
-        twMerge(`min-w-[5rem]`, isFocused && 'focused')}
+        twMerge('min-w-[5rem]', isFocused && 'focused')
+      }
     />
-  )
+  );
 }
 
 function DaisyMenu() {
@@ -78,7 +79,7 @@ function DaisyMenu() {
         </details>
       </li>
     </ul>
-  )
+  );
 }
 
 export function DemoMenu() {
@@ -94,5 +95,5 @@ export function DemoMenu() {
 
       <DaisyMenu />
     </section>
-  )
+  );
 }

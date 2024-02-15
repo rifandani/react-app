@@ -1,19 +1,19 @@
-import { isWeekend, parseDateTime } from '@internationalized/date'
-import { useState } from 'react'
-import type { DateFieldProps, DateValue } from 'react-aria-components'
+import { isWeekend, parseDateTime } from '@internationalized/date';
+import { useState } from 'react';
+import type { DateFieldProps, DateValue } from 'react-aria-components';
 import {
   DateField,
   DateInput,
   DateSegment,
   Label,
   Text,
-} from 'react-aria-components'
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant'
+} from 'react-aria-components';
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyDateFieldProps<T extends DateValue> extends DateFieldProps<T> {
-  label?: string
-  description?: string
-  errorMessage?: string
+  label?: string;
+  description?: string;
+  errorMessage?: string;
 }
 
 function MyDateField<T extends DateValue>({
@@ -26,7 +26,7 @@ function MyDateField<T extends DateValue>({
     <DateField {...props}>
       <Label>{label}</Label>
       <DateInput className="flex items-center rounded border px-2 py-1">
-        {segment => <DateSegment segment={segment} />}
+        {(segment) => <DateSegment segment={segment} />}
       </DateInput>
 
       {!props.isInvalid && description && (
@@ -38,16 +38,16 @@ function MyDateField<T extends DateValue>({
         </Text>
       )}
     </DateField>
-  )
+  );
 }
 
 export function DemoDateField() {
-  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'))
+  const [value, setValue] = useState<DateValue>(parseDateTime('2023-10-15'));
 
   const isInvalid = isWeekend(
     value,
     RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone,
-  )
+  );
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -62,5 +62,5 @@ export function DemoDateField() {
         errorMessage={isInvalid ? 'We are closed on weekend' : undefined}
       />
     </section>
-  )
+  );
 }

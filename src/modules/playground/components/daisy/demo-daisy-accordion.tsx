@@ -1,5 +1,5 @@
 interface BaseAccordionProps {
-  name?: string
+  name?: string;
 }
 
 function BaseAccordion({ name = 'base-accordion' }: BaseAccordionProps) {
@@ -13,7 +13,7 @@ function BaseAccordion({ name = 'base-accordion' }: BaseAccordionProps) {
         <p>hello</p>
       </div>
     </div>
-  )
+  );
 }
 
 export function DemoDaisyAccordion() {
@@ -23,5 +23,5 @@ export function DemoDaisyAccordion() {
       <BaseAccordion name="base-accordion-2" />
       <BaseAccordion name="base-accordion-3" />
     </div>
-  )
+  );
 }

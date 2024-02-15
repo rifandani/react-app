@@ -1,12 +1,12 @@
-import { Icon } from '@iconify/react'
-import { useState } from 'react'
-import { ToggleButton } from 'react-aria-components'
+import { Icon } from '@iconify/react';
+import { useState } from 'react';
+import { ToggleButton } from 'react-aria-components';
 
 export function DemoToggleButton() {
-  const [isSelected, setSelected] = useState(false)
-  const [isBoldSelected, setBoldSelected] = useState(false)
-  const [isItalicSelected, setItalicSelected] = useState(false)
-  const [isUnderlineSelected, setUnderlineSelected] = useState(false)
+  const [isSelected, setSelected] = useState(false);
+  const [isBoldSelected, setBoldSelected] = useState(false);
+  const [isItalicSelected, setItalicSelected] = useState(false);
+  const [isUnderlineSelected, setUnderlineSelected] = useState(false);
 
   return (
     <section className="flex flex-wrap items-center gap-3">
@@ -42,5 +42,5 @@ export function DemoToggleButton() {
         </ToggleButton>
       </div>
     </section>
-  )
+  );
 }

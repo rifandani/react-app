@@ -1,8 +1,8 @@
-import type { MeterProps } from 'react-aria-components'
-import { Label, Meter } from 'react-aria-components'
+import type { MeterProps } from 'react-aria-components';
+import { Label, Meter } from 'react-aria-components';
 
 interface MyMeterProps extends MeterProps {
-  label?: string
+  label?: string;
 }
 
 function MyMeter({ label, ...props }: MyMeterProps) {
@@ -24,7 +24,7 @@ function MyMeter({ label, ...props }: MyMeterProps) {
         </>
       )}
     </Meter>
-  )
+  );
 }
 
 function DaisyRadialProgress() {
@@ -32,7 +32,7 @@ function DaisyRadialProgress() {
     <div className="radial-progress text-primary" style={{ '--value': '60' }}>
       60%
     </div>
-  )
+  );
 }
 
 export function DemoMeter() {
@@ -47,5 +47,5 @@ export function DemoMeter() {
 
       <DaisyRadialProgress />
     </section>
-  )
+  );
 }

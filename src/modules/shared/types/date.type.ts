@@ -1,6 +1,6 @@
 export interface RangeValue<T> {
   /** The start value of the range. */
-  start: T
+  start: T;
   /** The end value of the range. */
-  end: T
+  end: T;
 }

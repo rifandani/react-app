@@ -1,11 +1,11 @@
-import { Icon } from '@iconify/react'
-import type { PropsWithChildren } from 'react'
-import { useState } from 'react'
+import { Icon } from '@iconify/react';
+import type { PropsWithChildren } from 'react';
+import { useState } from 'react';
 import type {
   ComboBoxProps,
   Key,
   ListBoxItemProps,
-} from 'react-aria-components'
+} from 'react-aria-components';
 import {
   Button,
   ComboBox,
@@ -16,15 +16,15 @@ import {
   ListBoxItem,
   Popover,
   Text,
-} from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
+} from 'react-aria-components';
+import { twMerge } from 'tailwind-merge';
 
 interface MyComboBoxProps<T extends object>
   extends Omit<ComboBoxProps<T>, 'children'> {
-  label?: string
-  description?: string | null
-  errorMessage?: string | null
-  children: React.ReactNode | ((item: T) => React.ReactNode)
+  label?: string;
+  description?: string | null;
+  errorMessage?: string | null;
+  children: React.ReactNode | ((item: T) => React.ReactNode);
 }
 
 function MyComboBox<T extends object>({
@@ -37,11 +37,12 @@ function MyComboBox<T extends object>({
 }: MyComboBoxProps<T>) {
   return (
     <ComboBox
-      className={classProps =>
+      className={(classProps) =>
         twMerge(
           'group flex flex-col',
           typeof className === 'string' ? className : className?.(classProps),
-      )}
+        )
+      }
       {...props}
     >
       <Label className="cursor-default">{label}</Label>
@@ -66,7 +67,7 @@ function MyComboBox<T extends object>({
         <ListBox className="p-1 outline-none">{children}</ListBox>
       </Popover>
     </ComboBox>
-  )
+  );
 }
 
 function MyItem(props: PropsWithChildren<ListBoxItemProps>) {
@@ -89,7 +90,7 @@ function MyItem(props: PropsWithChildren<ListBoxItemProps>) {
         </>
       )}
     </ListBoxItem>
-  )
+  );
 }
 
 export function DemoCombobox() {
@@ -103,29 +104,29 @@ export function DemoCombobox() {
     { id: 7, name: 'Chemical' },
     { id: 8, name: 'Agricultural' },
     { id: 9, name: 'Electrical' },
-  ]
+  ];
 
   const [fieldState, setFieldState] = useState<{
-    selectedKey: Key | null | undefined
-    inputValue: string
+    selectedKey: Key | null | undefined;
+    inputValue: string;
   }>({
     selectedKey: null,
     inputValue: '',
-  })
+  });
 
   const onSelectionChange = (id: Key) => {
     setFieldState({
       selectedKey: id,
-      inputValue: options.find(o => o.id === id)?.name ?? '',
-    })
-  }
+      inputValue: options.find((o) => o.id === id)?.name ?? '',
+    });
+  };
 
   const onInputChange = (value: string) => {
-    setFieldState(prevState => ({
+    setFieldState((prevState) => ({
       selectedKey: value === '' ? null : prevState.selectedKey,
       inputValue: value,
-    }))
-  }
+    }));
+  };
 
   return (
     <section className="flex flex-wrap gap-3 rounded border p-3">
@@ -147,9 +148,9 @@ export function DemoCombobox() {
           onSelectionChange={onSelectionChange}
           onInputChange={onInputChange}
         >
-          {item => <MyItem>{item.name}</MyItem>}
+          {(item) => <MyItem>{item.name}</MyItem>}
         </MyComboBox>
       </div>
     </section>
-  )
+  );
 }

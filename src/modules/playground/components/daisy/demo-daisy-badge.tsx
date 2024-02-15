@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react'
+import { Icon } from '@iconify/react';
 
 export function DemoDaisyBadge() {
   return (
@@ -13,5 +13,5 @@ export function DemoDaisyBadge() {
         <div className="badge">+99</div>
       </button>
     </section>
-  )
+  );
 }

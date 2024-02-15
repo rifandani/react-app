@@ -8,5 +8,5 @@ export function DaisySwitch() {
         className="toggle toggle-primary"
       />
     </label>
-  )
+  );
 }

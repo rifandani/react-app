@@ -22,7 +22,7 @@ export const commonEnLocale = {
   noPageContent: 'No Page Content',
   unauthorized: 'Unauthorized. Please login first',
   authorized: 'Already authorized',
-} as const
+} as const;
 
 export const commonIdLocale = {
   loading: 'Menunggu...',
@@ -46,4 +46,4 @@ export const commonIdLocale = {
   appName: 'Templat React',
   noPageContent: 'Tidak Ada Konten',
   authorized: 'Sudah Ada Akses',
-} as const
+} as const;

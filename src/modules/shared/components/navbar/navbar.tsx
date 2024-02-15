@@ -1,13 +1,13 @@
-import { Icon } from '@iconify/react'
-import type { PropsWithChildren } from 'react'
-import { Link } from 'react-router-dom'
-import { NavbarMenu } from './navbar-menu/navbar-menu'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import { SvgIcon } from '#shared/components/svg-icon/svg-icon'
-import { homePath } from '#home/routes'
+import { Icon } from '@iconify/react';
+import type { PropsWithChildren } from 'react';
+import { Link } from 'react-router-dom';
+import { NavbarMenu } from './navbar-menu/navbar-menu';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { SvgIcon } from '#shared/components/svg-icon/svg-icon';
+import { homePath } from '#home/routes';
 
 export function Navbar({ children }: PropsWithChildren) {
-  const [t] = useI18n()
+  const [t] = useI18n();
 
   return (
     <nav className="drawer min-h-screen">
@@ -22,7 +22,6 @@ export function Navbar({ children }: PropsWithChildren) {
         {/* <!-- Navbar --> */}
         <div className="navbar w-full shadow-md">
           <div className="flex-none lg:hidden">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="my-nav-drawer" className="btn btn-square btn-ghost">
               <Icon icon="lucide:menu" height="2em" />
             </label>
@@ -50,7 +49,6 @@ export function Navbar({ children }: PropsWithChildren) {
       </section>
 
       <section className="drawer-side">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="my-nav-drawer" className="drawer-overlay" />
 
         <ul className="menu h-full w-80 bg-base-100 p-4">
@@ -59,5 +57,5 @@ export function Navbar({ children }: PropsWithChildren) {
         </ul>
       </section>
     </nav>
-  )
+  );
 }

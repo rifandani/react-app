@@ -1,10 +1,10 @@
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { ClockSection } from '#home/components/clock-section/clock-section'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { ClockSection } from '#home/components/clock-section/clock-section';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
 
 export function HomePage() {
-  const [t] = useI18n()
-  const [parentRef] = useAutoAnimate()
+  const [t] = useI18n();
+  const [parentRef] = useAutoAnimate();
 
   return (
     <main
@@ -15,5 +15,5 @@ export function HomePage() {
 
       <ClockSection />
     </main>
-  )
+  );
 }

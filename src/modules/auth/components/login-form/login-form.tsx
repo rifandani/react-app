@@ -1,21 +1,21 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from 'react-aria-components'
-import { useForm } from 'react-hook-form'
-import { useFetcher } from 'react-router-dom'
-import { loginFormDefaultValues } from '#auth/constants/login.constant'
-import type { LoginSchema } from '#auth/apis/auth.api'
-import { loginSchema } from '#auth/apis/auth.api'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from 'react-aria-components';
+import { useForm } from 'react-hook-form';
+import { useFetcher } from 'react-router-dom';
+import { loginFormDefaultValues } from '#auth/constants/login.constant';
+import type { LoginSchema } from '#auth/apis/auth.api';
+import { loginSchema } from '#auth/apis/auth.api';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema';
 
 export function LoginForm() {
-  const [t] = useI18n()
-  const fetcher = useFetcher()
+  const [t] = useI18n();
+  const fetcher = useFetcher();
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: loginFormDefaultValues,
     mode: 'onChange',
-  })
+  });
 
   return (
     <fetcher.Form
@@ -75,9 +75,7 @@ export function LoginForm() {
       {fetcher.data && (
         <div className="alert alert-error mt-3 shadow-lg">
           <p className="text-error-content">
-            ❌
-            {' '}
-            {(fetcher.data as ErrorApiResponseSchema).message}
+            ❌ {(fetcher.data as ErrorApiResponseSchema).message}
           </p>
         </div>
       )}
@@ -87,10 +85,8 @@ export function LoginForm() {
         className="btn btn-primary mt-8 capitalize disabled:btn-outline"
         isDisabled={fetcher.state === 'submitting' || !form.formState.isValid}
       >
-        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')}
-        {' '}
-        (0lelplR)
+        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')} (0lelplR)
       </Button>
     </fetcher.Form>
-  )
+  );
 }

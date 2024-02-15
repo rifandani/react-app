@@ -8,5 +8,5 @@ export function DaisyRadio() {
         className="radio checked:bg-success"
       />
     </label>
-  )
+  );
 }

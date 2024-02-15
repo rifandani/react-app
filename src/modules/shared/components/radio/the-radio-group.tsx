@@ -1,14 +1,14 @@
-import type { PropsWithChildren } from 'react'
-import type { AriaRadioGroupProps } from 'react-aria'
-import { useRadioGroup } from 'react-aria'
-import { useRadioGroupState } from 'react-stately'
-import { RadioContext } from './context'
+import type { PropsWithChildren } from 'react';
+import type { AriaRadioGroupProps } from 'react-aria';
+import { useRadioGroup } from 'react-aria';
+import { useRadioGroupState } from 'react-stately';
+import { RadioContext } from './context';
 
-type Props = PropsWithChildren<AriaRadioGroupProps>
+type Props = PropsWithChildren<AriaRadioGroupProps>;
 
 export function TheRadioGroup(props: Props) {
-  const { children, label, description, errorMessage } = props
-  const state = useRadioGroupState(props)
+  const { children, label, description, errorMessage } = props;
+  const state = useRadioGroupState(props);
   const {
     radioGroupProps,
     labelProps,
@@ -17,7 +17,7 @@ export function TheRadioGroup(props: Props) {
     validationDetails,
     validationErrors,
     isInvalid,
-  } = useRadioGroup(props, state)
+  } = useRadioGroup(props, state);
 
   return (
     <div {...radioGroupProps}>
@@ -34,5 +34,5 @@ export function TheRadioGroup(props: Props) {
         </p>
       )}
     </div>
-  )
+  );
 }

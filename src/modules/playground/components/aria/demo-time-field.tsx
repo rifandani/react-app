@@ -1,18 +1,18 @@
-import { Time } from '@internationalized/date'
-import { useState } from 'react'
-import type { TimeFieldProps, TimeValue } from 'react-aria-components'
+import { Time } from '@internationalized/date';
+import { useState } from 'react';
+import type { TimeFieldProps, TimeValue } from 'react-aria-components';
 import {
   DateInput,
   DateSegment,
   Label,
   Text,
   TimeField,
-} from 'react-aria-components'
+} from 'react-aria-components';
 
 interface MyTimeFieldProps<T extends TimeValue> extends TimeFieldProps<T> {
-  label?: string
-  description?: string
-  errorMessage?: string
+  label?: string;
+  description?: string;
+  errorMessage?: string;
 }
 
 function MyTimeField<T extends TimeValue>({
@@ -25,7 +25,7 @@ function MyTimeField<T extends TimeValue>({
     <TimeField {...props}>
       <Label>{label}</Label>
       <DateInput className="flex items-center rounded border px-2 py-1">
-        {segment => <DateSegment segment={segment} />}
+        {(segment) => <DateSegment segment={segment} />}
       </DateInput>
 
       {!props.isInvalid && description && (
@@ -37,13 +37,13 @@ function MyTimeField<T extends TimeValue>({
         </Text>
       )}
     </TimeField>
-  )
+  );
 }
 
 export function DemoTimeField() {
-  const [value, setValue] = useState(new Time(10, 0))
+  const [value, setValue] = useState(new Time(10, 0));
 
-  const isInvalid = value.minute % 15 !== 0
+  const isInvalid = value.minute % 15 !== 0;
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -59,5 +59,5 @@ export function DemoTimeField() {
         errorMessage={isInvalid ? 'Meetings start every 15 minutes' : undefined}
       />
     </section>
-  )
+  );
 }

@@ -1,15 +1,16 @@
-import type { RadioProps } from 'react-aria-components'
-import { Radio } from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
+import type { RadioProps } from 'react-aria-components';
+import { Radio } from 'react-aria-components';
+import { twMerge } from 'tailwind-merge';
 
 export function AriaRadio({ className, ...props }: RadioProps) {
   return (
     <Radio
-      className={classProps =>
+      className={(classProps) =>
         twMerge(
           'group flex items-center',
           typeof className === 'string' ? className : className?.(classProps),
-      )}
+        )
+      }
       {...props}
     >
       {({ isSelected, isDisabled, isFocusVisible, isInvalid }) => (
@@ -29,6 +30,7 @@ export function AriaRadio({ className, ...props }: RadioProps) {
           )}
         >
           <svg className="size-3 stroke-current" viewBox="0 0 18 18">
+            <title>Check</title>
             <circle
               cx="9"
               cy="9"
@@ -44,5 +46,5 @@ export function AriaRadio({ className, ...props }: RadioProps) {
         </div>
       )}
     </Radio>
-  )
+  );
 }

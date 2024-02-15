@@ -1,6 +1,6 @@
-import { Icon } from '@iconify/react'
-import type { ComponentPropsWithoutRef } from 'react'
-import type { CloseButton } from 'react-toastify'
+import { Icon } from '@iconify/react';
+import type { ComponentPropsWithoutRef } from 'react';
+import type { CloseButton } from 'react-toastify';
 
 export function ToastCloseButton({
   type,
@@ -16,5 +16,5 @@ export function ToastCloseButton({
     >
       <Icon icon="lucide:x" height="1em" />
     </button>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import type { NumberFieldProps } from 'react-aria-components'
+import { useState } from 'react';
+import type { NumberFieldProps } from 'react-aria-components';
 import {
   Button,
   Group,
@@ -7,12 +7,12 @@ import {
   Label,
   NumberField,
   Text,
-} from 'react-aria-components'
+} from 'react-aria-components';
 
 interface MyNumberFieldProps extends NumberFieldProps {
-  label?: string
-  description?: string
-  errorMessage?: string
+  label?: string;
+  description?: string;
+  errorMessage?: string;
 }
 
 function MyNumberField({
@@ -44,13 +44,13 @@ function MyNumberField({
         </Text>
       )}
     </NumberField>
-  )
+  );
 }
 
 export function DemoNumberField() {
-  const [value, setValue] = useState(10)
+  const [value, setValue] = useState(10);
 
-  const isInvalid = value < 0
+  const isInvalid = value < 0;
 
   return (
     <section className="flex flex-wrap items-center space-x-3">
@@ -64,5 +64,5 @@ export function DemoNumberField() {
         step={2}
       />
     </section>
-  )
+  );
 }
