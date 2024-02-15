@@ -1,6 +1,6 @@
-import { isWeekend } from '@internationalized/date'
-import { useState } from 'react'
-import type { CalendarProps, DateValue } from 'react-aria-components'
+import { isWeekend } from '@internationalized/date';
+import { useState } from 'react';
+import type { CalendarProps, DateValue } from 'react-aria-components';
 import {
   Button,
   Calendar,
@@ -11,11 +11,11 @@ import {
   CalendarHeaderCell,
   Heading,
   Text,
-} from 'react-aria-components'
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant'
+} from 'react-aria-components';
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyCalendarProps<T extends DateValue> extends CalendarProps<T> {
-  errorMessage?: string
+  errorMessage?: string;
 }
 
 function MyCalendar<T extends DateValue>({
@@ -32,11 +32,11 @@ function MyCalendar<T extends DateValue>({
 
       <CalendarGrid className="w-full">
         <CalendarGridHeader>
-          {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+          {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
         </CalendarGridHeader>
 
         <CalendarGridBody className="[&>tr>td]:p-0">
-          {date => (
+          {(date) => (
             <CalendarCell
               date={date}
               className="flex size-11 items-center justify-center rac-unavailable:text-slate-500 rac-unavailable:line-through rac-selected:bg-primary rac-selected:text-primary-content"
@@ -51,7 +51,7 @@ function MyCalendar<T extends DateValue>({
         </Text>
       )}
     </Calendar>
-  )
+  );
 }
 
 function MyDoubleCalendar<T extends DateValue>({
@@ -69,11 +69,11 @@ function MyDoubleCalendar<T extends DateValue>({
       <div className="flex gap-3 overflow-auto">
         <CalendarGrid>
           <CalendarGridHeader>
-            {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+            {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
           </CalendarGridHeader>
 
           <CalendarGridBody className="[&>tr>td]:p-0">
-            {date => (
+            {(date) => (
               <CalendarCell
                 date={date}
                 className="flex size-11 items-center justify-center rac-selected:bg-primary rac-selected:text-primary-content"
@@ -84,11 +84,11 @@ function MyDoubleCalendar<T extends DateValue>({
 
         <CalendarGrid offset={{ months: 1 }}>
           <CalendarGridHeader>
-            {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
+            {(day) => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
           </CalendarGridHeader>
 
           <CalendarGridBody className="[&>tr>td]:p-0">
-            {date => (
+            {(date) => (
               <CalendarCell
                 date={date}
                 className="flex size-11 items-center justify-center rac-selected:bg-primary rac-selected:text-primary-content"
@@ -104,14 +104,14 @@ function MyDoubleCalendar<T extends DateValue>({
         </Text>
       )}
     </Calendar>
-  )
+  );
 }
 
 export function DemoCalendar() {
-  const [value, setValue] = useState<DateValue | null>(null)
+  const [value, setValue] = useState<DateValue | null>(null);
 
   const isDateUnavailable = (date: DateValue) =>
-    isWeekend(date, RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone)
+    isWeekend(date, RESOLVED_DATE_TIME_FORMAT_OPTIONS.timeZone);
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -124,5 +124,5 @@ export function DemoCalendar() {
 
       <MyDoubleCalendar className="rounded border p-3" />
     </section>
-  )
+  );
 }

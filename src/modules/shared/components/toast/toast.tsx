@@ -1,8 +1,8 @@
-import { Icon } from '@iconify/react'
-import { Button } from 'react-aria-components'
-import type { ToastContentProps } from 'react-toastify'
-import { twJoin } from 'tailwind-merge'
-import type { ToastData } from './toast.type'
+import { Icon } from '@iconify/react';
+import { Button } from 'react-aria-components';
+import type { ToastContentProps } from 'react-toastify';
+import { twJoin } from 'tailwind-merge';
+import type { ToastData } from './toast.type';
 
 /**
  * Custom toast component, instead of using default from `react-toastify`
@@ -11,14 +11,14 @@ export function Toast({ closeToast, data }: ToastContentProps<ToastData>) {
   return (
     <li
       className={twJoin(
-        `alert relative block min-w-[20rem] max-w-[20rem] overflow-hidden p-0 shadow-lg`,
+        'alert relative block min-w-[20rem] max-w-[20rem] overflow-hidden p-0 shadow-lg',
         data?.type && `alert-${data.type}`,
       )}
     >
       <div className="flex items-center justify-between p-3">
         <h3
           className={twJoin(
-            `font-bold`,
+            'font-bold',
             data?.type && `text-${data.type}-content`,
           )}
         >
@@ -40,5 +40,5 @@ export function Toast({ closeToast, data }: ToastContentProps<ToastData>) {
         </p>
       )}
     </li>
-  )
+  );
 }

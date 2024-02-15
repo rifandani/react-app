@@ -1,8 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { loginRoute, notFoundRoute } from '#auth/routes'
-import { homeRoute } from '#home/routes'
-import { playgroundRoute } from '#playground/routes'
-import { todosRoute } from '#todo/routes'
+import { createBrowserRouter } from 'react-router-dom';
+import { loginRoute, notFoundRoute } from '#auth/routes';
+import { homeRoute } from '#home/routes';
+import { playgroundRoute } from '#playground/routes';
+import { todosRoute } from '#todo/routes';
 
 // router singleton
 export const browserRouter = createBrowserRouter(
@@ -13,4 +13,4 @@ export const browserRouter = createBrowserRouter(
       v7_normalizeFormMethod: true,
     },
   },
-)
+);

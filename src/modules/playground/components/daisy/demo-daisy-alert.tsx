@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react'
+import { Icon } from '@iconify/react';
 
 export function DemoDaisyAlert() {
   return (
@@ -14,5 +14,5 @@ export function DemoDaisyAlert() {
         See
       </button>
     </div>
-  )
+  );
 }

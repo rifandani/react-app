@@ -1,14 +1,14 @@
-import { useRef } from 'react'
-import type { AriaSwitchProps } from 'react-aria'
-import { VisuallyHidden, useFocusRing, useSwitch } from 'react-aria'
-import { useToggleState } from 'react-stately'
-import { twMerge } from 'tailwind-merge'
+import { useRef } from 'react';
+import type { AriaSwitchProps } from 'react-aria';
+import { VisuallyHidden, useFocusRing, useSwitch } from 'react-aria';
+import { useToggleState } from 'react-stately';
+import { twMerge } from 'tailwind-merge';
 
 export function TheSwitch(props: AriaSwitchProps) {
-  const state = useToggleState(props)
-  const ref = useRef(null)
-  const { inputProps } = useSwitch(props, state, ref)
-  const { isFocusVisible, focusProps } = useFocusRing()
+  const state = useToggleState(props);
+  const ref = useRef(null);
+  const { inputProps } = useSwitch(props, state, ref);
+  const { isFocusVisible, focusProps } = useFocusRing();
 
   return (
     <label
@@ -49,5 +49,5 @@ export function TheSwitch(props: AriaSwitchProps) {
 
       {props.children}
     </label>
-  )
+  );
 }

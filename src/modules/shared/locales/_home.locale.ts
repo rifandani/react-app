@@ -6,7 +6,7 @@ export const homeEnLocale = {
   clickToggleClock: 'Click toggle clock to restart the clock',
   changeLanguage: 'Change Language',
   getStarted: 'Get Started',
-} as const
+} as const;
 
 export const homeIdLocale = {
   title: 'Home',
@@ -16,4 +16,4 @@ export const homeIdLocale = {
   clickToggleClock: 'Klik beralih jam untuk mengulang kalkulasi jam',
   changeLanguage: 'Ganti Bahasa',
   getStarted: 'Mulai Sekarang',
-} as const
+} as const;

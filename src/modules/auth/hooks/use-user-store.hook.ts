@@ -1,27 +1,27 @@
-import { z } from 'zod'
-import { create } from 'zustand'
-import { createJSONStorage, devtools, persist } from 'zustand/middleware'
-import { loginApiResponseSchema } from '#auth/apis/auth.api'
+import { z } from 'zod';
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { loginApiResponseSchema } from '#auth/apis/auth.api';
 
-export type UserStoreState = z.infer<typeof userStoreStateSchema>
-export type UserStore = z.infer<typeof userStoreSchema>
-export type UserStoreLocalStorage = z.infer<typeof userStoreLocalStorageSchema>
+export type UserStoreState = z.infer<typeof userStoreStateSchema>;
+export type UserStore = z.infer<typeof userStoreSchema>;
+export type UserStoreLocalStorage = z.infer<typeof userStoreLocalStorageSchema>;
 
-export const userStoreName = 'app-user' as const
+export const userStoreName = 'app-user' as const;
 const userStoreStateSchema = z.object({
   user: loginApiResponseSchema.nullable(),
-})
+});
 const userStoreActionSchema = z.object({
   setUser: z.function().args(loginApiResponseSchema).returns(z.void()),
   clearUser: z.function().args(z.void()).returns(z.void()),
-})
+});
 export const userStoreSchema = userStoreStateSchema.merge(
   userStoreActionSchema,
-)
+);
 export const userStoreLocalStorageSchema = z.object({
   state: userStoreStateSchema,
   version: z.number(),
-})
+});
 
 /**
  * Hooks to manipulate user store
@@ -35,13 +35,13 @@ export const userStoreLocalStorageSchema = z.object({
 export const useUserStore = create<UserStore>()(
   devtools(
     persist(
-      set => ({
+      (set) => ({
         user: null,
         setUser: (newUser) => {
-          set({ user: newUser })
+          set({ user: newUser });
         },
         clearUser: () => {
-          set({ user: null })
+          set({ user: null });
         },
       }),
       {
@@ -51,4 +51,4 @@ export const useUserStore = create<UserStore>()(
       },
     ),
   ),
-)
+);

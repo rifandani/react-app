@@ -1,22 +1,22 @@
-import { Button } from 'react-aria-components'
-import { Link } from 'react-router-dom'
-import { twJoin } from 'tailwind-merge'
-import { match } from 'ts-pattern'
-import { useUserStore } from '#auth/hooks/use-user-store.hook'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook'
-import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook'
-import type { TodoSchema } from '#todo/apis/todo.api'
+import { Button } from 'react-aria-components';
+import { Link } from 'react-router-dom';
+import { twJoin } from 'tailwind-merge';
+import { match } from 'ts-pattern';
+import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
+import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
+import type { TodoSchema } from '#todo/apis/todo.api';
 
 interface Props {
-  todo: TodoSchema
+  todo: TodoSchema;
 }
 
 export function TodosItem({ todo }: Props) {
-  const [t] = useI18n()
-  const { user } = useUserStore()
-  const updateTodoMutation = useTodoUpdate()
-  const deleteTodoMutation = useTodoDelete()
+  const [t] = useI18n();
+  const { user } = useUserStore();
+  const updateTodoMutation = useTodoUpdate();
+  const deleteTodoMutation = useTodoDelete();
 
   return (
     <form
@@ -24,11 +24,10 @@ export function TodosItem({ todo }: Props) {
       data-testid={`form-${todo.id}`}
       className="mb-2 flex items-center justify-between duration-300 ease-in-out animate-in slide-in-from-left-5"
       onSubmit={(evt) => {
-        evt.preventDefault()
+        evt.preventDefault();
 
         // only allow for the correct auth user
-        if (todo.userId === user?.id)
-          deleteTodoMutation.mutate(todo.id)
+        if (todo.userId === user?.id) deleteTodoMutation.mutate(todo.id);
       }}
     >
       <input
@@ -47,7 +46,7 @@ export function TodosItem({ todo }: Props) {
         name={`todo-${todo.id}`}
         checked={todo.completed}
         onChange={() => {
-          updateTodoMutation.mutate({ ...todo, completed: !todo.completed })
+          updateTodoMutation.mutate({ ...todo, completed: !todo.completed });
         }}
       />
 
@@ -62,15 +61,17 @@ export function TodosItem({ todo }: Props) {
         {todo.todo}
       </Link>
 
-      {match(user?.id).with(todo.userId, () => (
-        <Button
-          aria-label="button-submit"
-          className="btn btn-primary btn-sm normal-case"
-          type="submit"
-        >
-          {t('remove', { icon: '💥' })}
-        </Button>
-      )).otherwise(() => null)}
+      {match(user?.id)
+        .with(todo.userId, () => (
+          <Button
+            aria-label="button-submit"
+            className="btn btn-primary btn-sm normal-case"
+            type="submit"
+          >
+            {t('remove', { icon: '💥' })}
+          </Button>
+        ))
+        .otherwise(() => null)}
     </form>
-  )
+  );
 }

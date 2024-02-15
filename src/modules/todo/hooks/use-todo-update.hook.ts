@@ -1,23 +1,23 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'react-toastify'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema'
-import { todoApi, todoKeys } from '#todo/apis/todo.api'
-import { useTodosParams } from '#todo/hooks/use-todos.hook'
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import type { ErrorApiResponseSchema } from '#shared/schemas/api.schema';
+import { todoApi, todoKeys } from '#todo/apis/todo.api';
+import { useTodosParams } from '#todo/hooks/use-todos.hook';
 import type {
   TodoListApiResponseSchema,
   UpdateTodoApiResponseSchema,
   UpdateTodoSchema,
-} from '#todo/apis/todo.api'
+} from '#todo/apis/todo.api';
 
 /**
  * update todo mutation based on `useTodosParams` and show toast
  */
 export function useTodoUpdate() {
-  const queryClient = useQueryClient()
-  const params = useTodosParams()
-  const [t] = useI18n()
-  const queryKey = todoKeys.list(params)
+  const queryClient = useQueryClient();
+  const params = useTodosParams();
+  const [t] = useI18n();
+  const queryKey = todoKeys.list(params);
 
   return useMutation<
     UpdateTodoApiResponseSchema,
@@ -28,37 +28,37 @@ export function useTodoUpdate() {
     // Called before `mutationFn`:
     onMutate: async ({ id, ...body }) => {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
-      await queryClient.cancelQueries({ queryKey })
+      await queryClient.cancelQueries({ queryKey });
 
       // Snapshot the previous value
-      const previousTodosQueryResponse = (queryClient.getQueryData(queryKey)
-        ?? []) as TodoListApiResponseSchema
+      const previousTodosQueryResponse = (queryClient.getQueryData(queryKey) ??
+        []) as TodoListApiResponseSchema;
 
       // Optimistically update to the new value
       queryClient.setQueryData(queryKey, {
         ...previousTodosQueryResponse,
-        todos: previousTodosQueryResponse.todos.map(_todo =>
+        todos: previousTodosQueryResponse.todos.map((_todo) =>
           _todo.id === id ? { ..._todo, ...body } : _todo,
         ),
-      })
+      });
 
       // Return a context object with the snapshotted value
-      return { previousTodosQueryResponse }
+      return { previousTodosQueryResponse };
     },
-    mutationFn: updateTodo => todoApi.update(updateTodo),
+    mutationFn: (updateTodo) => todoApi.update(updateTodo),
     onSettled: (_updateTodo, error, _variables, context) => {
       toast[error ? 'error' : 'success'](
         t(error ? 'xUpdateError' : 'xUpdateSuccess', {
           feature: 'Todo',
         }),
-      )
+      );
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error)
-        queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)
+        queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse);
 
       // if we want to refetch after error or success:
       // await queryClient.invalidateQueries({ queryKey });
     },
-  })
+  });
 }

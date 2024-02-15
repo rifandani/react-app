@@ -1,9 +1,9 @@
-import { Icon } from '@iconify/react'
-import type { PopoverProps } from 'react-aria-components'
-import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components'
+import { Icon } from '@iconify/react';
+import type { PopoverProps } from 'react-aria-components';
+import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
 
 interface MyPopoverProps extends Omit<PopoverProps, 'children'> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 function DaisyPopover() {
@@ -11,16 +11,11 @@ function DaisyPopover() {
     <div className="flex items-center">
       <p>Daisy popover</p>
       <div className="dropdown dropdown-bottom">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label
-          className="btn btn-circle btn-ghost btn-xs text-info"
-        >
+        <label className="btn btn-circle btn-ghost btn-xs text-info">
           <Icon icon="lucide:info" />
         </label>
 
-        <div
-          className="card dropdown-content compact z-[1] w-64 rounded-box bg-base-100 shadow"
-        >
+        <div className="card dropdown-content compact z-[1] w-64 rounded-box bg-base-100 shadow">
           <div className="card-body">
             <h2 className="card-title">You needed more info?</h2>
             <p>Here is a description!</p>
@@ -28,7 +23,7 @@ function DaisyPopover() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function MyPopover({ children, ...props }: MyPopoverProps) {
@@ -49,7 +44,7 @@ function MyPopover({ children, ...props }: MyPopoverProps) {
       </OverlayArrow> */}
       <Dialog>{children}</Dialog>
     </Popover>
-  )
+  );
 }
 
 function AriaPopover() {
@@ -82,7 +77,7 @@ function AriaPopover() {
         </MyPopover>
       </DialogTrigger>
     </div>
-  )
+  );
 }
 
 export function DemoPopover() {
@@ -94,5 +89,5 @@ export function DemoPopover() {
 
       <AriaPopover />
     </section>
-  )
+  );
 }

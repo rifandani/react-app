@@ -7,11 +7,11 @@ export const authEnLocale = {
   login: 'Login',
   logout: 'Logout',
   notFound404: '404: Not Found',
-  gone: 'It\'s gone',
+  gone: "It's gone",
   welcome: 'Welcome Back',
-  noAccount: 'Don\'t have an account?',
+  noAccount: "Don't have an account?",
   registerHere: 'Register here',
-} as const
+} as const;
 
 export const authIdLocale = {
   username: 'Username',
@@ -26,4 +26,4 @@ export const authIdLocale = {
   welcome: 'Selamat Datang Kembali',
   noAccount: 'Tidak punya akun?',
   registerHere: 'Daftar disini',
-} as const
+} as const;

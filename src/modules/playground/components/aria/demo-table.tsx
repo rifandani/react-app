@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import type {
   ColumnProps,
   RowProps,
   Selection,
   TableHeaderProps,
-} from 'react-aria-components'
+} from 'react-aria-components';
 import {
   Button,
   Cell,
@@ -15,16 +15,16 @@ import {
   TableBody,
   TableHeader,
   useTableOptions,
-} from 'react-aria-components'
-import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox'
+} from 'react-aria-components';
+import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
 
 function MyTableHeader<T extends object>({
   columns,
   children,
   ...props
 }: TableHeaderProps<T>) {
-  const { selectionBehavior, selectionMode, allowsDragging }
-    = useTableOptions()
+  const { selectionBehavior, selectionMode, allowsDragging } =
+    useTableOptions();
 
   return (
     <TableHeader {...props}>
@@ -39,7 +39,7 @@ function MyTableHeader<T extends object>({
 
       <Collection items={columns}>{children}</Collection>
     </TableHeader>
-  )
+  );
 }
 
 function MyColumn(props: ColumnProps) {
@@ -57,7 +57,7 @@ function MyColumn(props: ColumnProps) {
         </>
       )}
     </Column>
-  )
+  );
 }
 
 function MyRow<T extends object>({
@@ -66,7 +66,7 @@ function MyRow<T extends object>({
   children,
   ...otherProps
 }: RowProps<T>) {
-  const { selectionBehavior, allowsDragging } = useTableOptions()
+  const { selectionBehavior, allowsDragging } = useTableOptions();
 
   return (
     <Row id={id} {...otherProps}>
@@ -82,7 +82,7 @@ function MyRow<T extends object>({
       )}
       <Collection items={columns}>{children}</Collection>
     </Row>
-  )
+  );
 }
 
 export function DemoTable() {
@@ -90,16 +90,16 @@ export function DemoTable() {
     { name: 'Name', key: 'name', isRowHeader: true },
     { name: 'Type', key: 'type' },
     { name: 'Date Modified', key: 'date' },
-  ]
+  ];
 
   const items = [
     { id: 1, name: 'Games', date: '6/7/2020', type: 'File folder' },
     { id: 2, name: 'Program Files', date: '4/7/2021', type: 'File folder' },
     { id: 3, name: 'bootmgr', date: '11/20/2010', type: 'System file' },
     { id: 4, name: 'log.txt', date: '1/18/2016', type: 'Text Document' },
-  ]
+  ];
 
-  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set())
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
 
   return (
     <section className="flex flex-wrap gap-3">
@@ -111,20 +111,20 @@ export function DemoTable() {
         onSelectionChange={setSelectedKeys}
       >
         <MyTableHeader columns={columns}>
-          {column => (
+          {(column) => (
             <MyColumn isRowHeader={column.isRowHeader}>{column.name}</MyColumn>
           )}
         </MyTableHeader>
 
         <TableBody items={items}>
-          {item => (
+          {(item) => (
             <MyRow columns={columns}>
               {/** @ts-expect-error as typeof keyof Item */}
-              {column => <Cell>{item[column.key]}</Cell>}
+              {(column) => <Cell>{item[column.key]}</Cell>}
             </MyRow>
           )}
         </TableBody>
       </Table>
     </section>
-  )
+  );
 }

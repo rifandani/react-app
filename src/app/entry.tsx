@@ -1,10 +1,10 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { StrictMode } from 'react'
-import { AppI18nProvider } from './providers/i18n/provider'
-import { AppQueryProvider } from './providers/query/provider'
-import { AppRouterProvider } from './providers/router/provider'
-import { AppToastProvider } from './providers/toast/provider'
-import { ReloadPromptSw } from './reload-prompt-sw'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { StrictMode } from 'react';
+import { AppI18nProvider } from './providers/i18n/provider';
+import { AppQueryProvider } from './providers/query/provider';
+import { AppRouterProvider } from './providers/router/provider';
+import { AppToastProvider } from './providers/toast/provider';
+import { ReloadPromptSw } from './reload-prompt-sw';
 
 export function Entry() {
   return (
@@ -27,5 +27,5 @@ export function Entry() {
         </AppI18nProvider>
       </AppQueryProvider>
     </StrictMode>
-  )
+  );
 }

@@ -1,26 +1,26 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { random } from '@rifandani/nxact-yutiriti'
-import { useQueryClient } from '@tanstack/react-query'
-import { useCallback, useId } from 'react'
-import { Button } from 'react-aria-components'
-import { useForm } from 'react-hook-form'
-import { useBeforeUnload } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import type { TodoSchema } from '#todo/apis/todo.api'
-import { useTodosParams } from '#todo/hooks/use-todos.hook'
-import { useTodoCreate } from '#todo/hooks/use-todo-create.hook'
-import { todoKeys, todoSchema } from '#todo/apis/todo.api'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import { Modal as DaisyModal } from '#shared/components/modal/modal'
-import { useUserStore } from '#auth/hooks/use-user-store.hook'
+import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { Modal as DaisyModal } from '#shared/components/modal/modal';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import type { TodoSchema } from '#todo/apis/todo.api';
+import { todoKeys, todoSchema } from '#todo/apis/todo.api';
+import { useTodoCreate } from '#todo/hooks/use-todo-create.hook';
+import { useTodosParams } from '#todo/hooks/use-todos.hook';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { random } from '@rifandani/nxact-yutiriti';
+import { useQueryClient } from '@tanstack/react-query';
+import { useCallback, useId } from 'react';
+import { Button } from 'react-aria-components';
+import { useForm } from 'react-hook-form';
+import { useBeforeUnload } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function TodosCreate() {
-  const queryClient = useQueryClient()
-  const [t] = useI18n()
-  const { user } = useUserStore()
-  const params = useTodosParams()
-  const todoCreateMutation = useTodoCreate()
-  const modalId = useId()
+  const queryClient = useQueryClient();
+  const [t] = useI18n();
+  const { user } = useUserStore();
+  const params = useTodosParams();
+  const todoCreateMutation = useTodoCreate();
+  const modalId = useId();
 
   const form = useForm<TodoSchema>({
     resolver: zodResolver(todoSchema),
@@ -30,25 +30,25 @@ export function TodosCreate() {
       userId: 1,
       completed: false,
     },
-  })
+  });
 
   useBeforeUnload(
     useCallback(
       (evt) => {
         if (!evt.defaultPrevented && !!form.getValues().todo) {
           // preventDefault to block immediately and prompt user async
-          evt.preventDefault()
+          evt.preventDefault();
+          evt.returnValue = '';
 
-          evt.returnValue = ''
-
-          // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-          const modal = window[modalId] as HTMLDialogElement
-          modal.showModal()
+          const modal = window[
+            modalId as keyof typeof window
+          ] as HTMLDialogElement;
+          modal.showModal();
         }
       },
       [form, modalId],
     ),
-  )
+  );
 
   return (
     <>
@@ -65,28 +65,28 @@ export function TodosCreate() {
             ...values,
             userId: user?.id ?? 1,
             id: random(11, 999_999), // generate different id everytime
-          }
+          };
 
           todoCreateMutation.mutate(payload, {
             onSettled: (_newTodo, error, _variables, context) => {
               // reset form
-              form.reset()
+              form.reset();
 
               toast[error ? 'error' : 'success'](
                 t(error ? 'xCreateError' : 'xCreateSuccess', {
                   feature: 'Todo',
                 }),
-              )
+              );
 
               // If the mutation fails, use the context returned from `onMutate` to roll back
               if (error) {
                 queryClient.setQueryData(
                   todoKeys.list(params),
                   context?.previousTodosQueryResponse,
-                )
+                );
               }
             },
-          })
+          });
         })}
       >
         <input
@@ -108,5 +108,5 @@ export function TodosCreate() {
         </Button>
       </form>
     </>
-  )
+  );
 }

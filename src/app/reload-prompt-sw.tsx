@@ -1,29 +1,28 @@
-import { useCallback } from 'react'
-import { useRegisterSW } from 'virtual:pwa-register/react'
+import { useCallback } from 'react';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 
 export function ReloadPromptSw() {
   // replaced dynamically
-  const buildDate = '__DATE__'
+  const buildDate = '__DATE__';
   // replaced dynamically
-  const reloadSW = '__RELOAD_SW__' as '__RELOAD_SW__' | 'true'
+  const reloadSW = '__RELOAD_SW__' as '__RELOAD_SW__' | 'true';
 
   const onRegisteredSW = useCallback(
     (_swUrl: string, registration: ServiceWorkerRegistration | undefined) => {
       // in `vite.config.ts`, the `reloadSW` could be `'true'` if `process.env.RELOAD_SW === 'true'`
       if (reloadSW === 'true' && registration) {
         setInterval(() => {
-          // eslint-disable-next-line no-console
-          console.log('🔵 Updating Service Worker...')
-          void registration.update()
-        }, 10_000 /* 10s for testing purposes */)
+          console.log('🔵 Updating Service Worker...');
+          void registration.update();
+        }, 10_000 /* 10s for testing purposes */);
       }
     },
     [],
-  )
+  );
 
   const onRegisterError = useCallback((error: unknown) => {
-    console.error('🛑 Service Worker registration error', error)
-  }, [])
+    console.error('🛑 Service Worker registration error', error);
+  }, []);
 
   const {
     offlineReady: [offlineReady, setOfflineReady],
@@ -32,7 +31,7 @@ export function ReloadPromptSw() {
   } = useRegisterSW({
     onRegisteredSW,
     onRegisterError,
-  })
+  });
 
   return (
     <aside id="ReloadPromptSW" className="toast">
@@ -49,8 +48,8 @@ export function ReloadPromptSw() {
               type="button"
               className="btn-outlined btn btn-sm w-1/2"
               onClick={() => {
-                setOfflineReady(false)
-                setNeedRefresh(false)
+                setOfflineReady(false);
+                setNeedRefresh(false);
               }}
             >
               Close
@@ -71,5 +70,5 @@ export function ReloadPromptSw() {
 
       <span className="hidden">{buildDate}</span>
     </aside>
-  )
+  );
 }

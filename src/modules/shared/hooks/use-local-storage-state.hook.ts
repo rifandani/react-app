@@ -1,4 +1,4 @@
-import { createUseStorageState } from './create-use-storage-state'
+import { createUseStorageState } from './create-use-storage-state';
 
 /**
  * A Hook that store state into `localStorage`.
@@ -8,4 +8,4 @@ import { createUseStorageState } from './create-use-storage-state'
  * `useLocalStorageState` will call serializer before write data to `localStorage`,
  * and call deserializer once after read data.
  */
-export const useLocalStorageState = createUseStorageState(() => localStorage)
+export const useLocalStorageState = createUseStorageState(() => localStorage);

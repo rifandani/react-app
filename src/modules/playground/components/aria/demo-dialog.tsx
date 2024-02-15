@@ -1,12 +1,12 @@
-import { useId } from 'react'
+import { useId } from 'react';
 import {
   Button,
   Dialog,
   DialogTrigger,
   Modal,
   ModalOverlay,
-} from 'react-aria-components'
-import { Modal as DaisyModal } from '#shared/components/modal/modal'
+} from 'react-aria-components';
+import { Modal as DaisyModal } from '#shared/components/modal/modal';
 
 function AriaDialog() {
   return (
@@ -39,23 +39,23 @@ function AriaDialog() {
         </Modal>
       </ModalOverlay>
     </DialogTrigger>
-  )
+  );
 }
 
 function DaisyDialog() {
-  const id = useId()
+  const id = useId();
 
   const onPressOpenDialog = () => {
     // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-    const modal = window[id] as HTMLDialogElement
-    modal.showModal()
-  }
+    const modal = window[id] as HTMLDialogElement;
+    modal.showModal();
+  };
 
   const onPressCloseDialog = () => {
     // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-    const modal = window[id] as HTMLDialogElement
-    modal.close()
-  }
+    const modal = window[id] as HTMLDialogElement;
+    modal.close();
+  };
 
   return (
     <>
@@ -86,7 +86,7 @@ function DaisyDialog() {
         </footer>
       </DaisyModal>
     </>
-  )
+  );
 }
 
 export function DemoDialog() {
@@ -95,5 +95,5 @@ export function DemoDialog() {
       <AriaDialog />
       <DaisyDialog />
     </section>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import { useSearchParams } from 'react-router-dom'
-import { useI18n } from '#shared/hooks/use-i18n.hook'
-import { defaultLimit, limits } from '#todo/constants/todos.constant'
+import { useSearchParams } from 'react-router-dom';
+import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { defaultLimit, limits } from '#todo/constants/todos.constant';
 
 export function TodosFilter() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [t] = useI18n()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [t] = useI18n();
 
-  const params = Object.fromEntries(searchParams)
-  const selectedOption = params?.limit ?? defaultLimit
+  const params = Object.fromEntries(searchParams);
+  const selectedOption = params?.limit ?? defaultLimit;
 
   return (
     <form
@@ -26,11 +26,11 @@ export function TodosFilter() {
         value={selectedOption}
         onChange={(evt) => {
           // set to url params
-          searchParams.set('limit', evt.currentTarget.value)
-          setSearchParams(searchParams)
+          searchParams.set('limit', evt.currentTarget.value);
+          setSearchParams(searchParams);
         }}
       >
-        {limits.map(limit => (
+        {limits.map((limit) => (
           <option
             key={limit}
             data-testid={`option-limit-${limit}`}
@@ -41,5 +41,5 @@ export function TodosFilter() {
         ))}
       </select>
     </form>
-  )
+  );
 }
