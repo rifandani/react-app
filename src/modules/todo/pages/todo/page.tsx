@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from 'react-aria-components'
 import { useForm } from 'react-hook-form'
 import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom'
+import { match } from 'ts-pattern'
 import { useUserStore } from '#auth/hooks/use-user-store.hook'
 import { useI18n } from '#shared/hooks/use-i18n.hook'
 import { useTodo } from '#todo/hooks/use-todo.hook'
@@ -47,49 +48,49 @@ export function TodoPage() {
         </h1>
       </div>
 
-      {todoQuery.isError && (
-        <div
-          data-testid="todo-error"
-          className="alert alert-error mt-2 shadow-lg"
-        >
-          <div className="flex items-center">
-            <span>
-              {t('error', { module: 'Todos' })}
-              :
-            </span>
-            <pre>{JSON.stringify(todoQuery.error, null, 2)}</pre>
+      <form
+        aria-label="form-todo"
+        className="join"
+        onSubmit={form.handleSubmit((values) => {
+          fetcher.submit(values, { method: 'PUT', encType: 'application/json' })
+        })}
+      >
+        {match(todoQuery).with({ isError: true }, () => (
+          <div
+            data-testid="todo-error"
+            className="alert alert-error mt-2 shadow-lg"
+          >
+            <div className="flex items-center">
+              <span>
+                {t('error', { module: 'Todos' })}
+                :
+              </span>
+              <pre>{JSON.stringify(todoQuery.error, null, 2)}</pre>
+            </div>
           </div>
-        </div>
-      )}
+        )).with({ isSuccess: true }, ({ data }) => (
+          <>
+            <input
+              id="todo"
+              type="text"
+              aria-label="textbox-todo"
+              className="input join-item input-bordered input-primary w-full"
+              {...form.register('todo', { required: true })}
+            />
 
-      {todoQuery.data && (
-        <form
-          aria-label="form-todo"
-          className="join"
-          onSubmit={form.handleSubmit((values) => {
-            fetcher.submit(values, { method: 'PUT', encType: 'application/json' })
-          })}
-        >
-          <input
-            id="todo"
-            type="text"
-            aria-label="textbox-todo"
-            className="input join-item input-bordered input-primary w-full"
-            {...form.register('todo', { required: true })}
-          />
-
-          {user?.id === todoQuery.data.userId && (
-            <Button
-              aria-label="button-submit"
-              className="btn btn-primary join-item normal-case disabled:btn-disabled"
-              type="submit"
-              isDisabled={fetcher.state === 'submitting'}
-            >
-              {t('update', { icon: '🖋' })}
-            </Button>
-          )}
-        </form>
-      )}
+            {match(user?.id).with(data.userId, () => (
+              <Button
+                aria-label="button-submit"
+                className="btn btn-primary join-item normal-case disabled:btn-disabled"
+                type="submit"
+                isDisabled={fetcher.state === 'submitting'}
+              >
+                {t('update', { icon: '🖋' })}
+              </Button>
+            )).otherwise(() => null)}
+          </>
+        )).otherwise(() => null)}
+      </form>
     </section>
   )
 }
