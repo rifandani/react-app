@@ -2,7 +2,8 @@
 
 The application built with:
 
-- `vite` + `typescript` + `eslint` + `prettier` -> development productivity
+- `vite` + `typescript` -> development productivity
+- `biome` -> fast linter, formatter
 - `vitest` + `@testing-library/react` -> unit test, integration test, coverage
 - `msw` -> API response mocking for tests
 - `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
