@@ -1,61 +1,43 @@
-import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom';
 import reactjs from '#assets/images/reactjs.svg';
-import { LoginForm } from '#auth/components/login-form/login-form';
-import { homePath } from '#home/routes';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { LoginForm } from '#auth/components/login-form';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import { Link } from 'react-router-dom';
 
 export function LoginPage() {
   const [t] = useI18n();
 
   return (
-    <main id="LoginPage" className="h-screen">
-      <div className="flex w-full flex-wrap">
-        {/* <!-- Login Section --> */}
-        <section className="flex w-full flex-col md:w-1/2">
-          <div className="flex justify-center pt-12 md:-mb-24 md:justify-start md:pl-12">
-            <Link
-              to={homePath.root}
-              aria-label="link-home"
-              className="relative cursor-pointer rounded-full hover:text-primary"
-            >
-              <Icon icon="lucide:home" height="1.5em" />
-            </Link>
-          </div>
+    <div id="LoginPage" className="min-h-screen w-full flex">
+      {/* form */}
+      <section className="min-h-screen w-full flex flex-col justify-center px-10 xl:px-20 md:w-1/2">
+        <h1 className="text-center text-3xl text-primary">{t('welcome')}</h1>
 
-          <div className="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32">
-            <h1 className="text-center text-3xl text-primary">
-              {t('welcome')}
-            </h1>
+        <LoginForm />
 
-            <LoginForm />
+        <p className="py-12 text-center">
+          {t('noAccount')}{' '}
+          <Link
+            aria-label={t('registerHere')}
+            className="link link-primary"
+            to="/register"
+          >
+            {t('registerHere')}
+          </Link>
+        </p>
+      </section>
 
-            <p className="py-12 text-center">
-              {t('noAccount')}{' '}
-              <Link
-                className="link link-primary"
-                aria-label="link-register"
-                to="/register"
-              >
-                {t('registerHere')}
-              </Link>
-            </p>
-          </div>
-        </section>
-
-        {/* <!-- Image Section --> */}
-        <section className="w-1/2 shadow-2xl">
-          <span className="relative hidden h-screen w-full md:flex md:items-center md:justify-center">
-            <img
-              src={reactjs}
-              alt="login page cover"
-              loading="lazy"
-              aria-label="img-cover"
-              className="h-full object-cover"
-            />
-          </span>
-        </section>
-      </div>
-    </main>
+      {/* image */}
+      <section className="hidden md:block w-1/2 shadow-2xl">
+        <span className="relative h-screen w-full md:flex md:items-center md:justify-center">
+          <img
+            src={reactjs}
+            alt="cool react logo with rainbow shadow"
+            loading="lazy"
+            className="h-full object-cover"
+            aria-label="cool react logo"
+          />
+        </span>
+      </section>
+    </div>
   );
 }

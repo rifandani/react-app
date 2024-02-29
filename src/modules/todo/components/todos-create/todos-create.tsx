@@ -1,6 +1,6 @@
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
 import { Modal as DaisyModal } from '#shared/components/modal/modal';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { todoKeys, todoSchema } from '#todo/apis/todo.api';
 import { useTodoCreate } from '#todo/hooks/use-todo-create.hook';
@@ -92,19 +92,17 @@ export function TodosCreate() {
         <input
           id="todo"
           type="text"
-          aria-label="textbox-add"
           className="input input-bordered input-primary w-full lg:w-10/12"
           placeholder={t('todoPlaceholder')}
           {...form.register('todo', { required: true, minLength: 3 })}
         />
 
         <Button
-          aria-label="button-add"
-          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           type="submit"
+          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           isDisabled={form.formState.isSubmitting || !form.formState.isValid}
         >
-          {t('add', { icon: '💾' })}
+          {t('add')}
         </Button>
       </form>
     </>

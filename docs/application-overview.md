@@ -4,20 +4,20 @@ The application built with:
 
 - `vite` + `typescript` -> development productivity
 - `biome` -> fast linter, formatter
-- `vitest` + `@testing-library/react` -> unit test, integration test, coverage
+- `@playwright/test` -> e2e test
 - `msw` -> API response mocking for tests
 - `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
 - `axios` + `@tanstack/react-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
 - `@iconify/react` -> SVG icon on demand
-- `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components like radix-ui
+- `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components
 - `react-hook-form` -> form management
-- `zustand` -> performant global state
+- `zustand` -> performant global state management
 - `react-toastify` -> toast outside of react components
-- `type-fest` -> collection of useful type helpers
-- `@rifandani/nxact-yutiriti` -> collection of useful utils
-- `@internationalized/date` -> collection of useful date utils
+- `type-fest` -> type helpers
+- `@rifandani/nxact-yutiriti` -> object/array/string utils
+- `@internationalized/date` -> date utils
 - `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
 
 [Demo App](https://react-app-rifandani.vercel.app)

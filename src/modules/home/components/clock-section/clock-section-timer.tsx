@@ -8,8 +8,16 @@ interface Props {
 
 export function ClockSectionTimer({ seconds, minutes, hours }: Props) {
   return (
-    <section data-testid="home-clock-show" className="mt-8">
-      <svg className="size-full" viewBox="-50 -50 100 100">
+    <section
+      role="presentation"
+      aria-label="clock ticking in svg"
+      className="mt-8"
+    >
+      <svg
+        aria-label="clock timer"
+        className="size-full"
+        viewBox="-50 -50 100 100"
+      >
         <title>Clock Timer</title>
         <circle className="fill-white stroke-slate-900" r="48" />
 

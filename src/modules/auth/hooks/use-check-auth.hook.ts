@@ -1,10 +1,10 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useMount } from '#shared/hooks/use-mount.hook';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
 import { authPath } from '#auth/routes';
 import { homePath } from '#home/routes';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import { useMount } from '#shared/hooks/use-mount.hook';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 /**
  * Hooks to authenticate your user, wheter they're logged in or not

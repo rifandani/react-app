@@ -1,6 +1,6 @@
-import { useSearchParams } from 'react-router-dom';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { defaultLimit, limits } from '#todo/constants/todos.constant';
+import { useSearchParams } from 'react-router-dom';
 
 export function TodosFilter() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,12 +1,12 @@
+import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import type { TodoSchema } from '#todo/apis/todo.api';
+import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
+import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
 import { Button } from 'react-aria-components';
 import { Link } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import { match } from 'ts-pattern';
-import { useUserStore } from '#auth/hooks/use-user-store.hook';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
-import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
-import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
-import type { TodoSchema } from '#todo/apis/todo.api';
 
 interface Props {
   todo: TodoSchema;
@@ -68,7 +68,7 @@ export function TodosItem({ todo }: Props) {
             className="btn btn-primary btn-sm normal-case"
             type="submit"
           >
-            {t('remove', { icon: '💥' })}
+            {t('remove')}
           </Button>
         ))
         .otherwise(() => null)}

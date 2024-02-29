@@ -2,14 +2,27 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "#app/*": ["./app/*"],
-      "#assets/*": ["./assets/*"],
-      "#mocks/*": ["./mocks/*"],
-      "#auth/*": ["./modules/auth/*"],
-      "#home/*": ["./modules/home/*"],
-      "#playground/*": ["./modules/playground/*"],
-      "#shared/*": ["./modules/shared/*"],
-      "#todo/*": ["./modules/todo/*"]
+      "#app/*": [
+        "./app/*"
+      ],
+      "#assets/*": [
+        "./assets/*"
+      ],
+      "#shared/*": [
+        "./modules/shared/*"
+      ],
+      "#home/*": [
+        "./modules/home/*"
+      ],
+      "#playground/*": [
+        "./modules/playground/*"
+      ],
+      "#auth/*": [
+        "./modules/auth/*"
+      ],
+      "#todo/*": [
+        "./modules/todo/*"
+      ]
     }
   }
 }

@@ -1,17 +1,17 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from 'react-aria-components';
-import { useForm } from 'react-hook-form';
-import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
-import { match } from 'ts-pattern';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
-import { useTodo } from '#todo/hooks/use-todo.hook';
-import { todosPath } from '#todo/routes';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,
 } from '#todo/apis/todo.api';
 import { updateTodoSchema } from '#todo/apis/todo.api';
+import { useTodo } from '#todo/hooks/use-todo.hook';
+import { todosPath } from '#todo/routes';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from 'react-aria-components';
+import { useForm } from 'react-hook-form';
+import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
+import { match } from 'ts-pattern';
 
 export function TodoPage() {
   const [t] = useI18n();
@@ -38,7 +38,7 @@ export function TodoPage() {
           aria-label="go-back"
           className="link w-fit normal-case hover:skew-x-12"
         >
-          ⬅ {t('goBackTo', { target: 'Todos' })}
+          ⬅ {t('backTo', { target: 'Todos' })}
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-wider">
@@ -86,7 +86,7 @@ export function TodoPage() {
                     type="submit"
                     isDisabled={fetcher.state === 'submitting'}
                   >
-                    {t('update', { icon: '🖋' })}
+                    {t('update')}
                   </Button>
                 ))
                 .otherwise(() => null)}
