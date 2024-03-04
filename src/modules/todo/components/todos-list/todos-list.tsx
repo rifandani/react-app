@@ -17,7 +17,8 @@ export function TodosList() {
       {match(todosQuery)
         .with({ isLoading: true }, () => (
           <div
-            data-testid="list-loading"
+            role="alert"
+            aria-label="list loading spinner"
             className="flex items-center justify-center py-5"
           >
             <Icon
@@ -29,7 +30,8 @@ export function TodosList() {
         ))
         .with({ isError: true }, ({ error }) => (
           <div
-            data-testid="list-error"
+            role="alert"
+            aria-label="list query error"
             className="alert alert-error mt-2 shadow-lg"
           >
             <div className="flex items-center">
@@ -42,12 +44,9 @@ export function TodosList() {
           <For
             each={data.todos}
             fallback={
-              <div
-                data-testid="list-empty"
-                className="flex items-center justify-center py-5"
-              >
+              <h2 className="flex items-center justify-center py-5">
                 {t('empty')}
-              </div>
+              </h2>
             }
           >
             {(todo) => <TodosItem key={todo.id} todo={todo} />}

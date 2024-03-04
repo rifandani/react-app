@@ -23,7 +23,8 @@ jobs:
       - name: Run biome
         run: biome ci ./src
 
-  typecheck:
+  typecheck-and-e2e:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -47,30 +48,8 @@ jobs:
       - name: Typecheck
         run: nr typecheck
 
-  e2e:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v4.1.1
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-
-      - name: Install node
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version: lts/*
-          cache: pnpm # Package manager should be pre-installed
-
-      - name: Setup ni
-        run: npm i -g @antfu/ni
-
-      - name: Clean install
-        run: nci
-
       - name: Install playwright browsers
-        run: nr playwright install --with-deps
+        run: nlx playwright install --with-deps
 
       - name: Run playwright tests
         run: nr test

@@ -10,16 +10,13 @@ export function TodosFilter() {
   const selectedOption = params?.limit ?? defaultLimit;
 
   return (
-    <form
-      aria-label="form-filter"
-      className="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
-    >
+    <form className="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2">
       <label htmlFor="limit" className="label">
         <span className="label-text">{t('limit')}</span>
       </label>
 
       <select
-        aria-label="combobox-filter"
+        aria-label="todos filter"
         className="select select-bordered select-primary"
         name="limit"
         id="limit"
@@ -31,11 +28,7 @@ export function TodosFilter() {
         }}
       >
         {limits.map((limit) => (
-          <option
-            key={limit}
-            data-testid={`option-limit-${limit}`}
-            value={limit}
-          >
+          <option key={limit} value={limit}>
             {limit}
           </option>
         ))}

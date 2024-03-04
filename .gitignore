@@ -1,5 +1,6 @@
 # testing
 /test-results/
+/playwright-test-results/
 /playwright-report/
 /playwright/
 /blob-report/

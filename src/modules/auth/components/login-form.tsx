@@ -22,11 +22,7 @@ export function LoginForm() {
   });
 
   return (
-    <fetcher.Form
-      id="LoginForm"
-      className="form-control pt-3 md:pt-8"
-      method="POST"
-    >
+    <fetcher.Form className="form-control pt-3 md:pt-8" method="POST">
       {/* username */}
       <fieldset className="group/username form-control pt-4">
         <label className="label" htmlFor="username">

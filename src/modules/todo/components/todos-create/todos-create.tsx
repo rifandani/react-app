@@ -15,12 +15,12 @@ import { useBeforeUnload } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export function TodosCreate() {
-  const queryClient = useQueryClient();
   const [t] = useI18n();
+  const modalId = useId();
   const { user } = useUserStore();
   const params = useTodosParams();
+  const queryClient = useQueryClient();
   const todoCreateMutation = useTodoCreate();
-  const modalId = useId();
 
   const form = useForm<TodoSchema>({
     resolver: zodResolver(todoSchema),
@@ -32,6 +32,7 @@ export function TodosCreate() {
     },
   });
 
+  // show blocker modal on unfinished form
   useBeforeUnload(
     useCallback(
       (evt) => {
@@ -53,12 +54,12 @@ export function TodosCreate() {
   return (
     <>
       <DaisyModal id={modalId}>
-        <h1 className="text-lg font-bold">Unsaved Changes</h1>
+        <h2 className="text-lg font-bold">{t('attention')}</h2>
         <p className="pt-4">{t('unsavedChanges')}</p>
       </DaisyModal>
 
       <form
-        aria-label="form-add"
+        id="todos-create"
         className="form-control mb-3 w-full duration-300 lg:flex-row"
         onSubmit={form.handleSubmit((values) => {
           const payload = {
