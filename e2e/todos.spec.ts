@@ -38,6 +38,23 @@ test.describe('authorized', () => {
       await forms.nth(99).waitFor({ state: 'visible' });
       await expect(forms).toHaveCount(100);
     });
+
+    test('should be able to navigate to todo detail by clicking on the link', async ({
+      page,
+    }) => {
+      const links = page.getByRole('link', {
+        name: /toggle completed todo item with id:/i,
+      });
+
+      // wait query to success
+      await links.nth(9).waitFor({ state: 'visible' });
+      await expect(links).toHaveCount(10);
+
+      // navigate to todo detail
+      await links.first().click();
+      await page.waitForURL('/todos/**');
+      await expect(links.first()).not.toBeVisible();
+    });
   });
 
   test.describe('create todo', () => {
