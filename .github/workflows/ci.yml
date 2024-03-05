@@ -96,6 +96,9 @@ jobs:
       - name: Clean install
         run: pnpm i --frozen-lockfile
 
+      - name: Download browsers
+        run: pnpm exec playwright install
+
       - name: Run playwright tests
         run: pnpm test
         env:
