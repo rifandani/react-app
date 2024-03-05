@@ -48,11 +48,8 @@ jobs:
       - name: Typecheck
         run: nr typecheck
 
-      - name: Fetches playwright from registry
-        run: nlx playwright install --with-deps
-
       - name: Install playwright browsers
-        run: pnpm exec playwright install
+        run: npx playwright install --with-deps
 
       - name: Run playwright tests
         run: nr test
