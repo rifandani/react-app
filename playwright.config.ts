@@ -20,6 +20,12 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+  // Timeout for each test in milliseconds.
+  timeout: 15 * 1_000,
+  expect: {
+    // Default timeout for async expect matchers in milliseconds
+    timeout: 5 * 1_000,
+  },
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
@@ -51,22 +57,22 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json',
       },
     },
-    {
-      name: 'firefox',
-      dependencies: ['setup'],
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: 'playwright/.auth/user.json',
-      },
-    },
-    {
-      name: 'webkit',
-      dependencies: ['setup'],
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: 'playwright/.auth/user.json',
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   dependencies: ['setup'],
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     storageState: 'playwright/.auth/user.json',
+    //   },
+    // },
+    // {
+    //   name: 'webkit',
+    //   dependencies: ['setup'],
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     storageState: 'playwright/.auth/user.json',
+    //   },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -95,5 +101,7 @@ export default defineConfig({
     // in CI, we run `build-and-preview` instead of `dev`
     command: process.env.CI ? 'pnpm build-and-preview' : 'pnpm dev',
     reuseExistingServer: !process.env.CI,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });

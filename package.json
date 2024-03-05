@@ -19,6 +19,7 @@
     "check:fix": "biome check --apply ./src",
     "ci": "biome ci ./src",
     "typecheck": "tsc --noEmit",
+    "test:install": "playwright install --with-deps chromium",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",

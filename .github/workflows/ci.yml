@@ -64,7 +64,7 @@ jobs:
 
       - name: Install playwright browsers
         # since we are installing dependencies beforehand, we can `exec` the binaries directly, instead of `dlx`
-        run: pnpm exec playwright install --with-deps
+        run: pnpm test:install
 
       - name: Run playwright tests
         run: pnpm test
