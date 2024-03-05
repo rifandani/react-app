@@ -49,7 +49,7 @@ jobs:
         run: nr typecheck
 
       - name: Install playwright browsers
-        run: nlx playwright install --with-deps
+        run: nlx playwright install
 
       - name: Run playwright tests
         run: nr test
