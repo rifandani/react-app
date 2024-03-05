@@ -23,12 +23,33 @@ jobs:
       - name: Run biome
         run: biome ci ./src
 
-  typecheck-and-e2e:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4.1.1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Install node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: lts/*
+          cache: pnpm # Package manager should be pre-installed
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+  e2e:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4.1.1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
 
       - name: Install node
         uses: actions/setup-node@v4.0.2
@@ -36,16 +57,13 @@ jobs:
           node-version: 18
 
       - name: Clean install
-        run: npm ci
-
-      - name: Typecheck
-        run: npm run typecheck
+        run: pnpm i --frozen-lockfile
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
 
       - name: Run playwright tests
-        run: npm run test
+        run: pnpm test
 
       - name: Save playwright report as artifact
         uses: actions/upload-artifact@v4.3.1
