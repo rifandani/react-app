@@ -5,7 +5,6 @@ The application built with:
 - `vite` + `typescript` -> development productivity
 - `biome` -> fast linter, formatter
 - `@playwright/test` -> e2e test
-- `msw` -> API response mocking for tests
 - `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
 - `axios` + `@tanstack/react-query` -> server state management + data fetching
@@ -55,14 +54,15 @@ $ pnpm dev
 
 ## Testing
 
-We are using MSW v2 which utilize Node v18+. Make sure you install Node v18+, because it has a built-in fetch.
-
 ```bash
-# run test
+# run test headless
 $ pnpm test
 
-# coverage with instanbul
-$ pnpm test:coverage
+# run test in UI mode
+$ pnpm test:ui
+
+# open the test report
+$ pnpm test:report
 ```
 
 ## Build
@@ -77,11 +77,11 @@ $ pnpm build
 
 ## Start
 
-PWA relies on [https-localhost](https://github.com/daquinoaldo/https-localhost) to serve the dist files on https://localhost/.
-Please refer to it's docs for the steps to setup your local environment.
+PWA relies on [https-localhost](https://github.com/daquinoaldo/https-localhost) to serve the dist files on https://localhost/. Please refer to it's docs for the steps to setup your local environment.
 
 ```bash
-pnpm start
+# build app in "production" mode & start a server
+$ pnpm start
 ```
 
 Open up https://localhost/, then restart the server, you will see a notification ask you to restart reload the offline content.
@@ -89,4 +89,4 @@ Open up https://localhost/, then restart the server, you will see a notification
 ## Deployment
 
 For now only supports deployment to Vercel.
-Check out `vercel.json` file fo further details.
+Check out `vercel.json` file for further details.

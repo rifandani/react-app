@@ -9,10 +9,7 @@ dotenv.config({
   path: './.env.development',
 });
 
-// in CI, we run `build-and-preview` instead of `dev`
-const baseURL = process.env.CI
-  ? 'http://localhost:4173'
-  : 'http://localhost:3300';
+const port = process.env.CI ? 4173 : 3000;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -33,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL,
+    baseURL: `http://localhost:${port}`,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -94,7 +91,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    url: baseURL,
+    port,
+    // in CI, we run `build-and-preview` instead of `dev`
     command: process.env.CI ? 'pnpm build-and-preview' : 'pnpm dev',
     reuseExistingServer: !process.env.CI,
   },
