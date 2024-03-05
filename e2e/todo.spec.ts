@@ -4,6 +4,8 @@ test.describe('authorized', () => {
   test('should have title, and link that navigate back to /todos', async ({
     page,
   }) => {
+    await page.goto('/todos/28');
+
     const title = page.getByRole('heading', { level: 1, name: 'Todo Detail' });
     const link = page.getByRole('link', { name: /back to todos/i });
 
@@ -58,6 +60,8 @@ test.describe('unauthorized', () => {
   test.use({ storageState: { cookies: [], origins: [] } });
 
   test('should redirect back to /login', async ({ page }) => {
+    await page.goto('/todos/28');
+
     const usernameInput = page.getByRole('textbox', { name: /username/i });
     const passwordInput = page.getByRole('textbox', { name: /password/i });
     const submitBtn = page.getByRole('button', { name: /login/i });

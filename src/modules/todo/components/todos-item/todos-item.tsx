@@ -44,6 +44,7 @@ export function TodosItem({
       />
 
       <Link
+        aria-label={`link todo item with id: ${todo.id}`}
         className={twJoin(
           'ml-5 w-full text-left text-lg hover:font-bold',
           todo.completed && 'line-through',

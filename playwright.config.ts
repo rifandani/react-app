@@ -9,7 +9,7 @@ dotenv.config({
   path: './.env.development',
 });
 
-const baseURL = 'http://127.0.0.1:3300';
+const baseURL = 'http://localhost:3300';
 
 /**
  * See https://playwright.dev/docs/test-configuration.

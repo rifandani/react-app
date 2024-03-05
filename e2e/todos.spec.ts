@@ -43,7 +43,7 @@ test.describe('authorized', () => {
       page,
     }) => {
       const links = page.getByRole('link', {
-        name: /toggle completed todo item with id:/i,
+        name: /link todo item with id:/i,
       });
 
       // wait query to success
