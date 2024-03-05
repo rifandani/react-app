@@ -10,6 +10,7 @@ dotenv.config({
 });
 
 const port = process.env.CI ? 4173 : 3000;
+const baseURL = `http://localhost:${port}`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -36,7 +37,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: `http://localhost:${port}`,
+    baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -57,6 +58,7 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json',
       },
     },
+    // when we add more projects, make sure we also change `test:install` script
     // {
     //   name: 'firefox',
     //   dependencies: ['setup'],
@@ -97,7 +99,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    port,
+    url: baseURL,
     // in CI, we run `build-and-preview` instead of `dev`
     command: process.env.CI ? 'pnpm build-and-preview' : 'pnpm dev',
     reuseExistingServer: !process.env.CI,
