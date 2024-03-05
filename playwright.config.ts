@@ -9,7 +9,10 @@ dotenv.config({
   path: './.env.development',
 });
 
-const baseURL = 'http://localhost:3300';
+// in CI, we run `build-and-preview` instead of `dev`
+const baseURL = process.env.CI
+  ? 'http://localhost:4173'
+  : 'http://localhost:3300';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -91,7 +94,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    url: process.env.CI ? 'http://localhost:4173' : baseURL,
+    url: baseURL,
     command: process.env.CI ? 'pnpm build-and-preview' : 'pnpm dev',
     reuseExistingServer: !process.env.CI,
   },
