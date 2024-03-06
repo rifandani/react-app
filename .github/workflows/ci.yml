@@ -91,13 +91,13 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: 18
+          node-version: lts/*
 
       - name: Clean install
         run: pnpm i --frozen-lockfile
 
       - name: Download browsers
-        run: pnpm exec playwright install
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run playwright tests
         run: pnpm test
