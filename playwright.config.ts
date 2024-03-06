@@ -9,7 +9,7 @@ dotenv.config({
   path: './.env.development',
 });
 
-const port = 3000; // process.env.CI ? 4173 :
+const port = process.env.CI ? 4173 : 3000; //
 const baseURL = `http://127.0.0.1:${port}`;
 
 /**
@@ -97,7 +97,7 @@ export default defineConfig({
   webServer: {
     url: baseURL,
     // in CI, we run `build-and-preview` instead of `dev`
-    command: 'pnpm dev', // process.env.CI ? 'pnpm build-and-preview' :
+    command: process.env.CI ? 'pnpm build-and-preview' : 'pnpm dev', //
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',
