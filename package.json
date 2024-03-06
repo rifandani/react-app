@@ -64,7 +64,7 @@
     "start:sw-claims-destroy": "run-s pnpm build:sw-claims-destroy serve",
     "start:sw-reloadsw-claims-destroy": "run-s pnpm build:sw-reloadsw-claims-destroy serve",
     "build-and-preview": "run-s build preview",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "release": "bumpp"
   },
   "dependencies": {

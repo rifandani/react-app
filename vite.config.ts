@@ -75,7 +75,7 @@ if (process.env.RELOAD_SW === 'true') replaceOptions.__RELOAD_SW__ = 'true';
 
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 3300,
   },
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true',
