@@ -80,7 +80,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.42.0-jammy
+      image: mcr.microsoft.com/playwright:v1.42.0-focal
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4.1.1
@@ -95,9 +95,6 @@ jobs:
 
       - name: Clean install
         run: pnpm i --frozen-lockfile
-
-      - name: Download browsers
-        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run playwright tests
         run: pnpm test
