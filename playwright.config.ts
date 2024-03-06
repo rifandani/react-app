@@ -10,7 +10,7 @@ dotenv.config({
 });
 
 const port = 3000; // process.env.CI ? 4173 :
-const baseURL = `http://localhost:${port}`;
+const baseURL = `http://127.0.0.1:${port}`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
