@@ -1,8 +1,8 @@
+import { I18nContext } from '#app/providers/i18n/context';
+import { localeDict } from '#shared/hooks/use-i18n/locales';
+import type { Formatter } from '#shared/hooks/use-i18n/locales/locale.type';
 import { useContext } from 'react';
 import { useMessageFormatter } from 'react-aria';
-import { I18nContext } from '#app/providers/i18n/context';
-import { localeDict } from '#shared/locales';
-import type { Formatter } from '#shared/locales/locale.type';
 
 export function useI18n() {
   const formatter: Formatter = useMessageFormatter(localeDict);

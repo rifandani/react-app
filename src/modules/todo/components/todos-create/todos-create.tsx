@@ -1,6 +1,6 @@
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
 import { Modal as DaisyModal } from '#shared/components/modal/modal';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { todoKeys, todoSchema } from '#todo/apis/todo.api';
 import { useTodoCreate } from '#todo/hooks/use-todo-create.hook';
@@ -15,12 +15,12 @@ import { useBeforeUnload } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export function TodosCreate() {
-  const queryClient = useQueryClient();
   const [t] = useI18n();
+  const modalId = useId();
   const { user } = useUserStore();
   const params = useTodosParams();
+  const queryClient = useQueryClient();
   const todoCreateMutation = useTodoCreate();
-  const modalId = useId();
 
   const form = useForm<TodoSchema>({
     resolver: zodResolver(todoSchema),
@@ -32,6 +32,7 @@ export function TodosCreate() {
     },
   });
 
+  // show blocker modal on unfinished form
   useBeforeUnload(
     useCallback(
       (evt) => {
@@ -53,12 +54,12 @@ export function TodosCreate() {
   return (
     <>
       <DaisyModal id={modalId}>
-        <h1 className="text-lg font-bold">Unsaved Changes</h1>
+        <h2 className="text-lg font-bold">{t('attention')}</h2>
         <p className="pt-4">{t('unsavedChanges')}</p>
       </DaisyModal>
 
       <form
-        aria-label="form-add"
+        id="todos-create"
         className="form-control mb-3 w-full duration-300 lg:flex-row"
         onSubmit={form.handleSubmit((values) => {
           const payload = {
@@ -92,19 +93,17 @@ export function TodosCreate() {
         <input
           id="todo"
           type="text"
-          aria-label="textbox-add"
           className="input input-bordered input-primary w-full lg:w-10/12"
           placeholder={t('todoPlaceholder')}
           {...form.register('todo', { required: true, minLength: 3 })}
         />
 
         <Button
-          aria-label="button-add"
-          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           type="submit"
+          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
           isDisabled={form.formState.isSubmitting || !form.formState.isValid}
         >
-          {t('add', { icon: '💾' })}
+          {t('add')}
         </Button>
       </form>
     </>

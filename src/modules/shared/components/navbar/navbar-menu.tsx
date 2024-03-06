@@ -1,13 +1,13 @@
-import { Button, useLocale } from 'react-aria-components';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { twJoin } from 'tailwind-merge';
-import { Icon } from '@iconify/react';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
 import { authPath } from '#auth/routes';
 import { modes, themes } from '#shared/constants/theme.constant';
 import { useColorMode } from '#shared/hooks/use-color-mode.hook';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { todosPath } from '#todo/routes';
+import { Icon } from '@iconify/react';
+import { Button, useLocale } from 'react-aria-components';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { twJoin } from 'tailwind-merge';
 
 const flags = [
   {
@@ -83,7 +83,7 @@ export function NavbarMenu() {
           aria-label="themes-opener"
           className="btn btn-outline btn-sm btn-block normal-case"
         >
-          <Icon icon="lucide:globe" />
+          <Icon icon="lucide:languages" />
         </Button>
 
         <ul className="menu dropdown-content z-10 block max-h-60 w-72 overflow-y-auto rounded-box bg-base-200 p-2 shadow lg:w-52">

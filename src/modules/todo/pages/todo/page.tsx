@@ -1,24 +1,24 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from 'react-aria-components';
-import { useForm } from 'react-hook-form';
-import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
-import { match } from 'ts-pattern';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
-import { useTodo } from '#todo/hooks/use-todo.hook';
-import { todosPath } from '#todo/routes';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,
 } from '#todo/apis/todo.api';
 import { updateTodoSchema } from '#todo/apis/todo.api';
+import { useTodo } from '#todo/hooks/use-todo.hook';
+import { todosPath } from '#todo/routes';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from 'react-aria-components';
+import { useForm } from 'react-hook-form';
+import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
+import { match } from 'ts-pattern';
 
 export function TodoPage() {
   const [t] = useI18n();
   const { id } = useParams();
   const fetcher = useFetcher();
-  const initialData = useLoaderData() as TodoDetailApiResponseSchema;
   const { user } = useUserStore();
+  const initialData = useLoaderData() as TodoDetailApiResponseSchema;
   const todoQuery = useTodo(Number(id), { initialData });
 
   const form = useForm<UpdateTodoSchema>({
@@ -31,25 +31,27 @@ export function TodoPage() {
   });
 
   return (
-    <section className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
-      <div className="mb-10 flex w-full flex-col space-y-2">
+    <div className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
+      <section className="mb-10 flex w-full flex-col space-y-2">
         <Link
           to={todosPath.root}
-          aria-label="go-back"
           className="link w-fit normal-case hover:skew-x-12"
         >
-          ⬅ {t('goBackTo', { target: 'Todos' })}
+          ⬅ {t('backTo', { target: 'Todos' })}
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-wider">
           {t('xDetail', { feature: 'Todo' })}
         </h1>
-      </div>
+      </section>
 
       <form
-        aria-label="form-todo"
+        aria-label={`form todo with id: ${id}`}
         className="join"
         onSubmit={form.handleSubmit((values) => {
+          // prohibit user submit when clicking Enter in input
+          if (todoQuery.data && todoQuery.data.userId !== user?.id) return;
+
           fetcher.submit(values, {
             method: 'PUT',
             encType: 'application/json',
@@ -59,7 +61,8 @@ export function TodoPage() {
         {match(todoQuery)
           .with({ isError: true }, () => (
             <div
-              data-testid="todo-error"
+              role="alert"
+              aria-label="detail query error"
               className="alert alert-error mt-2 shadow-lg"
             >
               <div className="flex items-center">
@@ -73,7 +76,7 @@ export function TodoPage() {
               <input
                 id="todo"
                 type="text"
-                aria-label="textbox-todo"
+                aria-label="input todo text"
                 className="input join-item input-bordered input-primary w-full"
                 {...form.register('todo', { required: true })}
               />
@@ -81,12 +84,11 @@ export function TodoPage() {
               {match(user?.id)
                 .with(data.userId, () => (
                   <Button
-                    aria-label="button-submit"
-                    className="btn btn-primary join-item normal-case disabled:btn-disabled"
                     type="submit"
+                    className="btn btn-primary join-item normal-case disabled:btn-disabled"
                     isDisabled={fetcher.state === 'submitting'}
                   >
-                    {t('update', { icon: '🖋' })}
+                    {t('update')}
                   </Button>
                 ))
                 .otherwise(() => null)}
@@ -94,6 +96,6 @@ export function TodoPage() {
           ))
           .otherwise(() => null)}
       </form>
-    </section>
+    </div>
   );
 }

@@ -1,12 +1,12 @@
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import { useRafInterval } from '#shared/hooks/use-raf-interval.hook';
+import { todosPath } from '#todo/routes';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { shuffle } from '@rifandani/nxact-yutiriti';
 import { useState } from 'react';
 import { Button } from 'react-aria-components';
 import { useNavigate } from 'react-router-dom';
 import { ClockSectionTimer } from './clock-section-timer';
-import { todosPath } from '#todo/routes';
-import { useI18n } from '#shared/hooks/use-i18n.hook';
-import { useRafInterval } from '#shared/hooks/use-raf-interval.hook';
 
 const currentDate = new Date();
 
@@ -53,28 +53,28 @@ export function ClockSection() {
         />
       )}
 
-      <div
+      <section
         ref={parentRef}
-        role="presentation"
         className="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-3"
       >
         {buttons.map((btn) => (
           <Button
-            data-testid={`home-clock-button-${btn.id}`}
             type="button"
+            aria-label={`${btn.id} button`}
+            id={btn.id}
             key={btn.id}
             className={btn.class}
             onPress={() => {
               if (btn.id === 'sort')
                 setButtons((prev) => shuffle(prev) as unknown as typeof prev);
-              if (btn.id === 'clock') setShowClock((prev) => !prev);
+              else if (btn.id === 'clock') setShowClock((prev) => !prev);
               else navigate(todosPath.root);
             }}
           >
             {t(btn.text)}
           </Button>
         ))}
-      </div>
+      </section>
     </>
   );
 }
