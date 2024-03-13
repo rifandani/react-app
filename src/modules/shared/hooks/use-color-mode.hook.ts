@@ -96,7 +96,7 @@ export function useColorMode<T extends string = BasicColorMode>(
   );
   const state = useMemo(
     () => (store[0] === 'auto' ? system : store[0]) as 'light' | 'dark' | T,
-    [store[0]],
+    [store[0], system],
   );
 
   const updateHTMLAttrs = useCallback(

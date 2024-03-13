@@ -1,7 +1,7 @@
 import React from 'react';
 import type { AriaRadioProps } from 'react-aria';
 import { VisuallyHidden, useFocusRing, useRadio } from 'react-aria';
-import { RadioGroupState } from 'react-stately';
+import type { RadioGroupState } from 'react-stately';
 import { twMerge } from 'tailwind-merge';
 import { RadioContext } from './context';
 
