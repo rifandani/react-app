@@ -11,7 +11,7 @@ const tabClassName: ComponentPropsWithoutRef<typeof Tab>['className'] = ({
   isDisabled,
 }) => twJoin('tab', isSelected && 'tab-active', isDisabled && 'tab-disabled');
 
-export function PlaygroundPage() {
+export function Element() {
   const [, setTheme] = useColorMode({
     modes,
     attribute: 'data-theme',

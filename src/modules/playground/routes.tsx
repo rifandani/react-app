@@ -13,10 +13,10 @@ export const playgroundRoute = {
   id: playgroundId.root,
   path: playgroundPath.root,
   lazy: async () => {
-    const { PlaygroundPage } = await import('./pages/page');
+    const playground = await import('./pages/playground.page');
 
     return {
-      element: <PlaygroundPage />,
+      element: <playground.Element />,
       errorElement: <RouteErrorBoundary />,
     };
   },

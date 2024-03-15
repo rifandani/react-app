@@ -1,7 +1,7 @@
 import { For } from '#shared/components/for';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoListApiResponseSchema } from '#todo/apis/todo.api';
-import { TodosItem } from '#todo/components/todos-item/todos-item';
+import { TodosListItem } from '#todo/components/todos-list-item';
 import { useTodos } from '#todo/hooks/use-todos.hook';
 import { Icon } from '@iconify/react';
 import { useLoaderData } from 'react-router-dom';
@@ -49,7 +49,7 @@ export function TodosList() {
               </h2>
             }
           >
-            {(todo) => <TodosItem key={todo.id} todo={todo} />}
+            {(todo) => <TodosListItem key={todo.id} todo={todo} />}
           </For>
         ))
         .otherwise(() => null)}

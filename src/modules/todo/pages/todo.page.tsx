@@ -1,19 +1,80 @@
+import type { queryClient } from '#app/providers/query/client';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { authPath } from '#auth/routes';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import { checkAuthUser } from '#shared/utils/checker.util';
 import type {
   TodoDetailApiResponseSchema,
   UpdateTodoSchema,
 } from '#todo/apis/todo.api';
-import { updateTodoSchema } from '#todo/apis/todo.api';
+import { todoApi, todoKeys, updateTodoSchema } from '#todo/apis/todo.api';
 import { useTodo } from '#todo/hooks/use-todo.hook';
 import { todosPath } from '#todo/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Link } from 'react-aria-components';
 import { useForm } from 'react-hook-form';
-import { useFetcher, useLoaderData, useParams } from 'react-router-dom';
+import {
+  redirect,
+  useFetcher,
+  useLoaderData,
+  useParams,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { match } from 'ts-pattern';
 
-export function TodoPage() {
+export function action(_queryClient: typeof queryClient) {
+  return async ({ request, params }: ActionFunctionArgs) => {
+    if (request.method === 'PUT') {
+      const queryKeyLists = todoKeys.lists();
+      const queryKeyDetail = todoKeys.detail(Number(params.id));
+      const payload = (await request.json()) as UpdateTodoSchema;
+      await todoApi.update(payload);
+
+      // remove the todos cache
+      _queryClient.removeQueries({ queryKey: queryKeyLists });
+      _queryClient.removeQueries({ queryKey: queryKeyDetail });
+      // invalidate only change the status to inactive, the cache is still there
+      // await _queryClient.invalidateQueries({ queryKey: queryKeyLists }); // `await` is the "lever"
+
+      toast.success('Todo successfully updated');
+      return redirect(todosPath.root);
+    }
+
+    toast.warning('Not Implemented');
+    return new Response('Not Implemented', { status: 501 });
+  };
+}
+
+export function loader(_queryClient: typeof queryClient) {
+  return async ({ params }: LoaderFunctionArgs) => {
+    const authed = checkAuthUser();
+
+    // redirect NOT authed user to login
+    if (!authed) {
+      toast.error('Unauthorized');
+      return redirect(authPath.login);
+    }
+
+    const queryKey = todoKeys.detail(Number(params.id));
+    const queryFn = () => todoApi.detail(Number(params.id));
+    const staleTime = 1_000 * 60 * 1; // 1 min
+
+    // or we can use `_queryClient.ensureQueryData`
+    const todoDetailCache =
+      _queryClient.getQueryData<TodoDetailApiResponseSchema>(queryKey);
+    const todoDetailData = await _queryClient.fetchQuery({
+      queryKey,
+      queryFn,
+      staleTime,
+    });
+
+    return todoDetailCache ?? todoDetailData;
+  };
+}
+
+export function Element() {
   const [t] = useI18n();
   const { id } = useParams();
   const fetcher = useFetcher();

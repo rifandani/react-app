@@ -1,9 +1,6 @@
 import { queryClient } from '#app/providers/query/client';
 import { PageWrapper } from '#shared/components/page-wrapper';
 import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
-import { todoAction } from '#todo/pages/todo/action';
-import { todoLoader } from '#todo/pages/todo/loader';
-import { todosLoader } from '#todo/pages/todos/loader';
 import type { RouteObject } from 'react-router-dom';
 
 export const todosId = {
@@ -22,12 +19,12 @@ const todosDetailRoute = {
   id: todosId.detail,
   path: todosPath.detail,
   lazy: async () => {
-    const { TodoPage } = await import('./pages/todo/page');
+    const todo = await import('./pages/todo.page');
 
     return {
-      action: todoAction(queryClient),
-      loader: todoLoader(queryClient),
-      element: <TodoPage />,
+      action: todo.action(queryClient),
+      loader: todo.loader(queryClient),
+      element: <todo.Element />,
       errorElement: <RouteErrorBoundary />,
     };
   },
@@ -37,11 +34,11 @@ const todosIndexRoute = {
   id: todosId.index,
   index: true,
   lazy: async () => {
-    const { TodosPage } = await import('./pages/todos/page');
+    const todos = await import('./pages/todos.page');
 
     return {
-      loader: todosLoader(queryClient),
-      element: <TodosPage />,
+      loader: todos.loader(queryClient),
+      element: <todos.Element />,
       errorElement: <RouteErrorBoundary />,
     };
   },

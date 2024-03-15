@@ -4,18 +4,20 @@ import type { TodoSchema } from '#todo/apis/todo.api';
 import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
 import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
 import { Button, Link } from 'react-aria-components';
+import { useHref } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import { match } from 'ts-pattern';
 
-export function TodosItem({
-  todo,
-}: {
+interface Props {
   todo: TodoSchema;
-}) {
+}
+
+export function TodosListItem({ todo }: Props) {
   const [t] = useI18n();
   const { user } = useUserStore();
   const updateTodoMutation = useTodoUpdate();
   const deleteTodoMutation = useTodoDelete();
+  const href = useHref(todo.id.toString(), { relative: 'path' });
 
   return (
     <form
@@ -43,12 +45,12 @@ export function TodosItem({
       />
 
       <Link
+        href={href}
         aria-label={`link todo item with id: ${todo.id}`}
         className={twJoin(
           'ml-5 w-full text-left text-lg hover:font-bold',
           todo.completed && 'line-through',
         )}
-        href={todo.id.toString()}
       >
         {todo.todo}
       </Link>

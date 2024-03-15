@@ -6,7 +6,7 @@ import { useColorMode } from '#shared/hooks/use-color-mode.hook';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { Link } from 'react-aria-components';
 
-export function NotFoundPage() {
+export function Element() {
   const userStore = useUserStore();
   const [t] = useI18n();
   useColorMode({

@@ -1,4 +1,3 @@
-import { homeLoader } from '#home/pages/loader';
 import { PageWrapper } from '#shared/components/page-wrapper';
 import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
 import type { RouteObject } from 'react-router-dom';
@@ -17,11 +16,11 @@ const homeIndexRoute = {
   id: homeId.index,
   index: true,
   lazy: async () => {
-    const { HomePage } = await import('./pages/page');
+    const home = await import('./pages/home.page');
 
     return {
-      loader: homeLoader,
-      element: <HomePage />,
+      loader: home.loader,
+      element: <home.Element />,
       errorElement: <RouteErrorBoundary />,
     };
   },

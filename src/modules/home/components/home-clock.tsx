@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const currentDate = new Date();
 
-export function HomeClockSection() {
+export function HomeClock() {
   const [t] = useI18n();
   const navigate = useNavigate();
   const [parentRef] = useAutoAnimate();
