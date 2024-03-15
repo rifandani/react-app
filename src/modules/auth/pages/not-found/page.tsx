@@ -4,7 +4,7 @@ import { homePath } from '#home/routes';
 import { modes } from '#shared/constants/theme.constant';
 import { useColorMode } from '#shared/hooks/use-color-mode.hook';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-aria-components';
 
 export function NotFoundPage() {
   const userStore = useUserStore();
@@ -21,7 +21,7 @@ export function NotFoundPage() {
       <p className="text-md text-base-content">{t('gone')}</p>
 
       <Link
-        to={userStore.user ? homePath.root : authPath.login}
+        href={userStore.user ? homePath.root : authPath.login}
         className="mt-10 btn btn-primary hover:skew-x-12"
       >
         {t('backTo', { target: userStore.user ? 'home' : 'login' })}

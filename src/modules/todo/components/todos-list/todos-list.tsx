@@ -1,4 +1,4 @@
-import { For } from '#shared/components/for/for';
+import { For } from '#shared/components/for';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoListApiResponseSchema } from '#todo/apis/todo.api';
 import { TodosItem } from '#todo/components/todos-item/todos-item';

@@ -1,3 +1,4 @@
+import { Clock } from '#shared/components/clock';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { useRafInterval } from '#shared/hooks/use-raf-interval.hook';
 import { todosPath } from '#todo/routes';
@@ -6,16 +7,15 @@ import { shuffle } from '@rifandani/nxact-yutiriti';
 import { useState } from 'react';
 import { Button } from 'react-aria-components';
 import { useNavigate } from 'react-router-dom';
-import { ClockSectionTimer } from './clock-section-timer';
 
 const currentDate = new Date();
 
-export function ClockSection() {
+export function HomeClockSection() {
   const [t] = useI18n();
   const navigate = useNavigate();
   const [parentRef] = useAutoAnimate();
-  const [showClock, setShowClock] = useState(true);
   const [time, setTime] = useState(currentDate);
+  const [showClock, setShowClock] = useState(true);
   const [buttons, setButtons] = useState([
     {
       id: 'sort',
@@ -46,11 +46,17 @@ export function ClockSection() {
   return (
     <>
       {showClock && (
-        <ClockSectionTimer
-          seconds={time.getSeconds()}
-          minutes={time.getMinutes()}
-          hours={time.getHours()}
-        />
+        <section
+          role="presentation"
+          aria-label="clock ticking in svg"
+          className="mt-8"
+        >
+          <Clock
+            seconds={time.getSeconds()}
+            minutes={time.getMinutes()}
+            hours={time.getHours()}
+          />
+        </section>
       )}
 
       <section

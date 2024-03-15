@@ -8,9 +8,9 @@ import { updateTodoSchema } from '#todo/apis/todo.api';
 import { useTodo } from '#todo/hooks/use-todo.hook';
 import { todosPath } from '#todo/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from 'react-aria-components';
+import { Button, Link } from 'react-aria-components';
 import { useForm } from 'react-hook-form';
-import { Link, useFetcher, useLoaderData, useParams } from 'react-router-dom';
+import { useFetcher, useLoaderData, useParams } from 'react-router-dom';
 import { match } from 'ts-pattern';
 
 export function TodoPage() {
@@ -34,7 +34,7 @@ export function TodoPage() {
     <div className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <section className="mb-10 flex w-full flex-col space-y-2">
         <Link
-          to={todosPath.root}
+          href={todosPath.root}
           className="link w-fit normal-case hover:skew-x-12"
         >
           ⬅ {t('backTo', { target: 'Todos' })}

@@ -1,10 +1,10 @@
 import { homePath } from '#home/routes';
 import { NavbarMenu } from '#shared/components/navbar/navbar-menu';
-import { SvgIcon } from '#shared/components/svg-icon/svg-icon';
+import { SvgIcon } from '#shared/components/svg-icon';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { Icon } from '@iconify/react';
 import type { PropsWithChildren } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-aria-components';
 
 export function Navbar({ children }: PropsWithChildren) {
   const [t] = useI18n();
@@ -28,7 +28,7 @@ export function Navbar({ children }: PropsWithChildren) {
           </div>
 
           <Link
-            to={homePath.root}
+            href={homePath.root}
             aria-label="logo"
             className="link mx-2 flex flex-1 items-center space-x-2 px-2 text-2xl"
           >

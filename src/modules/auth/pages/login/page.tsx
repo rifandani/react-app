@@ -1,7 +1,7 @@
 import reactjs from '#assets/images/reactjs.svg';
 import { LoginForm } from '#auth/components/login-form';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-aria-components';
 
 export function LoginPage() {
   const [t] = useI18n();
@@ -19,7 +19,7 @@ export function LoginPage() {
           <Link
             aria-label={t('registerHere')}
             className="link link-primary"
-            to="/register"
+            href="/register"
           >
             {t('registerHere')}
           </Link>

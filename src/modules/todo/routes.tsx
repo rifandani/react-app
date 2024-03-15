@@ -1,10 +1,10 @@
-import type { RouteObject } from 'react-router-dom';
-import { todoAction } from './pages/todo/action';
-import { todoLoader } from './pages/todo/loader';
-import { todosLoader } from './pages/todos/loader';
 import { queryClient } from '#app/providers/query/client';
-import { PageWrapper } from '#shared/components/page-wrapper/page-wrapper';
-import { RouteErrorBoundary } from '#shared/components/route-error-boundary/route-error-boundary';
+import { PageWrapper } from '#shared/components/page-wrapper';
+import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
+import { todoAction } from '#todo/pages/todo/action';
+import { todoLoader } from '#todo/pages/todo/loader';
+import { todosLoader } from '#todo/pages/todos/loader';
+import type { RouteObject } from 'react-router-dom';
 
 export const todosId = {
   root: 'todos',

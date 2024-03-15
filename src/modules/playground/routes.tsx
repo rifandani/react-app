@@ -1,5 +1,5 @@
+import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
 import type { RouteObject } from 'react-router-dom';
-import { RouteErrorBoundary } from '#shared/components/route-error-boundary/route-error-boundary';
 
 export const playgroundId = {
   root: 'playground',

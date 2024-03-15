@@ -1,21 +1,21 @@
 import { DemoContainer } from '#playground/components/demo';
-import { For } from '#shared/components/for/for';
+import { For } from '#shared/components/for';
 import { modes, themes } from '#shared/constants/theme.constant';
 import { useColorMode } from '#shared/hooks/use-color-mode.hook';
 import type { ComponentPropsWithoutRef } from 'react';
 import { Button, Tab, TabList, TabPanel, Tabs } from 'react-aria-components';
 import { twJoin } from 'tailwind-merge';
 
+const tabClassName: ComponentPropsWithoutRef<typeof Tab>['className'] = ({
+  isSelected,
+  isDisabled,
+}) => twJoin('tab', isSelected && 'tab-active', isDisabled && 'tab-disabled');
+
 export function PlaygroundPage() {
   const [, setTheme] = useColorMode({
     modes,
     attribute: 'data-theme',
   });
-
-  const tabClassName: ComponentPropsWithoutRef<typeof Tab>['className'] = ({
-    isSelected,
-    isDisabled,
-  }) => twJoin('tab', isSelected && 'tab-active', isDisabled && 'tab-disabled');
 
   return (
     <main className="flex min-h-screen w-full flex-col">

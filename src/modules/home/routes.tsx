@@ -1,7 +1,7 @@
+import { homeLoader } from '#home/pages/loader';
+import { PageWrapper } from '#shared/components/page-wrapper';
+import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
 import type { RouteObject } from 'react-router-dom';
-import { homeLoader } from './pages/loader';
-import { PageWrapper } from '#shared/components/page-wrapper/page-wrapper';
-import { RouteErrorBoundary } from '#shared/components/route-error-boundary/route-error-boundary';
 
 export const homeId = {
   root: 'home',

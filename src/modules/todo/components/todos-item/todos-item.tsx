@@ -3,8 +3,7 @@ import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
 import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
-import { Button } from 'react-aria-components';
-import { Link } from 'react-router-dom';
+import { Button, Link } from 'react-aria-components';
 import { twJoin } from 'tailwind-merge';
 import { match } from 'ts-pattern';
 
@@ -49,7 +48,7 @@ export function TodosItem({
           'ml-5 w-full text-left text-lg hover:font-bold',
           todo.completed && 'line-through',
         )}
-        to={todo.id.toString()}
+        href={todo.id.toString()}
       >
         {todo.todo}
       </Link>

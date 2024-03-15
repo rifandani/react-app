@@ -1,7 +1,7 @@
+import { loginAction } from '#auth/pages/login/action';
+import { loginLoader } from '#auth/pages/login/loader';
+import { RouteErrorBoundary } from '#shared/components/route-error-boundary';
 import type { RouteObject } from 'react-router-dom';
-import { loginAction } from './pages/login/action';
-import { loginLoader } from './pages/login/loader';
-import { RouteErrorBoundary } from '#shared/components/route-error-boundary/route-error-boundary';
 
 export const authId = {
   root: undefined,
