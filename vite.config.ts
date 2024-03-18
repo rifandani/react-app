@@ -10,7 +10,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 const pwaOptions: Partial<VitePWAOptions> = {
   base: '/',
-  mode: 'development',
+  mode: process.env.SW_DEV === 'true' ? 'development' : 'production',
   includeAssets: ['*.ico', '*.svg', '*.png'],
   manifest: {
     name: 'React App',
