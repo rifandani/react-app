@@ -26,7 +26,12 @@ export function LoginForm() {
       {/* username */}
       <fieldset className="group/username form-control pt-4">
         <label className="label" htmlFor="username">
-          <span className="label-text">{t('username')}</span>
+          <span
+            className="label-text aria-[invalid='true']:text-error"
+            aria-invalid={!!form.formState.errors.username?.message}
+          >
+            {t('username')}
+          </span>
         </label>
 
         <input
@@ -52,7 +57,12 @@ export function LoginForm() {
       {/* password */}
       <fieldset className="group/password form-control pt-4">
         <label className="label" htmlFor="password">
-          <span className="label-text">{t('password')}</span>
+          <span
+            className="label-text aria-[invalid='true']:text-error"
+            aria-invalid={!!form.formState.errors.password?.message}
+          >
+            {t('password')}
+          </span>
         </label>
 
         <input

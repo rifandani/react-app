@@ -76,7 +76,7 @@
     "@rifandani/nxact-yutiriti": "^1.2.2",
     "@tanstack/react-query": "^5.28.4",
     "@tanstack/react-query-devtools": "^5.28.4",
-    "axios": "^1.6.8",
+    "ky": "^1.2.2",
     "react": "^18.2.0",
     "react-aria": "^3.32.1",
     "react-aria-components": "1.1.1",
