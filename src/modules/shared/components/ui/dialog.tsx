@@ -56,6 +56,7 @@ export interface DialogContentProps
   children?: DialogProps['children'];
   role?: DialogProps['role'];
   closeButton?: boolean;
+  dialogClassName?: string;
 }
 
 const DialogContent = ({
@@ -64,6 +65,7 @@ const DialogContent = ({
   side,
   role,
   closeButton = true,
+  dialogClassName,
   ...props
 }: DialogContentProps) => (
   <Modal
@@ -80,7 +82,11 @@ const DialogContent = ({
   >
     <Dialog
       role={role}
-      className={twMerge(!side && 'grid h-full gap-4', 'h-full outline-none')}
+      className={twMerge(
+        'h-full outline-none',
+        !side && 'grid h-full gap-4',
+        dialogClassName,
+      )}
     >
       {(values) => (
         <>

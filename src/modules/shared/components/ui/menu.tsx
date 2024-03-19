@@ -39,6 +39,7 @@ const _Menu = <T extends object>({ className, ...props }: MenuProps<T>) => (
 
 interface _MenuItemProps extends MenuItemProps {
   inset?: boolean;
+  onClick?: () => void;
 }
 
 const _MenuItem = ({ className, inset, ...props }: _MenuItemProps) => (
@@ -135,7 +136,10 @@ const MenuRadioItem = ({ className, children, ...props }: MenuItemProps) => (
   >
     {(values) => (
       <>
-        <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <span
+          className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+          data-is-selected={values.isSelected}
+        >
           {values.isSelected && (
             <Icon icon="lucide:circle" className="h-2 w-2 fill-current" />
           )}

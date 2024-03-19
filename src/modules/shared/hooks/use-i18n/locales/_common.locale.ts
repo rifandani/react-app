@@ -28,6 +28,8 @@ export const commonEnLocale = {
   attention: 'Attention',
   language: 'Language',
   account: 'Account',
+  profile: 'Profile',
+  settings: 'Settings',
 } as const;
 
 export const commonIdLocale = {
@@ -58,4 +60,6 @@ export const commonIdLocale = {
   attention: 'Perhatian',
   language: 'Bahasa',
   account: 'Akun',
+  profile: 'Profil',
+  settings: 'Pengaturan',
 } as const;
