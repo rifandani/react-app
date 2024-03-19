@@ -1,8 +1,10 @@
 import type { RollupReplaceOptions } from '@rollup/plugin-replace';
 import replace from '@rollup/plugin-replace';
 import react from '@vitejs/plugin-react';
+import autoprefixer from 'autoprefixer';
 import process from 'node:process';
 import { visualizer } from 'rollup-plugin-visualizer';
+import tailwind from 'tailwindcss';
 import { defineConfig, type PluginOption } from 'vite';
 import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -79,6 +81,11 @@ export default defineConfig({
   },
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true',
+  },
+  css: {
+    postcss: {
+      plugins: [tailwind(), autoprefixer()],
+    },
   },
   plugins: [
     tsconfigPaths({ loose: true }),
