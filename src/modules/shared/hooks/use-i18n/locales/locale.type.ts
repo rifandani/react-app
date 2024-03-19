@@ -1,6 +1,6 @@
+import type { LocaleDictLanguage } from '#app/providers/i18n/context';
 import type { enLocale } from '.';
 
-export type LocaleDictLanguage = 'en-US' | 'id-ID';
 export type LocaleDict = Record<LocaleDictLanguage, Record<string, string>>;
 
 export type Translations = typeof enLocale;

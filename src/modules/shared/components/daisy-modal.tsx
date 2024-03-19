@@ -5,7 +5,7 @@ interface Props extends PropsWithChildren {
   id: string;
 }
 
-export function Modal({ id, children }: Props) {
+export function DaisyModal({ id, children }: Props) {
   return (
     <dialog className="modal modal-bottom sm:modal-middle" id={id}>
       <form method="dialog" className="modal-backdrop">

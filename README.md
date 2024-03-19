@@ -8,7 +8,7 @@
 
 </div>
 
-An opinionated and scalable project starter and reference for building bulletproof production ready React applications.
+An opinionated and scalable project starter and reference for building bulletproof production ready React applications. Think of it as modern, scalable and opinionated Create React App (CRA).
 
 ## Intro
 
@@ -22,8 +22,7 @@ Feel free to explore the codebase to get the most value out of the repo.
 
 ## Table of Contents
 
-- [Application Overview](https://github.com/rifandani/react-app/tree/main/docs/application-verview.md)
-- [](https://github.com/rifandani/react-app/tree/main/docs/.md)
+- [Application Overview](https://github.com/rifandani/react-app/tree/main/docs/application-overview.md)
 
 ## License
 

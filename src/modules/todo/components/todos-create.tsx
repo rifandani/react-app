@@ -1,5 +1,5 @@
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
-import { Modal as DaisyModal } from '#shared/components/modal/modal';
+import { DaisyModal } from '#shared/components/daisy-modal';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { todoKeys, todoSchema } from '#todo/apis/todo.api';

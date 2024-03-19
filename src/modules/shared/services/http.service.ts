@@ -1,4 +1,4 @@
-import { env } from '#shared/configs/env.config';
+import { env } from '#shared/constants/env.constant';
 import ky from 'ky';
 
 // Set config defaults when creating the instance

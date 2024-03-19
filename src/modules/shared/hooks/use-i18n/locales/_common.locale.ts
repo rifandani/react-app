@@ -13,6 +13,9 @@ export const commonEnLocale = {
   errorMinLength: '{field} must contain at least {length} characters',
   error: '❌ {module} error',
   theme: 'Theme',
+  system: 'System',
+  light: 'Light',
+  dark: 'Dark',
   add: 'Add',
   update: 'Update',
   remove: 'Remove',
@@ -23,6 +26,8 @@ export const commonEnLocale = {
   unauthorized: 'Unauthorized. Please login first',
   authorized: 'Already authorized',
   attention: 'Attention',
+  language: 'Language',
+  account: 'Account',
 } as const;
 
 export const commonIdLocale = {
@@ -39,6 +44,9 @@ export const commonIdLocale = {
   errorMinLength: '{field} harus memiliki minimal {length} karakter',
   error: '❌ {module} eror',
   theme: 'Tema',
+  system: 'Sistem',
+  light: 'Terang',
+  dark: 'Gelap',
   add: 'Tambah',
   update: 'Ubah',
   remove: 'Hapus',
@@ -48,4 +56,6 @@ export const commonIdLocale = {
   noPageContent: 'Tidak Ada Konten',
   authorized: 'Sudah Ada Akses',
   attention: 'Perhatian',
+  language: 'Bahasa',
+  account: 'Akun',
 } as const;

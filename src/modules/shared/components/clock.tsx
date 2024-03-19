@@ -48,7 +48,7 @@ export function Clock({ seconds, minutes, hours }: Props) {
 
       {/* <!-- minute hand --> */}
       <line
-        className="stroke-slate-500"
+        className="stroke-slate-700"
         y1="4"
         y2="-30"
         transform={`rotate(${6 * minutes + seconds / 10})`}

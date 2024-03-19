@@ -1,3 +1,4 @@
+import { DaisyModal } from '#shared/components/daisy-modal';
 import { useId } from 'react';
 import {
   Button,
@@ -6,7 +7,6 @@ import {
   Modal,
   ModalOverlay,
 } from 'react-aria-components';
-import { Modal as DaisyModal } from '#shared/components/modal/modal';
 
 function AriaDialog() {
   return (

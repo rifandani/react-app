@@ -1,11 +1,11 @@
 import { Clock } from '#shared/components/clock';
+import { Button, type ButtonVariantProps } from '#shared/components/ui/button';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { useRafInterval } from '#shared/hooks/use-raf-interval.hook';
 import { todosPath } from '#todo/routes';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { shuffle } from '@rifandani/nxact-yutiriti';
 import { useState } from 'react';
-import { Button } from 'react-aria-components';
 import { useNavigate } from 'react-router-dom';
 
 const currentDate = new Date();
@@ -19,17 +19,17 @@ export function HomeClock() {
   const [buttons, setButtons] = useState([
     {
       id: 'sort',
-      class: 'btn-primary btn',
+      variant: 'default' as ButtonVariantProps['variant'],
       text: 'sortButtons',
     },
     {
       id: 'clock',
-      class: 'btn-secondary btn',
+      variant: 'secondary' as ButtonVariantProps['variant'],
       text: 'toggleClock',
     },
     {
       id: 'start',
-      class: 'btn-neutral btn',
+      variant: 'outline' as ButtonVariantProps['variant'],
       text: 'getStarted',
     },
   ] as const);
@@ -69,7 +69,7 @@ export function HomeClock() {
             aria-label={`${btn.id} button`}
             id={btn.id}
             key={btn.id}
-            className={btn.class}
+            variant={btn.variant}
             onPress={() => {
               if (btn.id === 'sort')
                 setButtons((prev) => shuffle(prev) as unknown as typeof prev);
