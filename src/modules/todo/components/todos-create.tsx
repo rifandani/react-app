@@ -1,5 +1,14 @@
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
-import { DaisyModal } from '#shared/components/daisy-modal';
+import { Button } from '#shared/components/ui/button';
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogTitle,
+  DialogTrigger,
+} from '#shared/components/ui/dialog';
+import { Input } from '#shared/components/ui/input';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { todoKeys, todoSchema } from '#todo/apis/todo.api';
@@ -8,15 +17,12 @@ import { useTodosParams } from '#todo/hooks/use-todos.hook';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { random } from '@rifandani/nxact-yutiriti';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCallback, useId } from 'react';
-import { Button } from 'react-aria-components';
 import { useForm } from 'react-hook-form';
-import { useBeforeUnload } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useBlocker } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export function TodosCreate() {
   const [t] = useI18n();
-  const modalId = useId();
   const { user } = useUserStore();
   const params = useTodosParams();
   const queryClient = useQueryClient();
@@ -32,34 +38,49 @@ export function TodosCreate() {
     },
   });
 
-  // show blocker modal on unfinished form
-  useBeforeUnload(
-    useCallback(
-      (evt) => {
-        if (!evt.defaultPrevented && !!form.getValues().todo) {
-          // preventDefault to block immediately and prompt user async
-          evt.preventDefault();
-          evt.returnValue = '';
-
-          const modal = window[
-            modalId as keyof typeof window
-          ] as HTMLDialogElement;
-          modal.showModal();
-        }
-      },
-      [form, modalId],
-    ),
+  // block navigating when input has been entered, but not submitted
+  const blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      form.getValues().todo !== '' &&
+      currentLocation.pathname !== nextLocation.pathname,
   );
 
   return (
     <>
-      <DaisyModal id={modalId}>
-        <h2 className="text-lg font-bold">{t('attention')}</h2>
-        <p className="pt-4">{t('unsavedChanges')}</p>
-      </DaisyModal>
+      <DialogTrigger isOpen={blocker.state === 'blocked'}>
+        <DialogOverlay isDismissable={false}>
+          <DialogContent
+            role="alertdialog"
+            closeButton={false}
+            isDismissable={false}
+          >
+            <DialogHeader>
+              <DialogTitle>{t('attention')}</DialogTitle>
+            </DialogHeader>
+
+            <p className="text-sm text-muted-foreground">
+              {t('unsavedChanges')}
+            </p>
+
+            <DialogFooter>
+              <Button
+                variant="outline"
+                className="mt-2 sm:mt-0"
+                autoFocus
+                onPress={blocker.reset}
+              >
+                Cancel
+              </Button>
+              <Button variant="destructive" onPress={blocker.proceed}>
+                Continue
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </DialogOverlay>
+      </DialogTrigger>
 
       <form
-        className="form-control mb-3 w-full duration-300 lg:flex-row"
+        className="mb-3 flex w-full flex-col duration-300 lg:flex-row"
         onSubmit={form.handleSubmit((values) => {
           const payload = {
             ...values,
@@ -89,17 +110,16 @@ export function TodosCreate() {
           });
         })}
       >
-        <input
-          id="todo"
+        <Input
           type="text"
-          className="input input-bordered input-primary w-full lg:w-10/12"
+          className="w-full lg:w-10/12"
           placeholder={t('todoPlaceholder')}
           {...form.register('todo', { required: true, minLength: 3 })}
         />
 
         <Button
           type="submit"
-          className="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
+          className="ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
           isDisabled={form.formState.isSubmitting || !form.formState.isValid}
         >
           {t('add')}

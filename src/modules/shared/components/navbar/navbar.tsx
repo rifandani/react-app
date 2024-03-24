@@ -7,6 +7,13 @@ import { SvgIcon } from '#shared/components/svg-icon';
 import { Avatar, AvatarFallback } from '#shared/components/ui/avatar';
 import { Button } from '#shared/components/ui/button';
 import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogTrigger,
+} from '#shared/components/ui/dialog';
+import {
   Menu,
   MenuHeader,
   MenuItem,
@@ -16,22 +23,12 @@ import {
   MenuSeparator,
   MenuTrigger,
 } from '#shared/components/ui/menu';
-import {
-  useColorMode,
-  type BasicColorMode,
-} from '#shared/hooks/use-color-mode.hook';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { todosRoute } from '#todo/routes';
 import { Icon } from '@iconify/react';
 import { Link, useLocale, type Selection } from 'react-aria-components';
 import { useNavigate } from 'react-router-dom';
-import {
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogTrigger,
-} from './ui/dialog';
+import { NavbarMenuTheme } from './navbar-menu-theme';
 
 function NavbarMenuLanguage() {
   const { locale } = useLocale();
@@ -62,49 +59,6 @@ function NavbarMenuLanguage() {
 
             <MenuRadioItem id="en-US">English</MenuRadioItem>
             <MenuRadioItem id="id-ID">Indonesia</MenuRadioItem>
-          </MenuSection>
-        </Menu>
-      </MenuPopover>
-    </MenuTrigger>
-  );
-}
-
-function NavbarMenuTheme() {
-  const [t] = useI18n();
-  const [theme, setTheme] = useColorMode({});
-
-  return (
-    <MenuTrigger>
-      <Button size="icon" variant="outline">
-        <Icon
-          icon={
-            theme === 'auto'
-              ? 'lucide:computer'
-              : theme === 'light'
-                ? 'lucide:sun'
-                : 'lucide:moon'
-          }
-          className="size-6"
-        />
-      </Button>
-
-      <MenuPopover>
-        <Menu
-          selectionMode="single"
-          selectedKeys={new Set([theme as string])}
-          onSelectionChange={(_selection) => {
-            const selection = _selection as Exclude<Selection, 'all'> & {
-              currentKey: BasicColorMode;
-            };
-            setTheme(selection.currentKey);
-          }}
-        >
-          <MenuSection>
-            <MenuHeader separator>{t('theme')}</MenuHeader>
-
-            <MenuRadioItem id="auto">{t('system')}</MenuRadioItem>
-            <MenuRadioItem id="light">{t('light')}</MenuRadioItem>
-            <MenuRadioItem id="dark">{t('dark')}</MenuRadioItem>
           </MenuSection>
         </Menu>
       </MenuPopover>
@@ -186,6 +140,7 @@ export function Navbar() {
         <NavbarMenuProfile />
       </section>
 
+      {/* sidebar on mobile viewport */}
       <DialogTrigger>
         <Button size="icon" variant="outline" className="sm:hidden">
           <Icon icon="lucide:menu" className="size-6" />

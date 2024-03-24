@@ -70,9 +70,9 @@ test.describe('unauthorized', () => {
 
   test('should failed to login', async ({ page }) => {
     const usernameInput = page.getByRole('textbox', { name: /username/i });
-    const usernameAlert = page.getByRole('alert', { name: /username/i });
+    const usernameAlert = page.getByText(/username must contain at least/i);
     const passwordInput = page.getByRole('textbox', { name: /password/i });
-    const passwordAlert = page.getByRole('alert', { name: /password/i });
+    const passwordAlert = page.getByText(/password must contain at least/i);
     const errorAlert = page.getByRole('alert', { name: /fetcher/i });
     const submitBtn = page.getByRole('button', { name: /login/i });
 

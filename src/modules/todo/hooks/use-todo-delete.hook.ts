@@ -8,7 +8,7 @@ import type {
 import { todoApi, todoKeys } from '#todo/apis/todo.api';
 import { useTodosParams } from '#todo/hooks/use-todos.hook';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 /**
  * delete todo mutation based on `useTodosParams` and show toast

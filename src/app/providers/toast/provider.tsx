@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/ReactToastify.css';
+import { Toaster } from 'sonner';
 import { ToastContext, createToastContext } from './context';
 
 export function AppToastProvider({ children }: PropsWithChildren) {
@@ -9,7 +8,7 @@ export function AppToastProvider({ children }: PropsWithChildren) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <ToastContainer {...value[0]} />
+      <Toaster {...value[0]} />
     </ToastContext.Provider>
   );
 }

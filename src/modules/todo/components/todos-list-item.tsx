@@ -1,12 +1,14 @@
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { Button } from '#shared/components/ui/button';
+import { Checkbox } from '#shared/components/ui/checkbox';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import type { TodoSchema } from '#todo/apis/todo.api';
 import { useTodoDelete } from '#todo/hooks/use-todo-delete.hook';
 import { useTodoUpdate } from '#todo/hooks/use-todo-update.hook';
-import { Button, Link } from 'react-aria-components';
+import { Icon } from '@iconify/react';
+import { GridListItem, Link } from 'react-aria-components';
 import { useHref } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
-import { match } from 'ts-pattern';
 
 interface Props {
   todo: TodoSchema;
@@ -20,25 +22,15 @@ export function TodosListItem({ todo }: Props) {
   const href = useHref(todo.id.toString(), { relative: 'path' });
 
   return (
-    <form
-      aria-label={`form todo item with id: ${todo.id}`}
+    <GridListItem
       className="mb-2 flex items-center justify-between duration-300 ease-in-out animate-in slide-in-from-left-5"
-      onSubmit={(evt) => {
-        evt.preventDefault();
-
-        // only allow for the correct auth user
-        if (todo.userId === user?.id) deleteTodoMutation.mutate(todo.id);
-      }}
+      textValue={todo.todo}
     >
-      <input type="hidden" name="todoId" id="todoId" value={todo.id} />
-
-      <input
-        type="checkbox"
-        className="checkbox-primary checkbox"
-        aria-label={`toggle completed todo item with id: ${todo.id}`}
-        id={`checkbox-todo-${todo.id}`}
-        name={`checkbox-todo-${todo.id}`}
-        checked={todo.completed}
+      <Checkbox
+        slot="selection"
+        id={`todo-${todo.id}-checkbox`}
+        name={`todo-${todo.id}-checkbox`}
+        isSelected={todo.completed}
         onChange={() => {
           updateTodoMutation.mutate({ ...todo, completed: !todo.completed });
         }}
@@ -46,7 +38,6 @@ export function TodosListItem({ todo }: Props) {
 
       <Link
         href={href}
-        aria-label={`link todo item with id: ${todo.id}`}
         className={twJoin(
           'ml-5 w-full text-left text-lg hover:font-bold',
           todo.completed && 'line-through',
@@ -55,17 +46,20 @@ export function TodosListItem({ todo }: Props) {
         {todo.todo}
       </Link>
 
-      {match(user?.id)
-        .with(todo.userId, () => (
-          <Button
-            aria-label={`remove todo item with id: ${todo.id}`}
-            className="btn btn-primary btn-sm normal-case"
-            type="submit"
-          >
-            {t('remove')}
-          </Button>
-        ))
-        .otherwise(() => null)}
-    </form>
+      {user?.id === todo.userId && (
+        <Button
+          type="submit"
+          size="sm"
+          variant="destructive"
+          className="gap-x-2"
+          onPress={() => {
+            deleteTodoMutation.mutate(todo.id);
+          }}
+        >
+          <Icon icon="lucide:trash-2" />
+          <span>{t('remove')}</span>
+        </Button>
+      )}
+    </GridListItem>
   );
 }

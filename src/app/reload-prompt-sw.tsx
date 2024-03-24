@@ -1,10 +1,11 @@
-import { useCallback } from 'react';
+import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import { useCallback, useEffect } from 'react';
+import { toast } from 'sonner';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
 export function ReloadPromptSw() {
   // replaced dynamically
-  const buildDate = '__DATE__';
-  // replaced dynamically
+  const buildDate = '__DATE__' as '__DATE__' | Omit<string, '__DATE__'>;
   const reloadSW = '__RELOAD_SW__' as '__RELOAD_SW__' | 'true';
 
   const onRegisteredSW = useCallback(
@@ -15,6 +16,8 @@ export function ReloadPromptSw() {
           console.log('🔵 Updating Service Worker...');
           void registration.update();
         }, 10_000 /* 10s for testing purposes */);
+      } else {
+        console.log('✅ Service Worker registered', registration);
       }
     },
     [],
@@ -24,51 +27,41 @@ export function ReloadPromptSw() {
     console.error('🛑 Service Worker registration error', error);
   }, []);
 
+  const [t] = useI18n();
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
   } = useRegisterSW({
+    // immediate: true,
     onRegisteredSW,
     onRegisterError,
   });
 
+  // listens to reload prompt SW
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (offlineReady || needRefresh) {
+      toast(offlineReady ? t('appReady') : t('newContentAvailable'), {
+        closeButton: true,
+        duration: 60 * 1_000,
+        onDismiss: () => {
+          setOfflineReady(false);
+          setNeedRefresh(false);
+        },
+        ...(needRefresh && {
+          action: {
+            label: t('reload'),
+            onClick: () => updateServiceWorker(true),
+          },
+        }),
+      });
+    }
+  }, [offlineReady, needRefresh]);
+
   return (
-    <aside id="ReloadPromptSW" className="toast">
-      {(offlineReady || needRefresh) && (
-        <div className="alert relative block min-w-[20rem] max-w-[20rem] overflow-hidden p-3 shadow-lg">
-          <h3 className="line-clamp-3 whitespace-pre-wrap break-words pb-3">
-            {offlineReady
-              ? 'App ready to work offline'
-              : 'New content available, click on reload button to update'}
-          </h3>
-
-          <section className="flex justify-between">
-            <button
-              type="button"
-              className="btn-outlined btn btn-sm w-1/2"
-              onClick={() => {
-                setOfflineReady(false);
-                setNeedRefresh(false);
-              }}
-            >
-              Close
-            </button>
-
-            {needRefresh && (
-              <button
-                type="button"
-                className="btn btn-primary btn-sm w-1/2"
-                onClick={() => updateServiceWorker(true)}
-              >
-                Reload
-              </button>
-            )}
-          </section>
-        </div>
-      )}
-
-      <span className="hidden">{buildDate}</span>
+    <aside id="ReloadPromptSW" className="hidden">
+      {buildDate}
     </aside>
   );
 }

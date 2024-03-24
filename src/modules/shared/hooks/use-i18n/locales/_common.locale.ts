@@ -11,7 +11,7 @@ export const commonEnLocale = {
   backTo: 'Back to {target}',
   todoUpdateError: 'Todo failed to update',
   errorMinLength: '{field} must contain at least {length} characters',
-  error: '❌ {module} error',
+  error: '{module} error',
   theme: 'Theme',
   system: 'System',
   light: 'Light',
@@ -30,6 +30,12 @@ export const commonEnLocale = {
   account: 'Account',
   profile: 'Profile',
   settings: 'Settings',
+  cancel: 'Cancel',
+  continue: 'Continue',
+  reload: 'Reload',
+  appReady: 'App ready to work offline',
+  newContentAvailable:
+    'New content available, click on reload button to update',
 } as const;
 
 export const commonIdLocale = {
@@ -44,7 +50,7 @@ export const commonIdLocale = {
   xDeleteError: '{feature} gagal dihapus',
   backTo: 'Kembali ke {target}',
   errorMinLength: '{field} harus memiliki minimal {length} karakter',
-  error: '❌ {module} eror',
+  error: '{module} eror',
   theme: 'Tema',
   system: 'Sistem',
   light: 'Terang',
@@ -62,4 +68,10 @@ export const commonIdLocale = {
   account: 'Akun',
   profile: 'Profil',
   settings: 'Pengaturan',
+  cancel: 'Batal',
+  continue: 'Lanjutkan',
+  reload: 'Muat ulang',
+  appReady: 'Aplikasi siap digunakan secara offline',
+  newContentAvailable:
+    'Konten baru tersedia, klik tombol muat ulang untuk memperbarui',
 } as const;

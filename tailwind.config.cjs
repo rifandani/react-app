@@ -1,6 +1,5 @@
 const forms = require('@tailwindcss/forms');
 const typography = require('@tailwindcss/typography');
-const daisyui = require('daisyui');
 const animate = require('tailwindcss-animate');
 const rac = require('tailwindcss-react-aria-components');
 const defaultTheme = require('tailwindcss/defaultTheme');
@@ -104,7 +103,6 @@ module.exports = {
   plugins: [
     typography,
     forms,
-    daisyui,
     animate,
     rac({ prefix: 'rac' }),
     plugin(({ matchUtilities }) => {
@@ -115,8 +113,4 @@ module.exports = {
       });
     }),
   ],
-  daisyui: {
-    logs: false,
-    themes: ['light', 'dark', 'cupcake'],
-  },
 };

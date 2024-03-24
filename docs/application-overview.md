@@ -1,5 +1,7 @@
 # Application Overview
 
+Bugs/issues in JollyUI:
+
 - `date-picker` -> use `@internationalized/date` instead of `date-fns` to format date
 - `checkbox` -> `labelVariants` function should be called inside of `cn` -> `labelVariants()`
 - `radio-group` -> `labelVariants` function should be called inside of `cn` -> `labelVariants()`
@@ -16,15 +18,14 @@ The application built with:
 - `vite` + `typescript` -> development productivity
 - `biome` -> fast linter, formatter
 - `@playwright/test` -> e2e test
-- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `daisyui` -> easy styling
+- `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `class-variance-authority` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
-- `axios` + `@tanstack/react-query` -> server state management + data fetching
+- `ky` + `@tanstack/react-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
 - `@iconify/react` -> SVG icon on demand
-- `react-aria` + `react-aria-components` + `react-stately` -> adaptive, accessible and robust unstyled UI components
+- `react-aria` + `react-aria-components` + `react-stately` + `sonner` -> adaptive, accessible and robust unstyled UI components
 - `react-hook-form` -> form management
 - `zustand` -> performant global state management
-- `react-toastify` -> toast outside of react components
 - `type-fest` -> type helpers
 - `@rifandani/nxact-yutiriti` -> object/array/string utils
 - `@internationalized/date` -> date utils
@@ -36,8 +37,8 @@ The application built with:
 
 Prerequisites:
 
-- Node 18+
-- PNPM 8.10.5+
+- Node LTS (v20)
+- PNPM 8.15.4+
 
 To set up the app execute the following commands:
 

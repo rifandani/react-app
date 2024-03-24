@@ -9,7 +9,7 @@ import { Link } from 'react-aria-components';
 import { unstable_batchedUpdates } from 'react-dom';
 import type { ActionFunctionArgs, LoaderFunction } from 'react-router-dom';
 import { json, redirect } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 export async function action({ request }: ActionFunctionArgs) {
   if (request.method === 'POST') {
@@ -54,7 +54,7 @@ export function Element() {
   const [t] = useI18n();
 
   return (
-    <div id="LoginPage" className="min-h-screen w-full flex">
+    <div className="min-h-screen w-full flex">
       {/* form */}
       <section className="min-h-screen w-full flex flex-col justify-center px-10 xl:px-20 md:w-1/2">
         <h1 className="text-center text-3xl text-primary">{t('welcome')}</h1>
@@ -65,7 +65,7 @@ export function Element() {
           {t('noAccount')}{' '}
           <Link
             aria-label={t('registerHere')}
-            className="link link-primary"
+            className="hover:underline"
             href="/does-not-exists"
           >
             {t('registerHere')}

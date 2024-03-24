@@ -1,4 +1,4 @@
-import { Navbar } from '#shared/components/navbar';
+import { Navbar } from '#shared/components/navbar/navbar';
 import { RouterProvider as RACRouterProvider } from 'react-aria-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 

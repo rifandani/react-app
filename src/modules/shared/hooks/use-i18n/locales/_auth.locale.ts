@@ -7,7 +7,7 @@ export const authEnLocale = {
   login: 'Login',
   logout: 'Logout',
   notFound: 'Not Found',
-  gone: "Sorry, we couldn't the page you're looking for",
+  gone: "Sorry, we couldn't find the page you're looking for",
   welcome: 'Welcome Back',
   noAccount: "Don't have an account?",
   registerHere: 'Register here',

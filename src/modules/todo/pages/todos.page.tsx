@@ -13,7 +13,7 @@ import { TodosFilter } from '#todo/components/todos-filter';
 import { TodosList } from '#todo/components/todos-list';
 import { defaultLimit } from '#todo/constants/todos.constant';
 import { redirect, type LoaderFunctionArgs } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import type { SetRequired } from 'type-fest';
 
 export function loader(_queryClient: typeof queryClient) {
@@ -54,12 +54,12 @@ export function Element() {
   const [t] = useI18n();
 
   return (
-    <div className="flex flex-col items-center justify-center px-10 py-20 duration-300 md:px-24 lg:px-40 xl:px-52">
-      <h1 className="mb-10 text-2xl font-semibold tracking-wider">
+    <div className="container mx-auto flex flex-col py-5 duration-300">
+      <h1 className="text-3xl font-medium sm:text-4xl">
         {t('xList', { feature: 'Todo' })}
       </h1>
 
-      <section className="card w-full bg-base-200 p-5 shadow-lg">
+      <section className="w-full pt-5">
         <TodosCreate />
         <TodosFilter />
         <TodosList />

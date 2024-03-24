@@ -12,7 +12,7 @@ export const loginSchema = z.object({
 });
 
 export const loginApiResponseSchema = z.object({
-  id: z.number(),
+  id: z.number().positive(),
   username: z.string(),
   email: z.string().email(),
   firstName: z.string(),
