@@ -13,9 +13,9 @@ export function PageWrapper() {
 
   return (
     <RACRouterProvider navigate={navigate}>
-      <Navbar>
-        <Outlet />
-      </Navbar>
+      <Navbar />
+
+      <Outlet />
     </RACRouterProvider>
   );
 }

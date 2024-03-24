@@ -1,3 +1,12 @@
+import { Label } from '#shared/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectPopover,
+  SelectTrigger,
+  SelectValue,
+} from '#shared/components/ui/select';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { defaultLimit, limits } from '#todo/constants/todos.constant';
 import { useSearchParams } from 'react-router-dom';
@@ -7,32 +16,32 @@ export function TodosFilter() {
   const [t] = useI18n();
 
   const params = Object.fromEntries(searchParams);
-  const selectedOption = params?.limit ?? defaultLimit;
+  const selectedLimit = params?.limit ?? defaultLimit;
+  const items = limits.map((limit) => ({ id: limit }));
 
   return (
-    <form className="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2">
-      <label htmlFor="limit" className="label">
-        <span className="label-text">{t('limit')}</span>
-      </label>
-
-      <select
-        aria-label="todos filter"
-        className="select select-bordered select-primary"
-        name="limit"
-        id="limit"
-        value={selectedOption}
-        onChange={(evt) => {
+    <form className="pb-3 w-full">
+      <Select
+        aria-label="todo list limit selection"
+        selectedKey={selectedLimit}
+        onSelectionChange={(selected) => {
           // set to url params
-          searchParams.set('limit', evt.currentTarget.value);
+          searchParams.set('limit', selected as string);
           setSearchParams(searchParams);
         }}
       >
-        {limits.map((limit) => (
-          <option key={limit} value={limit}>
-            {limit}
-          </option>
-        ))}
-      </select>
+        <Label>{t('limit')}</Label>
+
+        <SelectTrigger className="w-[160px]">
+          <SelectValue>{({ selectedText }) => selectedText}</SelectValue>
+        </SelectTrigger>
+
+        <SelectPopover>
+          <SelectContent aria-label="limits" items={items}>
+            {({ id }) => <SelectItem textValue={id}>{id}</SelectItem>}
+          </SelectContent>
+        </SelectPopover>
+      </Select>
     </form>
   );
 }

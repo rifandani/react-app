@@ -1,46 +1,50 @@
+import { Button } from '#shared/components/ui/button';
+import { Separator } from '#shared/components/ui/separator';
+import { Toggle } from '#shared/components/ui/toggle';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
-import { ToggleButton } from 'react-aria-components';
+import { Group, Toolbar } from 'react-aria-components';
 
+/**
+ * also comes with Toolbar demo
+ */
 export function DemoToggleButton() {
-  const [isSelected, setSelected] = useState(false);
   const [isBoldSelected, setBoldSelected] = useState(false);
   const [isItalicSelected, setItalicSelected] = useState(false);
   const [isUnderlineSelected, setUnderlineSelected] = useState(false);
 
   return (
     <section className="flex flex-wrap items-center gap-3">
-      <ToggleButton
-        className="rac-selected:border-primary-focus flex w-fit items-center rounded-lg border p-2 focus:ring rac-selected:bg-primary rac-selected:text-primary-content"
-        isSelected={isSelected}
-        onChange={setSelected}
-      >
-        <Icon icon="lucide:italic" />
-      </ToggleButton>
+      <Toolbar aria-label="Text formatting" className="flex items-center">
+        <Group aria-label="Style" className="flex items-center gap-x-1">
+          <Toggle isSelected={isBoldSelected} onChange={setBoldSelected}>
+            <Icon icon="lucide:bold" />
+          </Toggle>
+          <Toggle isSelected={isItalicSelected} onChange={setItalicSelected}>
+            <Icon icon="lucide:italic" />
+          </Toggle>
+          <Toggle
+            isSelected={isUnderlineSelected}
+            onChange={setUnderlineSelected}
+          >
+            <Icon icon="lucide:underline" />
+          </Toggle>
+        </Group>
 
-      <div className="join">
-        <ToggleButton
-          className="btn join-item rac-selected:bg-secondary rac-selected:text-secondary-content"
-          isSelected={isBoldSelected}
-          onChange={setBoldSelected}
-        >
-          <Icon icon="lucide:bold" />
-        </ToggleButton>
-        <ToggleButton
-          className="btn join-item rac-selected:bg-accent rac-selected:text-accent-content"
-          isSelected={isItalicSelected}
-          onChange={setItalicSelected}
-        >
-          <Icon icon="lucide:italic" />
-        </ToggleButton>
-        <ToggleButton
-          className="btn join-item rac-selected:bg-success rac-selected:text-success-content"
-          isSelected={isUnderlineSelected}
-          onChange={setUnderlineSelected}
-        >
-          <Icon icon="lucide:underline" />
-        </ToggleButton>
-      </div>
+        <Separator orientation="vertical" className="mx-3" />
+
+        <Group aria-label="Clipboard">
+          <Button type="button" variant="outline">
+            Copy
+          </Button>
+          <Button type="button" variant="outline">
+            Paste
+          </Button>
+          <Button type="button" variant="outline">
+            Cut
+          </Button>
+        </Group>
+      </Toolbar>
     </section>
   );
 }

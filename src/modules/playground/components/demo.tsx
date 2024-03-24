@@ -29,10 +29,6 @@ import { DemoTextField } from './aria/demo-text-field';
 import { DemoTimeField } from './aria/demo-time-field';
 import { DemoToggleButton } from './aria/demo-toggle-button';
 import { DemoTooltip } from './aria/demo-tooltip';
-import { DemoDaisyAccordion } from './daisy/demo-daisy-accordion';
-import { DemoDaisyAlert } from './daisy/demo-daisy-alert';
-import { DemoDaisyAvatar } from './daisy/demo-daisy-avatar';
-import { DemoDaisyBadge } from './daisy/demo-daisy-badge';
 
 export function DemoContainer() {
   return (
@@ -41,6 +37,7 @@ export function DemoContainer() {
         <h1 className="text-2xl font-bold text-primary">
           React Aria Components
         </h1>
+
         <DemoButton />
         <DemoFileTrigger />
         <DemoToggleButton />
@@ -79,14 +76,6 @@ export function DemoContainer() {
 
         <DemoMeter />
         <DemoProgressBar />
-      </div>
-
-      <div className="flex flex-col space-y-5 p-5">
-        <h1 className="text-2xl font-bold text-primary">DaisyUI</h1>
-        <DemoDaisyAccordion />
-        <DemoDaisyAlert />
-        <DemoDaisyAvatar />
-        <DemoDaisyBadge />
       </div>
     </section>
   );

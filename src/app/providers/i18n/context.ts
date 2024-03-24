@@ -1,6 +1,6 @@
-import type { LocaleDictLanguage } from '#shared/hooks/use-i18n/locales/locale.type';
 import { createContext, useState } from 'react';
 
+export type LocaleDictLanguage = 'en-US' | 'id-ID';
 export type I18nContextInterface = ReturnType<typeof useI18nContext>;
 
 // It's extracted into a function to be able to type the Context before it's even initialized.

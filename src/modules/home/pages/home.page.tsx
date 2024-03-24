@@ -4,7 +4,7 @@ import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { checkAuthUser } from '#shared/utils/checker.util';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { redirect, type LoaderFunction } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 export const loader: LoaderFunction = () => {
   const authed = checkAuthUser();

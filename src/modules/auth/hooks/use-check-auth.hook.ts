@@ -4,7 +4,7 @@ import { homePath } from '#home/routes';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { useMount } from '#shared/hooks/use-mount.hook';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 /**
  * Hooks to authenticate your user, wheter they're logged in or not

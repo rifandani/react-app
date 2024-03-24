@@ -1,8 +1,9 @@
+import { Button } from '#shared/components/ui/button';
+import { Checkbox } from '#shared/components/ui/checkbox';
 import { Icon } from '@iconify/react';
 import { isFunction } from '@rifandani/nxact-yutiriti';
 import type { GridListItemProps } from 'react-aria-components';
 import {
-  Button,
   DropIndicator,
   GridList,
   GridListItem,
@@ -10,14 +11,13 @@ import {
 } from 'react-aria-components';
 import { useListData } from 'react-stately';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
 
 function MyGridListItem({ children, ...props }: GridListItemProps) {
   const textValue = typeof children === 'string' ? children : undefined;
 
   return (
     <GridListItem
-      className="flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-selected:text-primary-content rac-disabled:text-slate-500 [&>div]:flex"
+      className="flex w-full items-center px-3 py-1 rac-selected:bg-primary rac-selected:text-primary-foreground rac-disabled:text-slate-500 [&>div]:flex"
       textValue={textValue}
       {...props}
     >
@@ -25,18 +25,14 @@ function MyGridListItem({ children, ...props }: GridListItemProps) {
         <>
           {/* Add elements for drag and drop and selection. */}
           {item.allowsDragging && (
-            <Button slot="drag" className="btn btn-ghost btn-xs pl-0">
+            <Button slot="drag" variant="ghost" size="icon" className="pl-0">
               <Icon icon="lucide:menu" />
             </Button>
           )}
 
           {item.selectionMode === 'multiple' &&
             item.selectionBehavior === 'toggle' && (
-              <AriaCheckbox
-                slot="selection"
-                aria-label={`gridlist-checkbox-${props.id}`}
-                isSelected={item.isSelected}
-              />
+              <Checkbox slot="selection" isSelected={item.isSelected} />
             )}
 
           {isFunction(children) ? children(item) : children}
@@ -108,7 +104,7 @@ export function DemoGridList() {
   ];
 
   return (
-    <section className="flex flex-wrap items-center gap-3">
+    <section className="flex flex-wrap items-center gap-5">
       <GridList
         className="gap-3"
         aria-label="Multiple checkbox selection with toggle behavior"

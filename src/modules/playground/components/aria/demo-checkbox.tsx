@@ -1,6 +1,5 @@
 import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
 import { BaseAriaCheckbox } from '#shared/components/checkbox/base-aria-checkbox';
-import { DaisyCheckbox } from '#shared/components/checkbox/daisy-checkbox';
 
 export function DemoCheckbox() {
   return (
@@ -14,8 +13,6 @@ export function DemoCheckbox() {
         <span className="label-text">BaseCheckbox</span>
         <BaseAriaCheckbox />
       </label>
-
-      <DaisyCheckbox />
     </section>
   );
 }

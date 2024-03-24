@@ -1,4 +1,4 @@
-import { Button } from 'react-aria-components';
+import { Button } from '#shared/components/ui/button';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 export function RouteErrorBoundary() {
@@ -17,10 +17,9 @@ export function RouteErrorBoundary() {
     // the response json is automatically parsed to `error.data`, we also have access to the status
     return (
       <main className="flex min-h-screen flex-col items-center justify-center">
-        <h1 className="mb-3 text-primary-content">Something went wrong</h1>
+        <h1 className="mb-3">Something went wrong</h1>
 
         <Button
-          className="btn btn-neutral text-primary-content"
           type="button"
           onPress={() => {
             window.location.assign(window.location.href);

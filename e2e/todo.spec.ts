@@ -6,16 +6,23 @@ test.describe('authorized', () => {
   }) => {
     await page.goto('/todos/28');
 
-    const title = page.getByRole('heading', { level: 1, name: 'Todo Detail' });
-    const link = page.getByRole('link', { name: /back to todos/i });
+    const title = page.getByRole('heading', { name: 'Todo Detail' });
+    const homeLink = page.getByRole('link', { name: 'Home' });
+    const todosLink = page.getByRole('link', { name: 'Todos' });
+    const todoDetailLink = page.getByRole('link', { name: '28' });
 
     await expect(title).toBeVisible();
-    await expect(link).toBeVisible();
-    await link.click();
+    await expect(homeLink).toBeVisible();
+    await expect(todosLink).toBeVisible();
+    await expect(todoDetailLink).toBeVisible();
+    await todosLink.click();
 
     await page.waitForURL('/todos');
     await expect(title).not.toBeVisible();
-    await expect(link).not.toBeVisible();
+
+    await page.goto('/todos/28');
+    await homeLink.click();
+    await page.waitForURL('/');
   });
 
   test.describe('update todo', () => {
@@ -24,7 +31,7 @@ test.describe('authorized', () => {
     test(`should be able to update user's own todo`, async ({ page }) => {
       await page.goto('/todos/28');
 
-      const input = page.getByRole('textbox', { name: /input todo text/i });
+      const input = page.getByRole('textbox', { name: 'todo detail input' });
       const updateBtn = page.getByRole('button', { name: /update/i });
 
       await expect(input).toBeVisible();
@@ -41,7 +48,7 @@ test.describe('authorized', () => {
     test(`should NOT be able to update other user's todo`, async ({ page }) => {
       await page.goto('/todos/1');
 
-      const input = page.getByRole('textbox', { name: /input todo text/i });
+      const input = page.getByRole('textbox', { name: 'todo detail input' });
       const updateBtn = page.getByRole('button', { name: /update/i });
 
       await expect(input).toBeVisible();

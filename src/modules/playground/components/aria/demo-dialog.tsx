@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import {
   Button,
   Dialog,
@@ -6,7 +5,6 @@ import {
   Modal,
   ModalOverlay,
 } from 'react-aria-components';
-import { Modal as DaisyModal } from '#shared/components/modal/modal';
 
 function AriaDialog() {
   return (
@@ -42,58 +40,10 @@ function AriaDialog() {
   );
 }
 
-function DaisyDialog() {
-  const id = useId();
-
-  const onPressOpenDialog = () => {
-    // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-    const modal = window[id] as HTMLDialogElement;
-    modal.showModal();
-  };
-
-  const onPressCloseDialog = () => {
-    // @ts-expect-error daisyUI modal method utilizing `dialog` element with `id`
-    const modal = window[id] as HTMLDialogElement;
-    modal.close();
-  };
-
-  return (
-    <>
-      <Button className="btn btn-outline btn-sm" onPress={onPressOpenDialog}>
-        Daisy Dialog
-      </Button>
-
-      <DaisyModal id={id}>
-        <h1 className="text-lg font-bold">Are you absolutely sure?</h1>
-        <p className="pt-4">
-          This action cannot be undone. This will permanently delete your
-          account and remove your data from our servers.
-        </p>
-
-        <footer className="modal-action space-x-3">
-          <Button
-            className="btn btn-outline btn-sm"
-            onPress={onPressCloseDialog}
-          >
-            Cancel
-          </Button>
-          <Button
-            className="btn btn-primary btn-sm"
-            onPress={onPressCloseDialog}
-          >
-            Continue
-          </Button>
-        </footer>
-      </DaisyModal>
-    </>
-  );
-}
-
 export function DemoDialog() {
   return (
     <section className="flex flex-wrap items-center gap-3">
       <AriaDialog />
-      <DaisyDialog />
     </section>
   );
 }

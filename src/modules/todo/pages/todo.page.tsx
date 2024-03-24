@@ -1,6 +1,16 @@
 import type { queryClient } from '#app/providers/query/client';
 import { useUserStore } from '#auth/hooks/use-user-store.hook';
 import { authPath } from '#auth/routes';
+import { homeRoute } from '#home/routes';
+import {
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  Breadcrumbs,
+} from '#shared/components/ui/breadcrumbs';
+import { Button } from '#shared/components/ui/button';
+import { Input } from '#shared/components/ui/input';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { checkAuthUser } from '#shared/utils/checker.util';
 import type {
@@ -9,9 +19,8 @@ import type {
 } from '#todo/apis/todo.api';
 import { todoApi, todoKeys, updateTodoSchema } from '#todo/apis/todo.api';
 import { useTodo } from '#todo/hooks/use-todo.hook';
-import { todosPath } from '#todo/routes';
+import { todosPath, todosRoute } from '#todo/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Link } from 'react-aria-components';
 import { useForm } from 'react-hook-form';
 import {
   redirect,
@@ -21,7 +30,7 @@ import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
 } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { match } from 'ts-pattern';
 
 export function action(_queryClient: typeof queryClient) {
@@ -38,6 +47,7 @@ export function action(_queryClient: typeof queryClient) {
       // invalidate only change the status to inactive, the cache is still there
       // await _queryClient.invalidateQueries({ queryKey: queryKeyLists }); // `await` is the "lever"
 
+      // NOTE: we can't translate this
       toast.success('Todo successfully updated');
       return redirect(todosPath.root);
     }
@@ -92,25 +102,31 @@ export function Element() {
   });
 
   return (
-    <div className="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
+    <div className="container mx-auto flex flex-col items-center py-5 duration-300">
       <section className="mb-10 flex w-full flex-col space-y-2">
-        <Link
-          href={todosPath.root}
-          className="link w-fit normal-case hover:skew-x-12"
-        >
-          ⬅ {t('backTo', { target: 'Todos' })}
-        </Link>
+        <Breadcrumbs>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={homeRoute.path}>Home</BreadcrumbLink>
+            <BreadcrumbSeparator />
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={todosRoute.path}>Todos</BreadcrumbLink>
+            <BreadcrumbSeparator />
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbPage>{id}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </Breadcrumbs>
 
-        <h1 className="text-2xl font-semibold tracking-wider">
+        <h1 className="text-3xl font-medium sm:text-4xl">
           {t('xDetail', { feature: 'Todo' })}
         </h1>
       </section>
 
       <form
-        aria-label={`form todo with id: ${id}`}
-        className="join"
+        className="w-full flex items-center gap-x-2"
         onSubmit={form.handleSubmit((values) => {
-          // prohibit user submit when clicking Enter in input
+          // prohibit unauthorized user submit (e.g. when clicking Enter in input)
           if (todoQuery.data && todoQuery.data.userId !== user?.id) return;
 
           fetcher.submit(values, {
@@ -123,7 +139,7 @@ export function Element() {
           .with({ isError: true }, () => (
             <div
               role="alert"
-              aria-label="detail query error"
+              aria-label="Todo detail query error"
               className="alert alert-error mt-2 shadow-lg"
             >
               <div className="flex items-center">
@@ -134,25 +150,22 @@ export function Element() {
           ))
           .with({ isSuccess: true }, ({ data }) => (
             <>
-              <input
-                id="todo"
+              <Input
                 type="text"
-                aria-label="input todo text"
-                className="input join-item input-bordered input-primary w-full"
+                className="w-10/12"
+                aria-label="todo detail input"
                 {...form.register('todo', { required: true })}
               />
 
-              {match(user?.id)
-                .with(data.userId, () => (
-                  <Button
-                    type="submit"
-                    className="btn btn-primary join-item normal-case disabled:btn-disabled"
-                    isDisabled={fetcher.state === 'submitting'}
-                  >
-                    {t('update')}
-                  </Button>
-                ))
-                .otherwise(() => null)}
+              {user?.id === data.userId && (
+                <Button
+                  type="submit"
+                  className="w-2/12"
+                  isDisabled={fetcher.state === 'submitting'}
+                >
+                  {t('update')}
+                </Button>
+              )}
             </>
           ))
           .otherwise(() => null)}
