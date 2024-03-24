@@ -29,10 +29,13 @@ export function createToastContext() {
     },
   });
 
-  const actions = {
-    setProps,
-    resetProps,
-  };
+  const actions = useMemo(
+    () => ({
+      setProps,
+      resetProps,
+    }),
+    [setProps, resetProps],
+  );
 
   return useMemo(() => [props, actions] as const, [props, actions]);
 }
