@@ -37,8 +37,8 @@ The application built with:
 
 Prerequisites:
 
-- Node LTS (v20)
-- PNPM 8.15.4+
+- Node LTS (v20+)
+- PNPM 8.15+
 
 To set up the app execute the following commands:
 
@@ -66,6 +66,8 @@ $ pnpm dev
 
 ## Testing
 
+We use Playwright for our E2E tests in this project. Check out [testing docs](https://github.com/rifandani/react-app/blob/main/docs/testing.md) for more info.
+
 ```bash
 # run test headless
 $ pnpm test
@@ -87,7 +89,7 @@ $ pnpm build:staging
 $ pnpm build
 ```
 
-## Start
+## Start "production"
 
 PWA relies on [https-localhost](https://github.com/daquinoaldo/https-localhost) to serve the dist files on https://localhost/. Please refer to it's docs for the steps to setup your local environment.
 
@@ -97,6 +99,11 @@ $ pnpm start
 ```
 
 Open up https://localhost/, then restart the server, you will see a notification ask you to restart reload the offline content.
+
+## Maintaining
+
+- Update dependencies weekly using dependencies updater. I recommend using Vscode extensions: [Vscode Ecosystem](https://marketplace.visualstudio.com/items?itemName=rifandani.vscode-ecosystem) (also maintained by myself)
+- When you update `@playwright/test`, don't forget to also download new browser binaries and their dependencies by running `pnpm test:install`
 
 ## Deployment
 
