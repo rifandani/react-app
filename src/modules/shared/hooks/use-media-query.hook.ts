@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 /**
  * Easily retrieve media dimensions with this Hook React which also works onResize.
@@ -10,20 +10,20 @@ import { useEffect, useState } from 'react';
  * ```
  */
 export function useMediaQuery(query: string): boolean {
-  const getMatches = (_query: string): boolean => {
+  const getMatches = React.useCallback((_query: string): boolean => {
     // Prevents SSR issues
     if (typeof window !== 'undefined') return window.matchMedia(_query).matches;
 
     return false;
-  };
+  }, []);
 
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
+  const [matches, setMatches] = React.useState<boolean>(getMatches(query));
 
-  function handleChange() {
+  const handleChange = React.useCallback(() => {
     setMatches(getMatches(query));
-  }
+  }, [query, getMatches]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const matchMedia = window.matchMedia(query);
 
     // Triggered at the first client-side load and if query changes
@@ -37,7 +37,7 @@ export function useMediaQuery(query: string): boolean {
       if (matchMedia.removeListener) matchMedia.removeListener(handleChange);
       else matchMedia.removeEventListener('change', handleChange);
     };
-  }, [query]);
+  }, [query, handleChange]);
 
   return matches;
 }

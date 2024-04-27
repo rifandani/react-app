@@ -23,6 +23,8 @@ Feel free to explore the codebase to get the most value out of the repo.
 ## Table of Contents
 
 - [Application Overview](https://github.com/rifandani/react-app/tree/main/docs/application-overview.md)
+- [Linting and Formatting](https://github.com/rifandani/react-app/tree/main/docs/linting-and-formatting.md)
+- [Testing](https://github.com/rifandani/react-app/tree/main/docs/testing.md)
 
 ## License
 

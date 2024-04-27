@@ -1,34 +1,22 @@
 # Application Overview
 
-Bugs/issues in JollyUI:
-
-- `date-picker` -> use `@internationalized/date` instead of `date-fns` to format date
-- `checkbox` -> `labelVariants` function should be called inside of `cn` -> `labelVariants()`
-- `radio-group` -> `labelVariants` function should be called inside of `cn` -> `labelVariants()`
-- `searchfield` -> All className should be `(values) => typeof className === 'function' ? className(values) : className`
-- `switch` -> `<div className="pointer-events-none block h-5 w-5"` there's no need for `cn` helper.
-- `breadcrumbs` -> in `BreadcrumbLink` and `BreadcrumbPage`, className should be `(values) => typeof className === 'function' ? className(values) : className`.
-- `Link` we don't need `LinkRenderProps` assertions in className values, it's already inferred
-- `tabs` -> `Selected items not found. Exiting.` error. All className should be `(values) => typeof className === 'function' ? className(values) : className`
-- `dialog` -> in `DialogContent`, `Modal` className should be `(values) => typeof className === 'function' ? className(values) : className`
-- `TextArea` className should be `(values) => typeof className === 'function' ? className(values) : className`
-
 The application built with:
 
 - `vite` + `typescript` -> development productivity
-- `biome` -> fast linter, formatter
+- `biome` -> fast linter and formatter
 - `@playwright/test` -> e2e test
 - `tailwindcss` + `tailwindcss-animate` + `tailwind-merge` + `class-variance-authority` -> easy styling
 - `@formkit/auto-animate` -> automate transition animation when component mount/unmount
-- `ky` + `@tanstack/react-query` -> server state management + data fetching
-- `zod` -> runtime schema validation
 - `@iconify/react` -> SVG icon on demand
-- `react-aria` + `react-aria-components` + `react-stately` + `sonner` -> adaptive, accessible and robust unstyled UI components
-- `react-hook-form` -> form management
-- `zustand` -> performant global state management
+- `react-aria` + `react-aria-components` + `react-stately` + `sonner` -> accessible and robust unstyled UI components
+- `zod` -> runtime schema validation
+- `ts-pattern` -> better pattern matching
+- `ky` + `@tanstack/react-query` -> server state manager + data fetching
+- `react-hook-form` -> form manager
+- `zustand` -> global state manager
 - `type-fest` -> type helpers
-- `@rifandani/nxact-yutiriti` -> object/array/string utils
-- `@internationalized/date` -> date utils
+- `@rifandani/nxact-yutiriti` -> object/array/string helpers
+- `@internationalized/date` -> date helpers
 - `vite-plugin-pwa` + `@vite-pwa/assets-generator` + `@rollup/plugin-replace` + `https-localhost` + `workbox-core` + `workbox-precaching` + `workbox-routing` + `workbox-window` -> Progressive Web App (PWA)
 
 [Demo App](https://react-app-rifandani.vercel.app)
@@ -43,8 +31,10 @@ Prerequisites:
 To set up the app execute the following commands:
 
 ```bash
-# clone the template OR you can click "Use this template" in https://github.com/rifandani/react-app.com
+# clone the template OR you can click "Use this template" in github
 $ git clone https://github.com/rifandani/react-app.git
+# OR use degit
+$ npx degit rifandani/react-app#main
 
 $ cd react-app
 
@@ -66,7 +56,7 @@ $ pnpm dev
 
 ## Testing
 
-We use Playwright for our E2E tests in this project. Check out [testing docs](https://github.com/rifandani/react-app/blob/main/docs/testing.md) for more info.
+We use Playwright for our E2E tests in this project. Check out [testing docs](./testing.md) for more info.
 
 ```bash
 # run test headless
