@@ -114,7 +114,7 @@ export function DemoCombobox() {
     inputValue: '',
   });
 
-  const onSelectionChange = (id: Key) => {
+  const onSelectionChange = (id: Key | null) => {
     setFieldState({
       selectedKey: id,
       inputValue: options.find((o) => o.id === id)?.name ?? '',
