@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
 
-const validUsername = 'kminchelle';
-const validPassword = '0lelplR';
+const validUsername = 'emilys';
+const validPassword = 'emilyspass';
 const invalidUsername = 'km';
 const invalidPassword = '0lelp';
-const errorUsername = '1kminchelle';
-const errorPassword = '10lelplR';
+const errorUsername = '1emilys';
+const errorPassword = '1emilyspass';
 
 test.describe('authorized', () => {
   test('should redirect back to home page', async ({ page }) => {

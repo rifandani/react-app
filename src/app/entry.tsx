@@ -1,5 +1,5 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
+import { Devtools } from './devtools';
 import { AppI18nProvider } from './providers/i18n/provider';
 import { AppQueryProvider } from './providers/query/provider';
 import { AppRouterProvider } from './providers/router/provider';
@@ -18,11 +18,7 @@ export function Entry() {
             {/* PWA */}
             <ReloadPromptSw />
 
-            {/* react query devtools */}
-            <ReactQueryDevtools
-              buttonPosition="bottom-left"
-              initialIsOpen={false}
-            />
+            <Devtools />
           </AppToastProvider>
         </AppI18nProvider>
       </AppQueryProvider>

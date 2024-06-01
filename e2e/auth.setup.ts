@@ -8,8 +8,8 @@ test('auth setup', async ({ page }) => {
   const passwordInput = page.getByRole('textbox', { name: /password/i });
   const submitBtn = page.getByRole('button', { name: /login/i });
 
-  await usernameInput.fill('kminchelle');
-  await passwordInput.fill('0lelplR');
+  await usernameInput.fill('emilys');
+  await passwordInput.fill('emilyspass');
   await submitBtn.click();
 
   await page.waitForURL('');

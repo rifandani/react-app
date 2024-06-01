@@ -103,7 +103,8 @@ export function LoginForm() {
         className="mt-8"
         isDisabled={fetcher.state === 'submitting' || !formState.isValid}
       >
-        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')} (0lelplR)
+        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')}{' '}
+        (emilyspass)
       </Button>
     </fetcher.Form>
   );

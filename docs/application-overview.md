@@ -90,7 +90,7 @@ $ pnpm start
 
 Open up https://localhost/, then restart the server, you will see a notification ask you to restart reload the offline content.
 
-## Maintaining
+## Managing Updates
 
 - Update dependencies weekly using dependencies updater. I recommend using Vscode extensions: [Vscode Ecosystem](https://marketplace.visualstudio.com/items?itemName=rifandani.vscode-ecosystem) (also maintained by myself)
 - When you update `@playwright/test`, don't forget to also download new browser binaries and their dependencies by running `pnpm test:install`
