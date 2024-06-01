@@ -1,5 +1,5 @@
 import type { ResourceParamsSchema } from '#shared/schemas/api.schema';
-import { resourceListSchema } from '#shared/schemas/api.schema';
+import { resourceListResponseSchema } from '#shared/schemas/api.schema';
 import { http } from '#shared/services/http.service';
 import { z } from 'zod';
 
@@ -17,7 +17,7 @@ export const deleteTodoSchema = detailTodoSchema;
 // #endregion
 
 // #region API SCHEMA
-export const todoListApiResponseSchema = resourceListSchema.extend({
+export const todoListApiResponseSchema = resourceListResponseSchema.extend({
   todos: z.array(todoSchema),
 });
 export const todoDetailApiResponseSchema = todoSchema;

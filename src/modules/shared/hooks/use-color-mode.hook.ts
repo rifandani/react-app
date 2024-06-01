@@ -100,7 +100,7 @@ export function useColorMode<T extends string = BasicColorMode>(
   );
 
   const updateHTMLAttrs = useCallback(
-    (_selector: string, _attribute: string, _value: string) => {
+    (_selector: string, _attribute: string, _mode = '') => {
       const el = window.document.querySelector(_selector);
       if (!el) return;
 
@@ -114,7 +114,7 @@ export function useColorMode<T extends string = BasicColorMode>(
       }
 
       if (_attribute === 'class') {
-        const current = _value.split(/\s/g);
+        const current = _mode.split(/\s/g);
         const truthyModes = Object.values(modes)
           .flatMap((i) => (i || '').split(/\s/g))
           .filter(Boolean);
@@ -124,7 +124,7 @@ export function useColorMode<T extends string = BasicColorMode>(
           else el.classList.remove(v);
         }
       } else {
-        el.setAttribute(_attribute, _value);
+        el.setAttribute(_attribute, _mode);
       }
 
       if (disableTransition) {

@@ -6,12 +6,16 @@ export const errorApiResponseSchema = z.object({
 });
 
 export const resourceParamsSchema = z.object({
-  limit: z.number().optional(),
-  skip: z.number().optional(),
-  select: z.string().optional(),
+  limit: z.number().optional().describe('limit per page. limit=0 to clear'),
+  skip: z.number().optional().describe('skip the first n items.'),
+  select: z
+    .string()
+    .optional()
+    .describe('select fields. could be comma separated'),
+  delay: z.number().optional().describe('artificial delay in ms.'),
 });
 
-export const resourceListSchema = z.object({
+export const resourceListResponseSchema = z.object({
   total: z.number(),
   skip: z.number(),
   limit: z.number(),
@@ -20,4 +24,6 @@ export const resourceListSchema = z.object({
 
 export type ErrorApiResponseSchema = z.infer<typeof errorApiResponseSchema>;
 export type ResourceParamsSchema = z.infer<typeof resourceParamsSchema>;
-export type ResourceListSchema = z.infer<typeof resourceListSchema>;
+export type ResourceListResponseSchema = z.infer<
+  typeof resourceListResponseSchema
+>;

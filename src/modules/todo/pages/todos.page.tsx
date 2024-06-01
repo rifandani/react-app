@@ -1,20 +1,58 @@
 import type { queryClient } from '#app/providers/query/client';
 import { authPath } from '#auth/routes';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
-import type { ResourceParamsSchema } from '#shared/schemas/api.schema';
+import { resourceParamsSchema } from '#shared/schemas/api.schema';
 import { checkAuthUser } from '#shared/utils/checker.util';
-import {
-  todoApi,
-  todoKeys,
-  type TodoListApiResponseSchema,
-} from '#todo/apis/todo.api';
+import { todoApi, todoKeys } from '#todo/apis/todo.api';
 import { TodosCreate } from '#todo/components/todos-create';
 import { TodosFilter } from '#todo/components/todos-filter';
 import { TodosList } from '#todo/components/todos-list';
 import { defaultLimit } from '#todo/constants/todos.constant';
 import { redirect, type LoaderFunctionArgs } from 'react-router-dom';
 import { toast } from 'sonner';
-import type { SetRequired } from 'type-fest';
+import { z } from 'zod';
+
+const searchParamsSchema = resourceParamsSchema.pick({ select: true }).extend({
+  limit: z
+    .string()
+    .optional()
+    .transform((val, ctx) => {
+      if (val === undefined) return val;
+
+      const numberVal = Number(val);
+      if (Number.isNaN(numberVal)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Limit is not a number',
+        });
+
+        // This is a special symbol you can use to return early from the transform function.
+        // It has type `never` so it does not affect the inferred return type.
+        return z.NEVER;
+      }
+
+      return numberVal;
+    })
+    .default(defaultLimit),
+  skip: z
+    .string()
+    .optional()
+    .transform((val, ctx) => {
+      if (val === undefined) return val;
+
+      const numberVal = Number(val);
+      if (Number.isNaN(numberVal)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Limit is not a number',
+        });
+
+        return z.NEVER;
+      }
+
+      return numberVal;
+    }),
+});
 
 export function loader(_queryClient: typeof queryClient) {
   return async ({ request }: LoaderFunctionArgs) => {
@@ -27,26 +65,20 @@ export function loader(_queryClient: typeof queryClient) {
     }
 
     const url = new URL(request.url);
-    const searchParams = Object.fromEntries(url.searchParams);
-    const limit = Number(searchParams?.limit ?? defaultLimit);
-    const params: SetRequired<ResourceParamsSchema, 'limit'> = {
-      ...searchParams,
-      limit,
-    };
-    const queryKey = todoKeys.list(params);
-    const queryFn = () => todoApi.list(params);
+    const searchParams = searchParamsSchema.parse(
+      Object.fromEntries(url.searchParams),
+    );
+    const queryKey = todoKeys.list(searchParams);
+    const queryFn = () => todoApi.list(searchParams);
     const staleTime = 1_000 * 60 * 1; // 1 min
 
-    // or we can use `_queryClient.ensureQueryData`
-    const todosCache =
-      _queryClient.getQueryData<TodoListApiResponseSchema>(queryKey);
-    const todosData = await _queryClient.fetchQuery({
+    const todos = await _queryClient.ensureQueryData({
       queryKey,
       queryFn,
       staleTime,
     });
 
-    return todosCache ?? todosData;
+    return todos;
   };
 }
 
