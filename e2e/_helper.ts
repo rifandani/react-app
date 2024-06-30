@@ -1,8 +1,8 @@
-import type { LoginApiResponseSchema } from '#auth/apis/auth.api';
-import type { UserStoreState } from '#auth/hooks/use-user-store.hook';
+import type { AuthLoginResponseSchema } from '#auth/apis/auth.api';
+import type { UserStoreState } from '#auth/hooks/use-auth-user-store.hook';
 import { faker } from '@faker-js/faker';
 
-export function seedUser(): LoginApiResponseSchema {
+export function seedUser(): AuthLoginResponseSchema {
   return {
     id: faker.number.int(),
     username: faker.person.middleName(),
@@ -24,7 +24,7 @@ export function getLocalStorageUser(): {
   return JSON.parse(localStorage.getItem('app-user') ?? 'null');
 }
 
-export function setLocalStorageUser(user: LoginApiResponseSchema) {
+export function setLocalStorageUser(user: AuthLoginResponseSchema) {
   if (!localStorage) throw new Error('You are not in the browser env!');
 
   localStorage.setItem('app-user', JSON.stringify(user));

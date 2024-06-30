@@ -40,7 +40,7 @@ test.describe('authorized', () => {
       // we can update by clicking submit btn / press Enter in the input text
       await input.fill('updated todo');
       await updateBtn.click();
-      await page.waitForURL('/todos');
+      await page.waitForURL(/\/todos/);
       await expect(input).not.toBeVisible();
       await expect(updateBtn).not.toBeVisible();
     });
@@ -73,7 +73,7 @@ test.describe('unauthorized', () => {
     const passwordInput = page.getByRole('textbox', { name: /password/i });
     const submitBtn = page.getByRole('button', { name: /login/i });
 
-    await page.waitForURL('/login');
+    await page.waitForURL(/\/login/);
     await expect(usernameInput).toBeVisible();
     await expect(passwordInput).toBeVisible();
     await expect(submitBtn).toBeVisible();

@@ -1,5 +1,5 @@
 import type { queryClient } from '#app/providers/query/client';
-import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { useAuthUserStore } from '#auth/hooks/use-auth-user-store.hook';
 import { authPath } from '#auth/routes';
 import { homeRoute } from '#home/routes';
 import {
@@ -14,11 +14,15 @@ import { Input } from '#shared/components/ui/input';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 import { checkAuthUser } from '#shared/utils/checker.util';
 import type {
-  TodoDetailApiResponseSchema,
-  UpdateTodoSchema,
+  TodoDetailResponseSchema,
+  TodoUpdateRequestSchema,
 } from '#todo/apis/todo.api';
-import { todoApi, todoKeys, updateTodoSchema } from '#todo/apis/todo.api';
-import { useTodo } from '#todo/hooks/use-todo.hook';
+import {
+  todoKeys,
+  todoRepositories,
+  todoUpdateRequestSchema,
+} from '#todo/apis/todo.api';
+import { useTodoDetail } from '#todo/hooks/use-todo-detail.hook';
 import { todosPath, todosRoute } from '#todo/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -32,22 +36,24 @@ import {
 } from 'react-router-dom';
 import { toast } from 'sonner';
 import { match } from 'ts-pattern';
+import { z } from 'zod';
 
-export function action(_queryClient: typeof queryClient) {
-  return async ({ request, params }: ActionFunctionArgs) => {
+const paramsSchema = z.object({
+  id: z.string().transform((value) => Number(value)),
+});
+
+export const action = (_queryClient: typeof queryClient) => {
+  return async ({ request }: ActionFunctionArgs) => {
     if (request.method === 'PUT') {
-      const queryKeyLists = todoKeys.lists();
-      const queryKeyDetail = todoKeys.detail(Number(params.id));
-      const payload = (await request.json()) as UpdateTodoSchema;
-      await todoApi.update(payload);
+      const payload = (await request.json()) as TodoUpdateRequestSchema;
+      await todoRepositories.update(payload);
 
-      // remove the todos cache
-      _queryClient.removeQueries({ queryKey: queryKeyLists });
-      _queryClient.removeQueries({ queryKey: queryKeyDetail });
       // invalidate only change the status to inactive, the cache is still there
-      // await _queryClient.invalidateQueries({ queryKey: queryKeyLists }); // `await` is the "lever"
+      // `await` is the lever
+      await _queryClient.invalidateQueries({
+        queryKey: todoKeys.all,
+      });
 
-      // NOTE: we can't translate this
       toast.success('Todo successfully updated');
       return redirect(todosPath.root);
     }
@@ -55,9 +61,9 @@ export function action(_queryClient: typeof queryClient) {
     toast.warning('Not Implemented');
     return new Response('Not Implemented', { status: 501 });
   };
-}
+};
 
-export function loader(_queryClient: typeof queryClient) {
+export const loader = (_queryClient: typeof queryClient) => {
   return async ({ params }: LoaderFunctionArgs) => {
     const authed = checkAuthUser();
 
@@ -67,33 +73,30 @@ export function loader(_queryClient: typeof queryClient) {
       return redirect(authPath.login);
     }
 
-    const queryKey = todoKeys.detail(Number(params.id));
-    const queryFn = () => todoApi.detail(Number(params.id));
-    const staleTime = 1_000 * 60 * 1; // 1 min
-
-    // or we can use `_queryClient.ensureQueryData`
-    const todoDetailCache =
-      _queryClient.getQueryData<TodoDetailApiResponseSchema>(queryKey);
-    const todoDetailData = await _queryClient.fetchQuery({
-      queryKey,
-      queryFn,
-      staleTime,
+    const parsedParams = paramsSchema.parse(params);
+    const todoDetail = await _queryClient.ensureQueryData({
+      queryKey: todoKeys.detail(parsedParams.id),
+      queryFn: () => todoRepositories.detail(parsedParams.id),
+      staleTime: 1_000 * 60 * 1, // 1 min
     });
 
-    return todoDetailCache ?? todoDetailData;
+    return todoDetail;
   };
-}
+};
 
 export function Element() {
   const [t] = useI18n();
-  const { id } = useParams();
   const fetcher = useFetcher();
-  const { user } = useUserStore();
-  const initialData = useLoaderData() as TodoDetailApiResponseSchema;
-  const todoQuery = useTodo(Number(id), { initialData });
+  const { user } = useAuthUserStore();
+  const initialData = useLoaderData() as TodoDetailResponseSchema;
+  const params = useParams();
+  const parsedParams = paramsSchema.parse(params);
 
-  const form = useForm<UpdateTodoSchema>({
-    resolver: zodResolver(updateTodoSchema),
+  // already populated in loader
+  const todoDetailQuery = useTodoDetail(parsedParams.id, { initialData });
+
+  const form = useForm<TodoUpdateRequestSchema>({
+    resolver: zodResolver(todoUpdateRequestSchema),
     defaultValues: {
       id: initialData.id,
       completed: initialData.completed,
@@ -114,7 +117,7 @@ export function Element() {
             <BreadcrumbSeparator />
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbPage>{id}</BreadcrumbPage>
+            <BreadcrumbPage>{parsedParams.id}</BreadcrumbPage>
           </BreadcrumbItem>
         </Breadcrumbs>
 
@@ -127,7 +130,7 @@ export function Element() {
         className="w-full flex items-center gap-x-2"
         onSubmit={form.handleSubmit((values) => {
           // prohibit unauthorized user submit (e.g. when clicking Enter in input)
-          if (todoQuery.data && todoQuery.data.userId !== user?.id) return;
+          if (todoDetailQuery.data?.userId !== user?.id) return;
 
           fetcher.submit(values, {
             method: 'PUT',
@@ -135,7 +138,7 @@ export function Element() {
           });
         })}
       >
-        {match(todoQuery)
+        {match(todoDetailQuery)
           .with({ isError: true }, () => (
             <div
               role="alert"
@@ -144,7 +147,7 @@ export function Element() {
             >
               <div className="flex items-center">
                 <span>{t('error', { module: 'Todos' })}:</span>
-                <pre>{JSON.stringify(todoQuery.error, null, 2)}</pre>
+                <pre>{JSON.stringify(todoDetailQuery.error, null, 2)}</pre>
               </div>
             </div>
           ))

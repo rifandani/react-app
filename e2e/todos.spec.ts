@@ -131,7 +131,7 @@ test.describe('authorized', () => {
       await page.goto('/todos?limit=50');
 
       const gridItems = page.getByRole('row');
-      const removeBtns = page.getByRole('button', { name: 'Remove' });
+      const removeBtns = page.getByTestId('todo-delete');
 
       // wait query to success
       await gridItems.nth(49).waitFor({ state: 'visible' });
@@ -152,7 +152,7 @@ test.describe('unauthorized', () => {
     const passwordInput = page.getByRole('textbox', { name: /password/i });
     const submitBtn = page.getByRole('button', { name: /login/i });
 
-    await page.waitForURL('/login');
+    await page.waitForURL(/\/login/);
     await expect(usernameInput).toBeVisible();
     await expect(passwordInput).toBeVisible();
     await expect(submitBtn).toBeVisible();

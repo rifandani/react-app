@@ -1,4 +1,5 @@
-export const commonEnLocale = {
+export const enLocale = {
+  // #region COMMON
   loading: 'Loading...',
   xList: '{feature} List',
   xDetail: '{feature} Detail',
@@ -36,42 +37,40 @@ export const commonEnLocale = {
   appReady: 'App ready to work offline',
   newContentAvailable:
     'New content available, click on reload button to update',
-} as const;
+  // #endregion COMMON
 
-export const commonIdLocale = {
-  loading: 'Menunggu...',
-  xList: 'Daftar {feature}',
-  xDetail: 'Detail {feature}',
-  xCreateSuccess: '{feature} berhasil dibuat',
-  xCreateError: '{feature} gagal dibuat',
-  xUpdateSuccess: '{feature} berhasil diubah',
-  xUpdateError: '{feature} gagal diubah',
-  xDeleteSuccess: '{feature} berhasil dihapus',
-  xDeleteError: '{feature} gagal dihapus',
-  backTo: 'Kembali ke {target}',
-  errorMinLength: '{field} harus memiliki minimal {length} karakter',
-  error: '{module} eror',
-  theme: 'Tema',
-  system: 'Sistem',
-  light: 'Terang',
-  dark: 'Gelap',
-  add: 'Tambah',
-  update: 'Ubah',
-  remove: 'Hapus',
-  empty: 'Data Kosong',
-  unsavedChanges: 'Buang perubahan yang belum disimpan - anda yakin?',
-  appName: 'Templat React',
-  noPageContent: 'Tidak Ada Konten',
-  authorized: 'Sudah Ada Akses',
-  attention: 'Perhatian',
-  language: 'Bahasa',
-  account: 'Akun',
-  profile: 'Profil',
-  settings: 'Pengaturan',
-  cancel: 'Batal',
-  continue: 'Lanjutkan',
-  reload: 'Muat ulang',
-  appReady: 'Aplikasi siap digunakan secara offline',
-  newContentAvailable:
-    'Konten baru tersedia, klik tombol muat ulang untuk memperbarui',
+  // #region AUTH
+  username: 'Username',
+  usernamePlaceholder: 'Your username...',
+  password: 'Password',
+  passwordPlaceholder: 'Your password...',
+  loginLoading: 'Logging in...',
+  login: 'Login',
+  logout: 'Logout',
+  notFound: 'Not Found',
+  gone: "Sorry, we couldn't find the page you're looking for",
+  welcome: 'Welcome Back',
+  noAccount: "Don't have an account?",
+  registerHere: 'Register here',
+  // #endregion AUTH
+
+  // #region HOME
+  title: 'Home',
+  sortButtons: 'Sort Buttons',
+  clock: 'Clock',
+  toggleClock: 'Toggle Clock',
+  clickToggleClock: 'Click toggle clock to restart the clock',
+  changeLanguage: 'Change Language',
+  getStarted: 'Get Started',
+  // #endregion HOME
+
+  // #region PLAYGROUND
+  playgroundTitle: 'Playground',
+  // #endregion PLAYGROUND
+
+  // #region TODO
+  todoPlaceholder: 'What should you do next...',
+  limit: 'Limit',
+  selectTodoLimit: 'Select todo limit',
+  // #endregion TODO
 } as const;
