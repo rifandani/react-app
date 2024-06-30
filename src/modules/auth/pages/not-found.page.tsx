@@ -1,4 +1,4 @@
-import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { useAuthUserStore } from '#auth/hooks/use-auth-user-store.hook';
 import { authPath } from '#auth/routes';
 import { homePath } from '#home/routes';
 import { Link } from '#shared/components/ui/link';
@@ -6,7 +6,7 @@ import { useColorMode } from '#shared/hooks/use-color-mode.hook';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
 
 export function Element() {
-  const userStore = useUserStore();
+  const userStore = useAuthUserStore();
   const [t] = useI18n();
   useColorMode({});
 

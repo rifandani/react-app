@@ -1,5 +1,7 @@
-import type { ResourceParamsSchema } from '#shared/schemas/api.schema';
-import { resourceListResponseSchema } from '#shared/schemas/api.schema';
+import {
+  resourceListRequestSchema,
+  resourceListResponseSchema,
+} from '#shared/schemas/api.schema';
 import { http } from '#shared/services/http.service';
 import { z } from 'zod';
 
@@ -10,20 +12,21 @@ export const todoSchema = z.object({
   completed: z.boolean(),
   userId: z.number().positive(),
 });
-export const detailTodoSchema = todoSchema.pick({ id: true });
-export const createTodoSchema = todoSchema;
-export const updateTodoSchema = todoSchema.omit({ userId: true });
-export const deleteTodoSchema = detailTodoSchema;
 // #endregion
 
 // #region API SCHEMA
-export const todoListApiResponseSchema = resourceListResponseSchema.extend({
+export const todoListRequestSchema = resourceListRequestSchema;
+export const todoListResponseSchema = resourceListResponseSchema.extend({
   todos: z.array(todoSchema),
 });
-export const todoDetailApiResponseSchema = todoSchema;
-export const createTodoApiResponseSchema = todoSchema;
-export const updateTodoApiResponseSchema = todoSchema;
-export const deleteTodoApiResponseSchema = todoSchema.extend({
+export const todoDetailRequestSchema = z.number();
+export const todoDetailResponseSchema = todoSchema;
+export const todoCreateRequestSchema = todoSchema;
+export const todoCreateResponseSchema = todoSchema;
+export const todoUpdateRequestSchema = todoSchema.omit({ userId: true });
+export const todoUpdateResponseSchema = todoSchema;
+export const todoDeleteRequestSchema = z.number();
+export const todoDeleteResponseSchema = todoSchema.extend({
   isDeleted: z.literal(true),
   deletedOn: z.string().datetime(),
 });
@@ -31,75 +34,86 @@ export const deleteTodoApiResponseSchema = todoSchema.extend({
 
 // #region SCHEMA TYPES
 export type TodoSchema = z.infer<typeof todoSchema>;
-export type DetailTodoSchema = z.infer<typeof detailTodoSchema>;
-export type CreateTodoSchema = z.infer<typeof createTodoSchema>;
-export type UpdateTodoSchema = z.infer<typeof updateTodoSchema>;
-export type DeleteTodoSchema = z.infer<typeof deleteTodoSchema>;
-export type TodoListApiResponseSchema = z.infer<
-  typeof todoListApiResponseSchema
->;
-export type TodoDetailApiResponseSchema = z.infer<
-  typeof todoDetailApiResponseSchema
->;
-export type CreateTodoApiResponseSchema = z.infer<
-  typeof createTodoApiResponseSchema
->;
-export type UpdateTodoApiResponseSchema = z.infer<
-  typeof updateTodoApiResponseSchema
->;
-export type DeleteTodoApiResponseSchema = z.infer<
-  typeof deleteTodoApiResponseSchema
->;
+export type TodoListRequestSchema = z.infer<typeof todoListRequestSchema>;
+export type TodoListResponseSchema = z.infer<typeof todoListResponseSchema>;
+export type TodoDetailRequestSchema = z.infer<typeof todoDetailRequestSchema>;
+export type TodoDetailResponseSchema = z.infer<typeof todoDetailResponseSchema>;
+export type TodoCreateRequestSchema = z.infer<typeof todoCreateRequestSchema>;
+export type TodoCreateResponseSchema = z.infer<typeof todoCreateResponseSchema>;
+export type TodoUpdateRequestSchema = z.infer<typeof todoUpdateRequestSchema>;
+export type TodoUpdateResponseSchema = z.infer<typeof todoUpdateResponseSchema>;
+export type TodoDeleteRequestSchema = z.infer<typeof todoDeleteRequestSchema>;
+export type TodoDeleteResponseSchema = z.infer<typeof todoDeleteResponseSchema>;
 // #endregion
 
 export const todoKeys = {
   all: ['todos'] as const,
-  lists: () => [...todoKeys.all, 'list'] as const,
-  list: (params: ResourceParamsSchema) =>
-    [...todoKeys.lists(), params] as const,
-  details: () => [...todoKeys.all, 'detail'] as const,
-  detail: (id: TodoSchema['id']) => [...todoKeys.details(), id] as const,
+  list: (params: TodoListRequestSchema | undefined) =>
+    [todoKeys.all, 'list', ...(params ? [params] : [])] as const,
+  detail: (id: TodoDetailRequestSchema | undefined) =>
+    [todoKeys.all, 'detail', ...(id ? [id] : [])] as const,
+  create: (params: TodoCreateRequestSchema | undefined) =>
+    [todoKeys.all, 'create:mutation', ...(params ? [params] : [])] as const,
+  update: (params: TodoUpdateRequestSchema | undefined) =>
+    [todoKeys.all, 'update:mutation', ...(params ? [params] : [])] as const,
+  delete: (id: TodoDeleteRequestSchema | undefined) =>
+    [todoKeys.all, 'delete:mutation', ...(id ? [id] : [])] as const,
 };
 
-export const todoApi = {
-  list: async (params: ResourceParamsSchema) => {
+export const todoRepositories = {
+  /**
+   * @url GET ${env.apiBaseUrl}/todos
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  list: async (params: TodoListRequestSchema) => {
     const resp = await http
       .get('todos', {
         searchParams: params,
       })
-      .json<TodoListApiResponseSchema>();
+      .json<TodoListResponseSchema>();
 
-    // we also can use `parse` here. `parse` will throw if `json` is not correct
-    // const response = todoListApiResponseSchema.parse(json);
-
-    return resp;
+    return todoListResponseSchema.parse(resp);
   },
-  detail: async (id: TodoSchema['id']) => {
-    const resp = await http
-      .get(`todos/${id}`)
-      .json<TodoDetailApiResponseSchema>();
+  /**
+   * @url GET ${env.apiBaseUrl}/todos/${id}
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  detail: async (id: TodoDetailRequestSchema) => {
+    const resp = await http.get(`todos/${id}`).json<TodoDetailResponseSchema>();
 
-    return resp;
+    return todoDetailResponseSchema.parse(resp);
   },
-  create: async (todo: CreateTodoSchema) => {
+  /**
+   * @url POST ${env.apiBaseUrl}/todos/add
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  create: async (todo: TodoCreateRequestSchema) => {
     const resp = await http
       .post('todos/add', { json: todo })
-      .json<CreateTodoApiResponseSchema>();
+      .json<TodoCreateResponseSchema>();
 
-    return resp;
+    return todoCreateResponseSchema.parse(resp);
   },
-  update: async ({ id, ...body }: UpdateTodoSchema) => {
+  /**
+   * @url PUT ${env.apiBaseUrl}/todos/${id}
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  update: async ({ id, ...body }: TodoUpdateRequestSchema) => {
     const resp = await http
       .put(`todos/${id}`, { json: body })
-      .json<UpdateTodoApiResponseSchema>();
+      .json<TodoUpdateResponseSchema>();
 
-    return resp;
+    return todoUpdateResponseSchema.parse(resp);
   },
-  delete: async (id: TodoSchema['id']) => {
+  /**
+   * @url DELETE ${env.apiBaseUrl}/todos/${id}
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  delete: async (id: TodoDeleteRequestSchema) => {
     const resp = await http
       .delete(`todos/${id}`)
-      .json<DeleteTodoApiResponseSchema>();
+      .json<TodoDeleteResponseSchema>();
 
-    return resp;
+    return todoDeleteResponseSchema.parse(resp);
   },
 } as const;

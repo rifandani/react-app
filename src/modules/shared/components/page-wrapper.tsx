@@ -1,6 +1,17 @@
 import { Navbar } from '#shared/components/navbar/navbar';
 import { RouterProvider as RACRouterProvider } from 'react-aria-components';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useNavigate,
+  type NavigateOptions,
+} from 'react-router-dom';
+
+declare module 'react-aria-components' {
+  interface RouterConfig {
+    routerOptions: NavigateOptions;
+  }
+}
 
 /**
  * page wrapper for router nested layout
@@ -12,7 +23,7 @@ export function PageWrapper() {
   const navigate = useNavigate();
 
   return (
-    <RACRouterProvider navigate={navigate}>
+    <RACRouterProvider navigate={navigate} useHref={useHref}>
       <Navbar />
 
       <Outlet />

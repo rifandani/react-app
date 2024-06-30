@@ -1,5 +1,5 @@
 import type { LocaleDictLanguage } from '#app/providers/i18n/context';
-import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import { useAuthUserStore } from '#auth/hooks/use-auth-user-store.hook';
 import { authPath, loginRoute } from '#auth/routes';
 import { homeRoute } from '#home/routes';
 import { playgroundRoute } from '#playground/routes';
@@ -69,7 +69,7 @@ function NavbarMenuLanguage() {
 function NavbarMenuProfile() {
   const [t] = useI18n();
   const navigate = useNavigate();
-  const { user, clearUser } = useUserStore();
+  const { user, clearUser } = useAuthUserStore();
 
   return (
     <MenuTrigger>
@@ -125,7 +125,7 @@ function NavbarMenuProfile() {
 export function Navbar() {
   const [t] = useI18n();
   const navigate = useNavigate();
-  const { user, clearUser } = useUserStore();
+  const { user, clearUser } = useAuthUserStore();
 
   return (
     <nav className="flex items-center justify-between border-b p-2.5 shadow-sm">

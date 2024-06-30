@@ -9,7 +9,12 @@ const ReactQueryDevtoolsProduction = React.lazy(() =>
   ),
 );
 
-export function Devtools() {
+export function Devtools(
+  props: React.ComponentProps<typeof ReactQueryDevtools> = {
+    buttonPosition: 'bottom-right',
+    initialIsOpen: false,
+  },
+) {
   const [showDevtools, setShowDevtools] = React.useState(false);
 
   React.useEffect(() => {
@@ -19,7 +24,7 @@ export function Devtools() {
   return (
     <>
       {/* this will only be rendered in development */}
-      <ReactQueryDevtools buttonPosition="bottom-left" initialIsOpen={false} />
+      <ReactQueryDevtools {...props} />
 
       {showDevtools && (
         <React.Suspense fallback={null}>

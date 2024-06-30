@@ -1,8 +1,8 @@
-import type { UserStoreLocalStorage } from '#auth/hooks/use-user-store.hook';
+import type { UserStoreLocalStorage } from '#auth/hooks/use-auth-user-store.hook';
 import {
   userStoreLocalStorageSchema,
   userStoreName,
-} from '#auth/hooks/use-user-store.hook';
+} from '#auth/hooks/use-auth-user-store.hook';
 
 /**
  * check if user is authenticated or not by checking localStorage and parse the schema

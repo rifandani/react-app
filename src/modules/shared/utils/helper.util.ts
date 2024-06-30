@@ -1,5 +1,6 @@
 import { deepReadObject } from '@rifandani/nxact-yutiriti';
 import React from 'react';
+import { createSearchParams, type URLSearchParamsInit } from 'react-router-dom';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 // declare a type that works with generic components
@@ -193,3 +194,33 @@ export const tw = extendTailwindMerge<'alert'>({
     },
   },
 });
+
+/**
+ * instead of using `createSearchParams`, this function will convert an object into a URLSearchParams and joins array of string value with a comma
+ *
+ * @example
+ *
+ * const searchParams = createSearchParamsWithComa({
+ *   sort: 'asc',
+ *   filters: [
+ *     "model",
+ *     "category",
+ *   ]
+ * });
+ *
+ * // returns => sort=asc&filters=model,category
+ * // instead of => sort=asc&filters=model&filters=category
+ */
+export function createSearchParamsWithComma(init?: URLSearchParamsInit) {
+  const searchParams = init ? createSearchParams(init) : new URLSearchParams();
+
+  // replace array of string values with a comma separated value
+  for (const [key, value] of Object.entries(init ?? {})) {
+    if (Array.isArray(value)) {
+      searchParams.delete(key);
+      searchParams.set(key, value.join(','));
+    }
+  }
+
+  return searchParams;
+}

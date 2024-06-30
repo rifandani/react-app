@@ -1,42 +1,56 @@
 import reactjs from '#assets/images/reactjs.svg';
-import { authApi, loginSchema } from '#auth/apis/auth.api';
-import { LoginForm } from '#auth/components/login-form';
-import { useUserStore } from '#auth/hooks/use-user-store.hook';
+import {
+  authLoginRequestSchema,
+  authRepositories,
+  type AuthLoginRequestSchema,
+} from '#auth/apis/auth.api';
+import { useAuthUserStore } from '#auth/hooks/use-auth-user-store.hook';
 import { homePath } from '#home/routes';
+import { Button } from '#shared/components/ui/button';
+import { Input } from '#shared/components/ui/input';
+import { Label } from '#shared/components/ui/label';
+import { Link } from '#shared/components/ui/link';
 import { useI18n } from '#shared/hooks/use-i18n/use-i18n.hook';
+import type { ErrorResponseSchema } from '#shared/schemas/api.schema';
 import { checkAuthUser } from '#shared/utils/checker.util';
-import { Link } from 'react-aria-components';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Icon } from '@iconify/react';
+import { HTTPError } from 'ky';
+import { FieldError, TextField } from 'react-aria-components';
 import { unstable_batchedUpdates } from 'react-dom';
-import type { ActionFunctionArgs, LoaderFunction } from 'react-router-dom';
-import { json, redirect } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+import type { ActionFunction, LoaderFunction } from 'react-router-dom';
+import { json, redirect, useFetcher } from 'react-router-dom';
 import { toast } from 'sonner';
 
-export async function action({ request }: ActionFunctionArgs) {
+export const action: ActionFunction = async ({ request }) => {
   if (request.method === 'POST') {
     const payload = Object.fromEntries(await request.formData());
 
     // if `payload` is not correct, return error object
-    const parsed = loginSchema.safeParse(payload);
+    const parsed = authLoginRequestSchema.safeParse(payload);
     if (!parsed.success) return json(parsed.error, { status: 400 });
 
-    // will throw if `login` returns 500 error, therefore `errorElement` will be rendered
-    const loginResponse = await authApi.login(parsed.data);
+    try {
+      // will throw if `login` returns 4xx/5xx error, therefore `errorElement` will be rendered
+      const loginResponse = await authRepositories.login({ json: parsed.data });
 
-    if ('message' in loginResponse)
-      // on 400 error
-      return json(loginResponse);
-
-    // see https://docs.pmnd.rs/zustand/recipes/recipes#calling-actions-outside-a-react-event-handler
-    unstable_batchedUpdates(() => {
-      useUserStore.getState().setUser(loginResponse); // set user data to store
-    });
-
-    return redirect(homePath.root);
+      // see https://docs.pmnd.rs/zustand/recipes/recipes#calling-actions-outside-a-react-event-handler
+      unstable_batchedUpdates(() => {
+        useAuthUserStore.getState().setUser(loginResponse); // set user data to store
+      });
+      return redirect(homePath.root);
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        const response = (await error.response.json()) as ErrorResponseSchema;
+        return json(response);
+      }
+    }
   }
 
   toast.warning('Not Implemented');
   return new Response('Not Implemented', { status: 501 });
-}
+};
 
 export const loader: LoaderFunction = () => {
   const authed = checkAuthUser();
@@ -67,6 +81,7 @@ export function Element() {
             aria-label={t('registerHere')}
             className="hover:underline"
             href="/does-not-exists"
+            variant="link"
           >
             {t('registerHere')}
           </Link>
@@ -86,5 +101,102 @@ export function Element() {
         </span>
       </section>
     </div>
+  );
+}
+
+function LoginForm() {
+  const [t] = useI18n();
+  const fetcher = useFetcher();
+  const { control, formState } = useForm<AuthLoginRequestSchema>({
+    mode: 'onChange',
+    resolver: zodResolver(authLoginRequestSchema),
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
+
+  return (
+    <fetcher.Form className="flex flex-col pt-3 md:pt-8" method="POST">
+      {/* username */}
+      <Controller
+        control={control}
+        name="username"
+        render={({
+          field: { name, value, onChange, onBlur, ref },
+          fieldState: { invalid, error },
+        }) => (
+          <TextField
+            className="group/username pt-4"
+            // Let React Hook Form handle validation instead of the browser.
+            validationBehavior="aria"
+            name={name}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            isInvalid={invalid}
+            isRequired
+          >
+            <Label>{t('username')}</Label>
+            <Input placeholder={t('usernamePlaceholder')} ref={ref} />
+            <FieldError className="text-destructive">
+              {error?.message}
+            </FieldError>
+          </TextField>
+        )}
+      />
+
+      {/* password */}
+      <Controller
+        control={control}
+        name="password"
+        render={({
+          field: { name, value, onChange, onBlur, ref },
+          fieldState: { invalid, error },
+        }) => (
+          <TextField
+            className="group/password pt-4"
+            // Let React Hook Form handle validation instead of the browser.
+            validationBehavior="aria"
+            name={name}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            isInvalid={invalid}
+            isRequired
+          >
+            <Label>{t('password')}</Label>
+            <Input
+              type="password"
+              placeholder={t('passwordPlaceholder')}
+              ref={ref}
+            />
+            <FieldError className="text-destructive">
+              {error?.message}
+            </FieldError>
+          </TextField>
+        )}
+      />
+
+      {fetcher.data && (
+        <div
+          role="alert"
+          aria-label="Fetcher error alert"
+          className="mt-2 bg-destructive text-destructive-foreground p-2 rounded-md flex items-center gap-x-2 shadow-md w-full"
+        >
+          <Icon icon="lucide:alert-circle" />
+          <p>{(fetcher.data as ErrorResponseSchema).message}</p>
+        </div>
+      )}
+
+      <Button
+        type="submit"
+        className="mt-8"
+        isDisabled={fetcher.state === 'submitting' || !formState.isValid}
+      >
+        {t(fetcher.state === 'submitting' ? 'loginLoading' : 'login')}{' '}
+        (emilyspass)
+      </Button>
+    </fetcher.Form>
   );
 }

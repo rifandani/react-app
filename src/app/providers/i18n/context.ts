@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export type LocaleDictLanguage = 'en-US' | 'id-ID';
 export type I18nContextInterface = ReturnType<typeof useI18nContext>;
@@ -7,13 +7,16 @@ export type I18nContextInterface = ReturnType<typeof useI18nContext>;
 export function useI18nContext() {
   const [locale, setLocale] = useState<LocaleDictLanguage>('en-US');
 
-  const actions = {
-    changeLocale: (newLocale: LocaleDictLanguage) => {
-      setLocale(newLocale);
-    },
-  };
+  const actions = React.useMemo(
+    () => ({
+      changeLocale: (newLocale: LocaleDictLanguage) => {
+        setLocale(newLocale);
+      },
+    }),
+    [],
+  );
 
-  return [locale, actions] as const;
+  return React.useMemo(() => [locale, actions] as const, [locale, actions]);
 }
 
 export const I18nContext = createContext<I18nContextInterface>(

@@ -1,17 +1,13 @@
 import { http } from '#shared/services/http.service';
 import { z } from 'zod';
 
-export type LoginSchema = z.infer<typeof loginSchema>;
-export type LoginApiResponseSchema = z.infer<typeof loginApiResponseSchema>;
-
-// #region SCHEMAS
-export const loginSchema = z.object({
+// #region API SCHEMAS
+export const authLoginRequestSchema = z.object({
   username: z.string().min(3, 'username must contain at least 3 characters'),
   password: z.string().min(6, 'password must contain at least 6 characters'),
   expiresInMins: z.number().optional(),
 });
-
-export const loginApiResponseSchema = z.object({
+export const authLoginResponseSchema = z.object({
   id: z.number().positive(),
   username: z.string(),
   email: z.string().email(),
@@ -21,31 +17,45 @@ export const loginApiResponseSchema = z.object({
   image: z.string().url(),
   token: z.string(),
 });
-// #endregion
+// #endregion API SCHEMAS
 
-export const authApi = {
-  login: async (creds: LoginSchema) => {
+// #region SCHEMAS TYPES
+export type AuthLoginRequestSchema = z.infer<typeof authLoginRequestSchema>;
+export type AuthLoginResponseSchema = z.infer<typeof authLoginResponseSchema>;
+// #endregion SCHEMAS TYPES
+
+export const authKeys = {
+  all: ['auth'] as const,
+  login: (params: AuthLoginRequestSchema | undefined) =>
+    [...authKeys.all, 'login', ...(params ? [params] : [])] as const,
+};
+
+export const authRepositories = {
+  /**
+   * @url POST ${env.apiBaseUrl}/auth/login
+   * @note could throw error in `HttpError` or `ZodError` error
+   */
+  login: async ({ json }: { json: AuthLoginRequestSchema }) => {
     const resp = await http
       .post('auth/login', {
-        throwHttpErrors: false, // i'm expecting error response from the backend
-        json: creds,
+        json,
         hooks: {
           afterResponse: [
             async (request, _options, response) => {
               if (response.status === 200) {
-                const data = (await response.json()) as LoginApiResponseSchema;
-                // set 'Authorization' headers
-                request.headers.set('Authorization', `Bearer ${data.token}`);
+                const data = (await response.json()) as AuthLoginResponseSchema;
+
+                if ('token' in data) {
+                  // set 'Authorization' headers
+                  request.headers.set('Authorization', `Bearer ${data.token}`);
+                }
               }
             },
           ],
         },
       })
-      .json<LoginApiResponseSchema>();
+      .json<AuthLoginResponseSchema>();
 
-    // we also can use `parse` here. `parse` will throw if `resp.data` is not correct, and therefore can render `errorElement` if specified
-    // const loginApiResponse = loginApiResponseSchema.parse(resp.data);
-
-    return resp;
+    return authLoginResponseSchema.parse(resp);
   },
 } as const;
