@@ -58,7 +58,7 @@ export function useTodoDelete(
 
       onError?.(error, variables, context);
     },
-    ...(_mutationOptions && _mutationOptions),
+    ..._mutationOptions,
   });
 }
 

@@ -59,7 +59,7 @@ export function useTodoUpdate(
 
       onError?.(error, variables, context);
     },
-    ...(_mutationOptions && _mutationOptions),
+    ..._mutationOptions,
   });
 }
 

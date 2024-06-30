@@ -58,7 +58,7 @@ export function useTodoCreate(
 
       onError?.(error, variables, context);
     },
-    ...(_mutationOptions && _mutationOptions),
+    ..._mutationOptions,
   });
 }
 
@@ -151,6 +151,6 @@ export function useTodoCreateOptimistic(
 
       onSettled?.(updateTodo, error, variables, context);
     },
-    ...(_mutationOptions && _mutationOptions),
+    ..._mutationOptions,
   });
 }
