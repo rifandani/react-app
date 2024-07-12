@@ -8,7 +8,7 @@ export function useInterval(
   options: { immediate?: boolean } = {},
 ) {
   const timerCallback = useMemoizedFn(fn);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<number | null>(null);
 
   const clear = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useLatest } from './use-latest.hook';
 
 interface Handle {
-  id: number | NodeJS.Timeout;
+  id: number;
 }
 
 function setRafInterval(callback: () => void, delay = 0) {
@@ -29,7 +29,7 @@ function setRafInterval(callback: () => void, delay = 0) {
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: intended
-function cancelAnimationFrameIsNotDefined(_t: any): _t is NodeJS.Timer {
+function cancelAnimationFrameIsNotDefined(_t: any): _t is number {
   return typeof cancelAnimationFrame === typeof undefined;
 }
 

@@ -36,7 +36,7 @@ export const authRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   login: async ({ json }: { json: AuthLoginRequestSchema }) => {
-    const resp = await http
+    const resp = await http.instance
       .post('auth/login', {
         json,
         hooks: {

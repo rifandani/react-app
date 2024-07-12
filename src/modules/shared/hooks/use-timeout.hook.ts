@@ -13,7 +13,7 @@ import { useCallback, useEffect, useRef } from 'react';
  */
 export function useTimeout(fn: () => void, delay?: number) {
   const timerCallback = useMemoizedFn(fn);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<number | null>(null);
 
   const clear = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);

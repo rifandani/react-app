@@ -25,7 +25,7 @@ const MenuPopover = ({ className, offset = 4, ...props }: PopoverProps) => (
     offset={offset}
     className={(values) =>
       twMerge(
-        'z-50 min-w-[8rem] overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:fade-in-0 data-[exiting]:fade-out-0 data-[exiting]:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2',
+        'z-50 rounded-md bg-popover text-popover-foreground shadow-md data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:fade-in-0 data-[exiting]:fade-out-0 data-[exiting]:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2',
         typeof className === 'function' ? className(values) : className,
       )
     }
@@ -34,7 +34,13 @@ const MenuPopover = ({ className, offset = 4, ...props }: PopoverProps) => (
 );
 
 const _Menu = <T extends object>({ className, ...props }: MenuProps<T>) => (
-  <Menu className={twMerge('outline-none', className)} {...props} />
+  <Menu
+    className={twMerge(
+      'max-h-[inherit] overflow-auto rounded-md border p-1 outline outline-0 [clip-path:inset(0_0_0_0_round_calc(var(--radius)-2px))]',
+      className,
+    )}
+    {...props}
+  />
 );
 
 interface _MenuItemProps extends MenuItemProps {

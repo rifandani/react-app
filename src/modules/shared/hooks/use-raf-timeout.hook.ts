@@ -3,7 +3,7 @@ import { isNumber } from '@rifandani/nxact-yutiriti';
 import { useCallback, useEffect, useRef } from 'react';
 
 interface Handle {
-  id: number | NodeJS.Timeout;
+  id: number;
 }
 
 const setRafTimeout = (callback: () => void, delay = 0): Handle => {
@@ -29,7 +29,7 @@ const setRafTimeout = (callback: () => void, delay = 0): Handle => {
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: intended
-function cancelAnimationFrameIsNotDefined(_t: any): _t is NodeJS.Timer {
+function cancelAnimationFrameIsNotDefined(_t: any): _t is number {
   return typeof cancelAnimationFrame === typeof undefined;
 }
 

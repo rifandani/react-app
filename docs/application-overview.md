@@ -26,7 +26,7 @@ The application built with:
 Prerequisites:
 
 - Node LTS (v20+)
-- PNPM 8.15+
+- PNPM 9.5+
 
 To set up the app execute the following commands:
 

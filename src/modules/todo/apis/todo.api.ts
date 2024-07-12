@@ -66,7 +66,7 @@ export const todoRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   list: async (params: TodoListRequestSchema) => {
-    const resp = await http
+    const resp = await http.instance
       .get('todos', {
         searchParams: params,
       })
@@ -79,7 +79,9 @@ export const todoRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   detail: async (id: TodoDetailRequestSchema) => {
-    const resp = await http.get(`todos/${id}`).json<TodoDetailResponseSchema>();
+    const resp = await http.instance
+      .get(`todos/${id}`)
+      .json<TodoDetailResponseSchema>();
 
     return todoDetailResponseSchema.parse(resp);
   },
@@ -88,7 +90,7 @@ export const todoRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   create: async (todo: TodoCreateRequestSchema) => {
-    const resp = await http
+    const resp = await http.instance
       .post('todos/add', { json: todo })
       .json<TodoCreateResponseSchema>();
 
@@ -99,7 +101,7 @@ export const todoRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   update: async ({ id, ...body }: TodoUpdateRequestSchema) => {
-    const resp = await http
+    const resp = await http.instance
       .put(`todos/${id}`, { json: body })
       .json<TodoUpdateResponseSchema>();
 
@@ -110,7 +112,7 @@ export const todoRepositories = {
    * @note could throw error in `HttpError` or `ZodError` error
    */
   delete: async (id: TodoDeleteRequestSchema) => {
-    const resp = await http
+    const resp = await http.instance
       .delete(`todos/${id}`)
       .json<TodoDeleteResponseSchema>();
 
