@@ -41,6 +41,7 @@ function MySelect<T extends object>({
       }
       {...props}
     >
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label className="cursor-default">{label}</Label>
 
       <Button className="flex cursor-default items-center rounded-lg border-0 bg-white/90 py-2 pl-5 pr-2 text-left text-base leading-normal text-gray-700 shadow-md ring-white ring-offset-2 ring-offset-primary transition rac-focus:outline-none rac-focus-visible:ring-2 rac-pressed:bg-white/100">
@@ -63,31 +64,6 @@ function MySelect<T extends object>({
         </ListBox>
       </Popover>
     </Select>
-  );
-}
-
-function DaisySelect() {
-  return (
-    <div className="form-control w-full max-w-xs">
-      <label className="label">
-        <span className="label-text">Pick the best fantasy franchise</span>
-        <span className="label-text-alt">Alt label</span>
-      </label>
-
-      <select className="select select-bordered" defaultValue="">
-        <option disabled value="none">
-          Pick one
-        </option>
-        <option value="star-wars">Star Wars</option>
-        <option value="harry-potter">Harry Potter</option>
-        <option value="lord-of-the-rings">Lord of the Rings</option>
-      </select>
-
-      <label className="label">
-        <span className="label-text-alt">Alt label</span>
-        <span className="label-text-alt">Alt label</span>
-      </label>
-    </div>
   );
 }
 
@@ -150,8 +126,6 @@ export function DemoSelect() {
           )}
         </MySelect>
       </div>
-
-      <DaisySelect />
     </section>
   );
 }

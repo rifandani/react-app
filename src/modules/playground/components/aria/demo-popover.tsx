@@ -1,29 +1,8 @@
-import { Icon } from '@iconify/react';
 import type { PopoverProps } from 'react-aria-components';
 import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
 
 interface MyPopoverProps extends Omit<PopoverProps, 'children'> {
   children: React.ReactNode;
-}
-
-function DaisyPopover() {
-  return (
-    <div className="flex items-center">
-      <p>Daisy popover</p>
-      <div className="dropdown dropdown-bottom">
-        <label className="btn btn-circle btn-ghost btn-xs text-info">
-          <Icon icon="lucide:info" />
-        </label>
-
-        <div className="card dropdown-content compact z-[1] w-64 rounded-box bg-base-100 shadow">
-          <div className="card-body">
-            <h2 className="card-title">You needed more info?</h2>
-            <p>Here is a description!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function MyPopover({ children, ...props }: MyPopoverProps) {
@@ -83,10 +62,6 @@ function AriaPopover() {
 export function DemoPopover() {
   return (
     <section className="flex flex-wrap gap-3 rounded border p-3">
-      <DaisyPopover />
-
-      <div className="divider divider-horizontal">atau</div>
-
       <AriaPopover />
     </section>
   );

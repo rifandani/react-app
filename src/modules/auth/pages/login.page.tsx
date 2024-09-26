@@ -137,6 +137,7 @@ function LoginForm() {
             isInvalid={invalid}
             isRequired
           >
+            {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
             <Label>{t('username')}</Label>
             <Input placeholder={t('usernamePlaceholder')} ref={ref} />
             <FieldError className="text-destructive">
@@ -165,6 +166,7 @@ function LoginForm() {
             isInvalid={invalid}
             isRequired
           >
+            {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
             <Label>{t('password')}</Label>
             <Input
               type="password"
@@ -180,7 +182,6 @@ function LoginForm() {
 
       {fetcher.data && (
         <div
-          role="alert"
           aria-label="Fetcher error alert"
           className="mt-2 bg-destructive text-destructive-foreground p-2 rounded-md flex items-center gap-x-2 shadow-md w-full"
         >

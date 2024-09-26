@@ -27,6 +27,7 @@ function MyTextField({
 }: MyTextFieldProps) {
   return (
     <TextField {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label className="label">
         <p className="label-text">{label}</p>
       </Label>
@@ -69,6 +70,7 @@ function MyTextArea({
 }: MyTextAreaProps) {
   return (
     <TextField {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
 
       <TextArea

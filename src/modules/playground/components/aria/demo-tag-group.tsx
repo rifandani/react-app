@@ -28,6 +28,7 @@ function MyTagGroup<T extends object>({
 }: MyTagGroupProps<T>) {
   return (
     <TagGroup {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
       <TagList
         items={items}

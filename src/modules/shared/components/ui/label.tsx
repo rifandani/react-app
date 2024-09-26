@@ -8,6 +8,7 @@ const labelVariants = cva(
 export type LabelVariantProps = VariantProps<typeof labelVariants>;
 
 const _Label = ({ className, ...props }: LabelProps) => (
+  // biome-ignore lint/a11y/noLabelWithoutControl: <explanation>
   <Label className={twMerge(labelVariants(), className)} {...props} />
 );
 

@@ -11,9 +11,9 @@
     "gen:pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg",
     "clean": "find . \\( -name node_modules -type d -o -name dev-dist -type d -o -name dist -type d -o -name html -type d -o -name playwright -type d -o -name playwright-report -type d -o -name playwright-test-results -type d -name pnpm-lock.json -type f \\) | xargs rm -rf && pnpm install",
     "clean:biome": "biome clean",
-    "check": "biome check --css-linter-enabled=true ./src",
-    "check:fix": "biome check --css-linter-enabled=true --write ./src",
-    "ci": "biome ci --css-linter-enabled=true ./src",
+    "check": "biome check ./src",
+    "check:fix": "biome check --write ./src",
+    "ci": "biome ci ./src",
     "typecheck": "tsc --noEmit",
     "test:install": "playwright install --with-deps chromium",
     "test": "playwright test",
@@ -89,7 +89,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.2",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@faker-js/faker": "^8.4.1",

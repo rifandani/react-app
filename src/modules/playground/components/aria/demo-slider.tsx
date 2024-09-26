@@ -34,6 +34,7 @@ function MySlider<T extends number | number[]>({
       {({ state, orientation }) => (
         <>
           <div className="flex">
+            {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
             <Label className="flex-1">{label}</Label>
 
             {/* we can put the output anywhere actually */}

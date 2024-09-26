@@ -1,7 +1,7 @@
+import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
 import { useState } from 'react';
 import type { CheckboxGroupProps } from 'react-aria-components';
 import { CheckboxGroup, Label, Text } from 'react-aria-components';
-import { AriaCheckbox } from '#shared/components/checkbox/aria-checkbox';
 
 interface MyCheckboxGroupProps extends Omit<CheckboxGroupProps, 'children'> {
   children?: React.ReactNode;
@@ -19,6 +19,7 @@ function MyCheckboxGroup({
 }: MyCheckboxGroupProps) {
   return (
     <CheckboxGroup {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
 
       {children}

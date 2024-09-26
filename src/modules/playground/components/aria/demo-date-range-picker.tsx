@@ -1,3 +1,5 @@
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
+import type { RangeValue } from '#shared/types/date.type';
 import { parseDateTime, today } from '@internationalized/date';
 import { useState } from 'react';
 import type { DateRangePickerProps, DateValue } from 'react-aria-components';
@@ -19,8 +21,6 @@ import {
   RangeCalendar,
   Text,
 } from 'react-aria-components';
-import type { RangeValue } from '#shared/types/date.type';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyDateRangePickerProps<T extends DateValue>
   extends DateRangePickerProps<T> {
@@ -37,6 +37,7 @@ function MyDateRangePicker<T extends DateValue>({
 }: MyDateRangePickerProps<T>) {
   return (
     <DateRangePicker {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
       <Group className="join items-center gap-3 rounded border px-2 py-1">
         <DateInput className="join-item flex" slot="start">

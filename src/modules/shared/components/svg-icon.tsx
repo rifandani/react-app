@@ -6,12 +6,8 @@ interface Props extends SVGProps<SVGSVGElement> {
 
 export function SvgIcon({ id, ...rest }: Props) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      role="img"
-      {...rest}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" role="img" {...rest}>
+      <title>{id}</title>
       <use href={`#${id}`} />
     </svg>
   );

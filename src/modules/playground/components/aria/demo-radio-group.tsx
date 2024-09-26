@@ -1,7 +1,7 @@
+import { AriaRadio } from '#shared/components/radio/aria-radio';
 import { useState } from 'react';
 import type { RadioGroupProps } from 'react-aria-components';
 import { Label, RadioGroup, Text } from 'react-aria-components';
-import { AriaRadio } from '#shared/components/radio/aria-radio';
 
 interface MyRadioGroupProps extends Omit<RadioGroupProps, 'children'> {
   children?: React.ReactNode;
@@ -19,6 +19,7 @@ function MyRadioGroup({
 }: MyRadioGroupProps) {
   return (
     <RadioGroup {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
 
       {children}

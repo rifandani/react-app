@@ -11,16 +11,6 @@ interface MyTooltipProps extends Omit<TooltipProps, 'children'> {
   children: React.ReactNode;
 }
 
-function DaisyTooltip() {
-  return (
-    <div className="tooltip" data-tip="hello">
-      <button className="btn" type="button">
-        Daisy
-      </button>
-    </div>
-  );
-}
-
 function MyTooltip({ children, className, ...props }: MyTooltipProps) {
   return (
     <Tooltip
@@ -67,8 +57,6 @@ function MyTooltip({ children, className, ...props }: MyTooltipProps) {
 export function DemoTooltip() {
   return (
     <section className="flex flex-wrap gap-3 rounded border p-3">
-      <DaisyTooltip />
-
       <TooltipTrigger delay={1} closeDelay={1}>
         <Button className="btn">Top</Button>
         <MyTooltip offset={10}>Content</MyTooltip>

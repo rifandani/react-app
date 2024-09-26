@@ -1,3 +1,4 @@
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 import { isWeekend, parseDateTime } from '@internationalized/date';
 import { useState } from 'react';
 import type { DateFieldProps, DateValue } from 'react-aria-components';
@@ -8,7 +9,6 @@ import {
   Label,
   Text,
 } from 'react-aria-components';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyDateFieldProps<T extends DateValue> extends DateFieldProps<T> {
   label?: string;
@@ -24,6 +24,7 @@ function MyDateField<T extends DateValue>({
 }: MyDateFieldProps<T>) {
   return (
     <DateField {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
       <DateInput className="flex items-center rounded border px-2 py-1">
         {(segment) => <DateSegment segment={segment} />}

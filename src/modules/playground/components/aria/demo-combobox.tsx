@@ -45,6 +45,7 @@ function MyComboBox<T extends object>({
       }
       {...props}
     >
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label className="cursor-default">{label}</Label>
 
       <Group className="flex rounded-lg border-0 bg-white/90 shadow-md transition rac-focus-within:bg-white/100 rac-focus-visible:ring-2 rac-focus-visible:ring-primary">

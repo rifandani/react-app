@@ -24,6 +24,7 @@ function MySearchField({
 }: MySearchFieldProps) {
   return (
     <SearchField {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
 
       <Group className="join">

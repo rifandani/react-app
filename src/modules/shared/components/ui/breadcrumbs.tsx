@@ -50,7 +50,6 @@ const BreadcrumbSeparator = ({
   ...props
 }: React.ComponentProps<'span'>) => (
   <span
-    role="presentation"
     aria-hidden="true"
     className={twMerge('[&>svg]:size-3.5', className)}
     {...props}
@@ -64,7 +63,6 @@ const BreadcrumbEllipsis = ({
   ...props
 }: React.ComponentProps<'span'>) => (
   <span
-    role="presentation"
     aria-hidden="true"
     className={twMerge('flex h-9 w-9 items-center justify-center', className)}
     {...props}
@@ -93,6 +91,6 @@ export {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
-  BreadcrumbSeparator,
   _Breadcrumbs as Breadcrumbs,
+  BreadcrumbSeparator,
 };

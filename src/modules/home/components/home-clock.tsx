@@ -46,11 +46,7 @@ export function HomeClock() {
   return (
     <>
       {showClock && (
-        <section
-          role="presentation"
-          aria-label="clock ticking in svg"
-          className="mt-8"
-        >
+        <section aria-label="clock ticking in svg" className="mt-8">
           <Clock
             seconds={time.getSeconds()}
             minutes={time.getMinutes()}

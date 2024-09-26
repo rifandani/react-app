@@ -11,6 +11,7 @@ function MyMeter({ label, ...props }: MyMeterProps) {
       {({ percentage, valueText }) => (
         <>
           <div className="flex">
+            {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
             <Label className="flex-1">{label}</Label>
             <output className="">{valueText}</output>
           </div>
@@ -27,14 +28,6 @@ function MyMeter({ label, ...props }: MyMeterProps) {
   );
 }
 
-function DaisyRadialProgress() {
-  return (
-    <div className="radial-progress text-primary" style={{ '--value': '60' }}>
-      60%
-    </div>
-  );
-}
-
 export function DemoMeter() {
   return (
     <section className="flex flex-wrap items-center gap-3">
@@ -44,8 +37,6 @@ export function DemoMeter() {
         formatOptions={{ style: 'currency', currency: 'IDR' }}
         value={50}
       />
-
-      <DaisyRadialProgress />
     </section>
   );
 }

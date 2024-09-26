@@ -229,6 +229,7 @@ function TodosFilter() {
           setSearchParams(searchParams);
         }}
       >
+        {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
         <Label>{t('limit')}</Label>
 
         <SelectTrigger className="w-[160px]">
@@ -272,7 +273,6 @@ function TodosList() {
         ))
         .with({ isError: true }, ({ error }) => (
           <div
-            role="alert"
             aria-label="Todo list query error"
             className="mt-2 bg-destructive p-2 rounded-md flex items-center gap-x-3 shadow-md w-full"
           >

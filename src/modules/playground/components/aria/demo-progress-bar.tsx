@@ -12,6 +12,7 @@ function MyProgressBar({ label, ...props }: MyProgressBarProps) {
       {({ percentage, valueText, isIndeterminate }) => (
         <>
           <div className="flex">
+            {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
             <Label className="flex-1">{label}</Label>
             <output className="">{valueText}</output>
           </div>
@@ -32,19 +33,6 @@ function MyProgressBar({ label, ...props }: MyProgressBarProps) {
   );
 }
 
-function DaisyLoading() {
-  return (
-    <>
-      <span className="loading loading-spinner text-primary" />
-      <span className="loading loading-dots text-primary" />
-      <span className="loading loading-ring text-primary" />
-      <span className="loading loading-ball text-primary" />
-      <span className="loading loading-bars text-primary" />
-      <span className="loading loading-infinity text-primary" />
-    </>
-  );
-}
-
 export function DemoProgressBar() {
   return (
     <section className="flex flex-wrap items-center gap-3">
@@ -60,8 +48,6 @@ export function DemoProgressBar() {
         label="Loading..."
         isIndeterminate
       />
-
-      <DaisyLoading />
     </section>
   );
 }

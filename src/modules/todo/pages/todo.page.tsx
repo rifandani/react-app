@@ -141,7 +141,6 @@ export function Element() {
         {match(todoDetailQuery)
           .with({ isError: true }, () => (
             <div
-              role="alert"
               aria-label="Todo detail query error"
               className="alert alert-error mt-2 shadow-lg"
             >

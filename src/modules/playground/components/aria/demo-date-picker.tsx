@@ -1,3 +1,4 @@
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 import { isWeekend, parseDateTime } from '@internationalized/date';
 import { useState } from 'react';
 import type { DatePickerProps, DateValue } from 'react-aria-components';
@@ -19,7 +20,6 @@ import {
   Popover,
   Text,
 } from 'react-aria-components';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyDatePickerProps<T extends DateValue> extends DatePickerProps<T> {
   label?: string;
@@ -35,6 +35,7 @@ function MyDatePicker<T extends DateValue>({
 }: MyDatePickerProps<T>) {
   return (
     <DatePicker {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
       <Group className="join flex items-center rounded border px-2 py-1">
         <DateInput className="join-item flex min-w-[15rem] items-center">

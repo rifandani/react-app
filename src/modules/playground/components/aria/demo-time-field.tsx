@@ -23,6 +23,7 @@ function MyTimeField<T extends TimeValue>({
 }: MyTimeFieldProps<T>) {
   return (
     <TimeField {...props}>
+      {/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
       <Label>{label}</Label>
       <DateInput className="flex items-center rounded border px-2 py-1">
         {(segment) => <DateSegment segment={segment} />}
