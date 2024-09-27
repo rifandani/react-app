@@ -11,7 +11,8 @@ export function seedUser(): AuthLoginResponseSchema {
     lastName: faker.person.lastName(),
     gender: faker.helpers.arrayElement(['male', 'female']),
     image: faker.image.avatar(),
-    token: faker.string.uuid(),
+    accessToken: faker.string.uuid(),
+    refreshToken: faker.string.uuid(),
   };
 }
 

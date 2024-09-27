@@ -22,6 +22,7 @@ import { Controller, useForm } from 'react-hook-form';
 import type { ActionFunction, LoaderFunction } from 'react-router-dom';
 import { json, redirect, useFetcher } from 'react-router-dom';
 import { toast } from 'sonner';
+import { ZodError } from 'zod';
 
 export const action: ActionFunction = async ({ request }) => {
   if (request.method === 'POST') {
@@ -44,6 +45,9 @@ export const action: ActionFunction = async ({ request }) => {
       if (error instanceof HTTPError) {
         const response = (await error.response.json()) as ErrorResponseSchema;
         return json(response);
+      }
+      if (error instanceof ZodError) {
+        return json(error);
       }
     }
   }

@@ -79,5 +79,9 @@
   "veco.colorize.enabled": true,
   "veco.colorize.namedColor": false,
   "veco.colorize.decorationType": "underline",
-  "veco.packager.versionTarget": "latest"
+  "veco.packager.versionTarget": "latest",
+  "veco.packager.exclude": [
+    "zustand",
+    "@types/node"
+  ]
 }

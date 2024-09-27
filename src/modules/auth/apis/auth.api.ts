@@ -15,7 +15,8 @@ export const authLoginResponseSchema = z.object({
   lastName: z.string(),
   gender: z.union([z.literal('male'), z.literal('female')]),
   image: z.string().url(),
-  token: z.string(),
+  accessToken: z.string(),
+  refreshToken: z.string(),
 });
 // #endregion API SCHEMAS
 
@@ -32,8 +33,8 @@ export const authKeys = {
 
 export const authRepositories = {
   /**
+   * @access public
    * @url POST ${env.apiBaseUrl}/auth/login
-   * @note could throw error in `HttpError` or `ZodError` error
    */
   login: async ({ json }: { json: AuthLoginRequestSchema }) => {
     const resp = await http.instance
@@ -45,16 +46,19 @@ export const authRepositories = {
               if (response.status === 200) {
                 const data = (await response.json()) as AuthLoginResponseSchema;
 
-                if ('token' in data) {
+                if ('accessToken' in data) {
                   // set 'Authorization' headers
-                  request.headers.set('Authorization', `Bearer ${data.token}`);
+                  request.headers.set(
+                    'Authorization',
+                    `Bearer ${data.accessToken}`,
+                  );
                 }
               }
             },
           ],
         },
       })
-      .json<AuthLoginResponseSchema>();
+      .json();
 
     return authLoginResponseSchema.parse(resp);
   },
