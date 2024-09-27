@@ -186,6 +186,7 @@ function LoginForm() {
 
       {fetcher.data && (
         <div
+          data-testid="fetcher-error"
           aria-label="Fetcher error alert"
           className="mt-2 bg-destructive text-destructive-foreground p-2 rounded-md flex items-center gap-x-2 shadow-md w-full"
         >

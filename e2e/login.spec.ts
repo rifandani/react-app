@@ -73,7 +73,7 @@ test.describe('unauthorized', () => {
     const usernameAlert = page.getByText(/username must contain at least/i);
     const passwordInput = page.getByRole('textbox', { name: /password/i });
     const passwordAlert = page.getByText(/password must contain at least/i);
-    const errorAlert = page.getByRole('alert', { name: /fetcher/i });
+    const errorAlert = page.getByTestId('fetcher-error');
     const submitBtn = page.getByRole('button', { name: /login/i });
 
     // default form state
