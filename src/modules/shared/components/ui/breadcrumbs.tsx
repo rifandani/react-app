@@ -24,10 +24,12 @@ const _Breadcrumbs = <T extends object>({
 
 const BreadcrumbItem = ({ className, ...props }: BreadcrumbProps) => (
   <Breadcrumb
-    className={twMerge(
-      'inline-flex items-center gap-1.5 sm:gap-2.5',
-      className,
-    )}
+    className={(values) =>
+      twMerge(
+        'inline-flex items-center gap-1.5 sm:gap-2.5',
+        typeof className === 'function' ? className(values) : className,
+      )
+    }
     {...props}
   />
 );

@@ -1,3 +1,5 @@
+import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
+import type { RangeValue } from '#shared/types/date.type';
 import { isWeekend, parseDate } from '@internationalized/date';
 import { useState } from 'react';
 import type { DateValue, RangeCalendarProps } from 'react-aria-components';
@@ -12,8 +14,6 @@ import {
   RangeCalendar,
   Text,
 } from 'react-aria-components';
-import type { RangeValue } from '#shared/types/date.type';
-import { RESOLVED_DATE_TIME_FORMAT_OPTIONS } from '#shared/constants/date.constant';
 
 interface MyRangeCalendarProps<T extends DateValue>
   extends RangeCalendarProps<T> {
@@ -111,7 +111,7 @@ function MyDoubleRangeCalendar<T extends DateValue>({
 
 export function DemoRangeCalendar() {
   // `start` and `end` can not be null
-  const [value, setValue] = useState<RangeValue<DateValue>>({
+  const [value, setValue] = useState<RangeValue<DateValue> | null>({
     start: parseDate('2023-10-09'),
     end: parseDate('2023-10-10'),
   });
