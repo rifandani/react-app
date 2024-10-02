@@ -3,6 +3,7 @@ import {
   resourceListResponseSchema,
 } from '#shared/schemas/api.schema';
 import { http } from '#shared/services/http.service';
+import type { Options } from 'ky';
 import { z } from 'zod';
 
 // #region ENTITY SCHEMA
@@ -65,12 +66,13 @@ export const todoRepositories = {
    * @url GET ${env.apiBaseUrl}/todos
    * @note could throw error in `HttpError` or `ZodError` error
    */
-  list: async (params: TodoListRequestSchema) => {
+  list: async (params: TodoListRequestSchema, options?: Options) => {
     const resp = await http.instance
       .get('todos', {
         searchParams: params,
+        ...options,
       })
-      .json<TodoListResponseSchema>();
+      .json();
 
     return todoListResponseSchema.parse(resp);
   },
@@ -78,10 +80,8 @@ export const todoRepositories = {
    * @url GET ${env.apiBaseUrl}/todos/${id}
    * @note could throw error in `HttpError` or `ZodError` error
    */
-  detail: async (id: TodoDetailRequestSchema) => {
-    const resp = await http.instance
-      .get(`todos/${id}`)
-      .json<TodoDetailResponseSchema>();
+  detail: async (id: TodoDetailRequestSchema, options?: Options) => {
+    const resp = await http.instance.get(`todos/${id}`, options).json();
 
     return todoDetailResponseSchema.parse(resp);
   },
@@ -89,10 +89,10 @@ export const todoRepositories = {
    * @url POST ${env.apiBaseUrl}/todos/add
    * @note could throw error in `HttpError` or `ZodError` error
    */
-  create: async (todo: TodoCreateRequestSchema) => {
+  create: async (todo: TodoCreateRequestSchema, options?: Options) => {
     const resp = await http.instance
-      .post('todos/add', { json: todo })
-      .json<TodoCreateResponseSchema>();
+      .post('todos/add', { json: todo, ...options })
+      .json();
 
     return todoCreateResponseSchema.parse(resp);
   },
@@ -100,10 +100,13 @@ export const todoRepositories = {
    * @url PUT ${env.apiBaseUrl}/todos/${id}
    * @note could throw error in `HttpError` or `ZodError` error
    */
-  update: async ({ id, ...body }: TodoUpdateRequestSchema) => {
+  update: async (
+    { id, ...body }: TodoUpdateRequestSchema,
+    options?: Options,
+  ) => {
     const resp = await http.instance
-      .put(`todos/${id}`, { json: body })
-      .json<TodoUpdateResponseSchema>();
+      .put(`todos/${id}`, { json: body, ...options })
+      .json();
 
     return todoUpdateResponseSchema.parse(resp);
   },
@@ -111,10 +114,8 @@ export const todoRepositories = {
    * @url DELETE ${env.apiBaseUrl}/todos/${id}
    * @note could throw error in `HttpError` or `ZodError` error
    */
-  delete: async (id: TodoDeleteRequestSchema) => {
-    const resp = await http.instance
-      .delete(`todos/${id}`)
-      .json<TodoDeleteResponseSchema>();
+  delete: async (id: TodoDeleteRequestSchema, options?: Options) => {
+    const resp = await http.instance.delete(`todos/${id}`, options).json();
 
     return todoDeleteResponseSchema.parse(resp);
   },

@@ -64,8 +64,6 @@ export function useTodoUpdate(
 }
 
 /**
- * get mutation state based on the mutation key.
- *
  * @url PUT ${env.apiBaseUrl}/todos
  */
 export function useTodoUpdateState(params: Params) {
@@ -79,8 +77,6 @@ export function useTodoUpdateState(params: Params) {
 }
 
 /**
- * optimistic update
- *
  * @url PUT ${env.apiBaseUrl}/todos
  * @note includes error handling in "effect" for convenience
  */

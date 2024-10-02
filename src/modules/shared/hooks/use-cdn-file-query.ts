@@ -23,7 +23,7 @@ type Opt = {
 /**
  * Eagerly download (GET) file based on input url.
  *
- * Includes error handling in effect for convenience.
+ * Includes error handling in "effect" for convenience.
  */
 export function useCdnFileQuery(
   opt: Opt,
@@ -32,15 +32,12 @@ export function useCdnFileQuery(
     'queryKey' | 'queryFn'
   >,
 ) {
-  const queryKey = cdnKeys[opt.key](opt.url);
-  const queryFn = opt.url
-    ? () => cdnRepositories.getCdnFile({ url: opt.url as string })
-    : skipToken;
-
   const query = useQuery({
-    queryKey,
-    queryFn,
-    enabled: !!opt.url,
+    queryKey: cdnKeys[opt.key](opt.url),
+    queryFn: opt.url
+      ? ({ signal }) =>
+          cdnRepositories.getCdnFile({ url: opt.url as string }, { signal })
+      : skipToken,
     ...(queryOptions && queryOptions),
   });
 

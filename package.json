@@ -16,7 +16,7 @@
     "ci": "biome ci ./src",
     "typecheck": "tsc --noEmit",
     "test:install": "playwright install --with-deps chromium",
-    "test": "playwright test",
+    "test": "DEBUG=pw:api playwright test",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
     "regression": "run-p check typecheck test",

@@ -63,8 +63,6 @@ export function useTodoCreate(
 }
 
 /**
- * get mutation state based on the mutation key.
- *
  * @url POST ${env.apiBaseUrl}/todos
  */
 export function useTodoCreateState(params: Params) {
@@ -78,8 +76,6 @@ export function useTodoCreateState(params: Params) {
 }
 
 /**
- * optimistic update
- *
  * @url POST ${env.apiBaseUrl}/todos
  * @note includes error handling in "effect" for convenience
  */

@@ -24,7 +24,7 @@ type Opt = {
  *
  * Includes error handling in `onError` for convenience.
  */
-export function useDownloadCdnFile(
+export function useCdnFileMutation(
   opt: Opt,
   mutationOptions?: Except<
     UseMutationOptions<GetCdnFileSuccessSchema, HTTPError, string>,
@@ -50,7 +50,7 @@ export function useDownloadCdnFile(
 /**
  * Get mutation state based on the mutation key.
  */
-export function useDownloadCdnFileMutationState(opt: Opt) {
+export function useCdnFileMutationState(opt: Opt) {
   return useMutationState<
     MutationState<GetCdnFileSuccessSchema, HTTPError, string>
   >({

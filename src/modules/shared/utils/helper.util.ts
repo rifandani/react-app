@@ -2,6 +2,8 @@ import { deepReadObject } from '@rifandani/nxact-yutiriti';
 import React from 'react';
 import { createSearchParams, type URLSearchParamsInit } from 'react-router-dom';
 import { extendTailwindMerge } from 'tailwind-merge';
+import type { RequireAtLeastOne, UnknownRecord } from 'type-fest';
+import { z } from 'zod';
 
 // declare a type that works with generic components
 type FixedForwardRef = <T, P = object>(
@@ -196,6 +198,191 @@ export const tw = extendTailwindMerge<'alert'>({
 });
 
 /**
+ * Convert deep object to FormData.
+ * Supports File, array, and options to add object rootName and ignore object keys.
+ *
+ * @example
+ *
+ * const formData = objectToFormData({
+ *   num: 1,
+ *   falseBool: false,
+ *   trueBool: true,
+ *   empty: '',
+ *   und: undefined,
+ *   nullable: null,
+ *   date: new Date(),
+ *   file: new File(["foo"], "foo.txt", {
+ *     type: "text/plain",
+ *   }),
+ *   name: 'str',
+ *   another_object: {
+ *     name: 'my_name',
+ *     value: 'whatever'
+ *   },
+ *   array: [
+ *     {
+ *       nested_key1: {
+ *         name: 'key1'
+ *       }
+ *     }
+ *   ]
+ * });
+ *
+ * // results
+ * (2) ['num', '1']
+ * (2) ['falseBool', 'false']
+ * (2) ['trueBool', 'true']
+ * (2) ['empty', '']
+ * (2) ['file', File]
+ * (2) ['name', 'str']
+ * (2) ['another_object.name', 'my_name']
+ * (2) ['another_object.value', 'whatever']
+ * (2) ['array[0].nested_key1.name', 'key1']
+ */
+export function objectToFormData<T extends UnknownRecord>(
+  obj: T,
+  options?: RequireAtLeastOne<{
+    rootName?: string;
+    ignoreList: Array<keyof T>;
+  }>,
+) {
+  const formData = new FormData();
+
+  function ignore(_key?: string) {
+    return (
+      Array.isArray(options?.ignoreList) &&
+      options?.ignoreList.some((_ignoredKey) => _ignoredKey === _key)
+    );
+  }
+
+  function appendFormData(_obj: T, _rootName_?: string) {
+    let _rootName = _rootName_;
+
+    if (!ignore(_rootName)) {
+      _rootName = _rootName || '';
+
+      if (_obj instanceof File) {
+        formData.append(_rootName, _obj);
+      } else if (Array.isArray(_obj)) {
+        for (let i = 0; i < _obj.length; i++) {
+          appendFormData(_obj[i], `${_rootName}[${i}]`);
+        }
+      } else if (typeof _obj === 'object' && _obj) {
+        for (const key in _obj) {
+          if (Object.prototype.hasOwnProperty.call(_obj, key)) {
+            if (_rootName === '') {
+              // @ts-expect-error i'm not typescript wizard
+              appendFormData(_obj[key], key);
+            } else {
+              // @ts-expect-error i'm not typescript wizard
+              appendFormData(_obj[key], `${_rootName}.${key}`);
+            }
+          }
+        }
+      } else {
+        if (_obj !== null && typeof _obj !== 'undefined') {
+          formData.append(_rootName, _obj);
+        }
+      }
+    }
+  }
+
+  appendFormData(obj, options?.rootName);
+
+  return formData;
+}
+
+/**
+ * Convert deep object to FormData.
+ * Supports File, array, and options to add object rootName and ignore object keys.
+ *
+ * @example
+ *
+ * const formData = objectToFormDataArrayWithComma({
+ *   num: 1,
+ *   falseBool: false,
+ *   trueBool: true,
+ *   empty: '',
+ *   und: undefined,
+ *   nullable: null,
+ *   date: new Date(),
+ *   file: new File(["foo"], "foo.txt", {
+ *     type: "text/plain",
+ *   }),
+ *   name: 'str',
+ *   another_object: {
+ *     name: 'my_name',
+ *     value: 'whatever'
+ *   },
+ *   array: [
+ *     "value1",
+ *     "value2"
+ *   ]
+ * });
+ *
+ * // results
+ * (2) ['num', '1']
+ * (2) ['falseBool', 'false']
+ * (2) ['trueBool', 'true']
+ * (2) ['empty', '']
+ * (2) ['file', File]
+ * (2) ['name', 'str']
+ * (2) ['another_object.name', 'my_name']
+ * (2) ['another_object.value', 'whatever']
+ * (2) ['array', 'value1,value2']
+ */
+export function objectToFormDataArrayWithComma<T extends UnknownRecord>(
+  obj: T,
+  options?: RequireAtLeastOne<{
+    rootName?: string;
+    ignoreList: Array<keyof T>;
+  }>,
+) {
+  const formData = new FormData();
+
+  function ignore(_key?: string) {
+    return (
+      Array.isArray(options?.ignoreList) &&
+      options?.ignoreList.some((_ignoredKey) => _ignoredKey === _key)
+    );
+  }
+
+  function appendFormData(_obj: T, _rootName_?: string) {
+    let _rootName = _rootName_;
+
+    if (!ignore(_rootName)) {
+      _rootName = _rootName || '';
+
+      if (_obj instanceof File) {
+        formData.append(_rootName, _obj);
+      } else if (Array.isArray(_obj)) {
+        formData.append(_rootName, _obj.join(','));
+      } else if (typeof _obj === 'object' && _obj) {
+        for (const key in _obj) {
+          if (Object.prototype.hasOwnProperty.call(_obj, key)) {
+            if (_rootName === '') {
+              // @ts-expect-error i'm not typescript wizard
+              appendFormData(_obj[key], key);
+            } else {
+              // @ts-expect-error i'm not typescript wizard
+              appendFormData(_obj[key], `${_rootName}.${key}`);
+            }
+          }
+        }
+      } else {
+        if (_obj !== null && typeof _obj !== 'undefined') {
+          formData.append(_rootName, _obj);
+        }
+      }
+    }
+  }
+
+  appendFormData(obj, options?.rootName);
+
+  return formData;
+}
+
+/**
  * instead of using `createSearchParams`, this function will convert an object into a URLSearchParams and joins array of string value with a comma
  *
  * @example
@@ -223,4 +410,44 @@ export function createSearchParamsWithComma(init?: URLSearchParamsInit) {
   }
 
   return searchParams;
+}
+
+/**
+ * get default values from zod schema, similar to `yupSchema.getDefault()`
+ *
+ * If all of your schema keys have default values, then you can just do `schema.parse({})` to read the defaults
+ *
+ * @note doesn't work with `refine` or `superRefine` in nested `object`
+ */
+export function getSchemaDefaults<T extends z.ZodTypeAny>(
+  // biome-ignore lint/suspicious/noExplicitAny: intended
+  schema: z.AnyZodObject | z.ZodEffects<any>,
+): z.infer<T> {
+  // Check if it's a ZodEffect
+  if (schema instanceof z.ZodEffects) {
+    // Check if it's a recursive ZodEffect
+    if (schema.innerType() instanceof z.ZodEffects)
+      return getSchemaDefaults(schema.innerType());
+    // return schema inner shape as a fresh zodObject
+    return getSchemaDefaults(z.ZodObject.create(schema.innerType().shape));
+  }
+
+  function getDefaultValue(schema: z.ZodTypeAny): unknown {
+    if (schema instanceof z.ZodDefault) return schema._def.defaultValue();
+    // return an empty array if it is
+    if (schema instanceof z.ZodArray) return [];
+    // return an empty string if it is
+    if (schema instanceof z.ZodString) return '';
+    // return an content of object recursivly
+    if (schema instanceof z.ZodObject) return getSchemaDefaults(schema);
+
+    if (!('innerType' in schema._def)) return undefined;
+    return getDefaultValue(schema._def.innerType);
+  }
+
+  return Object.fromEntries(
+    Object.entries(schema.shape).map(([key, value]) => {
+      return [key, getDefaultValue(value as z.ZodTypeAny)];
+    }),
+  );
 }

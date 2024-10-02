@@ -1,4 +1,4 @@
-import ky, { type KyResponse } from 'ky';
+import ky, { type KyResponse, type Options } from 'ky';
 
 export type GetCdnFileRequestSchema = {
   url: string;
@@ -26,8 +26,8 @@ export const cdnRepositories = {
    * @access public
    * @note could throw error in the shape of `HTTPError` error
    */
-  async getCdnFile({ url }: { url: string }) {
-    const response = await ky.get(url);
+  async getCdnFile({ url }: { url: string }, options?: Options) {
+    const response = await ky.get(url, options);
     const blob = await response.blob();
     const headers = Object.fromEntries(response.headers);
 

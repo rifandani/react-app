@@ -38,7 +38,9 @@ export function useTodoList(
 ) {
   const query = useQuery({
     queryKey: todoKeys.list(params),
-    queryFn: params ? () => todoRepositories.list(params) : skipToken,
+    queryFn: params
+      ? ({ signal }) => todoRepositories.list(params, { signal })
+      : skipToken,
     ...(options && options),
   });
 
@@ -52,8 +54,6 @@ export function useTodoList(
 }
 
 /**
- * infinite query
- *
  * @url GET ${env.apiBaseUrl}/todos
  * @note includes error handling in "effect" for convenience
  */
@@ -74,11 +74,14 @@ export function useTodoListInfinite(
   const infiniteQuery = useInfiniteQuery({
     queryKey: todoKeys.list(params),
     queryFn: params
-      ? ({ pageParam }) =>
-          todoRepositories.list({
-            ...params,
-            skip: (params?.limit ?? todosDefaults.skip) + pageParam,
-          })
+      ? ({ pageParam, signal }) =>
+          todoRepositories.list(
+            {
+              ...params,
+              skip: (params?.limit ?? todosDefaults.skip) + pageParam,
+            },
+            { signal },
+          )
       : skipToken,
     initialPageParam: 0,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>

@@ -63,8 +63,6 @@ export function useTodoDelete(
 }
 
 /**
- * get mutation state based on the mutation key.
- *
  * @url PUT ${env.apiBaseUrl}/todos
  */
 export function useTodoDeleteState(params: Params) {
@@ -78,8 +76,6 @@ export function useTodoDeleteState(params: Params) {
 }
 
 /**
- * optimistic Delete
- *
  * @url DELETE ${env.apiBaseUrl}/todos/${id}
  * @note includes error handling in "effect" for convenience
  */

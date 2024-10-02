@@ -1,4 +1,5 @@
 import { http } from '#shared/services/http.service';
+import type { Options } from 'ky';
 import { z } from 'zod';
 
 // #region API SCHEMAS
@@ -36,7 +37,10 @@ export const authRepositories = {
    * @access public
    * @url POST ${env.apiBaseUrl}/auth/login
    */
-  login: async ({ json }: { json: AuthLoginRequestSchema }) => {
+  login: async (
+    { json }: { json: AuthLoginRequestSchema },
+    options?: Options,
+  ) => {
     const resp = await http.instance
       .post('auth/login', {
         json,
@@ -57,6 +61,7 @@ export const authRepositories = {
             },
           ],
         },
+        ...options,
       })
       .json();
 
