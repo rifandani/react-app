@@ -1,5 +1,5 @@
-import type { AuthLoginResponseSchema } from '#auth/apis/auth.api';
-import type { UserStoreState } from '#auth/hooks/use-auth-user-store.hook';
+import type { AuthLoginResponseSchema } from '#/auth/apis/auth.api';
+import type { UserStoreState } from '#/auth/hooks/use-auth-user-store.hook';
 import { faker } from '@faker-js/faker';
 
 export function seedUser(): AuthLoginResponseSchema {

@@ -14,7 +14,7 @@ self.addEventListener('message', (event) => {
 // self.__WB_MANIFEST is default injection point
 precacheAndRoute(self.__WB_MANIFEST);
 
-// clean old assets
+// clean old caches
 cleanupOutdatedCaches();
 
 // to allow work offline

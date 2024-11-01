@@ -1,4 +1,4 @@
-import { Entry } from '#app/entry';
+import { App } from '#/core/app';
 import { createRoot } from 'react-dom/client';
 import './main.css';
 
@@ -10,4 +10,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-createRoot(root as HTMLElement).render(<Entry />);
+createRoot(root as HTMLElement).render(<App />);
